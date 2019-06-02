@@ -55,7 +55,9 @@ Route::group(['prefix'=>'admin'],function(){
     });
 });
 
+
 Route::get('trangchu',function(){
+Route::get('index',function(){
 	return view('layouts.pages.index');
 });
 // User
@@ -68,4 +70,17 @@ Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallbac
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('product_tpl',function(){
+    return view('layouts.pages.product_tpl');
+});
+
+Route::get('product_detail_tpl',function(){
+    return view('layouts.pages.product_detail_tpl');
+});
+
+Route::get('cart_tpl',function(){
+    return view('layouts.pages.cart_tpl');
+});
