@@ -47,7 +47,7 @@
 								<div class="login-row"><label>Email</label> <input type="email" name="hoten" placeholder="Email của bạn" required></div>
 								<div class="login-row"><label>Mật khẩu</label> <input type="password" name="hoten" placeholder="Nhập mật khẩu" required></div>
 								<div class="login-row"><label>Nhập lại mật khẩu</label> <input type="password" name="hoten" placeholder="Nhập lại mật khẩu" required></div>
-								<div class="login-row"><label>Giới tính</label> 
+								<div class="login-row"><label>Giới tính</label>
 									<input type="radio" name="gioitinh" value="Nam"><label class="text_radio">Nam</label>
 									<input type="radio" name="gioitinh" value="Nữ"><label class="text_radio">Nữ</label>
 								</div>
@@ -68,8 +68,8 @@
 								<div class="login-row"><label>Mật khẩu</label> <input type="password" name="hoten" placeholder="Nhập mật khẩu" required></div>
 								<div class="login-row"><span class="quenMK">Quên mật khẩu? Nhấn vào <a href="">đây</a></span> </div>
 								<div class="login-row"><input type="submit" name="" value="Login"></div>
-								<div class="login-row"><input class="login_FB" type="submit" name="" value="Đăng nhập bằng FaceBook"></div>
-								<div class="login-row"><input class="login_GG" type="submit" name="" value="Đăng nhập bằng Google"></div>
+								<div class="login-row"><a href="{{ url('/auth/facebook')}}">Đăng nhập bằng FaceBook</a></div>
+								<div class="login-row"><a href="{{ url('/auth/google')}}">Đăng nhập bằng Google</a></div>
 							</form>
 						</div>
 					</div>

@@ -57,21 +57,17 @@ Route::group(['prefix'=>'admin'],function(){
 
 
 Route::get('trangchu',function(){
+    return view('layouts.pages.index');
+});
 Route::get('index',function(){
 	return view('layouts.pages.index');
 });
 // User
 Route::get('dangnhap','UsersController@index');
+
 //Login Social
 Route::get('auth/{social}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback');
-
-
-
-Auth::routes();
-
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('product_tpl',function(){
     return view('layouts.pages.product_tpl');
