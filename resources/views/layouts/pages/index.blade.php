@@ -1,21 +1,21 @@
 @extends('layouts.master')
-@section('NoiDung')
+@section('content')
 <section id="slider">
 	<div class="slider-owl owl-carousel owl-theme">
-		<div class="slider-items"><a href=""><img src="images/slide.jpg" alt="" /></a></div>
-		<div class="slider-items"><a href=""><img src="images/slide2.jpg" alt="" /></a></div>
-		<div class="slider-items"><a href=""><img src="images/slide.jpg" alt="" /></a></div>
+		<div class="slider-items"><a href=""><img src="{{asset('themes/images/slide.jpg')}}" alt="" /></a></div>
+		<div class="slider-items"><a href=""><img src="{{asset('themes/images/slide2.jpg')}}" alt="" /></a></div>
+		<div class="slider-items"><a href=""><img src="{{asset('themes/images/slide.jpg')}}" alt="" /></a></div>
 	</div>
 </section>
 <section id="product_home">
 	<div class="container">
-		<label class="title-sp-nb"><img src="images/gsct.png"></label>
+		<label class="title-sp-nb"><img src="{{asset('themes/images/gsct.png')}}"></label>
 		<div class="list_product">
 			<div class="sp-owl owl-carousel owl-theme">
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="" title="">
-							<img class="" src="images/sp.jpg" alt="">
+							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">-10%</div>
 					</div>
@@ -33,7 +33,7 @@
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="" title="">
-							<img class="" src="images/sp.jpg" alt="">
+							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">-10%</div>
 					</div>
@@ -51,7 +51,7 @@
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="" title="">
-							<img class="" src="images/sp.jpg" alt="">
+							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">-10%</div>
 					</div>
@@ -69,7 +69,7 @@
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="" title="">
-							<img class="" src="images/sp.jpg" alt="">
+							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">-10%</div>
 					</div>
@@ -87,7 +87,7 @@
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="" title="">
-							<img class="" src="images/sp.jpg" alt="">
+							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">-10%</div>
 					</div>
@@ -105,7 +105,7 @@
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="" title="">
-							<img class="" src="images/sp.jpg" alt="">
+							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">-10%</div>
 					</div>
@@ -128,7 +128,7 @@
 	<div class="home_grid">
 		<div class="col-home col-home-1 ">
 			<a href="" class="flex-between-center">
-				<img class="lazy" src="images/home1.jpg" alt="" />
+				<img class="lazy" src="{{asset('themes/images/home1.jpg')}}" alt="" />
 				<div class="info">
 					<div class="name">Home 1</div>
 					<div class="des">Lời đầu tiên chúng tôi xin gửi đến Quý khách hàng những lời chúc tốt đẹp nhất! Với phương châm chất lượng đặt lên hàng đầu chúng tôi sẽ là sự lưạ chọn tốt cho quý khách hàng. Đến với chúng tôi quý khách sẽ thấy được sự Thuận tiện, Nhanh chóng, thái độ phục vụ Nhiệt tình, </div>
@@ -138,7 +138,7 @@
 		</div>
 		<div class="col-home col-home-2">
 			<a href="" class="flex-between-center">
-				<img class="lazy" src="images/home2.jpg" alt="" />
+				<img class="lazy" src="{{asset('themes/images/home2.jpg')}}" alt="" />
 				<div class="info">
 					<div class="name">Home 2</div>
 					<div class="des">Lời đầu tiên chúng tôi xin gửi đến Quý khách hàng những lời chúc tốt đẹp nhất! Với phương châm chất lượng đặt lên hàng đầu chúng tôi sẽ là sự lưạ chọn tốt cho quý khách hàng. Đến với chúng tôi quý khách sẽ thấy được sự Thuận tiện, Nhanh chóng, thái độ phục vụ Nhiệt tình, </div>
@@ -148,7 +148,7 @@
 		</div>
 		<div class="col-home col-home-3">
 			<a href="" class="flex-between-center">
-				<img class="lazy" src="images/home3.jpg" alt="" />
+				<img class="lazy" src="{{asset('themes/images/home3.jpg')}}" alt="" />
 				<div class="info">
 					<div class="name">Home 3</div>
 					<div class="des">Lời đầu tiên chúng tôi xin gửi đến Quý khách hàng những lời chúc tốt đẹp nhất! Với phương châm chất lượng đặt lên hàng đầu chúng tôi sẽ là sự lưạ chọn tốt cho quý khách hàng. Đến với chúng tôi quý khách sẽ thấy được sự Thuận tiện, Nhanh chóng, thái độ phục vụ Nhiệt tình, </div>
@@ -158,7 +158,7 @@
 		</div>
 		<div class="col-home col-home-4">
 			<a href="" class="flex-between-center">
-				<img class="lazy" src="images/home4.jpg" alt="" />
+				<img class="lazy" src="{{asset('themes/images/home4.jpg')}}" alt="" />
 				<div class="info">
 					<div class="name">Home 4</div>
 					<div class="des">Lời đầu tiên chúng tôi xin gửi đến Quý khách hàng những lời chúc tốt đẹp nhất! Với phương châm chất lượng đặt lên hàng đầu chúng tôi sẽ là sự lưạ chọn tốt cho quý khách hàng. Đến với chúng tôi quý khách sẽ thấy được sự Thuận tiện, Nhanh chóng, thái độ phục vụ Nhiệt tình, </div>
@@ -168,7 +168,7 @@
 		</div>
 	</div>
 </section>
-		<!-- <section id="main_home">
+		<section id="main_home">
 			<div class="wrap_pro_home">
 				<div class="container">
 					<label class="title-sp">Apple</label>
@@ -181,7 +181,7 @@
 						<div class="big_product">
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="sanphamnb" src="images/sp_nb.jpg" alt=""></a>
+									<a href="" title=""><img class="sanphamnb" src="{{asset('themes/images/sp_nb.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -198,7 +198,7 @@
 						<div class="small_product">
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -213,7 +213,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -228,7 +228,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -243,7 +243,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -258,7 +258,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -273,7 +273,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -302,7 +302,7 @@
 						<div class="big_product">
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="sanphamnb" src="images/sp_nb.jpg" alt=""></a>
+									<a href="" title=""><img class="sanphamnb" src="{{asset('themes/images/sp_nb.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -319,7 +319,7 @@
 						<div class="small_product">
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -334,7 +334,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -349,7 +349,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -364,7 +364,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -379,7 +379,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -394,7 +394,7 @@
 							</div>
 							<div class="sanpham">
 								<div class="img">
-									<a href="" title=""><img class="img-responsive lazy" src="images/sp_t.jpg" alt=""></a>
+									<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
 									<div class="sale_off">-10%</div>
 								</div>
 								<div class="pro_info">
@@ -411,7 +411,7 @@
 					</div>
 				</div>
 			</div>
-		</section> -->
+		</section>
 		<section id="news-wrapper">
 			<div class="container news-repone flex-between">
 				<div class="news_wrap">
@@ -420,7 +420,7 @@
 					<div class="content news flex-between">
 						<div class="big-news">  
 							<div class="news-thumbnail">
-								<a href="" title=""><img src="images/news_2.jpg" class="img-responsive lazy" alt="" /></a>
+								<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" class="img-responsive lazy" alt="" /></a>
 							</div>
 							<div class="news-desc">
 								<h4><a href="" title="">Cách chọn mua máy chiếu cho trung tâm giáo dục</a></h4>
@@ -437,21 +437,21 @@
 						<div class="list-news-small">
 							<div class="owl-news">
 								<div class="small-item flex-between-center">
-									<a href="" title=""><img src="images/news_2.jpg" alt="" class="img-responsive lazy"/></a>
+									<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" alt="" class="img-responsive lazy"/></a>
 									<div>
 										<h4><a href="" title="">Máy Bộ Đàm ICOM (ICOM radio)</a></h4>
 										<div class="desc">Giới thiệu về Bộ đàm ICOM Nhật Bản</div>
 									</div>
 								</div>
 								<div class="small-item flex-between-center">
-									<a href="" title=""><img src="images/news_2.jpg" alt="" class="img-responsive lazy"/></a>
+									<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" alt="" class="img-responsive lazy"/></a>
 									<div>
 										<h4><a href="" title="">Máy Bộ Đàm ICOM (ICOM radio)</a></h4>
 										<div class="desc">Giới thiệu về Bộ đàm ICOM Nhật Bản</div>
 									</div>
 								</div>
 								<div class="small-item flex-between-center">
-									<a href="" title=""><img src="images/news_2.jpg" alt="" class="img-responsive lazy"/></a>
+									<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" alt="" class="img-responsive lazy"/></a>
 									<div>
 										<h4><a href="" title="">Máy Bộ Đàm ICOM (ICOM radio)</a></h4>
 										<div class="desc">Giới thiệu về Bộ đàm ICOM Nhật Bản</div>
