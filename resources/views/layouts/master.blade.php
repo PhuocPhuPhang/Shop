@@ -103,7 +103,7 @@
 						<p class="r1">HOTLINE</p>
 						<p class="r2">0329973272</p>
 					</div>
-					<a href="gio-hang.html" class="link_cart" title="Giỏ hàng">
+					<a href="{{ url('/dangnhap') }}" class="link_cart" title="Giỏ hàng">
 						<div class="cart_pc flex-between-center">
 							<span class="qty_cart">0</span>
 							<div class="txt">
@@ -123,7 +123,7 @@
 					</span>
 				</button>
 				<div id="menu_mobi">
-					<div class="cart_mb"><a href="gio-hang.html" class="link_cart" title="Giỏ hàng"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  Giỏ hàng (<span class="qty_cart"></span>)</a></div>
+					<div class="cart_mb"><a href="#" class="link_cart" title="Giỏ hàng"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  Giỏ hàng (<span class="qty_cart"></span>)</a></div>
 				</div>
 
 				<ul class="menu-grid">
