@@ -14,6 +14,8 @@
 	<link  href="{{asset('themes/css/mmenu.all.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/hamburgers.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{asset('themes/js/magiczoomplus/magiczoomplus.css')}}">
+	<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
 	<title></title>
 </head>
 <body>
@@ -28,8 +30,9 @@
 <script type="text/javascript" src="{{asset('themes/js/jquery-ui.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('themes/js/menu.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('themes/js/mmenu.all.js')}}"></script>
-<script src="{{asset('themes/js/fotorama.js')}}"></script>
-<script src="{{asset('themes/js/OwlCarousel/owl.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('themes/js/magiczoomplus/magiczoomplus.js')}}"></script>
+<script type="text/javascript" src="{{asset('themes/js/fotorama.js')}}"></script>
+<script type="text/javascript" src="{{asset('themes/js/OwlCarousel/owl.carousel.min.js')}}"></script>
 
 <script>
 	$(document).ready(function(){
@@ -80,6 +83,27 @@
 				700:{ items: 4 },
 				1200:{ items: 5 },
 				1300:{ items: 6 }
+			}
+		});
+
+		$(".sp_detail-owl").owlCarousel({
+			dots: false,
+			autoplay: true,
+			rewind: true,
+			autoplaySpeed: 1500,
+			margin: 10,
+			items: 4
+		});
+
+		$(".owl-product-photos").owlCarousel({
+			autoplay: true,
+			rewind: true,
+			autoplaySpeed: 1500,
+			margin: 10,
+			responsive:{
+				320:{ items: 4 },
+				768:{ items: 6 },
+				1025:{ items: 5 }
 			}
 		});
 		$('input[name="phuongthuc"]').click(function(){

@@ -55,7 +55,18 @@ Route::group(['prefix'=>'admin'],function(){
     });
 });
 
-Route::get('blade',function(){
+Route::get('index',function(){
 	return view('layouts.pages.index');
 });
 
+Route::get('product_tpl',function(){
+    return view('layouts.pages.product_tpl');
+});
+
+Route::get('product_detail_tpl',function(){
+    return view('layouts.pages.product_detail_tpl');
+});
+
+Route::get('cart_tpl',function(){
+    return view('layouts.pages.cart_tpl');
+});

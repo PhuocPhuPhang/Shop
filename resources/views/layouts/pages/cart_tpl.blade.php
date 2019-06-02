@@ -1,0 +1,75 @@
+@extends('layouts.master')
+@section('content')
+<div id="layout_cart" class="container padding-inner">
+	<form id="frmPay" action="gio-hang" method="post" accept-charset="utf-8">
+		<div class="cart-layout cart_repon">
+			<div class="cart-layout__col">
+				<div class="cart-layout__title">Thông tin giỏ hàng</div>
+				<input class="form-control" type="text" name="ten" placeholder="Họ tên" required>
+				<input class="form-control" type="text" name="email" placeholder="Email" required>
+				<input class="form-control" type="text" name="dienthoai" placeholder="Số điện thoại" required>
+				<textarea class="form-control" name="diachi" placeholder="Địa chỉ" rows="5" required></textarea>
+				<select id="id_city" name="id_city" data-level="0" data-table="table_place_dist" data-child="id_dist" class="select_tinhthanh custom-select form-control" required>
+					<option value="0">Tỉnh thành</option>
+					<option value="">Thành phố HCM</option>
+				</select>
+				<select id="id_dist" name="id_dist" data-level="1" data-table="table_place_ward" data-child="id_ward" class="select_tinhthanh custom-select form-control" required>
+					<option value="0">Quận huyện</option>
+						<option value="">Quận 1</option>
+				</select>
+			</div>
+			<div class="cart-layout__col">
+				<div class="cart-layout__header">Đơn hàng (... sản phẩm)</div>
+				<div class="cart-layout__body">
+					<div class="cart-items">
+						<a class="cart-items__image w-img" href="">
+							<img src="{{asset('themes/images/news_2.jpg')}}" alt="sản phẩm">
+						</a>
+						<div class="cart-items__info">
+							<a class="cart-items__name" href="">Sản phẩm 1</a>
+							<div id="unit" class="cart-items__unit">Giá sản phẩm: 10,000,000<sup>đ</sup></div>
+							<div class="cart-items__quantity">
+								<span class="amount amount-minus" data-action="minus" data-id=""></span>
+								<input type="text" name="number" id="amount-" value="1">
+								<span class="amount amount-plus" data-action="plus" data-id=""></span>
+							</div>
+							<span class="cart-items__price">Tổng giá:</span>
+							<div id="price-" class="cart-items__price">10,000,000<sup>đ</sup></div>
+						</div>
+						<div class="cart-items__action">
+							<div onclick="del()" class="cart-items__delete"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"/></svg></div>
+						</div>
+					</div>
+					<div class="cart-layout__row cart-layout__total">
+						<span>Tổng cộng</span>
+						<span id="OrderTotal">10,000,000<sup>đ</sup></span>
+					</div>
+					<div class="httt_wrap">
+						<div class="cart-layout__title">Thanh toán</div>
+						<div>
+							<div class="payment-method">
+								<div class="payment-method__header">
+									<input type="radio" class="input-radio active" name="phuongthuc" value="Thanh toán tại cửa hàng"/>
+									<span>Thanh toán tại cửa hàng</span>
+								</div>
+								<div class="payment-method__body clearfix active">Nội dung thanh toán tại cửa hàng</div>
+							</div>
+							<div class="payment-method">
+								<div class="payment-method__header">
+									<input type="radio" class="input-radio" name="phuongthuc" value="Thanh toán qua ngân hàng"/>
+									<span>Thanh toán qua ngân hàng</span>
+								</div>
+								<div class="payment-method__body clearfix">Nội dung thanh toán qua ngân hàng</div>
+							</div>
+						</div>
+					</div>
+					<div class="cart-layout__button">
+						<a href="san-pham" title="Tiếp tục mua hàng">Tiếp tục mua hàng</a>
+						<button type="submit">Đặt hàng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+@endsection

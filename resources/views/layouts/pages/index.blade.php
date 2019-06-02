@@ -489,25 +489,25 @@
 				<label class="title-sp">đối tác</label>
 				<div class="doitac-owl owl-carousel owl-theme">
 					<div class="item_dt">
-						<a href="" target="_blank"><img src="images/dt.jpg" alt="" class="img_dt img-responsive" /></a>
+						<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
 					</div>
 					<div class="item_dt">
-						<a href="" target="_blank"><img src="images/dt.jpg" alt="" class="img_dt img-responsive" /></a>
+						<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
 					</div>
 					<div class="item_dt">
-						<a href="" target="_blank"><img src="images/dt.jpg" alt="" class="img_dt img-responsive" /></a>
+						<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
 					</div>
 					<div class="item_dt">
-						<a href="" target="_blank"><img src="images/dt.jpg" alt="" class="img_dt img-responsive" /></a>
+						<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
 					</div>
 					<div class="item_dt">
-						<a href="" target="_blank"><img src="images/dt.jpg" alt="" class="img_dt img-responsive" /></a>
+						<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
 					</div>
 					<div class="item_dt">
-						<a href="" target="_blank"><img src="images/dt.jpg" alt="" class="img_dt img-responsive" /></a>
+						<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
 					</div>
 					<div class="item_dt">
-						<a href="" target="_blank"><img src="images/dt.jpg" alt="" class="img_dt img-responsive" /></a>
+						<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -537,7 +537,7 @@
 						<div class="more"><a href="gioi-thieu.html">XEM THÊM</a></div>
 					</div>
 					<div class="img_about">
-						<a href="gioi-thieu.html"><img src="images/about.jpg" alt=""></a>
+						<a href="gioi-thieu.html"><img src="{{asset('themes/images/about.jpg')}}" alt=""></a>
 					</div>
 				</div>
 			</div>
