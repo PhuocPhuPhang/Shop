@@ -12,7 +12,7 @@ class AdminLoginController extends Controller
      return view('admin.login');
     }
 
-    public function checklogin(Request $request)
+    public function CheckLogin(Request $request)
     {
 
 
@@ -26,9 +26,14 @@ class AdminLoginController extends Controller
          'password.min'=>'Mật khẩu không được nhỏ hơn 3 ký tự',
      ]);
 
-     if(Auth::attempt(['email'=>$request->email,'password'=>$request->password]))
+     $user_data = array(
+        'email'  => $request->get('email'),
+        'password' => $request->get('password')
+       );
+
+     if(Auth::attempt($user_data))
      {
-      return redirect('trangchu');
+      return redirect('admin/index');
      }
      else
      {
@@ -36,9 +41,13 @@ class AdminLoginController extends Controller
      }
     }
 
+    public function SuccessLogin()
+    {
+        return view('admin.layouts.index');
+    }
      public function Logout()
     {
      Auth::logout();
-     return redirect('admin.login');
+     return redirect('admin/login');
     }
 }

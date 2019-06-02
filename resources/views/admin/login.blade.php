@@ -20,7 +20,7 @@
 
     <!-- Custom Theme Style -->
     <link href="{{asset('admin/build/css/custom.min.css')}}" rel="stylesheet">
-    <base href="{{ asset('') }}"
+    <base href="{{ asset('') }}">
   </head>
 
   <body class="login">
@@ -32,9 +32,9 @@
         <div class="animate form login_form">
           <section class="login_content">
 
-             <!-- @if(isset(Auth::user()->email))
-                <script>window.location="/admin/SuccessLogin";</script>
-            @endif -->
+             @if(isset(Auth::user()->email))
+                <script>window.location="/admin/index";</script>
+            @endif
 
             @if ($message = Session::get('error'))
             <div class="alert alert-danger alert-block">
@@ -53,7 +53,8 @@
                 </div>
             @endif
 
-         <form role="form" action="admin/login" method="POST">
+         <form role="form" action="{{ url('/admin/login') }}" method="POST">
+         {{ csrf_field() }}
               <h1>Login Form</h1>
               <div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"  />

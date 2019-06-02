@@ -36,19 +36,23 @@ Route::get('trangchu',function(){
  });
  // Đăng nhập admin
 Route::get('admin/login','AdminLoginController@index');
-Route::post('admin/login','AdminLoginController@checklogin');
+Route::post('admin/login','AdminLoginController@CheckLogin');
+Route::get('admin/index','AdminLoginController@SuccessLogin');
+Route::get('admin/logout','AdminLoginController@Logout');
+
+
 
 
 
 // Trang admin
-// Route::group(['prefix'=>'admin'],function(){
-//     // Nhà cung cấp
-//     Route::gruop(['prefix'=>'nhacungcap'],function(){
+Route::group(['prefix'=>'admin'],function(){
+    // Nhà cung cấp
+    Route::group(['prefix'=>'nhacungcap'],function(){
 
-//         Route::get('danhsach','NhaCungCapController@getDanhSach');
+        // Route::get('danhsach','NhaCungCapController@getDanhSach');
 
-//         Route::get('them','NhaCungCapController@getThem');
+        // Route::get('them','NhaCungCapController@getThem');
 
-//         Route::get('sua','NhaCungCapController@getSua');
-//     });
-// });
+        // Route::get('sua','NhaCungCapController@getSua');
+    });
+});
