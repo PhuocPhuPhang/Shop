@@ -1,4 +1,8 @@
 <?php
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\NhaCungCapController;
+// use Illuminate\Routing\RouteRegistrar;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +27,28 @@ Route::get('trangchu',function(){
     return view('admin.layouts.index');
  });
 
- Route::get('nhacungcap',function(){
-    return view('admin.nha_cung_cap.danh_sach');
+ Route::get('danhsach',function(){
+    return view('admin.tintuc.danhsach');
  });
+
+ Route::get('them',function(){
+    return view('admin.tintuc.them');
+ });
+ // Đăng nhập admin
+Route::get('admin/login','AdminLoginController@index');
+Route::post('admin/login','AdminLoginController@checklogin');
+
+
+
+// Trang admin
+// Route::group(['prefix'=>'admin'],function(){
+//     // Nhà cung cấp
+//     Route::gruop(['prefix'=>'nhacungcap'],function(){
+
+//         Route::get('danhsach','NhaCungCapController@getDanhSach');
+
+//         Route::get('them','NhaCungCapController@getThem');
+
+//         Route::get('sua','NhaCungCapController@getSua');
+//     });
+// });
