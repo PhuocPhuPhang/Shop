@@ -1,0 +1,99 @@
+.g_muatiep{
+width:140px;
+float:left;
+background: #06779C ;
+height:30px;
+border:0;
+color:#fff;
+font-size: 14px;
+margin: 0px 10px 10px 0px;
+text-transform:capitalize;
+cursor:pointer;
+}
+.thanhtoan_nt{
+width:155px;
+float:right;
+height:33px;
+border:0;
+background: #06779C;
+color:#000;
+text-shadow:-1px 1px #fff , 1px -1px #fff , -1px -1px #fff ,1px 1px #fff ;
+font-weight:bold;
+text-transform:capitalize;
+cursor:pointer;
+}
+.g_muatiep:hover{
+	background: #3C6B90;
+}
+.menu_giohang{
+background:#eeeeee ;
+height:30px;
+line-height:30px;
+color:#555;
+font-weight:bold;
+text-transform:uppercase;
+}
+
+.capnhat_full{ color: #FA0000}
+.giohang_tk td{
+	text-align:center;
+	border-top:1px solid #CCCCCC;
+	line-height:30px;
+	padding-top:5px;
+}
+.tonggia td{
+background:#eeeeee;
+height:30px;
+color:rgba(255,255,0,1);
+line-height:30px;
+font-size:14px;
+text-align: right;
+color: #555;
+font-weight:bold;
+padding: 0px 10px 0px 10px;
+text-transform:uppercase;
+}
+.ahaa td{
+}
+.thanhtoan tr{
+	width:100%;
+	float:left;
+	padding:10px 0px 0px 10px;
+	clear:both;
+}
+
+.thanhtoan tr img{
+    float: left;
+    margin-top: 2px;
+}
+.thanhtoan td{
+	float:left;
+	text-align: left;
+}
+.thanhtoan input{
+	width:200px;
+	padding: 5px;	
+}
+.thanhtoan select{
+	width:200px;
+	padding: 5px;	
+}
+.phuongthuc input{
+	width:auto;
+	height:auto;
+
+}
+.thanhtoan select{
+	padding:5px;
+}
+.thanhtoan textarea{
+	padding:10px;
+	width: 100%;
+}
+.titleinformation{ font-weight:bold; white-space:nowrap; height:30px; line-height:40px; text-transform:uppercase; color:rgba(0,102,153,1); width:100%; border-bottom:1px solid rgba(0,102,153,0.2); padding-bottom:5px;} 
+.titleinformation img{ float:left;}
+.phuongthuc{ margin:10px 0px 10px 0px;}
+.phuongthuc p{  font-weight:bold; float:left; width:100%; font-size:12px; margin-bottom:10px; color:rgba(0,102,153,1); text-transform:uppercase;}
+.phuongthuc span{  }
+.phuongthuc input{ margin-right:10px; margin-left:0px; float:left; margin-top:3px;  cursor:pointer;}
+.phuongthuc img{ margin-right:20px;}

@@ -1,0 +1,18 @@
+.khung_mua1{ width: 50%; float: left; border-right: 1px solid #ccc; padding: 10px; background: #fff; height: 250px;}
+.khung_mua1 h5{ font-size: 20px; color: #72b656; padding-bottom: 10px;}
+.khung_mua1 img{ float: left; margin: 5px 10px 0px 0px;}
+.khung_mua1 h3{ font-weight: 100;padding: 5px 0px 10px 0px;}
+.khung_mua1 p{ }
+.gia_m{ font-size: 30px;}
+.gia_g span{ text-decoration: line-through; color: #999; padding: 0px 20px 0px 0px;}
+.khung_mua2{ width: 50%; float: left; padding: 10px;background: #fff;height: 250px;}
+
+.khung_mua2 h5{ font-size: 20px; color: #000; padding-bottom: 10px; display: inline-block;}
+.tamtinh {border-bottom: 1px solid #ccc; padding: 10px 0px 10px 0px; margin-bottom:10px;}
+.tamtinh span{ float: right;}
+
+.thanhtien { padding: 10px 0px 10px 0px; margin-bottom:10px;}
+.thanhtien span{ float: right;}
+.tt_dat{ float: right; background:#017388; color: #fff; padding: 5px 40px 5px 40px; text-transform: uppercase; font-weight: bold;}
+.tt_dat:hover{ background: #008EC3; color: #fff}
+.tt_mua{ float: left; margin-top: 5px; color:#F90000;}

@@ -1,0 +1,85 @@
+.albumContainer{ width: 100%; float: left;}
+.albumFilter a { 
+    color: #fff;
+}
+.albumFilter {margin-bottom: 20px;}
+.albumFilter a:hover {background-color: #666;}
+.albumFilter a.current {background-color: #333;}
+
+div.block {
+    background-color: #fff;
+    margin: 0px 0px 0px 0px;
+    position:relative;
+    float: left;
+    padding: 5px 10px 5px 10px;
+}
+div.block:hover img{ transform: scale(1.1);}
+div.block img{ width: 100%; transition: 0.5s;}
+div.block a{ float: left; position: relative; overflow: hidden;}
+div.block.feature {
+}
+
+/* this maintains the bottom white border on larger images */
+div.block.feature img {
+}
+
+.block-info {
+    bottom:0;
+    padding: 10px;
+    background: #f4f3f3;
+    height: 70px;
+    color:#222;
+    filter: alpha(opacity = 0);
+    width:100%;
+    text-align: center;
+    float: left;
+    z-index:1000;
+}
+.block-info h4 {
+    padding: 0; 
+    margin: 0px;
+    font-size: 18px;
+    color: #555555;
+    font-family: 'RobotoMedium';
+    text-transform: uppercase;
+}
+.block-info p {
+    color: #999;
+    padding: 0; 
+    padding-top: 5px;
+    margin: 0px;
+}
+.block:hover .block-info{
+    margin-top: 0px;
+    opacity:0.9;
+    filter: alpha(opacity = 90);
+    transition:opacity 0.25s;
+    -moz-transition:opacity 0.25s;
+    -webkit-transition:opacity 0.25s;
+}
+
+.isotope-item {
+    z-index: 2;
+}
+.isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+}
+.isotope,
+.isotope .isotope-item {
+  /* change duration value to whatever you like */
+
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+}
+.isotope {
+    -webkit-transition-property: height, width;
+    -moz-transition-property: height, width;
+    transition-property: height, width;
+}
+.isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    transition-property: transform, opacity;
+}

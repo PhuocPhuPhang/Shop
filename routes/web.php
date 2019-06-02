@@ -56,3 +56,9 @@ Route::group(['prefix'=>'admin'],function(){
         // Route::get('sua','NhaCungCapController@getSua');
     });
 });
+
+//===============================================
+
+Route::get('blade',function(){
+	return view('layouts.pages.index');
+});
