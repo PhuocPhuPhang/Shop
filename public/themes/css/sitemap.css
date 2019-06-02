@@ -1,0 +1,73 @@
+/*
+	Sitemap Styler 	 
+*/
+#main_site{ padding:10px 5px; }
+#article_center {
+float: left;
+width: 550px;
+margin: 0 10px;
+display: inline;
+}
+#sitemap, #sitemap ul, #sitemap li{
+	margin:0;
+	padding:0;
+	list-style:none;
+	
+}
+#sitemap{ }
+#sitemap li{
+	line-height:20px;
+	margin-top:1px;
+	position:relative;
+	width: 200px;
+}
+/* IE leaves a blank space where span is added so this is to avoid that */
+* html #sitemap li{
+	float:left;
+	display:inline;
+
+}
+
+#sitemap li a{padding-left:5px;font-size:13px;}
+#sitemap li span{float:left;position:absolute;top:5px;left:5px;width:13px;height:13px;cursor:auto;font-size:0;}
+
+/* sub levels */
+
+#sitemap li ul{	
+	margin-left:0px;
+	border-left: 1px solid #ccc; padding: 0px 0px 0px 10px;
+}
+#sitemap li ul li:after{ width: 10px; content: ''; border-bottom: 1px solid #ccc; float: left; position: absolute; z-index: 10; left: -10px; top: 10px; }
+#sitemap li li{	
+}
+#sitemap a{
+	text-decoration:none;
+	color:#000;
+}
+#sitemap a:hover{
+	color:#FF0000;
+}
+/* etc. */
+
+/* float fix */
+
+#sitemap:after, #sitemap ul:after{
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+#sitemap, #sitemap ul{display:block;}
+/*  \*/
+#sitemap, #sitemap ul{min-height:1%;}
+* html #sitemap, * html #sitemap ul{height:1%;}
+ /*  */
+#sitemap ul{display:none; }
+#sitemap li a{ font-weight: bold; text-transform: uppercase; color: #036383; margin-right: 5px;}
+#sitemap li  li a{ font-weight: 100;text-transform:lowercase; color: #6B6969 }
+#sitemap li  li a:first-letter{ text-transform: uppercase !important; }
+.folder_{ color: #f6b42b; font-size: 16px; font-weight: bold; }
+.folder_:before{ font-size: 18px; } 
+.folder_2{ color: #F7D100 }
+.baiviet_{ color: #026C8F }

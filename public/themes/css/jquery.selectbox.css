@@ -1,0 +1,106 @@
+@CHARSET "UTF-8";
+.sbHolder{
+	height: 35px;
+	position: relative;
+	outline:none;
+	float: left;
+	padding: 0px 20px 0px 0px;
+	background:url(../images/down.jpg) no-repeat right 14px;
+	margin-right: 10px;
+}
+.sbHolder:after{ content: ''; border-right: 1px solid #ccc; float: right; position: absolute; z-index: 100; top: 0px; right: -10px; bottom: 0px;}
+.sbHolder:focus .sbSelector{
+	
+}
+.sbSelector{
+	display: block;
+	height: 30px;
+	left: 0;
+	line-height: 30px;
+	outline: none;
+	overflow: hidden;
+	text-indent: 10px;
+	top: 0;
+	margin:2px 0px 0px 0px;
+}
+.sbSelector:link, .sbSelector:visited, .sbSelector:hover{
+	color: #000;
+	outline: none;
+	text-decoration: none;
+}
+.sbToggle{
+	background: url(../images/drop.png) no-repeat 13px 15px;
+	display: block;
+	height: 30px;
+	outline: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+}
+.sbToggle:hover{
+	background: url(../images/drop.png) no-repeat 13px 15px;
+}
+.sbToggleOpen{
+	background: url(../images/drop.png) no-repeat 13px 15px;
+}
+.sbToggleOpen:hover{
+	background: url(../images/drop.png) no-repeat 13px 15px;
+}
+.sbHolderDisabled{
+}
+.sbHolderDisabled .sbHolder{
+	
+}
+.sbHolderDisabled .sbToggle{
+	
+}
+.sbOptions{
+	list-style: none;
+	left: -1px;
+	box-shadow:0px 0px 1px #666666;
+	background-color:#FFF;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 30px;
+	width: 200px;
+	margin-left:1px;
+	z-index: 101;
+	overflow-y: auto;
+}
+.sbOptions li{
+	padding: 0 0px;
+}
+.sbOptions a{
+	border-bottom: solid 1px #CCCCCC ;
+	display: block;
+	outline: none;
+	padding: 4px 0 4px 9px;
+}
+.sbOptions a:link, .sbOptions a:visited{
+	color: #000;
+	text-decoration: none;
+}
+.sbOptions a:hover,
+.sbOptions a:focus,
+.sbOptions a.sbFocus{
+	color: #fff;
+	background-color:#029C99;
+}
+.sbOptions li.last a{
+	border-bottom: none;
+}
+.sbOptions .sbDisabled{
+	color: #fff;
+	display: block;
+	padding: 3px 0 3px 3px;
+}
+.sbOptions .sbGroup{
+	color: #fff;
+	display: block;
+	font-weight: bold;
+	padding: 3px 0 3px 3px;
+}
+.sbOptions .sbSub{
+}
