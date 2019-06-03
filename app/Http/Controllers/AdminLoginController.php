@@ -15,7 +15,6 @@ class AdminLoginController extends Controller
     public function CheckLogin(Request $request)
     {
 
-
      $this->validate($request, [
       'email'   => 'required|email',
       'password'  => 'required|alphaNum|min:3'

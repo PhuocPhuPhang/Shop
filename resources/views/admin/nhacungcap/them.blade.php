@@ -26,23 +26,39 @@
             </div>
             <div class="x_content">
             <br />
-            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                <div class="form-group">
+
+            @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $err)
+                        {{ $err }} <br>
+                    @endforeach
+                </div>
+            @endif
+
+            @if(session('thongbao'))
+                <div class="alert alert-success">
+                    {{ session('thongbao') }}
+                </div>
+            @endif
+
+            <form  action="{{ url('/admin/nhacungcap/them') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+            <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã nhà cung cấp</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="ma" required="required" class="form-control col-md-7 col-xs-12">
+                    <input  name="ma"  class="form-control col-md-7 col-xs-12">
                 </div>
                 </div>
                 <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tên nhà cung cấp</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text"  name="ten" required="required" class="form-control col-md-7 col-xs-12">
+                    <input  name="ten"  class="form-control col-md-7 col-xs-12">
                 </div>
                 </div>
                 <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input  class="form-control col-md-7 col-xs-12" type="text" name="sdt">
+                    <input  class="form-control col-md-7 col-xs-12" name="sdt">
                 </div>
                 </div>
                 <div class="form-group">

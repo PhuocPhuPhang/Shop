@@ -20,26 +20,18 @@
            </tr>
          </thead>
          <tbody>
+             @foreach($nhacungcap as $ncc)
            <tr>
-             <td>Tiger Nixon</td>
-             <td>System Architect</td>
-             <td>Edinburgh</td>
-             <td>61</td>
+             <td>{{ $ncc->ma_nha_cung_cap }}</td>
+             <td>{{ $ncc->ten_nha_cung_cap }}</td>
+             <td>{{ $ncc->so_dien_thoai }}</td>
+             <td>{{ $ncc->dia_chi }}</td>
              <td>
                 <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
              </td>
            </tr>
-           <tr>
-             <td>Tiger Nixon</td>
-             <td>System Architect</td>
-             <td>Edinburgh</td>
-             <td>60</td>
-             <td>
-                <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-             </td>
-           </tr>
+           @endforeach
          </tbody>
        </table>
      </div>
