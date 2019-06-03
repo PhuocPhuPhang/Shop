@@ -6,9 +6,21 @@
    <div class="x_panel">
      <div class="x_title">
        <h2>Danh sách nhà cung cấp</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-plus"></i></a></li>
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+            <li class="dropdown"></li>
+        </ul>
        <div class="clearfix"></div>
      </div>
      <div class="x_content">
+
+        @if(session('thongbao'))
+                <div class="alert alert-success">
+                    {{ session('thongbao') }}
+                </div>
+        @endif
+
        <table id="datatable-buttons" class="table table-striped table-bordered">
          <thead>
            <tr>
@@ -27,8 +39,12 @@
              <td>{{ $ncc->so_dien_thoai }}</td>
              <td>{{ $ncc->dia_chi }}</td>
              <td>
-                <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                <a href="../nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
+                    <i class="fa fa-pencil"></i> Edit
+                </a>
+                <a href="../nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
+                    <i class="fa fa-trash-o"></i> Delete
+                </a>
              </td>
            </tr>
            @endforeach

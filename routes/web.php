@@ -35,10 +35,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('them','NhaCungCapController@getThem');
         Route::post('them','NhaCungCapController@postThem');
 
-        Route::get('sua','NhaCungCapController@getSua');
-        Route::post('sua','NhaCungCapController@postSua');
+        Route::get('sua/{mancc}','NhaCungCapController@getSua');
+        Route::post('sua/{mancc}','NhaCungCapController@postSua');
 
-        Route::get('xoa/{ma}','NhaCungCapController@postXoa');
+        Route::get('xoa/{mancc}','NhaCungCapController@postXoa');
     });
 });
 
