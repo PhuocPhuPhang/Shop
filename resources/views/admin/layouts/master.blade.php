@@ -44,7 +44,7 @@
         @include('admin.layouts.menu')
         @include('admin.layouts.header')
     <!-- page content -->
-    <div class="right_col" role="main">
+    <div class="right_col" role="main" >
         @yield('content')
     </div>
     <!-- /page content -->

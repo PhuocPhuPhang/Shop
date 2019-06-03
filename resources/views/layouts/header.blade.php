@@ -5,7 +5,7 @@
 		<li><a href="san-pham.html" title="">Sản phẩm</a>
 			<ul>
 				@foreach($nhacungcap as $ncc)
-				<li><a href="">{{$ncc->ten_nha_cung_cap}}</a></li>
+				    <li><a href="">{{$ncc->ten_nha_cung_cap}}</a></li>
 				@endforeach
 			</ul>
 		</li>

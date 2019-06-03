@@ -25,11 +25,11 @@
         <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-            <li><a href="#"><i class="fa fa-home"></i> Nhà cung cấp <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
+            <li><a href="./nhacungcap/danhsach"><i class="fa fa-home"></i> Nhà cung cấp <span class="fa fa-chevron-down"></span></a>
+            <!-- <ul class="nav child_menu">
                 <li><a href="{{ url('/admin/nhacungcap/danhsach') }}">Danh Sách</a></li>
                 <li><a href="{{ url('/admin/nhacungcap/them') }}">Thêm</a></li>
-            </ul>
+            </ul> -->
             </li>
         </ul>
         </div>

@@ -62,14 +62,15 @@ class NhaCungCapController extends Controller
         $nhacungcap = NhaCungCap::find($mancc);
         $this->validate($request,[
             'ma' => 'required|min:3|max:10',
-            'ten'=> 'required|unique:nha_cung_cap,ten_nha_cung_cap|max:255',
+            'ten'=> 'required|max:255',
             'sdt'=> 'numeric|min:9'
         ],[
             'ma.required' => 'Bạn chưa nhập mã nhà cung cấp',
             // 'ma.unique' => 'Mã nhà cung cấp đã tồn tại',
             'ma.min'    =>  'Mã nhà cung cấp phải có độ dài hơn 3 ký tự',
             'ma.max'    =>  'Mã nhà cung cấp phải có độ dài từ 3 đến 10 ký tự',
-            'ten.unique' => 'Tên nhà cung cấp đã tồn tại',
+
+            // 'ten.unique' => 'Tên nhà cung cấp đã tồn tại',
             'ten.required' =>   'Bạn chưa nhập tên nhà cung cấp',
             'ten.max' =>   'Tên nhà cung cấp có độ dài tối đa 255 ký tự',
             'sdt.min'   => 'Số điện thoại có độ dài không dưới 10 số',
@@ -94,5 +95,5 @@ class NhaCungCapController extends Controller
         return redirect('admin/nhacungcap/danhsach')->with('thongbao','Xóa thành công');
     }
 
-   
+
 }
