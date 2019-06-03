@@ -43,9 +43,8 @@ Route::group(['prefix'=>'admin'],function(){
 });
 
 
-Route::get('trangchu',function(){
-    return view('layouts.pages.index');
-});
+Route::get('trangchu','PageControllers@trangchu');
+
 Route::get('index',function(){
 	return view('layouts.pages.index');
 });

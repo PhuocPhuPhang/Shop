@@ -93,4 +93,6 @@ class NhaCungCapController extends Controller
 
         return redirect('admin/nhacungcap/danhsach')->with('thongbao','Xóa thành công');
     }
+
+   
 }

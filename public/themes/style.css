@@ -70,7 +70,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 
 
 #menu{background: #fed700;}
-.menu-grid { display: grid; grid-template-columns: repeat(10, auto); width: 100%; list-style-type: none; }
+.menu-grid { display: grid; grid-template-columns: repeat(7, auto); width: 100%; list-style-type: none; }
 .menu-grid ul { display: none; list-style-type: none; position: absolute; width: 220px; left: 0; top: 100%; z-index: 99999; }
 .menu-grid li { position: relative; z-index: 9999; }
 .menu-grid > li > ul ul { left: 100%; top: 0; }
@@ -194,7 +194,7 @@ a.link_cart:hover {color: #0066b3; }
 .copyright-right span:after { position: absolute; content: ""; width: 1px; height: 10px; background: #000; left: 100%; top: 50%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%); }
 .copyright-right span:last-child { padding-right: 0; }
 .copyright-right span:last-child:after { display: none; }
-.copyright-left, .copyright-left span{font-size: 0.8em;color: #000;font-family: 'Roboto';}
+.copyright-left, .copyright-left span{font-size: 1em;color: #000;font-family: 'Roboto';}
 .copyright-left span{text-transform: uppercase;}
 
 /*sanpham_tpl*/
@@ -346,10 +346,10 @@ a.link_cart:hover {color: #0066b3; }
 .login-row input[type='text'] , .login-row input[type='email'], .login-row input[type='password']{width: 70%;height: 34px;line-height: 34px;border-width: 1px;border: 1px solid #cacaca;border-radius: 4px;text-indent: 10px;}
 .login-row input[type='checkbox']{margin-left: 105px;}
 .login-row input[type='submit']{width: 70%;margin-left: 100px;line-height: 40px;background: #FDDE54;border: none;outline: none;}
-.login-row .login_FB{background:rgb(59, 89, 152) !important;color: #fff !important;}
-.login-row .login_GG{background: rgb(223, 74, 50) !important;color: #fff !important;}
 .login-row input[type='date']{width: 40%;height: 34px;line-height: 34px;}
 .login-row .text_radio{padding-left: 5px;display: inline-block;margin-bottom: 0;font-size: 14px;font-family: 'Roboto';color: #000;}
+.login-row .login_FB{background:rgb(59, 89, 152);color: #fff;width: 70%;height: 34px;line-height: 34px;text-align: center;margin-left: 100px;}
+.login-row .login_GG{background:rgb(223, 74, 50);color: #fff;width: 70%;height: 34px;line-height: 34px;text-align: center;margin-left: 100px;}
 
 #login_wrap.active{display: block;}
 .btn_close{position: absolute;width: 24px;height: 24px;top: -10px;right: -10px;background: #fff;border-radius: 50%;z-index: 999999;}
