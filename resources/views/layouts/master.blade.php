@@ -20,46 +20,7 @@
 </head>
 <body>
 	@include('layouts.header')
-
 	@yield('content')
-
-						<input type="button" onclick="return do_search();" value="TÌM KIẾM">
-						<div class="auto_search"></div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="r_head flex-between-center">
-					<div class="email_pc">
-						<p class="r1">EMAIL</p>
-						<p class="r2">caothang@gmail.com</p>
-					</div>
-					<div class="hl_pc">
-						<p class="r1">HOTLINE</p>
-						<p class="r2">0329973272</p>
-					</div>
-					<a href="{{ url('/dangnhap') }}" class="link_cart" title="Giỏ hàng">
-						<div class="cart_pc flex-between-center">
-							<span class="qty_cart">0</span>
-							<div class="txt">
-								<p class="r1">Giỏ hàng</p>
-								<p class="r2">Xem ngay</p>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-		</section>
-		<section id="menu">
-			<div class="container flex-between-center menu-repone">
-				<button class="btn-mmenu hamburger hamburger--3dx" type="button">
-					<span class="hamburger-box">
-						<span class="hamburger-inner"></span>
-					</span>
-				</button>
-				<div id="menu_mobi">
-					<div class="cart_mb"><a href="#" class="link_cart" title="Giỏ hàng"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  Giỏ hàng (<span class="qty_cart"></span>)</a></div>
-				</div>
-
 	@include('layouts.footer')
 
 </body>
@@ -175,7 +136,7 @@
 			$(this).parent().parent().parent().parent().find('.sign_up_block').addClass('active');
 			$(this).parent().find('.title_login_main').removeClass('active');
 			$(this).parent().parent().parent().parent().find('.login_block').removeClass('active');
-		})		
+		})
 	});
 </script>
 <script type="text/javascript">
