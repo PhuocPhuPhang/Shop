@@ -116,7 +116,20 @@
 <script src="{{asset('admin/vendors/jszip/dist/jszip.min.js')}}"></script>
 <script src="{{asset('admin/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
 <script src="{{asset('admin/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
- <!-- Switchery -->
- <script src="{{asset('admin/vendors/switchery/dist/switchery.min.js')}}"></script>
+<!-- Switchery -->
+<script src="{{asset('admin/vendors/switchery/dist/switchery.min.js')}}"></script>
+<!-- Ckeditor -->
+<script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript">
+   CKEDITOR.replace( 'noidung', {
+        language:'vi',
+        filebrowserBrowseUrl: '../../ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '../../ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    } );
+</script>
 </body>
 </html>

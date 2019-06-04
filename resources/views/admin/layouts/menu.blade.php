@@ -1,11 +1,9 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Shop</span></a>
     </div>
-
     <div class="clearfix"></div>
-
     <!-- menu profile quick info -->
     <div class="profile clearfix">
         <div class="profile_pic">
@@ -25,11 +23,11 @@
         <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-            <li><a href="./nhacungcap/danhsach"><i class="fa fa-home"></i> Nhà cung cấp <span class="fa fa-chevron-down"></span></a>
-            <!-- <ul class="nav child_menu">
-                <li><a href="{{ url('/admin/nhacungcap/danhsach') }}">Danh Sách</a></li>
-                <li><a href="{{ url('/admin/nhacungcap/them') }}">Thêm</a></li>
-            </ul> -->
+            <li><a href="{{url('admin/nhacungcap/danhsach')}}"><i class="fa fa-home"></i> Nhà Cung Cấp</a>
+            <li><a><i class="fa fa-home"></i>Bài Viết<span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li><a href="{{url('admin/tintuc/danhsach')}}">Tin Tức</a></li>
+            </ul>
             </li>
         </ul>
         </div>

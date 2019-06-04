@@ -40,6 +40,20 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{mancc}','NhaCungCapController@postXoa');
     });
+
+    //Tin tức
+    Route::group(['prefix'=>'tintuc'],function(){
+
+        Route::get('danhsach','TinTucController@getDanhSach');
+
+        Route::get('them','TinTucController@getThem');
+        Route::post('them','TinTucController@postThem');
+
+        Route::get('sua/{id}','TinTucController@getSua');
+        Route::post('sua/{id}','TinTucController@postSua');
+
+        Route::get('xoa/{id}','TinTucController@postXoa');
+    });
 });
 
 Route::get('trangchu','PageControllers@trangchu');
@@ -64,4 +78,8 @@ Route::get('product_detail_tpl',function(){
 
 Route::get('cart_tpl',function(){
     return view('layouts.pages.cart_tpl');
+});
+
+Route::get('admin/tintuc/them',function(){
+    return view('admin.tintuc.them');
 });

@@ -25,47 +25,38 @@
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
-            <br />
-            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="ten" required="required" class="form-control col-md-7 col-xs-12">
-                </div>
-                </div>
+            <form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
-                <div class="form-group">
-                <label  class="control-label col-md-3 col-sm-3 col-xs-12">Mô tả</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <textarea  class="form-control col-md-7 col-xs-12" name="mota"></textarea>
-                </div>
-                </div>
+                <label>Tên</label>
+                <input type="text" id="ten" class="form-control" name="ten" /> <br />
 
+                <label>Title</label>
+                <input type="text" id="title" class="form-control" name="title" /><br />
 
-                <div class="form-group">
-                <label  class="control-label col-md-3 col-sm-3 col-xs-12">Keywords</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <textarea  class="form-control col-md-7 col-xs-12" name="keywords"></textarea>
-                </div>
-                </div>
+                <label>Mô tả</label>
+                <textarea id="mota"  class="form-control" name="mota"></textarea><br />
 
-                <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nổi bật</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <label>
-                              <input type="checkbox" class="js-switch" checked />
-                            </label>
-                        </div>
-                </div>
+                <label>Nội dung</label>
+                <input type="text" id="noidung" class="form-control" name="noidung" /><br />
 
+                <label>Keywords</label>
+                <textarea id="keywords"  class="form-control" name="keywords"></textarea><br />
+
+                <label>Nổi bật &nbsp;&nbsp;</label>
+                <input type="checkbox" class="flat" checked="checked"><br/>
+
+                <label>Hình Ảnh</label>
+                <input type="file" id="hinhanh" name="hinhanh" />
 
                 <div class="ln_solid"></div>
-                <div class="form-group">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <button class="btn btn-primary" type="button">Cancel</button>
-                    <button class="btn btn-primary" type="reset">Reset</button>
-                    <button type="submit" class="btn btn-success">Save</button>
-                </div>
+                <div class="form-group" style="margin-left:20%">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <a href="{{ url('admin/tintuc/danhsach') }}">
+                            <button class="btn btn-primary" type="button">Cancel</button>
+                        </a>
+                        <button class="btn btn-primary" type="reset">Reset</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
                 </div>
             </form>
             </div>
