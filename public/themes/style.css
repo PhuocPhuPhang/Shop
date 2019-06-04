@@ -82,6 +82,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 .menu-grid li:hover > ul { display: block; }
 .menu-grid li:hover > a, .menu-grid li.actived > a { background: #fff; }
 
+#mmenu{z-index: 999;}
+
 #menu_mobi{display: none;}
 .cart_mb a {color: #000; display: block; font-size: 14px; }
 a.link_cart:hover {color: #0066b3; }

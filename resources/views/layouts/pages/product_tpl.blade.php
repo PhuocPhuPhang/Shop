@@ -74,13 +74,13 @@
 			<div class="main_list_product">
 				<div class="sanpham">
 					<div class="img">
-						<a href="" title="">
+						<a href="product_detail_tpl" title="">
 							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">Giảm giá -10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="">Tên Sản Phẩm</a>
+						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>7,000,000 Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
@@ -97,13 +97,13 @@
 				</div>
 				<div class="sanpham">
 					<div class="img">
-						<a href="" title="">
+						<a href="product_detail_tpl" title="">
 							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">Giảm giá -10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="">Tên Sản Phẩm</a>
+						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>7,000,000 Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
@@ -120,13 +120,13 @@
 				</div>
 				<div class="sanpham">
 					<div class="img">
-						<a href="" title="">
+						<a href="product_detail_tpl" title="">
 							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">Giảm giá -10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="">Tên Sản Phẩm</a>
+						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>7,000,000 Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
@@ -143,13 +143,13 @@
 				</div>
 				<div class="sanpham">
 					<div class="img">
-						<a href="" title="">
+						<a href="product_detail_tpl" title="">
 							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">Giảm giá -10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="">Tên Sản Phẩm</a>
+						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>7,000,000 Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
@@ -166,13 +166,13 @@
 				</div>
 				<div class="sanpham">
 					<div class="img">
-						<a href="" title="">
+						<a href="product_detail_tpl" title="">
 							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">Giảm giá -10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="">Tên Sản Phẩm</a>
+						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>7,000,000 Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
@@ -189,13 +189,13 @@
 				</div>
 				<div class="sanpham">
 					<div class="img">
-						<a href="" title="">
+						<a href="product_detail_tpl" title="">
 							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">Giảm giá -10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="">Tên Sản Phẩm</a>
+						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>7,000,000 Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
@@ -212,13 +212,13 @@
 				</div>
 				<div class="sanpham">
 					<div class="img">
-						<a href="" title="">
+						<a href="product_detail_tpl" title="">
 							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
 						</a>
 						<div class="sale_off">Giảm giá -10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="">Tên Sản Phẩm</a>
+						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>7,000,000 Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>

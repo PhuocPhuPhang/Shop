@@ -48,7 +48,7 @@
 								</div>
 							</div>
 							<div class="add_to_cart btn_ac1 btn_muangay" onclick="">
-								<p class="name">Mua ngay</p>
+								<p class="name"><a href="cart_tpl">Mua ngay</a></p>
 							</div>
 						</div>
 						<div class="soc_share">
