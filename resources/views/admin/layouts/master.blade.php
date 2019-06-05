@@ -121,7 +121,7 @@
 <!-- Ckeditor -->
 <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
-   CKEDITOR.replace( 'noidung', {
+   CKEDITOR.replace( 'editor', {
         language:'vi',
         filebrowserBrowseUrl: '../../ckfinder/ckfinder.html',
         filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?type=Images',
