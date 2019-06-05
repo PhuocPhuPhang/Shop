@@ -71,6 +71,9 @@ Route::group(['prefix'=>'admin'],function(){
 });
 
 Route::get('trangchu','PageControllers@trangchu');
+Route::get('slide','PageControllers@slider');
+Route::get('tintuc','PageControllers@tintuc');
+
 
 Route::get('index',function(){
 	return view('layouts.pages.index');

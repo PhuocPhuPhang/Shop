@@ -2,9 +2,7 @@
 @section('content')
 <section id="slider">
 	<div class="slider-owl owl-carousel owl-theme">
-		<div class="slider-items"><a href=""><img src="{{asset('themes/images/slide.jpg')}}" alt="" /></a></div>
-		<div class="slider-items"><a href=""><img src="{{asset('themes/images/slide2.jpg')}}" alt="" /></a></div>
-		<div class="slider-items"><a href=""><img src="{{asset('themes/images/slide.jpg')}}" alt="" /></a></div>
+		
 	</div>
 </section>
 <section id="product_home">
@@ -436,27 +434,16 @@
 						</div><!-- end big-news-->
 						<div class="list-news-small">
 							<div class="owl-news">
+								@foreach($tintuc as $tt)
 								<div class="small-item flex-between-center">
-									<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" alt="" class="img-responsive lazy"/></a>
+									<a href="" title=""><img src="upload/tintuc/{{$tt->hinh_anh}}" alt="" class="img-responsive lazy"/></a>
 									<div>
-										<h4><a href="" title="">Máy Bộ Đàm ICOM (ICOM radio)</a></h4>
-										<div class="desc">Giới thiệu về Bộ đàm ICOM Nhật Bản</div>
+										<h4><a href="" title="">{{$tt->ten}}</a></h4>
+										<div class="desc">{{$tt->mo_ta}}</div>
 									</div>
 								</div>
-								<div class="small-item flex-between-center">
-									<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" alt="" class="img-responsive lazy"/></a>
-									<div>
-										<h4><a href="" title="">Máy Bộ Đàm ICOM (ICOM radio)</a></h4>
-										<div class="desc">Giới thiệu về Bộ đàm ICOM Nhật Bản</div>
-									</div>
-								</div>
-								<div class="small-item flex-between-center">
-									<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" alt="" class="img-responsive lazy"/></a>
-									<div>
-										<h4><a href="" title="">Máy Bộ Đàm ICOM (ICOM radio)</a></h4>
-										<div class="desc">Giới thiệu về Bộ đàm ICOM Nhật Bản</div>
-									</div>
-								</div>
+								@endforeach
+								
 							</div>
 						</div><!-- end content-news-->
 					</div>
