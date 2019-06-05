@@ -54,6 +54,20 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{id}','TinTucController@postXoa');
     });
+
+    //Slide
+    Route::group(['prefix'=>'slide'],function(){
+
+        Route::get('danhsach','SlideController@getDanhSach');
+
+        Route::get('them','SlideController@getThem');
+        Route::post('them','SlideController@postThem');
+
+        Route::get('sua/{id}','SlideController@getSua');
+        Route::post('sua/{id}','SlideController@postSua');
+
+        Route::get('xoa/{id}','SlideController@postXoa');
+    });
 });
 
 Route::get('trangchu','PageControllers@trangchu');
