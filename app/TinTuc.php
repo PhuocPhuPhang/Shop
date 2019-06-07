@@ -10,4 +10,9 @@ class TinTuc extends Model
     protected  $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
+
+    public function LoaiTinTuc()
+    {
+        return $this->belongsTo('App\LoaiTinTuc','id_loai','id');
+    }
 }

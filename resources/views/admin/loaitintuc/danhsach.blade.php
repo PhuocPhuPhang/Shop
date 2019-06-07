@@ -5,9 +5,9 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-       <h2>Danh sách tin tức</h2>
+       <h2>Danh sách loại tin tức</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('admin/tintuc/them') }}"><i class="fa fa-plus"></i></a></li>
+            <li><a href="{{ url('admin/loaitintuc/them') }}"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>
@@ -26,25 +26,19 @@
            <tr>
              <th>Id</th>
              <th>Tên</th>
-             <th>Thể loại</th>
-             <th>Mô tả</th>
-             <th>Nội dung</th>
              <th>Thao tác</th>
            </tr>
          </thead>
          <tbody>
-         @foreach($tintuc as $tin)
+         @foreach($loaitintuc as $loaitin)
            <tr>
-             <td>{{$tin->id}}</td>
-             <td>{{$tin->ten}}</td>
-             <td>{{$tin->LoaiTinTuc->ten}}</td>
-             <td>{{$tin->mo_ta}}</td>
-             <td>{{$tin->noi_dung}}</td>
-             <td>
-                <a href="../tintuc/sua/{{$tin->id}}" class="btn btn-info btn-xs">
+             <td>{{$loaitin->id}}</td>
+             <td>{{$loaitin->ten}}</td>
+             <td style="width:200px">
+                <a href="../loaitintuc/sua/{{$loaitin->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Edit
                 </a>
-                <a href="../tintuc/xoa/{{$tin->id}}" class="btn btn-danger btn-xs">
+                <a href="../loaitintuc/xoa/{{$loaitin->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Delete
                 </a>
              </td>

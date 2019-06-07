@@ -2,7 +2,7 @@
 @section('content')
 <section id="slider">
 	<div class="slider-owl owl-carousel owl-theme">
-		
+
 	</div>
 </section>
 <section id="product_home">
@@ -170,7 +170,7 @@
 			<div class="wrap_pro_home">
 				<div class="container">
 					<label class="title-sp">Apple</label>
-					<div class="cat_nb ">  
+					<div class="cat_nb ">
 						<a href="">iPhone 7</a>
 						<a href="">iPhone 8</a>
 						<a href="">iPhone X</a>
@@ -291,7 +291,7 @@
 			<div class="wrap_pro_home">
 				<div class="container">
 					<label class="title-sp">Apple</label>
-					<div class="cat_nb ">  
+					<div class="cat_nb ">
 						<a href="">iPhone 7</a>
 						<a href="">iPhone 8</a>
 						<a href="">iPhone X</a>
@@ -416,7 +416,7 @@
 					<div class="title"><h3>Tin tức - sự kiện</h3></div>
 					<div class="text_other_1"></div>
 					<div class="content news flex-between">
-						<div class="big-news">  
+						<div class="big-news">
 							<div class="news-thumbnail">
 								<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" class="img-responsive lazy" alt="" /></a>
 							</div>
@@ -426,15 +426,15 @@
 									Hướng dẫn mua máy chiếu, màn chiếu cho lớp học, trung tâm giáo dục phù hợp
 									<div class="clear"></div>
 								</div>
-							</div>     
+							</div>
 							<div class="view-more">
 								<a href="" title="">Xem thêm</a>
-							</div>         
+							</div>
 							<div class="clear"></div>
 						</div><!-- end big-news-->
 						<div class="list-news-small">
 							<div class="owl-news">
-								@foreach($tintuc as $tt)
+								{{--@foreach($tintuc as $tt)
 								<div class="small-item flex-between-center">
 									<a href="" title=""><img src="upload/tintuc/{{$tt->hinh_anh}}" alt="" class="img-responsive lazy"/></a>
 									<div>
@@ -442,8 +442,8 @@
 										<div class="desc">{{$tt->mo_ta}}</div>
 									</div>
 								</div>
-								@endforeach
-								
+								@endforeach--}}
+
 							</div>
 						</div><!-- end content-news-->
 					</div>

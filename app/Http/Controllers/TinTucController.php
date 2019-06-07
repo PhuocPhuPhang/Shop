@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TinTuc;
+use App\LoaiTinTuc;
 use Validator;
 use Illuminate\Support\Facades\Input;
 
@@ -17,8 +18,10 @@ class TinTucController extends Controller
 
     public function getThem()
     {
-
+        $loaitin = LoaiTinTuc::all();
+        return view('admin.tintuc.them',['loaitin'=>$loaitin]);
     }
+
 
     public function postThem(Request $request)
     {
@@ -89,7 +92,8 @@ class TinTucController extends Controller
     public function getSua($id)
     {
         $tintuc = TinTuc::find($id);
-        return view('admin.tintuc.sua',['tintuc'=>$tintuc]);
+        $loaitin = LoaiTinTuc::all();
+        return view('admin.tintuc.sua',['tintuc'=>$tintuc,'loaitin'=>$loaitin]);
     }
 
     public function postSua(Request $request, $id)
@@ -110,6 +114,7 @@ class TinTucController extends Controller
 
         $tintuc->ten = $request->ten;
         $tintuc->ten_khong_dau = str_slug($request->ten,'-');
+        // $tintuc->id_loai = $request->loaitin;
         $tintuc->title = $request->title;
         $tintuc->mo_ta = $request->mota;
         $tintuc->noi_dung = $request->noidung;

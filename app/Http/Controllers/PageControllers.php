@@ -14,13 +14,16 @@ class PageControllers extends Controller
     public function trangchu()
     {
             $nhacungcap= NhaCungCap::all();
-        	return view('layouts.master',['nhacungcap'=>$nhacungcap]);
+            $slide= Slide::all();
+            $tintuc= TinTuc::all();
+            return view('layouts.master',['nhacungcap'=>$nhacungcap],['slide'=>$slide],['tintuc'=>$tintuc]);
     }
 
     public function slider()
     {
             $slide= Slide::all();
-        	return view('layouts.pages.index',['slide'=>$slide]);
+            $tintuc= TinTuc::all();
+        	return view('layouts.pages.index',['slide'=>$slide],['tintuc'=>$tintuc]);
     }
 
     public function tintuc()
