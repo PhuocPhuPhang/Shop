@@ -38,6 +38,12 @@
                 </ul>
             </li>
 
+            <li><a><i class="fa fa-home"></i>Sản Phẩm<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="{{url('admin/sanpham/danhsach')}}">Danh sách sản phẩm</a></li>
+                </ul>
+            </li>
+
         </ul>
         </div>
     </div>

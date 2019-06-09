@@ -54,6 +54,8 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{id}','TinTucController@postXoa');
 
+        Route::post('danhsach','TinTucController@Activation');
+
     });
 
     //Loại tin tức
@@ -83,6 +85,20 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('sua/{id}','SlideController@postSua');
 
         Route::get('xoa/{id}','SlideController@postXoa');
+    });
+
+    //Sản phẩm
+    Route::group(['prefix'=>'sanpham'],function(){
+
+        Route::get('danhsach','SanPhamController@getDanhSach');
+
+        Route::get('them','SanPhamController@getThem');
+        Route::post('them','SanPhamController@postThem');
+
+        Route::get('sua/{masp}','SanPhamController@getSua');
+        Route::post('sua/{masp}','SanPhamController@postSua');
+
+        Route::get('xoa/{masp}','SanPhamController@postXoa');
     });
 });
 

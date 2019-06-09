@@ -46,12 +46,13 @@
                 <label>Tên</label>
                 <input type="text" id="ten" class="form-control" name="ten" /> <br />
 
-               {{-- <label>Thể loại</label>
+               {{--<label>Thể loại</label>
                 <Select class="form-control" name="loaitin">
                     @foreach($loaitin as $lt)
                         <option value="$lt->id}}">{{$lt->ten}}</option>
                     @endforeach
-                </Select><br/> --}}
+                </Select><br/>--}}
+
                 <label>Title</label>
                 <input type="text" id="title" class="form-control" name="title" /><br />
 

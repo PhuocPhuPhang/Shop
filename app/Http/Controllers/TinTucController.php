@@ -18,8 +18,8 @@ class TinTucController extends Controller
 
     public function getThem()
     {
-        $loaitin = LoaiTinTuc::all();
-        return view('admin.tintuc.them',['loaitin'=>$loaitin]);
+        // $loaitin = LoaiTinTuc::all();
+        return view('admin.tintuc.them');
     }
 
 
@@ -148,5 +148,23 @@ class TinTucController extends Controller
         $tintuc = TinTuc::find($id);
         $tintuc->delete();
         return redirect('admin/tintuc/danhsach')->with('thongbao','Xóa thành công');
+    }
+
+    public function Activation(Request $request)
+    {
+        $tintuc = TinTuc::findOrFail($request->id);
+        if($tintuc->noi_bat == 1)
+        {
+            $tintuc->noi_bat = 0;
+        }
+        else
+        {
+            $tintuc->noi_bat = 1;
+        }
+        return response()->json([
+            'data' => [
+                'success' => $tintuc->save(),
+            ]
+        ]);
     }
 }

@@ -29,6 +29,7 @@
              <th>Thể loại</th>
              <th>Mô tả</th>
              <th>Nội dung</th>
+             <th>Nổi bật</th>
              <th>Thao tác</th>
            </tr>
          </thead>
@@ -40,6 +41,12 @@
              <td>{{$tin->LoaiTinTuc->ten}}</td>
              <td>{{$tin->mo_ta}}</td>
              <td>{{$tin->noi_dung}}</td>
+             <td style="text-align:center">
+                 <input type="checkbox" @if($tin->noi_bat)
+                        {{"checked"}}
+                    @endif
+                    class="flat"><br/>
+             </td>
              <td>
                 <a href="../tintuc/sua/{{$tin->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Edit
@@ -56,4 +63,26 @@
     </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $("input::checkbox").change(function(){
+               var id = $(this).val();
+               $.ajax({
+                   type:'POST',
+                   url:'/Activation',
+                   headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}'},
+                   data:{"id":id},
+                   success: function(data){
+                       if(data.data.success)
+                       {
+                        // Đang lỗi
+                       }
+                   }
+               });
+            });
+        });
+    </script>
 @endsection

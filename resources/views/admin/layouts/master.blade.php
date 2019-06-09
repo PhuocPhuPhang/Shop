@@ -121,7 +121,7 @@
 <!-- Ckeditor -->
 <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
-   CKEDITOR.replace( 'editor', {
+   CKEDITOR.replace( 'noidung', {
         language:'vi',
         filebrowserBrowseUrl: '../../ckfinder/ckfinder.html',
         filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?type=Images',
@@ -131,5 +131,6 @@
         filebrowserFlashUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
     } );
 </script>
+@yield('script')
 </body>
 </html>
