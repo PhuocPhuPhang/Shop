@@ -102,14 +102,10 @@ Route::group(['prefix'=>'admin'],function(){
     });
 });
 
-Route::get('trangchu','PageControllers@trangchu');
-Route::get('slide','PageControllers@slider');
-Route::get('tintuc','PageControllers@tintuc');
+Route::get('trangchu','PageControllers@NCungCap');
+Route::get('index','PageControllers@index');
 
 
-Route::get('index',function(){
-	return view('layouts.pages.index');
-});
 // User
 Route::get('dangnhap','UsersController@index');
 
@@ -127,6 +123,10 @@ Route::get('product_detail_tpl',function(){
 
 Route::get('cart_tpl',function(){
     return view('layouts.pages.cart_tpl');
+});
+
+Route::get('profile',function(){
+    return view('layouts.pages.profile');
 });
 
 Route::get('admin/tintuc/them',function(){

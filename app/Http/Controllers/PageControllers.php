@@ -11,24 +11,16 @@ use App\NhaCungCap;
 
 class PageControllers extends Controller
 {
-    public function trangchu()
+    public function NCungCap()
     {
             $nhacungcap= NhaCungCap::all();
-            $slide= Slide::all();
-            $tintuc= TinTuc::all();
-            return view('layouts.master',['nhacungcap'=>$nhacungcap],['slide'=>$slide],['tintuc'=>$tintuc]);
+            return view('layouts.master',['nhacungcap'=>$nhacungcap]);
     }
 
-    public function slider()
+    public function index()
     {
             $slide= Slide::all();
             $tintuc= TinTuc::all();
-        	return view('layouts.pages.index',['slide'=>$slide],['tintuc'=>$tintuc]);
-    }
-
-    public function tintuc()
-    {
-            $tintuc= TinTuc::all();
-        	return view('layouts.pages.index',['tintuc'=>$tintuc]);
+        	return view('layouts.pages.index',['tintuc'=>$tintuc],['slide'=>$slide]);
     }
 }

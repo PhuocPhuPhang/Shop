@@ -4,9 +4,9 @@
 		<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
 		<li><a href="san-pham.html" title="">Sản phẩm</a>
 			<ul>
-				@foreach($nhacungcap as $ncc)
+				{{--@foreach($nhacungcap as $ncc)
 				    <li><a href="">{{$ncc->ten_nha_cung_cap}}</a></li>
-				@endforeach
+				@endforeach--}}
 			</ul>
 		</li>
 		<li><a href="tin-tuc.html" title="">Tin tức</a></li>
@@ -150,9 +150,9 @@
 			<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
 			<li><a href="product_tpl" title="">Sản phẩm</a>
 				<ul>
-					@foreach($nhacungcap as $ncc)
+					{{--@foreach($nhacungcap as $ncc)
 					<li><a href="">{{$ncc->ten_nha_cung_cap}}</a></li>
-					@endforeach
+					@endforeach--}}
 				</ul>
 			</li>
 			<li><a href="tin-tuc.html" title="">Tin tức</a></li>
