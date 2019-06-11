@@ -11,17 +11,15 @@ use App\NhaCungCap;
 
 class PageControllers extends Controller
 {
-    public function NCungCap()
-    {
-            $nhacungcap= NhaCungCap::all();
-            return view('layouts.master',['nhacungcap'=>$nhacungcap]);
+    function __construct(){
+        $nhacungcap =  NhaCungCap::all();
+        view()->share('nhacungcap',$nhacungcap);
     }
 
     public function index()
     {
             $slide= Slide::all();
             $tintuc= TinTuc::all();
-            $nhacungcap= NhaCungCap::all();
-        	return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],['nhacungcap'=>$nhacungcap]);
+        	return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide]);
     }
 }

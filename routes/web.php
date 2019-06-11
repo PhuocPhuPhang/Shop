@@ -104,6 +104,7 @@ Route::group(['prefix'=>'admin'],function(){
 
 Route::get('trangchu','PageControllers@NCungCap');
 Route::get('index','PageControllers@index');
+Route::get('demo','PageControllers@index');
 
 
 // User
