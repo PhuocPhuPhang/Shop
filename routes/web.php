@@ -2,6 +2,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\NhaCungCapController;
+use App\Http\Controllers\TinTucController;
+use App\Http\Controllers\LoaiTinTucController;
+use App\Http\Controllers\SlideController;
+use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\CauHinhSanPhamController;
+
 // use Illuminate\Routing\RouteRegistrar;
 
 /*
@@ -99,6 +105,19 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('sua/{masp}','SanPhamController@postSua');
 
         Route::get('xoa/{masp}','SanPhamController@postXoa');
+
+        //Cấu hình
+        Route::group(['prefix'=>'cauhinh'],function(){
+            Route::get('danhsach','CauHinhSanPhamController@getDanhSach');
+
+            Route::get('them','CauHinhSanPhamController@getThem');
+            Route::post('them','CauHinhSanPhamController@postThem');
+
+            Route::get('sua/{id}','CauHinhSanPhamController@getSua');
+            Route::post('sua/{id}','CauHinhSanPhamController@postSua');
+
+            Route::get('xoa/{id}','CauHinhSanPhamController@postXoa');
+        });
     });
 });
 
