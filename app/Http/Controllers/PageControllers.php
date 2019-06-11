@@ -21,6 +21,7 @@ class PageControllers extends Controller
     {
             $slide= Slide::all();
             $tintuc= TinTuc::all();
-        	return view('layouts.pages.index',['tintuc'=>$tintuc],['slide'=>$slide]);
+            $nhacungcap= NhaCungCap::all();
+        	return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],['nhacungcap'=>$nhacungcap]);
     }
 }

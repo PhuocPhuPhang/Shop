@@ -149,7 +149,10 @@ a.link_cart:hover {color: #0066b3; }
 #news-wrapper .big-news .desc{margin: 10px 0px;}
 #news-wrapper .content.news .list-news-small{width: 60%;}
 .small-item{padding-right: 40px;}
-.img_news{max-width: 150px;max-height: 110px;}
+.img_news img{max-width: 150px;max-height: 110px;}
+.news_list_info{width: 55%;}
+.news_list_name{display: block;font-size: 15px;color: #000;font-family: bold;}
+.news_list_mota{display: block;font-size: 13px;color: #cacaca;font-family: 'Roboto';}
 
 #doitac{background: #f7f7f7;}
 .owl-carousel .owl-item .item_dt{text-align: center;}
