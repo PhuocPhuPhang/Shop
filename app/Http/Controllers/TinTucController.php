@@ -18,8 +18,8 @@ class TinTucController extends Controller
 
     public function getThem()
     {
-        // $loaitin = LoaiTinTuc::all();
-        return view('admin.tintuc.them');
+        $loaitin = LoaiTinTuc::all();
+        return view('admin.tintuc.them',['loaitin'=>$loaitin]);
     }
 
 
@@ -114,11 +114,21 @@ class TinTucController extends Controller
 
         $tintuc->ten = $request->ten;
         $tintuc->ten_khong_dau = str_slug($request->ten,'-');
-        // $tintuc->id_loai = $request->loaitin;
+        $tintuc->id_loai = (int)$request->loaitin;
         $tintuc->title = $request->title;
         $tintuc->mo_ta = $request->mota;
         $tintuc->noi_dung = $request->noidung;
         $tintuc->keywords = $request->keywords;
+
+        $noibat = Input::get('noibat');
+        if($noibat == 1)
+        {
+            $tintuc->noi_bat = 1;
+        }
+        else
+        {
+            $tintuc->noi_bat = 0;
+        }
 
         if($request->hasFile('hinhanh'))
         {

@@ -46,15 +46,15 @@
                 <label>Tên</label>
                 <input type="text" id="ten" class="form-control" name="ten" /> <br />
 
-               {{--<label>Thể loại</label>
-                <Select class="form-control" name="loaitin">
+                <label>Title</label>
+                <input type="text" id="title" class="form-control" name="title" /><br />
+
+                <label>Thể loại</label>
+                <Select class="form-control" name="loaitin" id="loaitin">
                     @foreach($loaitin as $lt)
                         <option value="$lt->id}}">{{$lt->ten}}</option>
                     @endforeach
-                </Select><br/>--}}
-
-                <label>Title</label>
-                <input type="text" id="title" class="form-control" name="title" /><br />
+                </Select><br/>
 
                 <label>Mô tả</label>
                 <textarea id="mota"  class="form-control" name="mota"></textarea><br />

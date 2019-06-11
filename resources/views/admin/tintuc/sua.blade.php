@@ -48,12 +48,15 @@
                 <label>Tên</label>
                 <input type="text" id="ten" class="form-control" name="ten" value="{{$tintuc->ten}}" /> <br />
 
-               {{-- <label>Thể loại</label>
+                <label>Thể loại</label>
                 <Select class="form-control" name="loaitin" id="loaitin">
+                <option value="{{$tintuc->id_loai}}">{{$tintuc->LoaiTinTuc->ten}}</option>
                     @foreach($loaitin as $lt)
-                        <option value="$lt->id}}">{{$lt->ten}}</option>
+                        @if($tintuc->id_loai != $lt->id)
+                            <option value="{{$lt->id}}">{{$lt->ten}}</option>
+                        @endif
                     @endforeach
-                </Select><br/> --}}
+                </Select><br/>
 
                 <label>Title</label>
                 <input type="text" id="title" class="form-control" name="title" value="{{$tintuc->title}}" /><br />

@@ -102,7 +102,7 @@ Route::group(['prefix'=>'admin'],function(){
     });
 });
 
-Route::get('trangchu','PageControllers@NCungCap');
+// Route::get('trangchu','PageControllers@NCungCap');
 Route::get('index','PageControllers@index');
 Route::get('demo','PageControllers@index');
 
@@ -130,6 +130,3 @@ Route::get('profile',function(){
     return view('layouts.pages.profile');
 });
 
-Route::get('admin/tintuc/them',function(){
-    return view('admin.tintuc.them');
-});

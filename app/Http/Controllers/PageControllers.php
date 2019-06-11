@@ -11,6 +11,7 @@ use App\NhaCungCap;
 
 class PageControllers extends Controller
 {
+<<<<<<< Updated upstream
     function __construct(){
         $nhacungcap =  NhaCungCap::all();
         view()->share('nhacungcap',$nhacungcap);
@@ -22,4 +23,6 @@ class PageControllers extends Controller
             $tintuc= TinTuc::all();
         	return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide]);
     }
+=======
+>>>>>>> Stashed changes
 }

@@ -42,10 +42,9 @@
              <td>{{$tin->mo_ta}}</td>
              <td>{{$tin->noi_dung}}</td>
              <td style="text-align:center">
-                 <input type="checkbox" @if($tin->noi_bat)
+                 <input type="checkbox" class="flat" @if($tin->noi_bat)
                         {{"checked"}}
-                    @endif
-                    class="flat"><br/>
+                    @endif><br/>
              </td>
              <td>
                 <a href="../tintuc/sua/{{$tin->id}}" class="btn btn-info btn-xs">
