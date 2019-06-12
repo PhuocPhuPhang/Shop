@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CauHinhSanPham;
+use App\LoaiCauHinh;
 use Validator;
 
 class CauHinhSanPhamController extends Controller
@@ -11,12 +12,14 @@ class CauHinhSanPhamController extends Controller
     public function getDanhSach()
     {
         $cauhinh = CauHinhSanPham::all();
-        return view('admin.sanpham.cauhinh.danhsach',['cauhinh'=>$cauhinh]);
+        $loaicauhinh = LoaiCauHinh::all();
+        return view('admin.sanpham.cauhinh.danhsach',['cauhinh'=>$cauhinh],['loaicauhinh'=>$loaicauhinh]);
     }
 
     public function getThem()
     {
-        return view('admin.sanpham.cauhinh.them');
+        $loaicauhinh = LoaiCauHinh::all();
+        return view('admin.sanpham.cauhinh.them',['loaicauhinh'=>$loaicauhinh]);
     }
 
     public function postThem(Request $request)
@@ -33,6 +36,7 @@ class CauHinhSanPhamController extends Controller
         $cauhinh = new CauHinhSanPham;
         $cauhinh->cau_hinh = $request->ten;
         $cauhinh->ten_khong_dau = str_slug($request->ten,'-');
+        $cauhinh->id_loai = (int)$request->loai;
 
         $cauhinh->save();
         return redirect('admin/sanpham/cauhinh/them')->with('thongbao','Thêm cấu hình thành công');
@@ -41,7 +45,8 @@ class CauHinhSanPhamController extends Controller
     public function getSua($id)
     {
         $cauhinh = CauHinhSanPham::find($id);
-        return view('admin.sanpham.cauhinh.sua',['cauhinh'=>$cauhinh]);
+        $loaicauhinh = LoaiCauHinh::all();
+        return view('admin.sanpham.cauhinh.sua',['cauhinh'=>$cauhinh],['loaicauhinh'=>$loaicauhinh]);
     }
 
     public function postSua(Request $request, $id)
@@ -58,6 +63,7 @@ class CauHinhSanPhamController extends Controller
 
         $cauhinh->cau_hinh = $request->ten;
         $cauhinh->ten_khong_dau = str_slug($request->ten,'-');
+        $cauhinh->id_loai = (int)$request->loai;
 
         $cauhinh->save();
         return redirect('admin/sanpham/cauhinh/sua/'.$id)->with('thongbao','Sửa cấu hình thành công');

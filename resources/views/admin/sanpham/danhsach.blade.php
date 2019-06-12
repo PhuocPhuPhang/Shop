@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>Danh sách sản phẩm</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('') }}"><i class="fa fa-plus"></i></a></li>
+            <li><a href="{{ url('admin/sanpham/them') }}"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>
@@ -35,13 +35,15 @@
            </tr>
          </thead>
          <tbody>
-        {{-- @foreach($tintuc as $tin)
+            @foreach($sanpham as $sp)
            <tr>
-             <td>{{$tin->id}}</td>
-             <td>{{$tin->ten}}</td>
-             <td>{{$tin->LoaiTinTuc->ten}}</td>
-             <td>{{$tin->mo_ta}}</td>
-             <td>{{$tin->noi_dung}}</td> --}}
+             <td>{{$sp->ma_san_pham}}</td>
+             <td>{{$sp->ten_san_pham}}</td>
+             <td>{{$sp->NhaCungCap->ten_nha_cung_cap}}</td>
+             <td>{{$sp->so_luong}}</td>
+             <td>{{$sp->mau_sac}}</td>
+             <td>{{$sp->mo_ta}}</td>
+             <td>{{$sp->noi_dung}}</td>
              <td>
                 <a href="" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Edit
@@ -51,7 +53,7 @@
                 </a>
              </td>
            </tr>
-         {{--  @endforeach --}}
+            @endforeach
          </tbody>
         </table>
         </div>

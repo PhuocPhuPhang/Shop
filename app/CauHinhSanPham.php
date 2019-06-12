@@ -16,4 +16,9 @@ class CauHinhSanPham extends Model
         return $this->hasMany('App\ThongTinSanPham','cau_hinh','id');
     }
 
+    public function LoaiCauHinh()
+    {
+        return $this->belongsTo('App\LoaiCauHinh','id_loai','id');
+    }
+
 }

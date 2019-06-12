@@ -52,7 +52,7 @@
                 <label>Thể loại</label>
                 <Select class="form-control" name="loaitin" id="loaitin">
                     @foreach($loaitin as $lt)
-                        <option value="$lt->id}}">{{$lt->ten}}</option>
+                        <option value="{{$lt->id}}">{{$lt->ten}}</option>
                     @endforeach
                 </Select><br/>
 

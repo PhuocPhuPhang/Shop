@@ -43,12 +43,23 @@
 
             <form  action="{{ url('/admin/sanpham/cauhinh/them') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                <div class="form-group">
 
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tên cấu hình</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input  name="ten"  class="form-control col-md-7 col-xs-12">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Danh mục</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <Select class="form-control" name="loai" id="loai">
+                            @foreach($loaicauhinh as $loai)
+                                <option value="{{$loai->id}}">{{$loai->ten}}</option>
+                            @endforeach
+                        </Select>
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tên cấu hình</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input  name="ten"  class="form-control col-md-7 col-xs-12">
+                    </div>
                 </div>
 
                 <div class="ln_solid"></div>

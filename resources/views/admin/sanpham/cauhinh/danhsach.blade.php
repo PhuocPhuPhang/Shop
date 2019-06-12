@@ -25,6 +25,7 @@
         <thead>
            <tr>
              <th>STT</th>
+             <th>Loại cấu hình</th>
              <th>Cấu hình</th>
              <th>Thao tác</th>
            </tr>
@@ -33,6 +34,7 @@
             @foreach($cauhinh as $ch)
            <tr>
              <td>{{$ch->id}}</td>
+             <td>{{$ch->LoaiCauHinh->ten}}</td>
              <td>{{$ch->cau_hinh}}</td>
              <td>
                 <a href="../cauhinh/sua/{{$ch->id}}" class="btn btn-info btn-xs">
