@@ -54,15 +54,14 @@
 
                     <label>Keywords</label>
                     <textarea id="keywords"  class="form-control" name="keywords"></textarea><br />
-
-
                 </div>
             </div>
         </div>
+        @foreach($loaicauhinh as $loai)
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Thông tin chi tiết</h2>
+                    <h2>{{$loai->ten}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
@@ -70,12 +69,15 @@
                 </div>
                 <div class="x_content">
                     @foreach($cauhinh as $ch)
+                    @if($loai->id == $ch->id_loai)
                         <label>{{$ch->cau_hinh}}</label>
                         <input type="text" id="" class="form-control" name="" /><br />
-                    @endforeach
+                        @endif
+                        @endforeach
                 </div>
             </div>
         </div>
+        @endforeach
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_content">

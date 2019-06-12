@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class SanPhamController extends Controller
 {
+    function __construct()
+    {
+        $loaicauhinh = LoaiCauHinh::all();
+        view()->share('loaicauhinh',$loaicauhinh);
+    }
     public function getDanhSach()
     {
         $sanpham = SanPham::all();
@@ -25,10 +30,10 @@ class SanPhamController extends Controller
     {
         $cauhinh = CauHinhSanPham::all();
         $nhacungcap = NhaCungCap::all();
-        // $loaicauhinh = DB::table('cau_hinh_san_pham')
-        // ->join('loai_cau_hinh','cau_hinh_san_pham.id_loai','=','loai_cau_hinh.id')
-        // ->select('ten')->where('id_loai','=','loai_cau_hinh.id')->groupBy('id_loai')->get();
-        return view('admin.sanpham.them',['cauhinh'=>$cauhinh],['nhacungcap'=>$nhacungcap]);
+        $loaicauhinh = DB::table('cau_hinh_san_pham')
+        ->join('loai_cau_hinh','cau_hinh_san_pham.id_loai','=','loai_cau_hinh.id')
+        ->select('ten')->where('cau_hinh_san_pham.id_loai','=','loai_cau_hinh.id')->groupBy('cau_hinh_san_pham.id_loai')->get();
+        return view('admin.sanpham.them',['cauhinh'=>$cauhinh],['nhacungcap'=>$nhacungcap],$loaicauhinh);
     }
 
     public function postThem(Request $request)
