@@ -28,20 +28,19 @@ class TinTucController extends Controller
         $this->validate($request,[
             'ten'   =>  'required',
             'title' =>  'required|min:3|unique:tin_tuc,title',
-            'mota'  =>  'required',
             'noidung'   =>  'required',
         ],[
             'ten.required'  =>  'Bạn chưa nhập tên tin tức',
             'title.required'  =>  'Bạn chưa nhập tiêu đề tin tức',
             'title.min'  =>  'Tiêu đề tin tức phải có ít nhất 3 ký tự',
             'title.unique'  =>  'Tiêu đề tin tức đã tồn tại',
-            'mota.required'  =>  'Bạn chưa nhập mô tả cho tin tức',
             'noidung.required'  =>  'Bạn chưa nhập nội dung cho tin tức',
         ]);
 
         $tintuc = new TinTuc;
         $tintuc->ten = $request->ten;
         $tintuc->ten_khong_dau = str_slug($request->ten,'-');
+        $tintuc->id_loai = (int)$request->loaitin;
         $tintuc->title = $request->title;
         $tintuc->mo_ta = $request->mota;
         $tintuc->noi_dung = $request->noidung;
