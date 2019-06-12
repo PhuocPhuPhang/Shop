@@ -77,10 +77,11 @@
                 <div class="x_content">
                     @foreach($cauhinh as $ch)
                         @if($loai->id == $ch->id_loai)
-                            <label>{{$ch->cau_hinh}}</label>
-                            <input type="text" id="{{$ch->ten_khong_dau}}" class="form-control" name="{{$ch->ten_khong_dau}}" /><br />
+                            <label >{{$ch->cau_hinh}}</label>
+                            <input type="text" name="cauhinh{{$ch->id}}" style="display:none" /><br />
+                            <input type="text"  class="form-control" name="motacauhinh" /><br />
                         @endif
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>

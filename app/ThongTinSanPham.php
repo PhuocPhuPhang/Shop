@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ThongTinSanPham extends Model
 {
     protected $table = "thong_tin_san_pham";
-    protected  $primaryKey = 'ma_san_pham';
-    public $incrementing = false;
+    protected  $primaryKey = 'id';
+    public $incrementing =true;
     public $timestamps = true;
 
     public function CauHinhSanPham()
     {
-        return $this->hasOne('App\CauHinhSanPham','cau_hinh','id');
+        return $this->hasMany('App\CauHinhSanPham','cau_hinh','id');
     }
 
     public function SanPham()

@@ -8,9 +8,11 @@ use App\HinhAnh;
 use App\NhaCungCap;
 use App\CauHinhSanPham;
 use App\LoaiCauHinh;
+use App\ThongTinSanPham;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Collection;
 
 
 class SanPhamController extends Controller
@@ -18,7 +20,9 @@ class SanPhamController extends Controller
     function __construct()
     {
         $loaicauhinh = LoaiCauHinh::all();
+        $cauhinh = CauHinhSanPham::all();
         view()->share('loaicauhinh',$loaicauhinh);
+        view()->share('cauhinh',$cauhinh);
     }
     public function getDanhSach()
     {
@@ -69,6 +73,7 @@ class SanPhamController extends Controller
         $sanpham->keywords = $request->keywords;
         $sanpham->noi_dung = $request->noidung;
 
+
         $noibat = Input::get('noibat');
         if($noibat == 1)
         {
@@ -78,7 +83,6 @@ class SanPhamController extends Controller
         {
             $sanpham->noi_bat = 0;
         }
-
 
         $sanpham->save();
 
@@ -112,6 +116,16 @@ class SanPhamController extends Controller
         {
             $hinh= "";
             $sanpham->save();
+        }
+        $cauhinh = CauHinhSanPham::all()->sortBy('id');
+
+        foreach($cauhinh as $ch)
+        {
+                $thongtinsp = new ThongTinSanPham;
+                $thongtinsp->ma_san_pham = $request->ma;
+                $thongtinsp->cau_hinh = $request->cauhinh.$ch->id;
+                $thongtinsp->mo_ta = $request->motacauhinh;
+                $thongtinsp->save();
         }
         return redirect('admin/sanpham/them')->with('thongbao','Thêm sản phẩm thành công');
     }
