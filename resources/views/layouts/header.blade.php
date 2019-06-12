@@ -147,7 +147,7 @@
 		</div>
 
 		<ul class="menu-grid">
-			<li><a href="index.html" title="">Trang chủ</a></li>
+			<li><a href="index" title="">Trang chủ</a></li>
 			<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
 			<li><a href="product_tpl" title="">Sản phẩm</a>
 				<ul>
@@ -156,7 +156,7 @@
 						@endforeach
 					</ul>
 				</li>
-				<li><a href="tin-tuc.html" title="">Tin tức</a></li>
+				<li><a href="news_tpl" title="">Tin tức</a></li>
 				<li><a href="video.html" title="Video">Video</a></li>
 				<li><a href="tuyen-dung.html" title="Tuyển dụng">Tuyển dụng</a></li>
 				<li><a href="lien-he.html" title="">Liên hệ</a></li>

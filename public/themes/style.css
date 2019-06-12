@@ -379,3 +379,16 @@ a.link_cart:hover {color: #0066b3; }
 #frmProFile .text_GT{margin-right: 20px;margin-left: 5px;}
 #frmProFile label{width: 10%;}
 .pf_col{margin-bottom: 15px;}
+
+.title_tpl{font-family: 'Roboto'; font-weight: bold; font-size: 20px; color: #333; margin-bottom: 20px; padding-bottom: 5px; position: relative;display: block;}
+.title_tpl:before{position: absolute; content: ''; width: 50px; height: 3px; background: #046835; border-radius: 1px; left: 0; bottom: 0;}
+.title_tpl:after{position: absolute; content: ''; width: calc(100% - 52px); height: 3px; background: #ccc; border-radius: 1px; left: 52px; bottom: 0;}
+.news_tpl_title{display: block;text-align: center;text-transform: uppercase;font-weight: bold;font-size: 28px;margin: 20px 0;}
+.news_tpl_left{width: 70%;}
+.news_tpl_grid{display: grid;grid-template-columns: repeat(1,1fr);}
+.news_tpl_box{border-bottom: 1px dashed #cacaca;padding-bottom: 15px;margin-bottom: 15px;}
+.img_news_tpl img{max-width: 240px;max-height: 150px;}
+.news_tpl_info{width: 69%;}
+.news_tpl_name{display: block;font-size: 24px;color: #000;font-family: bold;}
+.news_tpl_mota{display: block;font-size: 15px;color: #000;font-family: 'Roboto';margin-bottom: 10px;margin-top: 5px;}
+.news_tpl_right{width: 30%;}

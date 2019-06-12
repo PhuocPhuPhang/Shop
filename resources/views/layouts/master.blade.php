@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
-	<link href="{{asset('themes/style.css')}}" rel="stylesheet" type="text/css"/>
+	<link href="themes/style.css" rel="stylesheet" type="text/css"/>
 	<link href="{{asset('themes/js/OwlCarousel/owl.carousel.min.css')}}" rel="stylesheet">
 	<link href="{{asset('themes/js/OwlCarousel/owl.theme.default.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fotorama.css')}}" rel="stylesheet">
@@ -169,6 +169,12 @@
 		$('#datetimepicker4').datetimepicker({
 			format: 'L'
 		});
-	});
+	});  
+</script>
+<script type="text/javascript">
+	$(function() {
+		var editorText = $('#tintuc').text();
+		$('#tintuc').html(editorText);
+	})
 </script>
 </html>
