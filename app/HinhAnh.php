@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class HinhAnh extends Model
 {
     protected $table = "hinh_anh_san_pham";
-    protected  $primaryKey = 'ma_san_pham';
-    public $incrementing = false;
+    protected  $primaryKey = 'id';
+    public $incrementing = true;
     public $timestamps = true;
 
     public function SanPham()
     {
-        return $this->hasMany('App\SanPham','hinh_anh','ma_san_pham');
+        return $this->belongsTo('App\SanPham','hinh_anh','id');
     }
 }

@@ -41,7 +41,9 @@
              <td>{{$sp->ten_san_pham}}</td>
              <td>{{$sp->NhaCungCap->ten_nha_cung_cap}}</td>
              <td>{{$sp->so_luong}}</td>
-             <td>{{$sp->mau_sac}}</td>
+             <td>
+                    <input readonly type="text" style="border:none;height:20px;width:60px;background:{{$sp->mau_sac}}"/>
+             </td>
              <td>{{$sp->mo_ta}}</td>
              <td>{{$sp->noi_dung}}</td>
              <td>

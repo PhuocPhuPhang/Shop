@@ -33,6 +33,13 @@
                     <label>Tên sản phẩm</label>
                     <input type="text" id="ten" class="form-control" name="ten" /> <br />
 
+                    <label>Màu sắc</label>
+                        <div class="input-group demo2">
+                        <input type="text" id="mausac" value="#e01ab5" class="form-control" name="mausac"/>
+                        <span class="input-group-addon"><i></i></span>
+                        </div>
+                    <br/>
+
                     <label>Nhà cung cấp</label>
                     <Select class="form-control" name="nhacungcap" id="nhacungcap">
                         @foreach($nhacungcap as $ncc)
@@ -69,9 +76,9 @@
                 </div>
                 <div class="x_content">
                     @foreach($cauhinh as $ch)
-                    @if($loai->id == $ch->id_loai)
-                        <label>{{$ch->cau_hinh}}</label>
-                        <input type="text" id="" class="form-control" name="" /><br />
+                        @if($loai->id == $ch->id_loai)
+                            <label>{{$ch->cau_hinh}}</label>
+                            <input type="text" id="{{$ch->ten_khong_dau}}" class="form-control" name="{{$ch->ten_khong_dau}}" /><br />
                         @endif
                         @endforeach
                 </div>
@@ -85,8 +92,8 @@
                     <label>Nội dung</label>
                     <textarea id="noidung" class="form-gruop ckeditor" name="noidung" ></textarea><br/>
 
-                    <label>Hình Ảnh</label>
-                <input type="file" id="hinhanh" name="hinhanh" /><br/>
+                    <label>Hình Ảnh Khác</label>
+                    <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" /><br/>
 
                 <div class="ln_solid"></div>
                     <div class="form-group" style="margin-left:20%">

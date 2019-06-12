@@ -36,6 +36,8 @@
 <link href="{{asset('admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
  <!-- Switchery -->
  <link href="{{asset('admin/vendors/switchery/dist/switchery.min.css')}}" rel="stylesheet">
+<!--Color Picker-->
+ <link href="{{asset('admin/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -123,14 +125,16 @@
 <script type="text/javascript">
    CKEDITOR.replace( 'noidung', {
         language:'vi',
-        filebrowserBrowseUrl: '../../ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?type=Images',
-        filebrowserFlashBrowseUrl: '../../ckfinder/ckfinder.html?type=Flash',
-        filebrowserUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        filebrowserFlashUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        filebrowserBrowseUrl: '../../../ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '../../../ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '../../../ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
     } );
 </script>
+<!--Color Picker-->
+<script src="{{asset('admin/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
 @yield('script')
 </body>
 </html>

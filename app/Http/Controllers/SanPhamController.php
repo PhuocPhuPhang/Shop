@@ -10,6 +10,7 @@ use App\CauHinhSanPham;
 use App\LoaiCauHinh;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 
 class SanPhamController extends Controller
@@ -40,7 +41,7 @@ class SanPhamController extends Controller
     {
         $this->validate($request,[
             'ma'        => 'required|min:3|max:255',
-            'ten'       => 'required|min:10|max:255',
+            'ten'       => 'required|min:5|max:255',
             'soluong'   => 'required|numeric',
             'gia'   => 'required|numeric',
         ],[
@@ -48,7 +49,7 @@ class SanPhamController extends Controller
             'ma.min'            =>'Mã sản phẩm tối thiểu 3 ký tự',
             'ma.max'            =>'Mã sản phẩm có độ dài tối đa 255 ký tự',
             'ten.required'      =>'Bạn chưa nhập tên sản phẩm',
-            'ten.min'           =>'Tên sản phẩm tối thiểu 10 ký tự',
+            'ten.min'           =>'Tên sản phẩm tối thiểu 5 ký tự',
             'ten.max'           =>'Tên sản phẩm có độ dài tối đa 255 ký tự',
             'soluong.required'  =>'Bạn chưa nhập số lượng sản phẩm',
             'soluong.numeric'   =>'Số lượng sản phẩm nhập vào phải là số',
@@ -59,14 +60,59 @@ class SanPhamController extends Controller
         $sanpham = new SanPham;
         $sanpham->ma_san_pham = $request->ma;
         $sanpham->ten_san_pham = $request->ten;
+        $sanpham->ten_khong_dau = str_slug($request->ten,'-');
         $sanpham->nha_cung_cap =$request->nhacungcap;
         $sanpham->so_luong = $request->soluong;
         $sanpham->gia_ban = $request->gia;
+        $sanpham->mau_sac = $request->mausac;
+        $sanpham->mo_ta = $request->mota;
+        $sanpham->keywords = $request->keywords;
+        $sanpham->noi_dung = $request->noidung;
+
+        $noibat = Input::get('noibat');
+        if($noibat == 1)
+        {
+            $sanpham->noi_bat = 1;
+        }
+        else
+        {
+            $sanpham->noi_bat = 0;
+        }
+
 
         $sanpham->save();
+
+        if($request->hasFile('hinhanh'))
+        {
+            foreach($request->file('hinhanh') as $image)
+            {
+                //Lấy file được truyền lên
+                $filename = $image->getClientOriginalName();
+                //kiểm tra định dạng file
+                $duoi = $image->getClientOriginalExtension();
+                if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+                {
+                    return redirect('admin/sanpham/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                }
+
+                //Tạo tên mới cho file
+                     $hinh = $filename.'_'.time().'.'.$duoi;
+                //Lưu hình
+                $image->storeAs('public/sanpham', $hinh);
+                $image = new HinhAnh;
+
+                    $image->ma_san_pham = $request->ma;
+                    $image->hinh_anh = $hinh;
+                $image->save();
+
+                $sanpham->save();
+            }
+        }
+        else
+        {
+            $hinh= "";
+            $sanpham->save();
+        }
         return redirect('admin/sanpham/them')->with('thongbao','Thêm sản phẩm thành công');
     }
-
-
-
 }
