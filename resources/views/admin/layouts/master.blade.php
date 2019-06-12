@@ -123,12 +123,12 @@
 <script type="text/javascript">
    CKEDITOR.replace( 'noidung', {
         language:'vi',
-        filebrowserBrowseUrl: '../../ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?type=Images',
-        filebrowserFlashBrowseUrl: '../../ckfinder/ckfinder.html?type=Flash',
-        filebrowserUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        filebrowserFlashUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        filebrowserBrowseUrl: '../../../ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '../../../ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '../../../ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
     } );
 </script>
 @yield('script')

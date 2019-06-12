@@ -447,7 +447,7 @@
 							</div>
 							<div class="news_list_info">
 								<a class="news_list_name" href="" title="">{{$tt->ten}}</a>
-								<div class="news_list_mota">{{$tt->mo_ta}}</div>
+								<div class="news_list_mota">{{ str_limit($tt->mo_ta, $limit = 80, $end = '...') }}</div>
 							</div>
 						</div>
 						@endforeach
@@ -456,6 +456,26 @@
 				</div><!-- end content-news-->
 			</div>
 		</div>
+		<!-- <div class="news_wrap">
+			<label class="title_news_album">Tin tức mới</label>
+			<ul id="scroller">
+				@foreach($tintuc as $tt)
+					<li>
+						<div class="main_news flex-between">
+							<div class="pic_TT">
+								<a class="w-img effect-zoom" href="" title="">
+									<img src="upload/tintuc/{{$tt->hinh_anh}}" alt="">
+								</a>
+							</div>
+							<div class="news_list_info">
+								<div class="news_list_name"><a href="">{{$tt->ten}}</a></div>
+								<div class="news_list_mota">{{$tt->mota}}</div>
+							</div>
+						</div>
+					</li>
+				@endforeach
+			</ul>
+		</div> -->
 		<div class="video_wrap">
 
 			<div class="title"><h3>Video Clips</h3></div>

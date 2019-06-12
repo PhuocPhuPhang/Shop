@@ -121,9 +121,12 @@ Route::group(['prefix'=>'admin'],function(){
     });
 });
 
-// Route::get('trangchu','PageControllers@NCungCap');
+
 Route::get('index','PageControllers@index');
-Route::get('demo','PageControllers@index');
+Route::get('news_tpl','PageControllers@news_tpl');
+Route::get('news_detail_tpl/{id}','PageControllers@news_detail_tpl');
+Route::get('product_tpl','PageControllers@product_tpl');
+
 
 
 // User
@@ -133,9 +136,6 @@ Route::get('dangnhap','UsersController@index');
 Route::get('auth/{social}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('product_tpl',function(){
-    return view('layouts.pages.product_tpl');
-});
 
 Route::get('product_detail_tpl',function(){
     return view('layouts.pages.product_detail_tpl');

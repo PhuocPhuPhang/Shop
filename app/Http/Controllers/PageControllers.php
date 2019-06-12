@@ -13,7 +13,9 @@ class PageControllers extends Controller
 {
     function __construct(){
         $nhacungcap =  NhaCungCap::all();
+        $tintuc= TinTuc::all();
         view()->share('nhacungcap',$nhacungcap);
+        view()->share('tintuc',$tintuc);
     }
 
     public function index()
@@ -23,5 +25,20 @@ class PageControllers extends Controller
         	return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide]);
     }
 
+    public function news_tpl()
+    {
+            return view('layouts.pages.news_tpl');
+    }
+
+    public function news_detail_tpl($id)
+    {
+        $tintuc = TinTuc::find($id);
+        return view('layouts.pages.news_detail_tpl',['tintuc'=>$tintuc]);
+    }
+
+    public function product_tpl()
+    {
+            return view('layouts.pages.product_tpl');
+    }
 
 }
