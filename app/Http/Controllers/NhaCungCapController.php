@@ -47,6 +47,32 @@ class NhaCungCapController extends Controller
         $nhacungcap->so_dien_thoai = $request->sdt;
         $nhacungcap->dia_chi = $request->diachi;
 
+        if($request->hasFile('hinhanh'))
+        {
+            //Lấy file được truyền lên
+            $file = $request->file('hinhanh');
+            //kiểm tra định dạng file
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            {
+                return redirect('admin/nhacungcap/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+            }
+            //Lấy tên file
+            $name = $file->getClientOriginalName();
+            //Tạo tên mới cho file
+            $hinh = $name.'_'.time().'.'.$duoi;
+
+            //Lưu hình
+            $file->move("upload/nhacungcap",$hinh);
+            $nhacungcap->logo = $hinh;
+
+        }
+        else
+        {
+            $nhacungcap->logo = "";
+        }
+
+
         $nhacungcap->save();
         return redirect('admin/nhacungcap/them')->with('thongbao','Thêm thành công');
     }
@@ -66,11 +92,9 @@ class NhaCungCapController extends Controller
             'sdt'=> 'numeric|min:9'
         ],[
             'ma.required' => 'Bạn chưa nhập mã nhà cung cấp',
-            // 'ma.unique' => 'Mã nhà cung cấp đã tồn tại',
             'ma.min'    =>  'Mã nhà cung cấp phải có độ dài hơn 3 ký tự',
             'ma.max'    =>  'Mã nhà cung cấp phải có độ dài từ 3 đến 10 ký tự',
 
-            // 'ten.unique' => 'Tên nhà cung cấp đã tồn tại',
             'ten.required' =>   'Bạn chưa nhập tên nhà cung cấp',
             'ten.max' =>   'Tên nhà cung cấp có độ dài tối đa 255 ký tự',
             'sdt.min'   => 'Số điện thoại có độ dài không dưới 10 số',
@@ -82,6 +106,24 @@ class NhaCungCapController extends Controller
         $nhacungcap->ten_khong_dau = str_slug($request->ten,'-');
         $nhacungcap->so_dien_thoai = $request->sdt;
         $nhacungcap->dia_chi = $request->diachi;
+
+        if($request->hasFile('hinhanh'))
+        {
+            $file = $request->file('hinhanh');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            {
+                return redirect('admin/nhacungcap/sua/'.$mancc)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+            }
+            $name = $file->getClientOriginalName();
+            $hinh = $name.'_'.time().'.'.$duoi;
+            $file->move("upload/nhacungcap",$hinh);
+            $nhacungcap->logo = $hinh;
+        }
+        else
+        {
+            $nhacungcap->logo = "";
+        }
 
         $nhacungcap->save();
         return redirect('admin/nhacungcap/sua/'.$mancc)->with('thongbao','Cập nhật thành công');

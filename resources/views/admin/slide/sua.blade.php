@@ -42,7 +42,7 @@
                 </div>
             @endif
 
-            <form id="demo-form" action="../slide/sua/{{$slide->id}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+            <form id="demo-form" action="../sua/{{$slide->id}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <label>Tên</label>
@@ -50,9 +50,6 @@
 
                 <label>Link</label>
                 <input type="text" id="link" class="form-control" name="link" value="{{$slide->link}}" /> <br />
-
-                <label>Nội dung</label>
-                <textarea id="noidung" class="form-gruop ckeditor" name="noidung" >{{$slide->noi_dung}}</textarea><br/>
 
                 <label>Hình Ảnh</label>
                 <p>
@@ -66,7 +63,7 @@
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <a href="{{ url('admin/tintuc/danhsach') }}">
+                        <a href="{{ url('admin/slide/danhsach') }}">
                             <button class="btn btn-primary" type="button">Cancel</button>
                         </a>
                         <button class="btn btn-primary" type="reset">Reset</button>

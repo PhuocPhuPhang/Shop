@@ -41,7 +41,7 @@
                 </div>
             @endif
 
-            <form  action="../sua/{{$nhacungcap->ma_nha_cung_cap}}" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+            <form  action="../sua/{{$nhacungcap->ma_nha_cung_cap}}" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã nhà cung cấp</label>
@@ -65,6 +65,15 @@
                 <label  class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <textarea  class="form-control col-md-7 col-xs-12" name="diachi">{{ $nhacungcap->dia_chi}}</textarea>
+                </div>
+                </div>
+                <div class="form-group">
+                <label  class="control-label col-md-3 col-sm-3 col-xs-12">Logo </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>
+                        <img src="../../../upload/nhacungcap/{{$nhacungcap->logo}}" alt="Hình ảnh" width="500px">
+                    </p>
+                    <input type="file" id="hinhanh" name="hinhanh" /><br/>
                 </div>
                 </div>
                 <div class="ln_solid"></div>

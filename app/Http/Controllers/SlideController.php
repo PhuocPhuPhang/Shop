@@ -23,20 +23,18 @@ class SlideController extends Controller
     {
         $this->validate($request,[
             'ten'=> 'required|unique:slide,ten|max:255',
-            'link'=> 'unique:slide,link|max:255',
+            'link'=> 'min:10',
         ],[
             'ten.unique' => 'Tên slide đã tồn tại',
             'ten.required' =>   'Bạn chưa nhập tên slide',
             'ten.max' =>   'Tên slide có độ dài tối đa 255 ký tự',
 
-            'link.unique'   => 'Link đã tồn tại',
-            'sdt.max'   => 'Link có độ dài tối đa 255 ký tự',
+            'link.max'   => 'Link có độ dài tối thiểu 10 ký tự',
         ]);
 
         $slide = new Slide;
         $slide->ten = $request->ten;
         $slide->link = $request->link;
-        $slide->noi_dung = $request->noidung;
 
         if($request->hasFile('hinhanh'))
         {
@@ -51,11 +49,7 @@ class SlideController extends Controller
             //Lấy tên file
             $name = $file->getClientOriginalName();
             //Tạo tên mới cho file
-            $hinh = str_random(4)."_".$name;
-            while(file_exists("upload/slide/".$hinh))
-            {
-                $hinh = str_random(4)."_".$name;
-            }
+            $hinh = $name.'_'.time().'.'.$duoi;
             //Lưu hình
             $file->move("upload/slide",$hinh);
             $slide->hinh_anh = $hinh;
@@ -80,40 +74,32 @@ class SlideController extends Controller
     {
         $slide = Slide::find($id);
         $this->validate($request,[
-            'ten'=> 'required|unique:slide,ten|max:255',
-            'link'=> 'unique:slide,link|max:255',
+            'ten'=> 'required|max:255',
+            'link'=> 'min:10',
         ],[
-            'ten.unique' => 'Tên slide đã tồn tại',
             'ten.required' =>   'Bạn chưa nhập tên slide',
             'ten.max' =>   'Tên slide có độ dài tối đa 255 ký tự',
 
-            'link.unique'   => 'Link đã tồn tại',
-            'sdt.max'   => 'Link có độ dài tối đa 255 ký tự',
+            'link.min'   => 'Link có độ dài tối thiểu 10 ký tự',
         ]);
 
         $slide->ten = $request->ten;
         $slide->link = $request->link;
-        $slide->noi_dung = $request->noidung;
 
         if($request->hasFile('hinhanh'))
         {
-            //Lấy file được truyền lên
             $file = $request->file('hinhanh');
-            //kiểm tra định dạng file
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
                 return redirect('admin/slide/sua/'.$slide->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
-            //Lấy tên file
             $name = $file->getClientOriginalName();
-            //Tạo tên mới cho file
             $hinh = str_random(4)."_".$name;
             while(file_exists("upload/slide/".$hinh))
             {
                 $hinh = str_random(4)."_".$name;
             }
-            //Lưu hình
             $file->move("upload/slide",$hinh);
             $slide->hinh_anh = $hinh;
 

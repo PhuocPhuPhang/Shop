@@ -26,7 +26,6 @@
            <tr>
              <th>STT</th>
              <th>Tên</th>
-             <th>Nội dung</th>
              <th>Hình ảnh</th>
              <th>Thao tác</th>
            </tr>
@@ -34,9 +33,8 @@
          <tbody>
              @foreach($slide as $sl)
            <tr>
-             <td>{{ $sl->thu_tu }}</td>
+             <td>{{ $sl->thu_tu}}</td>
              <td>{{ $sl->ten }}</td>
-             <td>{{ $sl->noi_dung }}</td>
              <td>
                  <img src="../../upload/slide/{{$sl->hinh_anh}}" alt="Hình ảnh" width="300px">
             </td>
