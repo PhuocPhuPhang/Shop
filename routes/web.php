@@ -117,6 +117,8 @@ Route::group(['prefix'=>'admin'],function(){
             Route::post('sua/{id}','CauHinhSanPhamController@postSua');
 
             Route::get('xoa/{id}','CauHinhSanPhamController@postXoa');
+
+            Route::resource('demo', 'CauHinhSanPhamController@demo');
         });
     });
 });

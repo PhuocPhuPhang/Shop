@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Suppost\Helpers;
 use App\NhaCungCap;
 use Validator;
+
 
 class NhaCungCapController extends Controller
 {
     public function getDanhSach()
     {
-        $nhacungcap= NhaCungCap::all();
-        return view('admin.nhacungcap.danhsach',['nhacungcap'=>$nhacungcap]);
+       $nhacungcap = NhaCungCap::all();
+       return view('admin.nhacungcap.danhsach',['nhacungcap'=>$nhacungcap]);
     }
 
     public function getThem()
@@ -136,6 +138,4 @@ class NhaCungCapController extends Controller
 
         return redirect('admin/nhacungcap/danhsach')->with('thongbao','Xóa thành công');
     }
-
-
 }
