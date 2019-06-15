@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('content')
+<?php var_dump($name)?>
 <div class="">
 <div class="clearfix"></div>
 <div class="row">
@@ -72,10 +73,11 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        @foreach($loaicauhinh as $loai)
+        <div class="col-md-6 col-sm-6 col-xs-6">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Cấu hình sản phẩm</h2>
+                <h2>{{$loai->ten}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li>
@@ -86,13 +88,23 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
+
                 <div class="x_content">
-
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-
-                    <div id="cauhinh_new"></div>
+                    @foreach($cauhinh as $ch)
+                        @if($ch->id_loai == $loai->id)
+                        <label>{{$ch->cau_hinh}}</label>
+                        <input type="text"  class="form-control" name="{{$ch->ten_khong_dau}}" /><br />
+                        @endif
+                    @endforeach
+                    <div id="{{str_slug($loai->ten)}}"></div>
+                </div>
             </div>
         </div>
+        @endforeach
+
+        </div>
+
         <div class="col-md-12 col-sm-12 col-xs-12">
             <!-- <div class="x_panel"> -->
                 <div class="x_content">
@@ -129,9 +141,9 @@
           <div class="form-group">
             <label class="control-label col-md-4" >Loại cấu hình</label>
             <div class="col-md-8">
-             <select name="loaicauhinh" id="loaicauhinh">
+             <select name="loaicauhinh" id="loaicauhinh" onChange="getLoai()">
                  @foreach($loaicauhinh as $loai)
-                 <option value="{{$loai->id}}">{{$loai->ten}}</option>
+                 <option value="{{str_slug($loai->ten)}}">{{$loai->ten}}</option>
                  @endforeach
              </select>
             </div>
@@ -166,20 +178,27 @@
                 var loaich = $('#loaicauhinh').val();
                 var cauhinh = $('#cauhinh').val();
                 var ten = string_to_slug(cauhinh);
+                var html = `<div id="${ten}" class="cauhinh"> <label name="">${cauhinh}</label><br/>
+                            <div> <input  name="${ten}" style="width:95%"></input>
+                            <input type="button" class="${ten}"  value="x" />`;
 
-                var html = '<div class="cauhinh"> <label name="'+'1'+'">' + cauhinh + '</label><br/>';
-                    html += '<div> <input id="'+ten+'"  name="' +"motacauhinh"+'" style="width:95%"></input>';
-                    html += '<input type="button" name="delete" id="delete"  value="x" />';
+                switch (loaich) {
+                    @foreach($loaicauhinh as $loai)
+                    case "{{str_slug($loai->ten)}}":
+                        $('#{{str_slug($loai->ten)}}').append(html);
+                        break;
+                    @endforeach
 
-                $('#cauhinh_new').append(html);
-                $('#cauhinh').val('');
+                    default:
+                        break;
+                }
             }
             else alert('Lỗi');
-            $('#delete').click(function(){
-               $('.cauhinh').remove(); // Xóa toàn bộ div có class cấu hình
+
+            $(`.${ten}`).click(function(){
+               $(`#${ten}`).remove();
             });
         });
-
         function string_to_slug (str) {
         str = str.replace(/^\s+|\s+$/g, ''); // trim
         str = str.toLowerCase();
@@ -198,7 +217,6 @@
         return str;
         }
     });
-
     function showImages(){
             if(this.files && this.files[0]){
                 var obj = new FileReader();

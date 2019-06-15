@@ -21,8 +21,10 @@ class SanPhamController extends Controller
     {
         $loaicauhinh = LoaiCauHinh::all();
         $cauhinh = CauHinhSanPham::all();
+        $thongtinsp = ThongTinSanPham::all();
         view()->share('loaicauhinh',$loaicauhinh);
         view()->share('cauhinh',$cauhinh);
+        view()->share('thongtinsp',$thongtinsp);
     }
     public function getDanhSach()
     {
@@ -117,16 +119,6 @@ class SanPhamController extends Controller
             $hinh= "";
             $sanpham->save();
         }
-        $cauhinh = CauHinhSanPham::all()->sortBy('id');
-
-        // foreach($cauhinh as $ch)
-        // {
-                $thongtinsp = new ThongTinSanPham;
-                $thongtinsp->ma_san_pham = $request->ma;
-                $thongtinsp->cau_hinh = $request->cauhinh;
-                $thongtinsp->mo_ta = $request->motacauhinh;
-                $thongtinsp->save();
-        // }
         return redirect('admin/sanpham/them')->with('thongbao','Thêm sản phẩm thành công');
     }
 }
