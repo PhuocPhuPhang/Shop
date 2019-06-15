@@ -102,7 +102,7 @@ class SanPhamController extends Controller
                 //Tạo tên mới cho file
                      $hinh = $filename.'_'.time().'.'.$duoi;
                 //Lưu hình
-                $image->storeAs('public/sanpham', $hinh);
+                $image->move("upload/sanpham", $hinh);
                 $image = new HinhAnh;
 
                     $image->ma_san_pham = $request->ma;
@@ -119,14 +119,14 @@ class SanPhamController extends Controller
         }
         $cauhinh = CauHinhSanPham::all()->sortBy('id');
 
-        foreach($cauhinh as $ch)
-        {
+        // foreach($cauhinh as $ch)
+        // {
                 $thongtinsp = new ThongTinSanPham;
                 $thongtinsp->ma_san_pham = $request->ma;
-                $thongtinsp->cau_hinh = $request->cauhinh.$ch->id;
+                $thongtinsp->cau_hinh = $request->cauhinh;
                 $thongtinsp->mo_ta = $request->motacauhinh;
                 $thongtinsp->save();
-        }
+        // }
         return redirect('admin/sanpham/them')->with('thongbao','Thêm sản phẩm thành công');
     }
 }

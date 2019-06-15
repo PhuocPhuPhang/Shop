@@ -65,8 +65,9 @@
                     <label>Nội dung</label>
                     <textarea id="noidung" class="form-gruop ckeditor" name="noidung" ></textarea><br/>
 
-                    <label>Hình Ảnh Khác</label>
-                    <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" /><br/>
+                    <label>Hình đại diện</label>
+                    <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" onChange="showImages.call(this)"/><br/>
+                    <br/><img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px">
                 </div>
             </div>
         </div>
@@ -88,33 +89,10 @@
                 <div class="x_content">
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+
                     <div id="cauhinh_new"></div>
             </div>
         </div>
-
-        {{--@foreach($loaicauhinh as $loai)
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>{{$loai->ten}}</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    @foreach($cauhinh as $ch)
-                        @if($loai->id == $ch->id_loai)
-                            <label >{{$ch->cau_hinh}}</label>
-                            <input type="text" name="cauhinh{{$ch->id}}" style="display:none" /><br />
-                            <input type="text"  class="form-control" name="motacauhinh" /><br />
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        @endforeach--}}
-
         <div class="col-md-12 col-sm-12 col-xs-12">
             <!-- <div class="x_panel"> -->
                 <div class="x_content">
@@ -189,8 +167,8 @@
                 var cauhinh = $('#cauhinh').val();
                 var ten = string_to_slug(cauhinh);
 
-                var html = '<div class="cauhinh"> <label>' + cauhinh + '</label><br/>';
-                    html += '<div> <textarea id="'+ten+'"  name="' +ten+'" style="width:95%"></textarea>';
+                var html = '<div class="cauhinh"> <label name="'+'1'+'">' + cauhinh + '</label><br/>';
+                    html += '<div> <input id="'+ten+'"  name="' +"motacauhinh"+'" style="width:95%"></input>';
                     html += '<input type="button" name="delete" id="delete"  value="x" />';
 
                 $('#cauhinh_new').append(html);
@@ -219,8 +197,18 @@
 
         return str;
         }
-
-
     });
+
+    function showImages(){
+            if(this.files && this.files[0]){
+                var obj = new FileReader();
+                obj.onload = function(data){
+                    var image = document.getElementById("image");
+                    image.src = data.target.result;
+                    image.style.display = "block";
+                }
+                obj.readAsDataURL(this.files[0]);
+            }
+        }
     </script>
 @endsection
