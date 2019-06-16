@@ -177,8 +177,36 @@
 		$('#tintuc').html(editorText);
 	})
 </script>
-<SCRIPT LANGUAGE="JavaScript">
-	<!-- Begin
+<!-- <script type="text/javascript">
+	$(document).ready(function() {
+		$('body').on('click','.checkmobile', function() {
+			var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+			var mobile = $('#mobile').val();
+			if(mobile !==''){
+				if (vnf_regex.test(mobile) == false) 
+				{
+					alert('Số điện thoại của bạn không đúng định dạng!');
+				}else{
+					alert('Số điện thoại của bạn hợp lệ!');
+				}
+			}else{
+				alert('Bạn chưa điền số điện thoại!');
+			}
+		});
+	});
+</script> -->
+<!-- <script>
+function myFunction() {
+
+var password = document.getElementById("pass").value;
+var password_confirmation = document.getElementById("re_pass").value;
+	if(password != password_confirmation)
+    {
+    	alert('Mật khẩu chưa trùng khớp');
+    }
+}
+</script> -->
+<!-- <script LANGUAGE="JavaScript">
 	function checkPw(form) {
 		pass = form.password.value;
 		repeat_pass = form.re_password.value;
@@ -191,6 +219,5 @@
 			alert ("\nTạo tài khoản thành công.")
 		} return true;
 	}
-// End -->
-</script>
+</script> -->
 </html>

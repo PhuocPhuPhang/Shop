@@ -1,5 +1,7 @@
 
 <nav id="mmenu" class="invi_load">
+
+
 	<ul>
 		<li><a href="index.html" title="">Trang chủ</a></li>
 		<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
@@ -44,33 +46,87 @@
 									<label class="title_sign_up_main">Tạo tài khoản</label>
 								</div>
 							</div>
-							<form id="frmSignUp" action="{{ URL('/index') }}" method="POST" role="form" onSubmit="return checkPw(this)" class="sign_up_block">
-
-								<div class="login-row"><label>Họ tên</label> <input type="text" name="ten" placeholder="Họ tên" required></div>
-								<div class="login-row"><label>Số diện thoại</label> <input type="text" name="so_dien_thoai" placeholder="Số điện thoại" required></div>
-								<div class="login-row"><label>Email</label> <input type="email" name="email" placeholder="Email của bạn" required></div>
-								<div class="login-row"><label>Mật khẩu</label> <input type="password" name="password" placeholder="Nhập mật khẩu" required></div>
-								<div class="login-row"><label>Nhập lại mật khẩu</label> <input type="password" name="re_password" placeholder="Nhập lại mật khẩu"></div>
-								<div class="login-row"><label>Giới tính</label>
+							<form id="frmSignUp" action="{{ URL('/index') }}" method="POST" role="form" class="sign_up_block">
+								<div class="login-row">
+									<label>Họ tên</label> 
+									<input type="text" name="ten" placeholder="Họ tên">
+								</div>
+								<div class="login-row">
+									<label>Số diện thoại</label> 
+									<input type="text" name="so_dien_thoai" placeholder="Số điện thoại" >
+								</div>
+								<div class="login-row">
+									<label>Email</label> 
+									<input type="email" name="email" placeholder="Email của bạn">
+								</div>
+								<div class="login-row">
+									<label>Mật khẩu</label> 
+									<input type="password" id="pass" name="password" placeholder="Nhập mật khẩu">
+								</div>
+								<div class="login-row">
+									<label>Nhập lại mật khẩu</label> 
+									<input type="password" id="re_pass" name="password_confirmation" placeholder="Nhập lại mật khẩu" onkeypress="myFunction()">
+								</div>
+								<div class="login-row">
+									<label>Giới tính</label>
 									<input type="radio" name="gioi_tinh" value="Nam"><label class="text_radio">Nam</label>
 									<input type="radio" name="gioi_tinh" value="Nữ"><label class="text_radio">Nữ</label>
 								</div>
-								<div class="login-row"><label>Ngày sinh</label>
-									<input type="date" name="ngay_sinh">
+								<div class="login-row">
+									<label>Ngày sinh</label>
+									<input type="date" name="ngay_sinh" value="<?php echo date('Y-m-d')?>">
 								</div>
-								<div class="login-row"><input type="checkbox" name="hoten"><span class="check_thongbao">Nhận các thông báo và tin khuyến mãi từ chúng tôi.</span> </div>
+								<!-- <div class="login-row">
+									<input type="checkbox" name="nhan_tin">
+									<span class="check_thongbao">Nhận các thông báo và tin khuyến mãi từ chúng tôi.</span> 
+								</div> -->
 								<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-								<div class="login-row"><input type="submit" name="btnDK" id="btnY" value="Tạo tài khoản"></div>
-								
+								<div class="login-row">
+									<button name="btnDK" id="btnY">Tạo tài khoản</button>
+								</div>
 							</form>
-							<!-- <form id="frmLogin" action="index.html" method="post" class="login_block">
-								<div class="login-row"><label>Email</label> <input type="email" name="hoten" placeholder="Email của bạn" required></div>
-								<div class="login-row"><label>Mật khẩu</label> <input type="password" name="hoten" placeholder="Nhập mật khẩu" required></div>
-								<div class="login-row"><span class="quenMK">Quên mật khẩu? Nhấn vào <a href="">đây</a></span> </div>
+							@if(count($errors) > 0)
+								<script >
+									alert('Thất bại');
+								</script>
+							<div class="alert alert-danger">
+								@foreach($errors->all() as $err)
+								{{ $err }} <br>
+								@endforeach
+							</div>
+							@endif
+							@if(session('email'))
+							<script>
+								alert('Email đã tồn tại');
+							</script>
+							@endif
+							@if(session('errorLogin'))
+							<script>
+								alert('Sai email hoặc mật khẩu. Vui lòng kiểm tra lại thông tin nhập.')
+							</script>
+							@endif
+							@if(session('thongbao'))
+							<script>
+								alert('Thành Công')
+							</script>
+							@endif
+							<form id="frmLogin" action="{{ url('/index/login') }}" method="POST" class="login_block">
+								<div class="login-row">
+									<label>Email</label> 
+									<input type="email" name="email" placeholder="Email của bạn" required>
+								</div>
+								<div class="login-row">
+									<label>Mật khẩu</label> 
+									<input type="password" name="password" placeholder="Nhập mật khẩu" required>
+								</div>
+								<div class="login-row">
+									<span class="quenMK">Quên mật khẩu? Nhấn vào <a href="">đây</a></span> 
+								</div>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 								<div class="login-row"><input type="submit" name="" value="Login"></div>
-								<div class="login-row"><a class="login_FB" href="{{ url('/auth/facebook')}}">Đăng nhập bằng FaceBook</a></div>
-								<div class="login-row"><a class="login_GG" href="{{ url('/auth/google')}}">Đăng nhập bằng Google</a></div>
-							</form> -->
+								<!-- <div class="login-row"><a class="login_FB" href="{{ url('/auth/facebook')}}">Đăng nhập bằng FaceBook</a></div>
+								<div class="login-row"><a class="login_GG" href="{{ url('/auth/google')}}">Đăng nhập bằng Google</a></div> -->
+							</form>
 						</div>
 					</div>
 				</div>

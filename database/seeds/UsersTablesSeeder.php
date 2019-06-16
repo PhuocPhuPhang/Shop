@@ -14,10 +14,11 @@ class UsersTablesSeeder extends Seeder
     public function run()
     {
         User::create([
-            'email'         =>'admin@gmail.com',
+            'email'         =>'tuanabc@gmail.com',
             'password'      =>Hash::make('123ab'),
-            'level'         =>1,
+            'level'         =>0,
             'remember_token'=> str_random(10),
         ]);
+        
     }
 }
