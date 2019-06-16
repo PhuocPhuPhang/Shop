@@ -1,6 +1,5 @@
 @extends('admin.layouts.master')
 @section('content')
-<?php var_dump($name)?>
 <div class="">
 <div class="clearfix"></div>
 <div class="row">
