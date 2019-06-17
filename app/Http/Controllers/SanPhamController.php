@@ -119,6 +119,13 @@ class SanPhamController extends Controller
             $hinh= "";
             $sanpham->save();
         }
+
+        //Thêm cấu hình mới của người dùng
+
+
+
+
+        //Thêm thông tin cấu hình sản phẩm
         $input= ($request->all());
         $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
         foreach($input as $key => $value)
