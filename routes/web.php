@@ -121,6 +121,19 @@ Route::group(['prefix'=>'admin'],function(){
             Route::resource('demo', 'CauHinhSanPhamController@demo');
         });
     });
+
+    Route::group(['prefix'=>'khuyenmai'],function(){
+
+        Route::get('danhsach','KhuyenMaiController@getDanhSach');
+
+        Route::get('them','KhuyenMaiController@getThem');
+        Route::post('them','KhuyenMaiController@postThem');
+
+        Route::get('sua/{makm}','KhuyenMaiController@getSua');
+        Route::post('sua/{makm}','KhuyenMaiController@postSua');
+
+        Route::get('xoa/{makm}','KhuyenMaiController@postXoa');
+    });
 });
 
 

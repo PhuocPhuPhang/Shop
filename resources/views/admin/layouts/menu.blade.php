@@ -44,6 +44,7 @@
                     <li><a href="{{url('admin/sanpham/danhsach')}}">Danh sách sản phẩm</a></li>
                 </ul>
             </li>
+            <li><a href="{{url('admin/khuyenmai/danhsach')}}"><i class="fa fa-home"></i>Khuyến mãi</a></li>
 
         </ul>
         </div>

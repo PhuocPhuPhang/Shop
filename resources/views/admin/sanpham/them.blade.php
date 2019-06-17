@@ -65,7 +65,7 @@
                     <label>Nội dung</label>
                     <textarea id="noidung" class="form-gruop ckeditor" name="noidung" ></textarea><br/>
 
-                    <label>Hình đại diện</label>
+                    <label>Hình ảnh</label>
                     <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" onChange="showImages.call(this)"/><br/>
                     <br/><img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px">
                 </div>
@@ -177,7 +177,7 @@
                 var loaich = $('#loaicauhinh').val();
                 var cauhinh = $('#cauhinh').val();
                 var ten = string_to_slug(cauhinh);
-                var html = `<div id="${ten}" class="cauhinh"> <label name="">${cauhinh}</label><br/>
+                var html = `<div id="${ten}" class="cauhinh"> <label>${cauhinh}</label><br/>
                             <div> <input  name="${ten}" style="width:95%"></input>
                             <input type="button" class="${ten}"  value="x" />`;
 
