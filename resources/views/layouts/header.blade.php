@@ -48,23 +48,23 @@
 							</div>
 							<form id="frmSignUp" action="{{ URL('/index') }}" method="POST" role="form" class="sign_up_block">
 								<div class="login-row">
-									<label>Họ tên</label> 
+									<label>Họ tên</label>
 									<input type="text" name="ten" placeholder="Họ tên">
 								</div>
 								<div class="login-row">
-									<label>Số diện thoại</label> 
+									<label>Số diện thoại</label>
 									<input type="text" name="so_dien_thoai" placeholder="Số điện thoại" >
 								</div>
 								<div class="login-row">
-									<label>Email</label> 
+									<label>Email</label>
 									<input type="email" name="email" placeholder="Email của bạn">
 								</div>
 								<div class="login-row">
-									<label>Mật khẩu</label> 
+									<label>Mật khẩu</label>
 									<input type="password" id="pass" name="password" placeholder="Nhập mật khẩu">
 								</div>
 								<div class="login-row">
-									<label>Nhập lại mật khẩu</label> 
+									<label>Nhập lại mật khẩu</label>
 									<input type="password" id="re_pass" name="password_confirmation" placeholder="Nhập lại mật khẩu" onkeypress="myFunction()">
 								</div>
 								<div class="login-row">
@@ -95,11 +95,6 @@
 								@endforeach
 							</div>
 							@endif
-							@if(session('email'))
-							<script>
-								alert('Email đã tồn tại');
-							</script>
-							@endif
 							@if(session('errorLogin'))
 							<script>
 								alert('Sai email hoặc mật khẩu. Vui lòng kiểm tra lại thông tin nhập.')
@@ -121,11 +116,11 @@
 									<input type="text" name="email" placeholder="Email của bạn" required>
 								</div>
 								<div class="login-row">
-									<label>Mật khẩu</label> 
+									<label>Mật khẩu</label>
 									<input type="password" name="password" placeholder="Nhập mật khẩu" required>
 								</div>
 								<div class="login-row">
-									<span class="quenMK">Quên mật khẩu? Nhấn vào <a href="">đây</a></span> 
+									<span class="quenMK">Quên mật khẩu? Nhấn vào <a href="">đây</a></span>
 								</div>
 								<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 								<div class="login-row"><input type="submit" name="" value="Login"></div>
