@@ -76,7 +76,7 @@ class PageControllers extends Controller
             ]);
 
         $user = new User();
-
+        $password = $request['password'];
         $check_email = $user->where('email',$request->email)->first();
 
         if(!empty($check_email))
@@ -97,7 +97,7 @@ class PageControllers extends Controller
 
          $user = new User;
          $user->email = $request->email;
-         $user->password = Hash::make('$request->password');
+         $user->password = Hash::make($password);
          $user->level = 0;
 
          $user->save();
@@ -125,11 +125,16 @@ class PageControllers extends Controller
 
     if(Auth::attempt($user_data))
     {
-      return redirect('index');
+      return redirect('index')->with('login',"Đăng nhập thành công");
     }
     else
     {
         return redirect('index')->with('errorLogin', 'Sai email hoặc mật khẩu. Vui lòng kiểm tra lại thông tin nhập.');
     }
 }
+public function Logout()
+    {
+     Auth::logout();
+     return redirect('index');
+    }
 }

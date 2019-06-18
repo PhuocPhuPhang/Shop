@@ -127,6 +127,7 @@ Route::group(['prefix'=>'admin'],function(){
 Route::get('index','PageControllers@index');
 Route::post('index','PageControllers@postThemUser');
 Route::post('index/login','PageControllers@Login');
+Route::get('index/logout','PageControllers@Logout');
 
 Route::get('news_tpl','PageControllers@news_tpl');
 Route::get('news_detail_tpl/{id}','PageControllers@news_detail_tpl');

@@ -39,7 +39,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function handle($request, Closure $next, $guard = null)
+    {
+        if (Auth::guard($guard)->check()) {
+            return redirect('/index');
+        }
 
+        return $next($request);
+    }
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->redirect();

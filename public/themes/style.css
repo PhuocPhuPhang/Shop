@@ -49,6 +49,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 .left_top{width: 35%;}
 .right_top{width: 35%;}
 .right_top_login{width: 40%;}
+.right_top_logout{width: 55%;}
+.right_top_logout .logout{display: inline-block;}
 .right_top_login label{display: inline-block;margin-bottom: 0;}
 .right_top_login label:hover{color: #fff;cursor: pointer;text-decoration: underline;}
 .line_login{width: 1px;height: 15px;background: #000;}
