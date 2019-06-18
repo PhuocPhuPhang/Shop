@@ -11,8 +11,4 @@ class HinhThucKhuyenMai extends Model
     public $incrementing = true;
     public $timestamps = true;
 
-    public function KhuyenMai()
-    {
-        return $this->belongsTo('App\KhuyenMai','ma_khuyen_mai','ma_khuyen_mai');
-    }
 }

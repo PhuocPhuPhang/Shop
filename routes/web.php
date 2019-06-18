@@ -129,8 +129,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('them','KhuyenMaiController@getThem');
         Route::post('them','KhuyenMaiController@postThem');
 
-        Route::get('sua/{makm}','KhuyenMaiController@getSua');
-        Route::post('sua/{makm}','KhuyenMaiController@postSua');
+        Route::get('sua/{id}','KhuyenMaiController@getSua');
+        Route::post('sua/{id}','KhuyenMaiController@postSua');
 
         Route::get('xoa/{makm}','KhuyenMaiController@postXoa');
     });
