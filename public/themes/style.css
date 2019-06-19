@@ -371,15 +371,21 @@ a.link_cart:hover {color: #0066b3; }
 .login_block.active{display: block;}
 
 .profile_left{width: 35%}
+.profile_list{list-style: none;width: 75%;margin: 0 auto;margin-top: 30px;padding-left: 50px;}
+.profile_list ul{list-style: none;margin-left: 20px;display: none;}
+.profile_list li:hover > ul{display: block;cursor: pointer;}
+.profile_list a{display: block;font-size: 15px;font-family: 'Roboto';color: #000;}
 .profile_right{width: 75%;background: #F5F5F5;}
 .profile_right_title{width: 90%;margin: 0 auto;border-bottom: 1px solid #cacaca;padding-top: 20px;padding-bottom: 15px;margin-bottom: 30px;}
 .profile_right_title label{display: block;margin-bottom: 0;font-size: 1.125rem;}
 .profile_right_title span{display: block;font-size: .875rem;}
-#frmProFile{width: 90%;margin: 0 auto;padding-bottom: 35px;}
-#frmProFile input[type='text'], #frmProFile input[type='email'], #frmProFile input[type='date']{height: 35px;border:1px solid #cacaca;text-indent: 10px;width: 30%;}
-#frmProFile input[type='submit']{background: #ee4d2d;height: 35px;border:none;color: #fff;margin-left: 85px;padding: 0 25px;}
+#frmProFile , #frmChagePassword{width: 90%;margin: 0 auto;padding-bottom: 35px;}
+#frmProFile input[type='text'], #frmProFile input[type='email'], #frmProFile input[type='date'] , #frmChagePassword input[type='password']{height: 35px;border:1px solid #cacaca;text-indent: 10px;width: 30%;}
+#frmChagePassword input[type='submit'] , #frmProFile input[type='button']{background: #ee4d2d;height: 35px;border:none;color: #fff;margin-left: 85px;padding: 0 25px;}
+#frmChagePassword input[type='submit']{margin-left: 115px;}
 #frmProFile .text_GT{margin-right: 20px;margin-left: 5px;}
 #frmProFile label{width: 10%;}
+#frmChagePassword label {width: 15%;}
 .pf_col{margin-bottom: 15px;}
 
 .title_tpl{font-family: 'Roboto'; font-weight: bold; font-size: 20px; color: #333; margin-bottom: 20px; padding-bottom: 5px; position: relative;display: block;}
