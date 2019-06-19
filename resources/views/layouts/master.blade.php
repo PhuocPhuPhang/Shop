@@ -17,6 +17,7 @@
 	<link  href="{{asset('themes/css/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/js/magiczoomplus/magiczoomplus.css')}}">
 	<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
+	<link  href="{{asset('themes/css/all.min.css')}}" rel="stylesheet">
 	<title></title>
 </head>
 <body>
