@@ -68,7 +68,7 @@ class KhuyenMaiController extends Controller
         $hinhthuc = $request->hinhthuc;
         foreach($hinhthuc as $ht)
         {
-            $hinhthuckm = new HinhThucKhuyenMai();
+           $hinhthuckm = new HinhThucKhuyenMai();
            $hinhthuckm->ma_khuyen_mai = $makm;
            $hinhthuckm->ten_hinh_thuc = $ht;
            $nd = Str::slug($ht);
@@ -92,8 +92,6 @@ class KhuyenMaiController extends Controller
     {
         $khuyenmai = KhuyenMai::find($id);
         $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('id',$id)->first();
-        $hinhthuckm = DB::table('hinh_thuc_khuyen_mai')->select('ten_hinh_thuc','noi_dung')
-        ->where('ma_khuyen_mai',$makm->ma_khuyen_mai)->get();
 
         $this->validate($request,[
             'ten'=>'required'
@@ -118,22 +116,34 @@ class KhuyenMaiController extends Controller
             $file->move("upload/khuyenmai",$hinh);
             $khuyenmai->hinh_anh = $hinh;
         }
-        else
-        {
-            $khuyenmai->hinh_anh = "";
-        }
 
         $khuyenmai->save();
-        // Lưu hình thức khuyến mãi
+        // // Lưu hình thức khuyến mãi
         $hinhthuc = $request->hinhthuc;
+        DB::table('hinh_thuc_khuyen_mai')
+            ->where('ma_khuyen_mai',$makm->ma_khuyen_mai)->delete();
         foreach($hinhthuc as $ht)
         {
-           $hinhthuckm->ten_hinh_thuc = $ht;
-           $nd = Str::slug($ht);
-           $hinhthuckm->noi_dung = $request->$nd;
+            $hinhthuckm = new HinhThucKhuyenMai();
+            $hinhthuckm->ma_khuyen_mai = $makm->ma_khuyen_mai;
+            $hinhthuckm->ten_hinh_thuc = $ht;
+            $nd = Str::slug($ht);
+            $hinhthuckm->noi_dung = $request->$nd;
 
-           $hinhthuckm->save();
+            $hinhthuckm->save();
         }
         return redirect('admin/khuyenmai/sua/'.$id)->with('thongbao','Cập nhật thành công');
+    }
+
+    public function postXoa($id)
+    {
+        $khuyenmai = KhuyenMai::find($id);
+        $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('id',$id)->first();
+
+        DB::table('hinh_thuc_khuyen_mai')
+            ->where('ma_khuyen_mai',$makm->ma_khuyen_mai)->delete();
+        $khuyenmai->delete();
+
+        return redirect('admin/khuyenmai/danhsach')->with('thongbao','Xóa  thành công');
     }
 }
