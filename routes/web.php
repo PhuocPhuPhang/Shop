@@ -30,6 +30,8 @@ Route::get('admin/login','AdminLoginController@index');
 Route::post('admin/login','AdminLoginController@CheckLogin');
 Route::get('admin/index','AdminLoginController@SuccessLogin');
 Route::get('admin/logout','AdminLoginController@Logout');
+//Tạo tài khoản admin
+Route::post('admin/register','AdminLoginController@Register');
 
 // Trang admin
 Route::group(['prefix'=>'admin'],function(){
@@ -133,6 +135,9 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('sua/{id}','KhuyenMaiController@postSua');
 
         Route::get('xoa/{makm}','KhuyenMaiController@postXoa');
+    });
+    Route::group(['prefix'=>'ajax'],function(){
+        Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
     });
 });
 
