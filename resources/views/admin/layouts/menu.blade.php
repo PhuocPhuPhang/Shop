@@ -1,3 +1,4 @@
+@if(Auth::check())
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
@@ -46,6 +47,15 @@
             </li>
             <li><a href="{{url('admin/khuyenmai/danhsach')}}"><i class="fa fa-percent"></i>Khuyến mãi</a></li>
 
+            <li><a><i class="fa fa-user"></i>Users<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="{{url('admin/user/khachhang')}}">Khách hàng</a></li>
+                    @if( Auth::user()->quyen == 1 )
+                    <li><a href="{{url('admin/user/nhanvien')}}">Nhân viên</a></li>
+                    @endif
+                </ul>
+            </li>
+
         </ul>
         </div>
     </div>
@@ -69,3 +79,4 @@
     <!-- /menu footer buttons -->
     </div>
 </div>
+@endif

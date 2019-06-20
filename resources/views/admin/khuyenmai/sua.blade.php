@@ -130,7 +130,7 @@
                 var ten = string_to_slug(change_alias(tenht));
 
                 var html =`<input type="checkbox" name="hinhthuc[]" id="${ten}" value="${tenht}" class="flat"/>${tenht}<br/>
-                            <input type="text"  name="${ten}" class="form-control" ><br/>`;
+                            <input type="text" readonly  name="${ten}" class="form-control" ><br/>`;
                 $('#ht').append(html);
                 $('#hinhthuc_new').val("");
             }

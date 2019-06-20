@@ -134,8 +134,24 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('sua/{id}','KhuyenMaiController@getSua');
         Route::post('sua/{id}','KhuyenMaiController@postSua');
 
-        Route::get('xoa/{makm}','KhuyenMaiController@postXoa');
+        Route::get('xoa/{id}','KhuyenMaiController@postXoa');
     });
+
+    Route::group(['prefix'=>'user'],function(){
+
+        Route::get('khachhang','UsersController@getDanhSachKH');
+        Route::get('nhanvien','UsersController@getDanhSachNV');
+
+
+        Route::get('them','UsersController@getThem');
+        Route::post('them','UsersController@postThem');
+
+        Route::get('sua/{id}','UsersController@getSua');
+        Route::post('sua/{id}','UsersController@postSua');
+
+        Route::get('xoa/{id}','UsersController@postXoa');
+    });
+
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
     });

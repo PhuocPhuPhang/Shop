@@ -97,15 +97,13 @@
             </div>
             @foreach($loaicauhinh as $loai)
                 <h5>{{$loai->ten}}</h5>
-                <div id="1" class="x_content">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                <div id="{{str_slug($loai->ten)}}" class="x_content">
                     @foreach($cauhinh as $ch)
                         @if($ch->id_loai == $loai->id)
                         <label>{{$ch->cau_hinh}}</label>
                         <input type="text"  class="form-control" name="{{$ch->ten_khong_dau}}" /><br />
                         @endif
                     @endforeach
-                    <div id="{{str_slug($loai->ten)}}"></div>
                 </div>
             @endforeach
 
@@ -125,7 +123,7 @@
                                 <button class="btn btn-primary" type="button">Cancel</button>
                             </a>
                             <button class="btn btn-primary" type="reset">Reset</button>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success" onclick="javascript:alert($('#demo-form').serialize())">Save</button>
                         </div>
                     </div>
                 <!-- </div> -->
@@ -167,9 +165,14 @@
              </select>
             </div>
            </div>
-<div id="button_themch">
-    <input type="button" name="them" id="them" value="New" style="float:right;border:none;background:#fff;margin-right:5px;color:royalblue" ><br/>
-</div>
+
+           <div class="form-group">
+                        <label class="control-label col-md-4" >Tên cấu hình mới</label>
+                        <div class="col-md-8">
+                            <input type="text" name="cauhinh" id="cauhinh" class="form-control" required/>
+                        </div>
+                    </div>
+
 <div id="cauhinh"></div>
 
            <br />
@@ -198,34 +201,17 @@
             });
         });
 
-        $("#them").click(function(){
-           var html = `<div class="form-group">
-                        <label class="control-label col-md-4" >Tên cấu hình mới</label>
-                        <div class="col-md-8">
-                            <input type="text" name="cauhinh" id="cauhinh" class="form-control" required/>
-                        </div>
-                    </div>`;
-            $("#cauhinh").append(html);
-            document.getElementById("listch").style.display = "none";
-            document.getElementById("button_themch").style.display = "none";
-        });
-
-        $("#action_reset").click(function(){
-            document.getElementById("listch").style.display = "block";
-            document.getElementById("button_themch").style.display = "block";
-            $("#cauhinh").html("");
-        });
-
         $('#action').click(function(){
+
             if($('#action').val() == 'Add')
             {
                 var loaich = $('#loaicauhinh').val();
                 var cauhinh = $('#list_cauhinh').val();
-                var tenkhongdau = string_to_slug(change_alias(cauhinh));
                 var cauhinh_new = $('#cauhinh').val();
 
-                if(cauhinh != null )
+                if(cauhinh != null && cauhinh != 0 )
                 {
+                    var tenkhongdau = string_to_slug(change_alias(cauhinh));
                     switch (loaich) {
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}":{
@@ -237,6 +223,22 @@
                     default:
                         break;
                     }
+                }
+                if(cauhinh_new != null)
+                {
+                    var tenkhongdau_new = string_to_slug(change_alias(cauhinh_new));
+                    switch (loaich) {
+                    @foreach($loaicauhinh as $loai)
+                    case "{{$loai->id}}":{
+                         var html = `<label>${cauhinh_new}</label>
+                                    <input type="text"  class="form-control" name="${tenkhongdau_new}" /><br />`;
+                        $('#{{str_slug($loai->ten)}}').append(html);
+                    }break;
+                    @endforeach
+                    default:
+                        break;
+                    }
+
                 }
             }
             else alert('Lỗi');

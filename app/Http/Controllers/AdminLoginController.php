@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\ThongTinUser;
 use DB;
 use Illuminate\Support\Facades\Hash;
 

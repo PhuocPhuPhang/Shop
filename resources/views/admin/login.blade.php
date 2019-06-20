@@ -86,23 +86,23 @@
 
         <div role="form" id="register" class="animate form registration_form">
           <section class="login_content">
-            <form action="admin/register" method="POST">
+            <form id="dangky">
             {{ csrf_field()}}
               <h1>Create Account</h1>
               <div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"  />
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="Username" name="username" required="" />
+                <input type="text" class="form-control" placeholder="Username" name="username" required />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" name="email_create" required="" />
+                <input type="email" class="form-control" placeholder="Email" name="email_create" required/>
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" name="password_create"  required="" />
+                <input type="password" class="form-control" placeholder="Password" name="password_create"  required />
               </div>
               <div>
-                <button type="button" class="btn btn-default submit">Submit</button>
+                <button type="button" class="btn btn-default submit" >Submit</button>
               </div>
 
               <div class="clearfix"></div>
@@ -111,7 +111,6 @@
                 <p class="change_link">Already a member ?
                   <a href="admin/login#signin" class="to_register"> Log in </a>
                 </p>
-
                 <div class="clearfix"></div>
                 <br />
               </div>
@@ -122,3 +121,9 @@
     </div>
   </body>
 </html>
+
+<script>
+    $(document).ready(function(){
+
+    });
+</script>
