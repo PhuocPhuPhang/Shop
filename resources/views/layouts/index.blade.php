@@ -16,17 +16,18 @@
 		<label class="title-sp-nb"><img src="{{asset('themes/images/gsct.png')}}"></label>
 		<div class="list_product">
 			<div class="sp-owl owl-carousel owl-theme">
+				@foreach($product as $sp)
 				<div class="sanpham sanpham2">
 					<div class="img">
-						<a href="" title="">
-							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
+						<a href="product_detail_tpl/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
+							<img class="" src="upload/sanpham/{{$sp->hinh_anh}}" alt="{{$sp->ten_san_pham}}">
 						</a>
 						<div class="sale_off">-10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="">Tên Sản Phẩm</a>
+						<a class="name" href="product_detail_tpl/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">{{$sp->ten_san_pham}}</a>
 						<div class="wrap_price">
-							<div class="price">Giá: <span>7,000,000 Đ</span></div>
+							<div class="price">Giá: <span>{{$sp->gia_ban}} Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
 						</div>
 						<div class="pro_info-info">
@@ -34,6 +35,7 @@
 						</div>
 					</div>
 				</div>
+				@endforeach
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="" title="">

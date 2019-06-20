@@ -166,6 +166,9 @@ Route::get('index/logout','PageControllers@Logout');
 Route::get('news_tpl','PageControllers@news_tpl');
 Route::get('news_detail_tpl/{id}','PageControllers@news_detail_tpl');
 
+
+Route::get('product_detail_tpl/{ma_san_pham}','PageControllers@product_detail_tpl');
+
 Route::get('product_tpl','PageControllers@product_tpl');
 Route::get('profile','PageControllers@profile');
 Route::post('profile/changepassword','PageControllers@postChangePassword');
