@@ -5,7 +5,7 @@
 				<div class="flex-between">
 					<div class="frame_images">
 						<div class="product_zoom" >
-							<a href="{{asset('themes/images/sp.jpg')}}" id="Zoom-1" class="MagicZoom" title=""><img src="{{asset('themes/images/sp.jpg')}}" alt="" width="250" /></a>
+							<a href="upload/sanpham/{{$product_detail->hinh_anh}}" id="Zoom-1" class="MagicZoom" title=""><img src="upload/sanpham/{{$product_detail->hinh_anh}}" alt="" width="250" /></a>
 						</div>
 						<div class="owl-product-photos owl-carousel owl-theme">
 							<a class="w-img product_zoom_item"  href="">
@@ -26,12 +26,12 @@
 						</div>
 					</div>
 					<ul class="khung_thongtin">
-						<li><h1>Page chi tiết sản phẩm</h1></li>
+						<li><h1>{{$product_detail->ten_san_pham}}</h1></li>
 						<li><label>Mã sản phẩm:</label> 123</li>
-						<li>iPhone XS Max 256GB Quốc Tế là phiên bản quốc tế mới 100% Fullbox đầy đủ phụ kiện. Máy được xách tay nguyên chiếc từ các nước Mỹ, Hàn, Nhật. Cam kết nguyên zin, 100% chính hãng từ Apple</li>
+						<li>{{$product_detail->mo_ta}}</li>
 						<li class="gia_detail">
 							<label>Giá:</label> 
-							<span>Liên hệ</span> 
+							<span>{{$product_detail->gia_ban}}</span> 
 						</li>
 						<li class="gia_cu">
 							<div class="l_old_price"><label>Giá thị trường:</label>  <span>28,0000,000 VNĐ</span></div>
@@ -42,9 +42,9 @@
 							<div class="flex-between-center">
 								<label>Số lượng:</label>
 								<div class="cart-items__quantity">
-									<span class="amount amount-minus" data-action="minus" data-id=""></span>
+									<span class="amount amount-minus" data-action="minus"></span>
 									<input type="text" name="number" id="amount" value="1">
-									<span class="amount amount-plus" data-action="plus" data-id=""></span>
+									<span class="amount amount-plus" data-action="plus"></span>
 								</div>
 							</div>
 							<div class="add_to_cart btn_ac1 btn_muangay" onclick="">

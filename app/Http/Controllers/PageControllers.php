@@ -12,6 +12,7 @@ use App\TinTuc;
 use App\NhaCungCap;
 use App\User;
 use App\ThongTinUser;
+use App\SanPham;
 use DB;
 
 class PageControllers extends Controller
@@ -19,15 +20,24 @@ class PageControllers extends Controller
   function __construct(){
     $nhacungcap =  NhaCungCap::all();
     $tintuc= TinTuc::all();
+    $product= SanPham::where('noi_bat',1)->get();
     view()->share('nhacungcap',$nhacungcap);
     view()->share('tintuc',$tintuc);
+    view()->share('product',$product);
   }
 
   public function index()
   {
     $slide= Slide::all();
     $tintuc= TinTuc::all();
-    return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide]);
+    $product= SanPham::where('noi_bat',1)->get();
+    return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],['product'=>$product]);
+  }
+
+  public function product_detail_tpl($ma_san_pham)
+  {
+    $product_detail = SanPham::find($ma_san_pham);
+    return view('layouts.pages.product_detail_tpl',['product_detail'=>$product_detail]);
   }
 
   public function news_tpl()
@@ -114,16 +124,17 @@ class PageControllers extends Controller
 
  public function postChangePassword(Request $request)
  {
-  //  $this->validate($request,[
-  //   'password_old' => 'required|min:6',
-  //   'password'  =>  'required|min:6|confirmed',
-  //   'password_confirmation' =>  'required|min:6'
-  // ],[
-  //   'password.required' =>   'Bạn chưa nhập password',
-  //   'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
-  //   'password.confirmed'=> 'Mật khẩu chưa khớp',
-  //   'password_confirmation.required'=> 'Bạn chưa nhập lại password',
-  // ]);
+   $this->validate($request,[
+    'password_old' => 'required|min:6',
+    'password'  =>  'required|min:6|confirmed',
+    'password_confirmation' =>  'required|min:6'
+  ],[
+    'password_old.required' =>   'Bạn chưa nhập password',
+    'password.required' =>   'Bạn chưa nhập password',
+    'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
+    'password.confirmed'=> 'Mật khẩu chưa khớp',
+    'password_confirmation.required'=> 'Bạn chưa nhập lại password',
+  ]);
 
    $user = Auth::user();
   $password_old = $request['password_old'];
