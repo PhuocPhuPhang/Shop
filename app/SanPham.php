@@ -26,4 +26,9 @@ class SanPham extends Model
         return $this->hasMany('App\ThongTinSanPham','ma_san_pham','ma_san_pham');
     }
 
+    public function KhuyenMai()
+    {
+        return $this->belongsTo('App\KhuyenMai','khuyen_mai','ma_khuyen_mai');
+    }
+
 }

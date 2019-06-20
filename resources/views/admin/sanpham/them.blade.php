@@ -53,6 +53,13 @@
                     <label>Gía bán</label>
                     <input type="text" id="gia" class="form-control" name="gia" /><br />
 
+                    <label>Chương trình khuyến mãi</label>
+                    <select name="khuyenmai" id="khuyenmai" class="form-control">
+                        @foreach($khuyenmai as $km)
+                            <option value="{{$km->ma_khuyen_mai}}">{{$km->ten_khuyen_mai}}</option>
+                        @endforeach
+                    </select><br/>
+
                     <label>Mô tả</label>
                     <textarea id="mota"  class="form-control" name="mota"></textarea><br />
 
@@ -71,12 +78,13 @@
                 </div>
             </div>
         </div>
+        </div>
 
-        @foreach($loaicauhinh as $loai)
-        <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="x_panel">
-                <div class="x_title">
-                <h2>{{$loai->ten}}</h2>
+        <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Cấu hình chi tiết</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li>
@@ -86,9 +94,10 @@
                         </li>
                     </ul>
                     <div class="clearfix"></div>
-                </div>
-
-                <div class="x_content">
+            </div>
+            @foreach($loaicauhinh as $loai)
+                <h5>{{$loai->ten}}</h5>
+                <div id="1" class="x_content">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                     @foreach($cauhinh as $ch)
                         @if($ch->id_loai == $loai->id)
@@ -98,12 +107,14 @@
                     @endforeach
                     <div id="{{str_slug($loai->ten)}}"></div>
                 </div>
-            </div>
-        </div>
-        @endforeach
+            @endforeach
 
         </div>
+        </div>
+        </div>
 
+
+        <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <!-- <div class="x_panel"> -->
                 <div class="x_content">
@@ -119,6 +130,7 @@
                     </div>
                 <!-- </div> -->
             </div>
+        </div>
         </div>
     </form>
 </div>
@@ -140,22 +152,30 @@
           <div class="form-group">
             <label class="control-label col-md-4" >Loại cấu hình</label>
             <div class="col-md-8">
-             <select name="loaicauhinh" id="loaicauhinh" onChange="getLoai()">
+             <select name="loaicauhinh" id="loaicauhinh" class="form-control">
                  @foreach($loaicauhinh as $loai)
-                 <option value="{{str_slug($loai->ten)}}">{{$loai->ten}}</option>
+                 <option value="{{$loai->id}}">{{$loai->ten}}</option>
                  @endforeach
              </select>
             </div>
            </div>
-           <div class="form-group">
-            <label class="control-label col-md-4">Tên cấu hình</label>
+
+           <div class="form-group" id="listch">
+            <label class="control-label col-md-4" >Cấu hình mặc định</label>
             <div class="col-md-8">
-             <input type="text" name="cauhinh" id="cauhinh" class="form-control" required/>
+             <select name="list_cauhinh" id="list_cauhinh"  class="form-control">
+             </select>
             </div>
-             </div>
+           </div>
+<div id="button_themch">
+    <input type="button" name="them" id="them" value="New" style="float:right;border:none;background:#fff;margin-right:5px;color:royalblue" ><br/>
+</div>
+<div id="cauhinh"></div>
+
            <br />
-           <div class="form-group" align="center">
-            <input type="button" name="action" id="action" class="btn btn-warning" value="Add" />
+           <div class="form-group" align="center" id="button">
+            <input type="button" name="action" id="action" class="btn btn-success" value="Add" />
+            <input type="reset" name="action" id="action_reset" class="btn btn-warning" value="Reset" />
            </div>
          </form>
         </div>
@@ -171,32 +191,60 @@
             $('#formModal').modal('show');
         });
 
+        $("#loaicauhinh").change(function(){
+            var idloaiCH = $(this).val();
+            $.get("../ajax/cauhinh/" + idloaiCH,function(data){
+                $("#list_cauhinh").html(data);
+            });
+        });
+
+        $("#them").click(function(){
+           var html = `<div class="form-group">
+                        <label class="control-label col-md-4" >Tên cấu hình mới</label>
+                        <div class="col-md-8">
+                            <input type="text" name="cauhinh" id="cauhinh" class="form-control" required/>
+                        </div>
+                    </div>`;
+            $("#cauhinh").append(html);
+            document.getElementById("listch").style.display = "none";
+            document.getElementById("button_themch").style.display = "none";
+        });
+
+        $("#action_reset").click(function(){
+            document.getElementById("listch").style.display = "block";
+            document.getElementById("button_themch").style.display = "block";
+            $("#cauhinh").html("");
+        });
+
         $('#action').click(function(){
             if($('#action').val() == 'Add')
             {
                 var loaich = $('#loaicauhinh').val();
-                var cauhinh = $('#cauhinh').val();
-                var ten = string_to_slug(cauhinh);
-                var html = `<div id="${ten}" class="cauhinh"> <label>${cauhinh}</label><br/>
-                            <div> <input  name="${ten}" style="width:95%"></input>
-                            <input type="button" class="${ten}"  value="x" />`;
+                var cauhinh = $('#list_cauhinh').val();
+                var tenkhongdau = string_to_slug(change_alias(cauhinh));
+                var cauhinh_new = $('#cauhinh').val();
 
-                switch (loaich) {
+                if(cauhinh != null )
+                {
+                    switch (loaich) {
                     @foreach($loaicauhinh as $loai)
-                    case "{{str_slug($loai->ten)}}":
+                    case "{{$loai->id}}":{
+                         var html = `<label>${cauhinh}</label>
+                                    <input type="text"  class="form-control" name="${tenkhongdau}" /><br />`;
                         $('#{{str_slug($loai->ten)}}').append(html);
-                        break;
+                    }break;
                     @endforeach
-
                     default:
                         break;
+                    }
                 }
             }
             else alert('Lỗi');
+            // $(`.${ten}`).click(function(){
+            //    $(`#${ten}`).remove();
+            // });
 
-            $(`.${ten}`).click(function(){
-               $(`#${ten}`).remove();
-            });
+
         });
         function string_to_slug (str) {
         str = str.replace(/^\s+|\s+$/g, ''); // trim
@@ -226,6 +274,22 @@
                 }
                 obj.readAsDataURL(this.files[0]);
             }
+        }
+
+        function change_alias(alias) {
+        var str = alias;
+        str = str.toLowerCase();
+        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");
+        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");
+        str = str.replace(/ì|í|ị|ỉ|ĩ/g,"i");
+        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");
+        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");
+        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");
+        str = str.replace(/đ/g,"d");
+        str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
+        str = str.replace(/ + /g," ");
+        str = str.trim();
+        return str;
         }
     </script>
 @endsection

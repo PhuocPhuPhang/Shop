@@ -23,28 +23,28 @@
         <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-            <li><a href="{{url('admin/nhacungcap/danhsach')}}"><i class="fa fa-home"></i> Nhà Cung Cấp</a></li>
+            <li><a href="{{url('admin/nhacungcap/danhsach')}}"><i class="fa fa-university"></i> Nhà Cung Cấp</a></li>
 
-            <li><a><i class="fa fa-home"></i>Bài Viết<span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-newspaper-o"></i>Bài Viết<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="{{url('admin/loaitintuc/danhsach')}}"> Loại Tin Tức</a></li>
                     <li><a href="{{url('admin/tintuc/danhsach')}}">Tin Tức</a></li>
                 </ul>
             </li>
 
-            <li><a><i class="fa fa-home"></i>Media<span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-image"></i>Media<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="{{url('admin/slide/danhsach')}}">Slide</a></li>
                 </ul>
             </li>
 
-            <li><a><i class="fa fa-home"></i>Sản Phẩm<span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-mobile"></i>Sản Phẩm<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="{{url('admin/sanpham/cauhinh/danhsach')}}">Danh sách cấu hình</a></li>
                     <li><a href="{{url('admin/sanpham/danhsach')}}">Danh sách sản phẩm</a></li>
                 </ul>
             </li>
-            <li><a href="{{url('admin/khuyenmai/danhsach')}}"><i class="fa fa-home"></i>Khuyến mãi</a></li>
+            <li><a href="{{url('admin/khuyenmai/danhsach')}}"><i class="fa fa-percent"></i>Khuyến mãi</a></li>
 
         </ul>
         </div>
