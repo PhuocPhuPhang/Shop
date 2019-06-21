@@ -7,8 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
-
     <!-- Bootstrap -->
     <link href="{{asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -55,7 +53,7 @@
 
          <form role="form" action="{{ url('/admin/login') }}" method="POST">
          {{ csrf_field() }}
-              <h1>Login Form</h1>
+              <h1>Đăng Nhập</h1>
               <div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"  />
               </div>
@@ -88,7 +86,7 @@
           <section class="login_content">
             <form id="dangky">
             {{ csrf_field()}}
-              <h1>Create Account</h1>
+              <h1>Đăng Ký Tài Khoản</h1>
               <div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"  />
               </div>

@@ -5,7 +5,11 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-       <h2></h2>
+    @if( $route->uri == 'admin/user/nhanvien')
+       <h2>DANH SÁCH NHÂN VIÊN</h2>
+    @else
+        <h2>DANH SÁCH KHÁCH HÀNG</h2>
+    @endif
         <ul class="nav navbar-right panel_toolbox">
             @if( $route->uri == 'admin/user/nhanvien')
             <li><a href="{{ url('') }}"><i class="fa fa-plus"></i></a></li>
@@ -32,7 +36,7 @@
              <th>Địa chỉ</th>
              @foreach($user as $ng)
              @if($ng->quyen != 0)
-                <th>Thao tác</th>
+                <th style="text-align:center">Thao tác</th>
              @endif
            </tr>
          </thead>
@@ -47,10 +51,10 @@
              @if($ng->quyen != 0)
              <td style="text-align:center">
                 <a href="../user/sua/{{$ng->ThongTinUser->id}}" class="btn btn-info btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="../user/xoa/{{$ng->ThongTinUser->id}}" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash-o"></i> Delete
+                    <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
              @endif

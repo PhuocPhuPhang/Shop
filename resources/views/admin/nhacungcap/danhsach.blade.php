@@ -5,7 +5,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-       <h2>Danh sách nhà cung cấp</h2>
+       <h2>DANH SÁCH NHÀ CUNG CẤP</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li><a href="{{ url('admin/nhacungcap/them') }}"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -27,7 +27,7 @@
              <th>Tên nhà cung cấp</th>
              <th>Số điện thoại</th>
              <th>Địa chỉ</th>
-             <th>Thao tác</th>
+             <th  style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
@@ -39,10 +39,10 @@
              <td>{{ $ncc->dia_chi }}</td>
              <td style="text-align:center">
                 <a href="../nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="../nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash-o"></i> Delete
+                    <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
            </tr>

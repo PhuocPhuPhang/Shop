@@ -5,7 +5,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-       <h2>Danh sách khuyến mãi</h2>
+       <h2>DANH SÁCH KHUYẾN MÃI</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li><a href="{{ url('admin/khuyenmai/them') }}"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -28,7 +28,7 @@
              <th>Nội dung</th>
              <th>Ngày bắt đẩu</th>
              <th>Ngày kết thúc</th>
-             <th>Thao tác</th>
+             <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
@@ -38,12 +38,12 @@
              <td>{{$km->noi_dung}}</td>
              <td>{{$km->ngay_bat_dau}}</td>
              <td>{{$km->ngay_ket_thuc}}</td>
-             <td>
+             <td style="text-align:center">
                 <a href="../khuyenmai/sua/{{$km->id}}" class="btn btn-info btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="../khuyenmai/xoa/{{$km->id}}" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash-o"></i> Delete
+                    <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
            </tr>
