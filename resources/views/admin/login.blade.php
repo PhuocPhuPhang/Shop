@@ -7,8 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
-
     <!-- Bootstrap -->
     <link href="{{asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -55,7 +53,7 @@
 
          <form role="form" action="{{ url('/admin/login') }}" method="POST">
          {{ csrf_field() }}
-              <h1>Login Form</h1>
+              <h1>Đăng Nhập</h1>
               <div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"  />
               </div>
@@ -86,23 +84,23 @@
 
         <div role="form" id="register" class="animate form registration_form">
           <section class="login_content">
-            <form action="admin/register" method="POST">
+            <form id="dangky">
             {{ csrf_field()}}
-              <h1>Create Account</h1>
+              <h1>Đăng Ký Tài Khoản</h1>
               <div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"  />
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="Username" name="username" required="" />
+                <input type="text" class="form-control" placeholder="Username" name="username" required />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" name="email_create" required="" />
+                <input type="email" class="form-control" placeholder="Email" name="email_create" required/>
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" name="password_create"  required="" />
+                <input type="password" class="form-control" placeholder="Password" name="password_create"  required />
               </div>
               <div>
-                <button type="button" class="btn btn-default submit">Submit</button>
+                <button type="button" class="btn btn-default submit" >Submit</button>
               </div>
 
               <div class="clearfix"></div>
@@ -111,7 +109,6 @@
                 <p class="change_link">Already a member ?
                   <a href="admin/login#signin" class="to_register"> Log in </a>
                 </p>
-
                 <div class="clearfix"></div>
                 <br />
               </div>
@@ -122,3 +119,9 @@
     </div>
   </body>
 </html>
+
+<script>
+    $(document).ready(function(){
+
+    });
+</script>

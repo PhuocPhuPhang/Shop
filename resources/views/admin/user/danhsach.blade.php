@@ -5,9 +5,15 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-       <h2>DANH SÁCH NHÀ CUNG CẤP</h2>
+    @if( $route->uri == 'admin/user/nhanvien')
+       <h2>DANH SÁCH NHÂN VIÊN</h2>
+    @else
+        <h2>DANH SÁCH KHÁCH HÀNG</h2>
+    @endif
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('admin/nhacungcap/them') }}"><i class="fa fa-plus"></i></a></li>
+            @if( $route->uri == 'admin/user/nhanvien')
+            <li><a href="{{ url('') }}"><i class="fa fa-plus"></i></a></li>
+            @endif
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
         </ul>
        <div class="clearfix"></div>
@@ -23,31 +29,38 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>Mã nhà cung cấp</th>
-             <th>Tên nhà cung cấp</th>
+             <th>STT</th>
+             <th>Tên</th>
+             <th>Email</th>
              <th>Số điện thoại</th>
              <th>Địa chỉ</th>
-             <th  style="text-align:center">Thao tác</th>
+             @foreach($user as $ng)
+             @if($ng->quyen != 0)
+                <th style="text-align:center">Thao tác</th>
+             @endif
            </tr>
          </thead>
          <tbody>
-             @foreach($nhacungcap as $ncc)
+
            <tr>
-             <td>{{ $ncc->ma_nha_cung_cap }}</td>
-             <td>{{ $ncc->ten_nha_cung_cap }}</td>
-             <td>{{ $ncc->so_dien_thoai }}</td>
-             <td>{{ $ncc->dia_chi }}</td>
+             <td>{{ $ng->ThongTinUser->id }}</td>
+             <td>{{ $ng->ThongTinUser->ten }}</td>
+             <td>{{ $ng->ThongTinUser->email }}</td>
+             <td>{{ $ng->ThongTinUser->so_dien_thoai }}</td>
+             <td>{{ $ng->ThongTinUser->dia_chi }}</td>
+             @if($ng->quyen != 0)
              <td style="text-align:center">
-                <a href="../nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
+                <a href="../user/sua/{{$ng->ThongTinUser->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="../nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
+                <a href="../user/xoa/{{$ng->ThongTinUser->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
+             @endif
+             @endforeach
            </tr>
-           @endforeach
-         </tbody>
+        </tbody>
         </table>
         </div>
     </div>

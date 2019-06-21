@@ -5,9 +5,9 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-       <h2>DANH SÁCH KHUYẾN MÃI</h2>
+       <h2>CÁC CHÍNH SÁCH</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('admin/khuyenmai/them') }}"><i class="fa fa-plus"></i></a></li>
+            <li><a href="{{ url('admin/tintuc/chinhsach/them') }}"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>
@@ -24,40 +24,34 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>Tên khuyến mãi</th>
+             <th>STT</th>
+             <th>Title</th>
+             <th>Mô tả</th>
              <th>Nội dung</th>
-             <th>Ngày bắt đẩu</th>
-             <th>Ngày kết thúc</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
-            @foreach($khuyenmai as $km)
+         @foreach($chinhsach as $cs)
            <tr>
-             <td>{{$km->ten_khuyen_mai}}</td>
-             <td>{{$km->noi_dung}}</td>
-             <td>{{$km->ngay_bat_dau}}</td>
-             <td>{{$km->ngay_ket_thuc}}</td>
-             <td style="text-align:center">
-                <a href="../khuyenmai/sua/{{$km->id}}" class="btn btn-info btn-xs">
+             <td>{{$tin->id}}</td>
+             <td>{{$tin->title}}</td>
+             <td>{{$tin->mo_ta}}</td>
+             <td>{{$tin->noi_dung}}</td>
+             <td style="width:200px">
+                <a href="" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="../khuyenmai/xoa/{{$km->id}}" class="btn btn-danger btn-xs">
+                <a href="" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
            </tr>
-            @endforeach
+           @endforeach
          </tbody>
         </table>
         </div>
     </div>
     </div>
 </div>
-@endsection
-
-@section('script')
-<script>
-    $("div.alert").delay(3000).slideUp();
-</script>
 @endsection

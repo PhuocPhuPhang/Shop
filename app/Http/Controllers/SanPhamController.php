@@ -133,25 +133,26 @@ class SanPhamController extends Controller
 
         //Thêm thông tin cấu hình sản phẩm
         $input= ($request->all());
-        $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
-        foreach($input as $key => $value)
-        {
-            $thongtinsp = new ThongTinSanPham;
-            $thongtinsp->ma_san_pham = $request->ma;
+        dd($request->get['name']);
+        // $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
+        // foreach($input as $key => $value)
+        // {
+        //     $thongtinsp = new ThongTinSanPham;
+        //     $thongtinsp->ma_san_pham = $request->ma;
 
-            foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
-           {
-                if($value_cauhinh->ten_khong_dau == $key)
-                {
-                    if($input[$key] != null)
-                    {
-                       $thongtinsp->id_cau_hinh = $value_cauhinh->id;
-                       $thongtinsp->mo_ta = $request->$key;
-                       $thongtinsp->save();
-                    }
-                }
-           }
-        }
+        //     foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
+        //    {
+        //         if($value_cauhinh->ten_khong_dau == $key)
+        //         {
+        //             if($input[$key] != null)
+        //             {
+        //                $thongtinsp->id_cau_hinh = $value_cauhinh->id;
+        //                $thongtinsp->mo_ta = $request->$key;
+        //                $thongtinsp->save();
+        //             }
+        //         }
+        //    }
+        // }
         // return redirect('admin/sanpham/them')->with('thongbao','Thêm sản phẩm thành công');
     }
 }

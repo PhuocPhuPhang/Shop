@@ -5,7 +5,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-       <h2>Danh sách slide</h2>
+       <h2>DANH SÁCH SLIDE</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li><a href="../slide/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -27,7 +27,7 @@
              <th>STT</th>
              <th>Tên</th>
              <th>Hình ảnh</th>
-             <th>Thao tác</th>
+             <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
@@ -38,12 +38,12 @@
              <td>
                  <img src="../../upload/slide/{{$sl->hinh_anh}}" alt="Hình ảnh" width="300px">
             </td>
-             <td>
+             <td style="text-align:center;vertical-align:middle;">
                 <a href="../slide/sua/{{$sl->id}}" class="btn btn-info btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="../slide/xoa/{{$sl->id}}" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash-o"></i> Delete
+                    <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
            </tr>

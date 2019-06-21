@@ -11,6 +11,7 @@ class AjaxController extends Controller
     public function getCauHinh($idloaiCH)
     {
         $cauhinh = CauHinhSanPham::where('id_loai',$idloaiCH)->get();
+        echo "<option value='0'>...</option>" ;
         foreach($cauhinh as $ch)
         {
           echo "<option value='".$ch->cau_hinh."'>".$ch->cau_hinh."</option>" ;

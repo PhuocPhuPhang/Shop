@@ -111,6 +111,11 @@ class NhaCungCapController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
+            if($request->file('hinhanh') !='' && file_exists(public_path('upload/nhacungcap/'.$nhacungcap->logo)))
+            {
+                unlink(public_path('upload/nhacungcap/'.$nhacungcap->logo));
+            }
+
             $file = $request->file('hinhanh');
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
@@ -119,14 +124,10 @@ class NhaCungCapController extends Controller
             }
             $name = $file->getClientOriginalName();
             $hinh = $name.'_'.time().'.'.$duoi;
+
             $file->move("upload/nhacungcap",$hinh);
             $nhacungcap->logo = $hinh;
         }
-        else
-        {
-            $nhacungcap->logo = "";
-        }
-
         $nhacungcap->save();
         return redirect('admin/nhacungcap/sua/'.$mancc)->with('thongbao','Cập nhật thành công');
     }
@@ -134,6 +135,10 @@ class NhaCungCapController extends Controller
     public function postXoa($mancc)
     {
         $nhacungcap = NhaCungCap::find($mancc);
+        if(file_exists(public_path('upload/nhacungcap/'.$nhacungcap->logo)))
+        {
+            unlink(public_path('upload/nhacungcap/'.$nhacungcap->logo));
+        }
         $nhacungcap->delete();
 
         return redirect('admin/nhacungcap/danhsach')->with('thongbao','Xóa thành công');

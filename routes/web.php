@@ -62,7 +62,20 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{id}','TinTucController@postXoa');
 
-        Route::post('danhsach','TinTucController@Activation');
+        //Giới thiệu
+        Route::get('gioithieu','TinTucController@getGioiThieu');
+        Route::post('gioithieu','TinTucController@postGioiThieu');
+
+        //Chính sách
+        Route::get('chinhsach','TinTucController@getChinhSach');
+
+        Route::get('chinhsach/them','TinTucController@getThemChinhSach');
+        Route::post('chinhsach/them','TinTucController@postThemChinhSach');
+
+        Route::get('chinhsach/sua/{id}','TinTucController@getSuaChinhSach');
+        Route::post('chinhsach/sua/{id}','TinTucController@postSuaChinhSach');
+
+        Route::get('chinhsach/xoa/{id}','TinTucController@postXoaChinhSach');
 
     });
 
@@ -134,8 +147,24 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('sua/{id}','KhuyenMaiController@getSua');
         Route::post('sua/{id}','KhuyenMaiController@postSua');
 
-        Route::get('xoa/{makm}','KhuyenMaiController@postXoa');
+        Route::get('xoa/{id}','KhuyenMaiController@postXoa');
     });
+
+    Route::group(['prefix'=>'user'],function(){
+
+        Route::get('khachhang','UsersController@getDanhSachKH');
+        Route::get('nhanvien','UsersController@getDanhSachNV');
+
+
+        Route::get('them','UsersController@getThem');
+        Route::post('them','UsersController@postThem');
+
+        Route::get('sua/{id}','UsersController@getSua');
+        Route::post('sua/{id}','UsersController@postSua');
+
+        Route::get('xoa/{id}','UsersController@postXoa');
+    });
+
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
     });
