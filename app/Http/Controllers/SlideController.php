@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\collection;
 use App\Slide;
 use Validator;
+use DB;
 
 class SlideController extends Controller
 {
     public function getDanhSach()
     {
-        $slide = Slide::all();
+        $collection= collect(Slide::all());
+        $slide = $collection->sortBy('thu_tu');
         return view('admin.slide.danhsach',['slide'=>$slide]);
     }
 
