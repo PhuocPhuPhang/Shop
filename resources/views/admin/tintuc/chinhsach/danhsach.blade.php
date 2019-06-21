@@ -27,22 +27,20 @@
              <th>STT</th>
              <th>Title</th>
              <th>Mô tả</th>
-             <th>Nội dung</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
          @foreach($chinhsach as $cs)
            <tr>
-             <td>{{$tin->id}}</td>
-             <td>{{$tin->title}}</td>
-             <td>{{$tin->mo_ta}}</td>
-             <td>{{$tin->noi_dung}}</td>
+             <td>{{$cs->id}}</td>
+             <td>{{$cs->title}}</td>
+             <td>{{$cs->mo_ta}}</td>
              <td style="width:200px">
-                <a href="" class="btn btn-info btn-xs">
+                <a href="../tintuc/chinhsach/sua/{{$cs->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="" class="btn btn-danger btn-xs">
+                <a href="../tintuc/chinhsach/xoa/{{$cs->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>

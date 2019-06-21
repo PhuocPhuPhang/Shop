@@ -27,7 +27,6 @@
              <th>STT</th>
              <th>Tiêu đề</th>
              <th>Mô tả</th>
-             <th>Nội dung</th>
              <th>Nổi bật</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
@@ -38,7 +37,6 @@
              <td>{{$tin->id}}</td>
              <td>{{$tin->title}}</td>
              <td>{{$tin->mo_ta}}</td>
-             <td>{{$tin->noi_dung}}</td>
              <td style="text-align:center">
                  <input type="checkbox" class="flat" @if($tin->noi_bat)
                         {{"checked"}}

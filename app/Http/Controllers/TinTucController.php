@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TinTuc;
-use App\LoaiTinTuc;
 use Validator;
 use DB;
 use Illuminate\Support\Facades\Input;
@@ -19,10 +18,8 @@ class TinTucController extends Controller
 
     public function getThem()
     {
-        $loaitin = LoaiTinTuc::all();
-        return view('admin.tintuc.them',['loaitin'=>$loaitin]);
+        return view('admin.tintuc.them');
     }
-
 
     public function postThem(Request $request)
     {
@@ -39,7 +36,6 @@ class TinTucController extends Controller
         $tintuc = new TinTuc;
         $tintuc->title = $request->title;
         $tintuc->ten_khong_dau = str_slug($request->title,'-');
-        $tintuc->id_loai = (int)$request->loaitin;
         $tintuc->mo_ta = $request->mota;
         $tintuc->noi_dung = $request->noidung;
         $tintuc->keywords = $request->keywords;
@@ -90,8 +86,7 @@ class TinTucController extends Controller
     public function getSua($id)
     {
         $tintuc = TinTuc::find($id);
-        $loaitin = LoaiTinTuc::all();
-        return view('admin.tintuc.sua',['tintuc'=>$tintuc,'loaitin'=>$loaitin]);
+        return view('admin.tintuc.sua',['tintuc'=>$tintuc]);
     }
 
     public function postSua(Request $request, $id)
@@ -110,7 +105,6 @@ class TinTucController extends Controller
 
         $tintuc->title = $request->title;
         $tintuc->ten_khong_dau = str_slug($request->title,'-');
-        $tintuc->id_loai = (int)$request->loaitin;
         $tintuc->mo_ta = $request->mota;
         $tintuc->noi_dung = $request->noidung;
         $tintuc->keywords = $request->keywords;
@@ -186,5 +180,66 @@ class TinTucController extends Controller
         return view('admin/tintuc/chinhsach/danhsach',['chinhsach'=>$chinhsach]);
     }
 
+    public function getThemChinhSach()
+    {
+        return view('admin.tintuc.chinhsach.them');
+    }
 
+    public function postThemChinhSach(Request $request)
+    {
+        $this->validate($request,[
+            'title' =>  'required|min:3',
+            'noidung'   =>  'required',
+        ],[
+            'title.required'  =>  'Bạn chưa nhập tiêu đề tin tức',
+            'title.min'  =>  'Tiêu đề tin tức phải có ít nhất 3 ký tự',
+            'noidung.required'  =>  'Bạn chưa nhập nội dung cho tin tức',
+        ]);
+
+        $chinhsach = new TinTuc;
+        $chinhsach->title = $request->title;
+        $chinhsach->ten_khong_dau = str_slug($request->title,'-');
+        $chinhsach->mo_ta = $request->mota;
+        $chinhsach->noi_dung = $request->noidung;
+        $chinhsach->type = "chinh-sach";
+
+        $chinhsach->save();
+        return redirect('admin/tintuc/chinhsach/them')->with('thongbao','Thêm thành công');
+    }
+
+    public function getSuaChinhSach($id)
+    {
+        $chinhsach = TinTuc::find($id);
+        return view('admin.tintuc.chinhsach.sua',['chinhsach'=>$chinhsach]);
+    }
+
+    public function postSuaChinhSach(Request $request, $id)
+    {
+        $chinhsach = TinTuc::find($id);
+        $this->validate($request,[
+            'title' =>  'required|min:3',
+            'noidung'   =>  'required',
+        ],[
+            'title.required'  =>  'Bạn chưa nhập tiêu đề tin tức',
+            'title.min'  =>  'Tiêu đề tin tức phải có ít nhất 3 ký tự',
+            'noidung.required'  =>  'Bạn chưa nhập nội dung cho tin tức',
+        ]);
+
+        $chinhsach->title = $request->title;
+        $chinhsach->ten_khong_dau = str_slug($request->title,'-');
+        $chinhsach->mo_ta = $request->mota;
+        $chinhsach->noi_dung = $request->noidung;
+
+        $chinhsach->save();
+
+        return redirect('admin/tintuc/chinhsach/sua/'.$id)->with('thongbao',"Cập nhật thành công");
+    }
+
+    public function postXoaChinhSach($id)
+    {
+        $chinhsach = TinTuc::find($id);
+        $chinhsach->delete();
+        return redirect('admin/tintuc/chinhsach')->with('thongbao','Xóa thành công');
+
+    }
 }

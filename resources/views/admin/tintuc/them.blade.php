@@ -37,13 +37,6 @@
                 <label>Tiêu đề</label>
                 <input type="text" id="title" class="form-control" name="title" /><br />
 
-                <label>Thể loại</label>
-                <Select class="form-control" name="loaitin" id="loaitin">
-                    @foreach($loaitin as $lt)
-                        <option value="{{$lt->id}}">{{$lt->ten}}</option>
-                    @endforeach
-                </Select><br/>
-
                 <label>Mô tả</label>
                 <textarea id="mota"  class="form-control" name="mota"></textarea><br />
 
