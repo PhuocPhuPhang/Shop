@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\ThongTinUser;
 use Validator;
 use Route;
 use Laravel\Socialite\One\User as LaravelUser;
@@ -25,15 +24,13 @@ class UsersController extends Controller
     public function getDanhSachKH()
     {
         $user = User::where('quyen','0')->get();
-        $thongtin_user = ThongTinUser::all();
-        return view('admin.user.danhsach',['user'=>$user],['thongtin_user'=>$thongtin_user]);
+        return view('admin.user.danhsach',['user'=>$user]);
     }
 
     public function getDanhSachNV()
     {
-        $user = User::where('quyen','1')->get();
-        $thongtin_user = ThongTinUser::all();
+        $user = User::where([['quyen','<>',0],['quyen','<>',1]])->get();
         $route = Route::current();
-        return view('admin.user.danhsach',['user'=>$user],['thongtin_user'=>$thongtin_user],['route'=>$route]);
+        return view('admin.user.danhsach',['user'=>$user],['route'=>$route]);
     }
 }

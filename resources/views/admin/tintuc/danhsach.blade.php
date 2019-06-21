@@ -38,7 +38,7 @@
              <td>{{$tin->title}}</td>
              <td>{{$tin->mo_ta}}</td>
              <td style="text-align:center">
-                 <input type="checkbox" class="flat" @if($tin->noi_bat)
+                 <input id="{{$tin->id}}" type="checkbox" class="flat" @if($tin->noi_bat)
                         {{"checked"}}
                     @endif><br/>
              </td>
@@ -61,23 +61,30 @@
 @endsection
 
 @section('script')
-    <script>
+    <script type="text/javascript" language="javascript">
         $(document).ready(function(){
-            $("input::checkbox").change(function(){
-               var id = $(this).val();
-               $.ajax({
-                   type:'POST',
-                   url:'/Activation',
-                   headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}'},
-                   data:{"id":id},
-                   success: function(data){
-                       if(data.data.success)
-                       {
-                        // Đang lỗi
-                       }
-                   }
-               });
-            });
+            console.log($('.flat').iCheck('update')[0].checked);
+            $(".flat").on('ifChanged', function(event) {
+                // var check = event.target.checked;
+                //Lấy id tin tức
+                var id = $(this).closest('.flat').attr('id');
+                $.ajax({
+                    type:'POST',
+                    url: '../ajax/tintuc/noibat',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"id":id},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Thành công');
+                        }
+                        else
+                        {
+                            alert('Lỗi');
+                        }
+                    }
+                })
+                });
         });
     </script>
 @endsection

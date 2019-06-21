@@ -2,7 +2,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Shop</span></a>
+        <a href="{{url('admin/index')}}" class="site_title"><i class="fa fa-paw"></i> <span>Shop</span></a>
     </div>
     <div class="clearfix"></div>
     <!-- menu profile quick info -->
@@ -11,8 +11,8 @@
         <img src="images/img.jpg" alt="..." class="img-circle profile_img">
         </div>
         <div class="profile_info">
-        <span>Welcome,</span>
-        <h2>John Doe</h2>
+        <span>Welcome</span>
+        <h2>{{Auth::user()->ten}}</h2>
         </div>
     </div>
     <!-- /menu profile quick info -->
@@ -22,7 +22,6 @@
     <!-- sidebar menu -->
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
         <div class="menu_section">
-        <h3>General</h3>
         <ul class="nav side-menu">
             <li><a href="{{url('admin/nhacungcap/danhsach')}}"><i class="fa fa-university"></i> Nhà Cung Cấp</a></li>
 
@@ -48,14 +47,14 @@
             </li>
             <li><a href="{{url('admin/khuyenmai/danhsach')}}"><i class="fa fa-percent"></i>Khuyến mãi</a></li>
 
+            @if( Auth::user()->quyen == 1 )
             <li><a><i class="fa fa-user"></i>Users<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="{{url('admin/user/khachhang')}}">Khách hàng</a></li>
-                    @if( Auth::user()->quyen == 1 )
                     <li><a href="{{url('admin/user/nhanvien')}}">Nhân viên</a></li>
-                    @endif
                 </ul>
             </li>
+            @endif
 
         </ul>
         </div>
@@ -63,7 +62,7 @@
     <!-- /sidebar menu -->
 
     <!-- /menu footer buttons -->
-    <div class="sidebar-footer hidden-small">
+    <!-- <div class="sidebar-footer hidden-small">
         <a data-toggle="tooltip" data-placement="top" title="Settings">
         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
         </a>
@@ -76,7 +75,7 @@
         <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
         </a>
-    </div>
+    </div> -->
     <!-- /menu footer buttons -->
     </div>
 </div>
