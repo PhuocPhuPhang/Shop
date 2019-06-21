@@ -180,9 +180,12 @@ Route::get('news_tpl','PageControllers@news_tpl');
 Route::get('news_detail_tpl/{id}','PageControllers@news_detail_tpl');
 
 
+Route::get('product_tpl','PageControllers@product_tpl');
 Route::get('product_detail_tpl/{ma_san_pham}','PageControllers@product_detail_tpl');
 
-Route::get('product_tpl','PageControllers@product_tpl');
+Route::get('cart_tpl','PageControllers@cart_tpl');
+Route::get('add_to_cart/{ma_san_pham}','PageControllers@AddtoCart');
+
 Route::get('profile','PageControllers@profile');
 Route::post('profile/changepassword','PageControllers@postChangePassword');
 
@@ -200,7 +203,7 @@ Route::get('product_detail_tpl',function(){
     return view('layouts.pages.product_detail_tpl');
 });
 
-Route::get('cart_tpl',function(){
-    return view('layouts.pages.cart_tpl');
-});
+// Route::get('cart_tpl',function(){
+//     return view('layouts.pages.cart_tpl');
+// });
 

@@ -184,15 +184,41 @@
 					<p class="r1">HOTLINE</p>
 					<p class="r2">0329973272</p>
 				</div>
+				@if(Session::has('cart'))
 				<a href="gio-hang.html" class="link_cart" title="Giỏ hàng">
 					<div class="cart_pc flex-between-center">
-						<span class="qty_cart">0</span>
+						<span class="qty_cart">@if(Session::has('cart')){{Session('cart')->totalQty}} @else 0 @endif</span>
 						<div class="txt">
 							<p class="r1">Giỏ hàng</p>
 							<p class="r2">Xem ngay</p>
+
+							<div class="giohang_index_wrap">
+								<?php var_dump($product_cart); ?>
+								{{--@foreach($product_cart as $product)
+								<div class="giohang_main">
+									<img src="upload/sanpham/{{$product['item']['hinh_anh']}}">
+									<div class="giohang_info_index">
+										<label>{{$product['item']['ten_san_pham']}}</label>
+										<div class="giohang_calc">{{$product['qty']}} * {{$product['item']['gian_ban']}}</div>
+									</div>
+								</div>
+								@endforeach--}}
+								
+								<div class="giohang_main">
+									<img src="{{asset('themes/images/sp.jpg')}}">
+									<div class="giohang_info_index">
+										<label>Tên sản phẩm</label>
+										<div class="giohang_calc">Số lượng * giá</div>
+									</div>
+								</div>
+								<div class="totalPrice_index">Tổng tiền: {{Session('cart')->totalPrice}}</div>
+								<div class="thanhtoan_index_wrap"><a href="" class="thanhtoan_index">Đặt hàng</a></div>
+							</div>
+							
 						</div>
 					</div>
 				</a>
+				@endif
 			</div>
 		</div>
 	</section>

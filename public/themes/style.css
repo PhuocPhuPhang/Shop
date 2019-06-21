@@ -68,7 +68,15 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 .hl_pc{ background: url(images/head2.jpg) no-repeat 0px 0px; height: 46px; padding-left: 50px; color: #fff; line-height: 18px; padding-top: 4px; margin-right: 30px; margin-top: 15px; }
 .cart_pc{ background: url(images/gh.png) no-repeat 0px 0px; padding-left: 60px; height: 42px; position: relative; margin-top: 14px;}
 .cart_pc span {position: absolute; top: 5px; left: 31px; color: #fff; font-size: 14px; width: 20px; text-align: center; }
-.txt {color: #fff;}
+.txt {color: #fff;position: relative;}
+.giohang_index_wrap{position: absolute;width: 200px;bottom: -130px;right: 0;z-index: 999999999;background: #fff;}
+.giohang_main{display: flex;}
+.giohang_main img{max-height: 50px;max-height: 50px;}
+.giohang_info_index label{color: #000;display: block;margin-bottom: 0;}
+.giohang_calc{color: #000;font-size: 13px;}
+.totalPrice_index{display: block;text-align: right;color: #000;border-bottom: 1px solid #000;border-top: 1px solid #000;padding: 5px 0;}
+.thanhtoan_index_wrap{text-align: center;}
+.thanhtoan_index{display: inline-block;border: 1px solid #000;border-radius: 5px;padding: 5px 10px;color: #000;text-transform: uppercase;margin: 5px 0;}
 
 
 #menu{background: #fed700;}
@@ -114,7 +122,9 @@ a.link_cart:hover {color: #0066b3; }
 .sanpham .price span {font-size: 16px; color: #bb0a12; font-family: 'font2'; }
 .sanpham .price_old {font-size: 13px; text-decoration: line-through; color: #aeaeae; font-family: 'font3'; top: 4px; position: relative; }
 
-.sanpham .add_cart {text-align: left; margin-top: 12px; text-align: center;}
+.add_cart_index{display: block;text-transform: uppercase;color: #fff;font-size: 18px;font-weight: bold;background: #FED700;padding: 10px 0;}
+
+.sanpham .add_cart { margin-top: 12px; text-align: center;}
 .sanpham .add_cart a {background: #fff; border: 2px solid #c2c2c2; font-size: 13px; display: inline-block; padding: 11px 30px 9px 30px; border-radius: 50px; color: #7c7c7c; font-family: 'font2'; }
 .sanpham .add_cart img {position: relative; top: -3px; margin-right: 5px; content: url(images/icon_gh.png); }
 .owl-carousel .owl-item .sanpham .add_cart img{width: 20%;display: inline-block;}
