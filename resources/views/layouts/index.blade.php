@@ -30,6 +30,7 @@
 							<div class="price">Giá: <span>{{$sp->gia_ban}} Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
 						</div>
+						<a class="add_cart_index" href="add_to_cart/{{$sp->ma_san_pham}}">Mua ngay</a>
 						<div class="pro_info-info">
 							<span>Tặng kèm ....</span>
 						</div>

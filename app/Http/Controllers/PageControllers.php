@@ -13,6 +13,8 @@ use App\NhaCungCap;
 use App\User;
 use App\ThongTinUser;
 use App\SanPham;
+use App\Cart;
+use Session;
 use DB;
 
 class PageControllers extends Controller
@@ -38,6 +40,22 @@ class PageControllers extends Controller
   {
     $product_detail = SanPham::find($ma_san_pham);
     return view('layouts.pages.product_detail_tpl',['product_detail'=>$product_detail]);
+  }
+
+  public function AddtoCart(Request $request, $id)
+  {
+    $product = SanPham::find($id);
+    $oldCart = Session('cart')?Session::get('cart'):null;
+    $cart = new Cart($oldCart);
+    $cart->add($product,$id);
+   
+    $request->Session()->put('cart',$product);
+    // return redirect('index');
+  }
+
+  public function cart_tpl()
+  {
+    return view('layouts.pages.cart_tpl');
   }
 
   public function news_tpl()

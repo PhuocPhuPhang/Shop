@@ -50,7 +50,7 @@
 
 		$(".sp-owl").owlCarousel({
 			dots: false,
-			autoplay: true,
+			autoplay: false,
 			rewind: true,
 			autoplaySpeed: 1500,
 			margin: 20,
