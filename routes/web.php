@@ -62,7 +62,20 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{id}','TinTucController@postXoa');
 
-        Route::post('danhsach','TinTucController@Activation');
+        //Giới thiệu
+        Route::get('gioithieu','TinTucController@getGioiThieu');
+        Route::post('gioithieu','TinTucController@postGioiThieu');
+
+        //Chính sách
+        Route::get('chinhsach','TinTucController@getChinhSach');
+
+        Route::get('chinhsach/them','TinTucController@getThemChinhSach');
+        Route::post('chinhsach/them','TinTucController@postThemChinhSach');
+
+        Route::get('chinhsach/sua/{id}','TinTucController@getSuaChinhSach');
+        Route::post('chinhsach/sua/{id}','TinTucController@postSuaChinhSach');
+
+        Route::get('chinhsach/xoa/{id}','TinTucController@postXoaChinhSach');
 
     });
 

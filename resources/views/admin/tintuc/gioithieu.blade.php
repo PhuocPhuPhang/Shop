@@ -11,7 +11,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-            <h3>{{$tintuc->ten}}</h3>
+            <h2>Giới thiệu chung</h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -29,44 +29,20 @@
                     {{ session('thongbao') }}
                 </div>
             @endif
-
-            <form id="demo-form" action="../sua/{{$tintuc->id}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+            @if($gt != null)
+            <form id="demo-form" action="{{ url('admin/tintuc/gioithieu') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
                 <label>Tiêu đề</label>
-                <input type="text" id="title" class="form-control" name="title" value="{{$tintuc->title}}" /><br />
-
-                <label>Thể loại</label>
-                <Select class="form-control" name="loaitin" id="loaitin">
-                <option value="{{$tintuc->id_loai}}">{{$tintuc->LoaiTinTuc->ten}}</option>
-                    @foreach($loaitin as $lt)
-                        @if($tintuc->id_loai != $lt->id)
-                            <option value="{{$lt->id}}">{{$lt->ten}}</option>
-                        @endif
-                    @endforeach
-                </Select><br/>
+                <input type="text" id="title" class="form-control" name="title" value="{{$gt->title}}" /><br />
 
                 <label>Mô tả</label>
-                <textarea id="mota"  class="form-control" name="mota">{{$tintuc->mo_ta}}</textarea><br />
+                <textarea id="mota"  class="form-control" name="mota" style="height:100px">{{$gt->mo_ta}}</textarea><br />
 
                 <label>Nội dung</label>
-                <textarea id="noidung" class="form-gruop ckeditor" name="noidung" > {{$tintuc->noi_dung}}</textarea>
+                <textarea id="noidung" class="form-gruop ckeditor" name="noidung" >{{$gt->noi_dung}}</textarea>
 
-                <label>Keywords</label>
-                <textarea id="keywords"  class="form-control" name="keywords" value="{{$tintuc->keywords}}"></textarea><br />
-
-                <label>Nổi bật &nbsp;&nbsp;</label>
-                    <input type="checkbox" @if($tintuc->noi_bat)
-                        {{"checked"}}
-                    @endif
-                    class="flat"><br/>
-
-                <label>Hình Ảnh</label>
-                <p>
-                <img src="../../../upload/tintuc/{{$tintuc->hinh_anh}}" alt="hình ảnh" width="400px"><br/>
-                </p>
-                <input type="file" id="hinhanh" name="hinhanh" />
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -78,6 +54,7 @@
                     </div>
                 </div>
             </form>
+            @endif
             </div>
         </div>
         </div>

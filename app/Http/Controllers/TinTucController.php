@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\TinTuc;
 use App\LoaiTinTuc;
 use Validator;
+use DB;
 use Illuminate\Support\Facades\Input;
 
 class TinTucController extends Controller
 {
     public function getDanhSach()
     {
-        $tintuc = TinTuc::all();
+        $tintuc = TinTuc::where('type','tin-tuc')->get();
         return view('admin.tintuc.danhsach',['tintuc'=>$tintuc]);
     }
 
@@ -26,11 +27,9 @@ class TinTucController extends Controller
     public function postThem(Request $request)
     {
         $this->validate($request,[
-            'ten'   =>  'required',
             'title' =>  'required|min:3|unique:tin_tuc,title',
             'noidung'   =>  'required',
         ],[
-            'ten.required'  =>  'Bạn chưa nhập tên tin tức',
             'title.required'  =>  'Bạn chưa nhập tiêu đề tin tức',
             'title.min'  =>  'Tiêu đề tin tức phải có ít nhất 3 ký tự',
             'title.unique'  =>  'Tiêu đề tin tức đã tồn tại',
@@ -38,13 +37,13 @@ class TinTucController extends Controller
         ]);
 
         $tintuc = new TinTuc;
-        $tintuc->ten = $request->ten;
-        $tintuc->ten_khong_dau = str_slug($request->ten,'-');
-        $tintuc->id_loai = (int)$request->loaitin;
         $tintuc->title = $request->title;
+        $tintuc->ten_khong_dau = str_slug($request->title,'-');
+        $tintuc->id_loai = (int)$request->loaitin;
         $tintuc->mo_ta = $request->mota;
         $tintuc->noi_dung = $request->noidung;
         $tintuc->keywords = $request->keywords;
+        $tintuc->type = "tin-tuc";
 
         $noibat = Input::get('noibat');
         if($noibat == 1)
@@ -99,22 +98,19 @@ class TinTucController extends Controller
     {
         $tintuc = TinTuc::find($id);
         $this->validate($request,[
-            'ten'   =>  'required',
             'title' =>  'required|min:3',
             'mota'  =>  'required',
             'noidung'   =>  'required',
         ],[
-            'ten.required'  =>  'Bạn chưa nhập tên tin tức',
             'title.required'  =>  'Bạn chưa nhập tiêu đề tin tức',
             'title.min'  =>  'Tiêu đề tin tức phải có ít nhất 3 ký tự',
             'mota.required'  =>  'Bạn chưa nhập mô tả cho tin tức',
             'noidung.required'  =>  'Bạn chưa nhập nội dung cho tin tức',
         ]);
 
-        $tintuc->ten = $request->ten;
-        $tintuc->ten_khong_dau = str_slug($request->ten,'-');
-        $tintuc->id_loai = (int)$request->loaitin;
         $tintuc->title = $request->title;
+        $tintuc->ten_khong_dau = str_slug($request->title,'-');
+        $tintuc->id_loai = (int)$request->loaitin;
         $tintuc->mo_ta = $request->mota;
         $tintuc->noi_dung = $request->noidung;
         $tintuc->keywords = $request->keywords;
@@ -159,21 +155,36 @@ class TinTucController extends Controller
         return redirect('admin/tintuc/danhsach')->with('thongbao','Xóa thành công');
     }
 
-    public function Activation(Request $request)
+    public function getGioiThieu()
     {
-        $tintuc = TinTuc::findOrFail($request->id);
-        if($tintuc->noi_bat == 1)
-        {
-            $tintuc->noi_bat = 0;
-        }
-        else
-        {
-            $tintuc->noi_bat = 1;
-        }
-        return response()->json([
-            'data' => [
-                'success' => $tintuc->save(),
-            ]
-        ]);
+        $gt = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
+        return view('admin.tintuc.gioithieu',['gt'=>$gt]);
     }
+
+    public function postGioiThieu(Request $request)
+    {
+        $this->validate($request,[
+            'title' =>  'required|min:3',
+            'noidung'   =>  'required',
+        ],[
+            'title.required'  =>  'Bạn chưa nhập tiêu đề tin tức',
+            'title.min'  =>  'Tiêu đề tin tức phải có ít nhất 3 ký tự',
+            'noidung.required'  =>  'Bạn chưa nhập nội dung cho tin tức',
+        ]);
+
+        DB::table('tin_tuc')->where('type','gioi-thieu')
+            ->update(['title'=>$request->title,
+                      'mo_ta'=>$request->mota,
+                      'noi_dung'=>$request->noidung]);
+
+        return redirect('admin/tintuc/gioithieu')->with('thongbao','Cập nhật thành công');
+    }
+
+    public function getChinhSach()
+    {
+        $chinhsach = TinTuc::where('type','chinh-sach')->get();
+        return view('admin/tintuc/chinhsach/danhsach',['chinhsach'=>$chinhsach]);
+    }
+
+
 }

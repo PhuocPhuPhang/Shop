@@ -33,10 +33,8 @@
             <form id="demo-form" action="{{ url('/admin/tintuc/them') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                <label>Tên</label>
-                <input type="text" id="ten" class="form-control" name="ten" /> <br />
 
-                <label>Title</label>
+                <label>Tiêu đề</label>
                 <input type="text" id="title" class="form-control" name="title" /><br />
 
                 <label>Thể loại</label>

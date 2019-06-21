@@ -28,6 +28,8 @@
 
             <li><a><i class="fa fa-newspaper-o"></i>Bài Viết<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
+                    <li><a href="{{url('admin/tintuc/gioithieu')}}">Giới thiệu</a></li>
+                    <li><a href="{{url('admin/tintuc/chinhsach')}}">Chính sách</a></li>
                     <li><a href="{{url('admin/loaitintuc/danhsach')}}"> Loại Tin Tức</a></li>
                     <li><a href="{{url('admin/tintuc/danhsach')}}">Tin Tức</a></li>
                 </ul>
