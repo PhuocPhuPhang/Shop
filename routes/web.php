@@ -137,10 +137,6 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('khachhang','UsersController@getDanhSachKH');
         Route::get('nhanvien','UsersController@getDanhSachNV');
 
-
-        Route::get('them','UsersController@getThem');
-        Route::post('them','UsersController@postThem');
-
         Route::get('sua/{id}','UsersController@getSua');
         Route::post('sua/{id}','UsersController@postSua');
 
@@ -150,6 +146,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
         Route::post('tintuc/noibat','AjaxController@postTinTucNoiBat');
+        Route::post('sanpham/them','AjaxController@postSanPham');
     });
 });
 

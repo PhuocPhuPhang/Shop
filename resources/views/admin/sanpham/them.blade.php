@@ -16,7 +16,7 @@
             {{ session('thongbao') }}
         </div>
     @endif
-    <form id="demo-form" action="{{ url('/admin/sanpham/them') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+    <form id="themsp"  enctype="multipart/form-data">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -123,7 +123,7 @@
                                 <button class="btn btn-primary" type="button">Cancel</button>
                             </a>
                             <button class="btn btn-primary" type="reset">Reset</button>
-                            <button type="submit" class="btn btn-success" onclick="javascript:alert($('#demo-form').serialize())">Save</button>
+                            <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </div>
                 <!-- </div> -->
@@ -172,9 +172,6 @@
                             <input type="text" name="cauhinh" id="cauhinh" class="form-control" required/>
                         </div>
                     </div>
-
-<div id="cauhinh"></div>
-
            <br />
            <div class="form-group" align="center" id="button">
             <input type="button" name="action" id="action" class="btn btn-success" value="Add" />
@@ -209,7 +206,7 @@
                 var cauhinh = $('#list_cauhinh').val();
                 var cauhinh_new = $('#cauhinh').val();
 
-                if(cauhinh != null && cauhinh != 0 )
+                if(cauhinh != "" && cauhinh != 0 )
                 {
                     var tenkhongdau = string_to_slug(change_alias(cauhinh));
                     switch (loaich) {
@@ -224,7 +221,7 @@
                         break;
                     }
                 }
-                if(cauhinh_new != null)
+                if(cauhinh_new != "" )
                 {
                     var tenkhongdau_new = string_to_slug(change_alias(cauhinh_new));
                     switch (loaich) {
@@ -248,7 +245,16 @@
 
 
         });
-        function string_to_slug (str) {
+
+        $("#themsp").submit(function(){
+          var mang = new Array();
+            $(':input[name][type="text"]').each(function(){
+                mang.push($(this).attr('name'));
+            });
+            alert(mang);
+        });
+
+    function string_to_slug (str) {
         str = str.replace(/^\s+|\s+$/g, ''); // trim
         str = str.toLowerCase();
 
@@ -258,7 +264,6 @@
         for (var i=0, l=from.length ; i<l ; i++) {
             str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
         }
-
         str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
             .replace(/\s+/g, '-') // collapse whitespace and replace by -
             .replace(/-+/g, '-'); // collapse dashes
@@ -278,7 +283,7 @@
             }
         }
 
-        function change_alias(alias) {
+    function change_alias(alias) {
         var str = alias;
         str = str.toLowerCase();
         str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");

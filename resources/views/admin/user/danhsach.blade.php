@@ -46,9 +46,9 @@
              <td>{{ $ng->dia_chi }}</td>
              @if($ng->quyen != 0)
              <td style="text-align:center">
-                <a href="../user/sua/{{$ng->id}}" class="btn btn-info btn-xs">
+                <!-- <a href="" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
-                </a>
+                </a> -->
                 <a href="../user/xoa/{{$ng->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
