@@ -41,19 +41,14 @@ class SlideController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
-            //Lấy file được truyền lên
             $file = $request->file('hinhanh');
-            //kiểm tra định dạng file
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
                 return redirect('admin/slide/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
-            //Lấy tên file
             $name = $file->getClientOriginalName();
-            //Tạo tên mới cho file
             $hinh = $name.'_'.time().'.'.$duoi;
-            //Lưu hình
             $file->move("upload/slide",$hinh);
             $slide->hinh_anh = $hinh;
 
@@ -62,6 +57,19 @@ class SlideController extends Controller
         {
             $slide->hinh_anh = "";
         }
+
+        $thutu = $request->thutu;
+        $max = Slide::count();
+        $tontai = DB::table('slide')->where('thu_tu',$thutu)->count();
+        if($tontai != 0 )
+        {
+            $dsSlide = DB::table('slide')->whereBetween('thu_tu',[$thutu,$max])->get();
+            foreach($dsSlide as $items)
+            {
+                DB::table('slide')->where('thu_tu',$items->thu_tu)->update(['thu_tu'=>$items->thu_tu +1]);
+            }
+        }
+        $slide->thu_tu = $thutu;
 
         $slide->save();
         return redirect('admin/slide/them')->with('thongbao','Thêm thành công');
@@ -91,6 +99,10 @@ class SlideController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
+            if(file_exists(public_path('upload/slide/'.$slide->hinh_anh)))
+            {
+                unlink(public_path('upload/slide/'.$slide->hinh_anh));
+            }
             $file = $request->file('hinhanh');
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
@@ -115,6 +127,10 @@ class SlideController extends Controller
     public function postXoa($id)
     {
         $slide = Slide::find($id);
+        if(file_exists(public_path('upload/slide/'.$slide->hinh_anh)))
+        {
+            unlink(public_path('upload/slide/'.$slide->hinh_anh));
+        }
         $slide->delete();
 
         return redirect('admin/slide/danhsach')->with('thongbao','Xóa thành công');

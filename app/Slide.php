@@ -8,6 +8,6 @@ class Slide extends Model
 {
     protected $table = "slide";
     protected $primaryKey = "id";
-    public $incrementing = false;
+    public $incrementing = true;
     public $timestamps = true;
 }
