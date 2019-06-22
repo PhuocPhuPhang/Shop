@@ -11,9 +11,6 @@
         <h2>DANH SÁCH KHÁCH HÀNG</h2>
     @endif
         <ul class="nav navbar-right panel_toolbox">
-            @if( $route->uri == 'admin/user/nhanvien')
-            <li><a href="{{ url('') }}"><i class="fa fa-plus"></i></a></li>
-            @endif
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
         </ul>
        <div class="clearfix"></div>
@@ -34,26 +31,25 @@
              <th>Email</th>
              <th>Số điện thoại</th>
              <th>Địa chỉ</th>
-             @foreach($user as $ng)
-             @if($ng->quyen != 0)
+             @if( $route->uri == 'admin/user/nhanvien')
                 <th style="text-align:center">Thao tác</th>
              @endif
            </tr>
          </thead>
          <tbody>
-
+            @foreach($user as $ng)
            <tr>
-             <td>{{ $ng->ThongTinUser->id }}</td>
-             <td>{{ $ng->ThongTinUser->ten }}</td>
-             <td>{{ $ng->ThongTinUser->email }}</td>
-             <td>{{ $ng->ThongTinUser->so_dien_thoai }}</td>
-             <td>{{ $ng->ThongTinUser->dia_chi }}</td>
+             <td>{{ $ng->id }}</td>
+             <td>{{ $ng->ten }}</td>
+             <td>{{ $ng->email }}</td>
+             <td>{{ $ng->so_dien_thoai }}</td>
+             <td>{{ $ng->dia_chi }}</td>
              @if($ng->quyen != 0)
              <td style="text-align:center">
-                <a href="../user/sua/{{$ng->ThongTinUser->id}}" class="btn btn-info btn-xs">
+                <a href="../user/sua/{{$ng->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="../user/xoa/{{$ng->ThongTinUser->id}}" class="btn btn-danger btn-xs">
+                <a href="../user/xoa/{{$ng->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>

@@ -30,9 +30,6 @@ Route::get('admin/login','AdminLoginController@index');
 Route::post('admin/login','AdminLoginController@CheckLogin');
 Route::get('admin/index','AdminLoginController@SuccessLogin');
 Route::get('admin/logout','AdminLoginController@Logout');
-//Tạo tài khoản admin
-Route::post('admin/register','AdminLoginController@Register');
-
 // Trang admin
 Route::group(['prefix'=>'admin'],function(){
     // Nhà cung cấp
@@ -76,21 +73,6 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('chinhsach/sua/{id}','TinTucController@postSuaChinhSach');
 
         Route::get('chinhsach/xoa/{id}','TinTucController@postXoaChinhSach');
-
-    });
-
-    //Loại tin tức
-    Route::group(['prefix'=>'loaitintuc'],function(){
-
-        Route::get('danhsach','LoaiTinTucController@getDanhSach');
-
-        Route::get('them','LoaiTinTucController@getThem');
-        Route::post('them','LoaiTinTucController@postThem');
-
-        Route::get('sua/{id}','LoaiTinTucController@getSua');
-        Route::post('sua/{id}','LoaiTinTucController@postSua');
-
-        Route::get('xoa/{id}','LoaiTinTucController@postXoa');
 
     });
 
@@ -167,7 +149,11 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
+
         Route::post('cart/update{$sl,$id}','AjaxController@UpdateCart');
+
+
+        Route::post('tintuc/noibat','AjaxController@postTinTucNoiBat');
 
     });
 });

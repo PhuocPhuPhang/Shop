@@ -64,54 +64,11 @@
                 <input type="password" name="password" class="form-control" placeholder="Password" />
               </div>
               <div>
-                <button type="submit" name="login" class="btn btn-default submit" >Login</button>
-                <a class="reset_pass" href="#">Lost your password?</a>
+                <button type="submit" name="login" class="btn btn-default submit" >Đăng nhập</button>
+                <a class="reset_pass" href="#">Quên mật khẩu ?</a>
               </div>
 
               <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">New to site ?
-                  <a href="admin/login#signup" class="to_register"> Create Account </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-              </div>
-            </form>
-          </section>
-        </div>
-
-        <div role="form" id="register" class="animate form registration_form">
-          <section class="login_content">
-            <form id="dangky">
-            {{ csrf_field()}}
-              <h1>Đăng Ký Tài Khoản</h1>
-              <div>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}"  />
-              </div>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" name="username" required />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" name="email_create" required/>
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" name="password_create"  required />
-              </div>
-              <div>
-                <button type="button" class="btn btn-default submit" >Submit</button>
-              </div>
-
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="admin/login#signin" class="to_register"> Log in </a>
-                </p>
-                <div class="clearfix"></div>
-                <br />
-              </div>
             </form>
           </section>
         </div>
@@ -119,9 +76,3 @@
     </div>
   </body>
 </html>
-
-<script>
-    $(document).ready(function(){
-
-    });
-</script>

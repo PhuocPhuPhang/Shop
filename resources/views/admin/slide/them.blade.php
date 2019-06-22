@@ -35,7 +35,7 @@
                 <input type="text" id="link" class="form-control" name="link" /> <br />
 
                 <label>Hình Ảnh</label>
-                <input type="file" id="hinhanh" name="hinhanh" /><br/>
+                <input type="file" id="hinhanh" name="hinhanh"  /><br/>
 
                 <label>Thứ tự</label>
                 <input type="number" id="thutu" name="thutu" min="0" class="form-control" style="width:7%"/>
@@ -57,3 +57,18 @@
     </div>
 </div>
 @endsection
+
+<!-- @section('script')
+<script>
+    function get()
+    {
+        var date = new Date();
+        var thoigian = date.getFullYear() + '-' + date.getMonth() + '-'
+                     + date.getDate() +' ' + date.getHours() + ':' + date.getMinutes()
+                     + ':' + date.getSeconds();
+
+        $("#ngay").html(thoigian);
+    }
+
+</script>
+@endsection -->
