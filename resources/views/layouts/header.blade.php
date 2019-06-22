@@ -193,16 +193,16 @@
 							<p class="r2">Xem ngay</p>
 
 							<div class="giohang_index_wrap">
-								<?php var_dump($product_cart); ?>
-								{{--@foreach($product_cart as $product)
+								
+								@foreach($product_cart as $product)
 								<div class="giohang_main">
 									<img src="upload/sanpham/{{$product['item']['hinh_anh']}}">
 									<div class="giohang_info_index">
 										<label>{{$product['item']['ten_san_pham']}}</label>
-										<div class="giohang_calc">{{$product['qty']}} * {{$product['item']['gian_ban']}}</div>
+										<div class="giohang_calc">{{$product['qty']}} * {{$product['item']['gia_ban']}}</div>
 									</div>
 								</div>
-								@endforeach--}}
+								@endforeach
 								
 								<div class="giohang_main">
 									<img src="{{asset('themes/images/sp.jpg')}}">
