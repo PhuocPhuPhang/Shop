@@ -59,16 +59,16 @@ class SlideController extends Controller
         }
 
         $thutu = $request->thutu;
-        $max = Slide::count();
-        $tontai = DB::table('slide')->where('thu_tu',$thutu)->count();
-        if($tontai != 0 )
-        {
-            $dsSlide = DB::table('slide')->whereBetween('thu_tu',[$thutu,$max])->get();
-            foreach($dsSlide as $items)
-            {
-                DB::table('slide')->where('thu_tu',$items->thu_tu)->update(['thu_tu'=>$items->thu_tu +1]);
-            }
-        }
+        // $max = Slide::count();
+        // $tontai = DB::table('slide')->where('thu_tu',$thutu)->count();
+        // if($tontai != 0 )
+        // {
+        //     $dsSlide = DB::table('slide')->whereBetween('thu_tu',[$thutu,$max])->get();
+        //     foreach($dsSlide as $items)
+        //     {
+        //         DB::table('slide')->where('thu_tu',$items->thu_tu)->update(['thu_tu'=>$items->thu_tu +1]);
+        //     }
+        // }
         $slide->thu_tu = $thutu;
 
         $slide->save();
