@@ -1,5 +1,25 @@
 @extends('layouts.master')
 @section('content')
+<script>
+	$(document).ready(function(){
+		@foreach($data as $dt)
+		$("#upCart{{$dt->id}}").on('change keyup', function(){
+			var newQty = $("#upCart{{$dt->id}}").val();
+			// alert(newQty);
+			var rowID = $("#rowID{{$dt->id}}").val();
+			$.ajax({
+				url:'../../../../ajax/cart/update',
+				data:{sl:newQty,id:rowID},
+				type:'post',
+				success:function(response){
+					console.log(response);
+				}
+			});
+		});
+		@endforeach
+	});
+</script>
+
 <div id="layout_cart" class="container padding-inner">
 	<form id="frmPay" action="gio-hang" method="post" accept-charset="utf-8">
 		<div class="cart-layout cart_repon">
@@ -19,30 +39,32 @@
 				</select>
 			</div>
 			<div class="cart-layout__col">
-				<div class="cart-layout__header">Đơn hàng (... sản phẩm)</div>
+				<div class="cart-layout__header">Đơn hàng ({{Cart::getTotalQuantity()}} sản phẩm)</div>
 				<div class="cart-layout__body">
+					{{$data}}
+					@foreach($data as $dt)
 					<div class="cart-items">
 						<a class="cart-items__image w-img" href="">
-							<img src="{{asset('themes/images/news_2.jpg')}}" alt="sản phẩm">
+							<img src="upload/sanpham/{{$dt->attributes->img}}" alt="sản phẩm">
 						</a>
 						<div class="cart-items__info">
-							<a class="cart-items__name" href="">Sản phẩm 1</a>
-							<div id="unit" class="cart-items__unit">Giá sản phẩm: 10,000,000<sup>đ</sup></div>
+							<a class="cart-items__name" href="">{{$dt->name}}</a>
+							<div id="unit" class="cart-items__unit">Giá sản phẩm: {{number_format($dt->price)}}<sup>đ</sup></div>
 							<div class="cart-items__quantity">
-								<span class="amount amount-minus" data-action="minus" data-id=""></span>
-								<input type="text" name="number" id="amount-" value="1">
-								<span class="amount amount-plus" data-action="plus" data-id=""></span>
+								<input type="hidden" value="{{$dt->rowId}}" id="rowID{{$dt->id}}">
+								<input type="number" max="999" min="1" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
 							</div>
 							<span class="cart-items__price">Tổng giá:</span>
-							<div id="price-" class="cart-items__price">10,000,000<sup>đ</sup></div>
+							<div id="price-" class="cart-items__price">{{number_format($dt->price * $dt->quantity)}}<sup>đ</sup></div>
 						</div>
 						<div class="cart-items__action">
-							<div onclick="del()" class="cart-items__delete"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"/></svg></div>
+							<a href="/cart/remove/{{$dt->id}}" class="cart-items__delete"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"/></svg></a>
 						</div>
 					</div>
+					@endforeach
 					<div class="cart-layout__row cart-layout__total">
 						<span>Tổng cộng</span>
-						<span id="OrderTotal">10,000,000<sup>đ</sup></span>
+						<span id="OrderTotal">{{number_format(Cart::getSubTotal())}}<sup>đ</sup></span>
 					</div>
 					<div class="httt_wrap">
 						<div class="cart-layout__title">Thanh toán</div>

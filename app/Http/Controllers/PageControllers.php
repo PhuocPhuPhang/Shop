@@ -13,9 +13,9 @@ use App\NhaCungCap;
 use App\User;
 use App\ThongTinUser;
 use App\SanPham;
-use App\Cart;
 use Session;
 use DB;
+use Cart;
 
 class PageControllers extends Controller
 {
@@ -35,50 +35,6 @@ class PageControllers extends Controller
     $product= SanPham::where('noi_bat',1)->get();
     return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],['product'=>$product]);
   }
-
-  public function product_detail_tpl($ma_san_pham)
-  {
-    $product_detail = SanPham::find($ma_san_pham);
-    return view('layouts.pages.product_detail_tpl',['product_detail'=>$product_detail]);
-  }
-
-  public function AddtoCart(Request $request, $id)
-  {
-    $product = SanPham::find($id);
-    $oldCart = Session('cart')?Session::get('cart'):null;
-    $cart = new Cart($oldCart);
-    $cart->add($product,$id);
-   
-    $request->Session()->put('cart',$product);
-    // return redirect('index');
-  }
-
-  public function cart_tpl()
-  {
-    return view('layouts.pages.cart_tpl');
-  }
-
-  public function news_tpl()
-  {
-    return view('layouts.pages.news_tpl');
-  }
-
-  public function news_detail_tpl($id)
-  {
-    $tintuc = TinTuc::find($id);
-    return view('layouts.pages.news_detail_tpl',['tintuc'=>$tintuc]);
-  }
-
-  public function product_tpl()
-  {
-    return view('layouts.pages.product_tpl');
-  }
-
-  public function profile()
-  {
-    return view('layouts.pages.profile');
-  }
-
 
   public function postThemUser(Request $request)
   { 
@@ -140,59 +96,21 @@ class PageControllers extends Controller
    }
  }
 
- public function postChangePassword(Request $request)
+ public function Login(Request $request)
  {
-   $this->validate($request,[
-    'password_old' => 'required|min:6',
-    'password'  =>  'required|min:6|confirmed',
-    'password_confirmation' =>  'required|min:6'
-  ],[
-    'password_old.required' =>   'Bạn chưa nhập password',
-    'password.required' =>   'Bạn chưa nhập password',
-    'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
-    'password.confirmed'=> 'Mật khẩu chưa khớp',
-    'password_confirmation.required'=> 'Bạn chưa nhập lại password',
-  ]);
-
-   $user = Auth::user();
-  $password_old = $request['password_old'];
-  
- if(Hash::check($password_old,$user->password))
- {
-    $password = $request->password;
-
-    $password_new = Hash::make($password);
-
-    $user->password = $password_new;
-
-    $user->save();
-
-    return redirect('profile')->with('thongbao',"Đổi mật khẩu thành công");  
- } 
-else
-{
-  return redirect('profile')->with('thongbao',"Thất bại");
-}
-  
-     
-  
-}
-
-public function Login(Request $request)
-{
   $this->validate($request, 
     [
       'email'   => 'required|email',
-      'password'  => 'required'
+      'password'  => 'required',
     ],
     [
-     'email.required'=>'Bạn chưa nhập Email',
-     'password.required'=>'Bạn chưa nhập mật khẩu',
-   ]);
+      'email.required'=>'Bạn chưa nhập Email',
+      'password.required'=>'Bạn chưa nhập mật khẩu',
+    ]);
 
   $user_data = array(
     'email'  => $request->get('email'),
-    'password' => $request->get('password')
+    'password' => $request->get('password'),
   );
 
   if(Auth::attempt($user_data))
@@ -209,4 +127,101 @@ public function Logout()
  Auth::logout();
  return redirect('index');
 }
+
+public function news_tpl()
+{ 
+  return view('layouts.pages.news_tpl');
+}
+
+public function news_detail_tpl($id)
+{
+  $tintuc = TinTuc::find($id);
+  return view('layouts.pages.news_detail_tpl',['tintuc'=>$tintuc]);
+}
+
+public function product_detail_tpl($ma_san_pham)
+{
+  $product_detail = SanPham::find($ma_san_pham);
+  return view('layouts.pages.product_detail_tpl',['product_detail'=>$product_detail]);
+}
+
+public function profile()
+{
+  return view('layouts.pages.profile');
+}
+
+public function postChangePassword(Request $request)
+{
+ $this->validate($request,
+  [
+    'password_old' => 'required|min:6',
+    'password'  =>  'required|min:6|confirmed',
+    'password_confirmation' =>  'required|min:6'
+  ],
+  [
+    'password_old.required' =>   'Bạn chưa nhập password',
+    'password.required' =>   'Bạn chưa nhập password',
+    'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
+    'password.confirmed'=> 'Mật khẩu chưa khớp',
+    'password_confirmation.required'=> 'Bạn chưa nhập lại password',
+  ]);
+
+ $user = Auth::user();
+ $password_old = $request['password_old'];
+
+ if(Hash::check($password_old,$user->password))
+ {
+  $password = $request->password;
+  $password_new = Hash::make($password);
+  $user->password = $password_new;
+  $user->save();
+
+  return redirect('profile')->with('thongbao',"Đổi mật khẩu thành công");
+}   
+else
+  { return redirect('profile')->with('thongbao',"Thất bại"); }
+}
+
+
+public function product_tpl()
+{
+  return view('layouts.pages.product_tpl');
+}
+
+public function AddtoCart($id)
+{
+  $product = SanPham::find($id);
+  $add =  Cart::add(array(
+    'id' => $product->ma_san_pham,
+    'name' => $product->ten_san_pham,
+    'price' => $product->gia_ban,
+    'quantity'=> 1,
+    'attributes' => array(
+        'img' => $product->hinh_anh
+      )
+  ));
+  return redirect('cart_tpl');
+}
+
+public function cart_tpl()
+{
+  $data = Cart::getContent();
+  return view('layouts.pages.cart_tpl',['data' => $data]);
+}
+
+public function RemoveCart($id)
+{
+  Cart::remove($id);
+  return back();
+}
+
+public function UpdateCart(Request $request)
+{
+  return  $request->newQty;
+  // $request::all();
+
+  // Cart::update($rowId,$qty);
+  // return back();
+}
+
 }

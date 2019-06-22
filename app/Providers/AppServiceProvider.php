@@ -28,17 +28,22 @@ class AppServiceProvider extends ServiceProvider
     {
         // Schema::defaultStringLength(191);
 
-        view()->composer('layouts/header',function($view){
-            if(Session('cart')){
-            $oldcart = Session::get('cart');
-            $cart = new Cart($oldcart);
-
-            $view->with(['cart'=>Session::get('cart'),'product_cart'=>$cart->items,'totalPrice'=>$cart->totalPrice,'totalQty'=>$cart->totalQty]);
-        }
+        view()->composer('layouts/header',function($view)
+        {
+          $view->with(['asaaaa',"phong"]);
+      });
+        view()->composer('layouts/header',function($view)
+        {
+           // dd($view,Session('cart'));
+            if(Session('cart'))
+            {
+                $oldCart = Session::get('cart');
+                $cart = new Cart($oldCart);
+                $view->with(['cart'=>Session::get('cart'),'product_cart'=>$cart->items,'totalPrice'=>$cart->totalPrice,'totalQty'=>$cart->totalQty]);
+            }
         });
 
-        
-
-        
     }
 }
+
+

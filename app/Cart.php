@@ -8,18 +8,21 @@
 		public $totalQty = 0;
 		public $totalPrice = 0;
 
-		public function __construct($oldCart){
-			if($oldCart){
+		public function __construct($oldCart)
+		{
+			if($oldCart)
+			{
 				$this->items = $oldCart->items;
 				$this->totalQty = $oldCart->totalQty;
 				$this->totalPrice = $oldCart->totalPrice;
 			}
 		}
 
-		public function add($item , $id){
+		public function add($item,$id){
+
 			$giohang = ['qty'=>0,'price'=>$item->gia_ban,'item'=>$item];
 			if($this->$items){
-				if(array_key_exists($id, $this->items)){
+				if(array_key_exists($id,$this->items)){
 					$giohang = $this->$items[$id];
 				}
 			}
@@ -28,22 +31,22 @@
 			$giohang['price'] = $item->gia_ban * $giohang['qty'];
 			$this->items[$id] = $giohang;
 			$this->totalQty++;
-			$this->totalPrice += $item->gia_ban;
+			$this->totalPrice += $item->gia_ban;		
 		}
 
-		public function reduceByOne($id){
-			$this->items[$id]['qty']--;
-			$this->items[$id]['price'] -= $this->items[$id]['item']['price'];
-			$this->totalQty--;
-			$this->totalPrice -= $this->items[$id]['item']['price'];
-			if($this->items[$id]['qty']<=0){
-				unset($this->items[$id]);
-			}
-		}
+		// public function reduceByOne($id){
+		// 	$this->items[$id]['qty']--;
+		// 	$this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+		// 	$this->totalQty--;
+		// 	$this->totalPrice -= $this->items[$id]['item']['price'];
+		// 	if($this->items[$id]['qty']<=0){
+		// 		unset($this->items[$id]);
+		// 	}
+		// }
 
-		public function removeItem($id){
-			$this->totalQty -= $this->items[$id]['qty'];
-			$this->totalPrice -= $this->items[$id]['price'];
-			unset($this->items[$id]);
-		}
+		// public function removeItem($id){
+		// 	$this->totalQty -= $this->items[$id]['qty'];
+		// 	$this->totalPrice -= $this->items[$id]['price'];
+		// 	unset($this->items[$id]);
+		// }
 	}

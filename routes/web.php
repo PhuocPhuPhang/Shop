@@ -145,31 +145,16 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
+
+        Route::post('cart/update{$sl,$id}','AjaxController@UpdateCart');
+
+
         Route::post('tintuc/noibat','AjaxController@postTinTucNoiBat');
+
         Route::post('sanpham/them','AjaxController@postSanPham');
+
     });
 });
-
-
-Route::get('index','PageControllers@index');
-Route::post('index','PageControllers@postThemUser');
-Route::post('index/login','PageControllers@Login');
-Route::get('index/logout','PageControllers@Logout');
-
-Route::get('news_tpl','PageControllers@news_tpl');
-Route::get('news_detail_tpl/{id}','PageControllers@news_detail_tpl');
-
-
-Route::get('product_tpl','PageControllers@product_tpl');
-Route::get('product_detail_tpl/{ma_san_pham}','PageControllers@product_detail_tpl');
-
-Route::get('cart_tpl','PageControllers@cart_tpl');
-Route::get('add_to_cart/{ma_san_pham}','PageControllers@AddtoCart');
-
-Route::get('profile','PageControllers@profile');
-Route::post('profile/changepassword','PageControllers@postChangePassword');
-
-
 
 // User
 Route::get('dangnhap','UsersController@index');
@@ -179,11 +164,38 @@ Route::get('auth/{social}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
-Route::get('product_detail_tpl',function(){
-    return view('layouts.pages.product_detail_tpl');
-});
+//Trang_chu
+Route::get('index','PageControllers@index');
 
-// Route::get('cart_tpl',function(){
-//     return view('layouts.pages.cart_tpl');
-// });
+//Login_logout_SignUp
+Route::post('index','PageControllers@postThemUser');
+Route::post('index/login','PageControllers@Login');
+Route::get('index/logout','PageControllers@Logout');
+
+//news_detail
+Route::get('news_tpl','PageControllers@news_tpl');
+Route::get('news_detail_tpl/{id}','PageControllers@news_detail_tpl');
+
+//profile
+Route::get('profile','PageControllers@profile');
+Route::post('profile/changepassword','PageControllers@postChangePassword');
+
+//product_detail
+Route::get('product_tpl','PageControllers@product_tpl');
+Route::get('product_detail_tpl/{ma_san_pham}','PageControllers@product_detail_tpl');
+
+//add cart
+Route::get('cart_tpl','PageControllers@cart_tpl');
+Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
+Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
+Route::get('cart/remove/{id}','PageControllers@RemoveCart');
+Route::get('cart/update/','PageControllers@UpdateCart');
+
+
+
+
+
+
+
+
 
