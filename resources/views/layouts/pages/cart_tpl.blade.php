@@ -1,15 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<script>
-	$(document).ready(function(){
-		@foreach($data as $dt)
-		$("#upCart{{$dt->id}}").on('change keyup', function(){
-			var newQty = $("#upCart{{$dt->id}}").val();
-			alert(newQty);
-		});
-		@endforeach
-	});
-</script>
+
 <div id="layout_cart" class="container padding-inner">
 	<form id="frmPay" action="gio-hang" method="post" accept-charset="utf-8">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
@@ -42,8 +33,10 @@
 							<a class="cart-items__name" href="">{{$dt->name}}</a>
 							<div id="unit" class="cart-items__unit">Giá sản phẩm: {{number_format($dt->price)}}<sup>đ</sup></div>
 							<div class="cart-items__quantity">
-								<input type="hidden" value="{{$dt->rowId}}" id="rowID{{$dt->id}}">
-								<input type="number" max="10" min="1" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
+								<input type="hidden" value="{{$dt->id}}" id="rowID{{$dt->id}}">
+								<span class="amount amount-minus" data-action="minus"></span>
+								<input type="text" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
+								<span class="amount amount-plus" data-action="plus"></span>
 							</div>
 							<span class="cart-items__price">Tổng giá:</span>
 							<div id="price-" class="cart-items__price">{{number_format($dt->price * $dt->quantity)}}<sup>đ</sup></div>
@@ -87,6 +80,24 @@
 </div>
 @endsection
 @section('script')
-
+<script>
+	$(document).ready(function(){
+		@foreach($data as $dt)
+		$("#upCart{{$dt->id}}").on('change keyup', function(){
+			var newQty = $("#upCart{{$dt->id}}").val();
+			var id =  $("#rowID{{$dt->id}}").val();
+			$.ajax({
+				type:'POST',
+				url: 'cart/update1',
+				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+				data:{"id":id},
+				success: function(data){
+					location.reload();
+				}
+			})
+		});
+		@endforeach
+	});
+</script>
 @endsection
 

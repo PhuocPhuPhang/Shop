@@ -21,21 +21,6 @@ class AjaxController extends Controller
 		}
 	}
 
-	public function UpdateCart($id)
-	{
-		$product = SanPham::find($id);
-		$add = Cart::add(array(
-			'id' => $product->ma_san_pham,
-			'name' => $product->ten_san_pham,
-			'price' => $product->gia_ban,
-			'quantity'=> 1,
-			'attributes' => array(
-				'img' => $product->hinh_anh
-			)
-		));
-		return redirect('cart_tpl');
-	}
-
     public function postTinTucNoiBat(Request $request)
     {
         $tintuc = TinTuc::find($request->id);

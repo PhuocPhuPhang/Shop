@@ -225,4 +225,17 @@ public function UpdateCart(Request $request)
   // return back();
 }
 
+public function UpdateCart1(Request $request)
+  {
+   Cart::update($request->id, array(
+   'quantity' => 1, 
+    ));
+    return response()->json([
+            'data' => [
+              'success' => true,
+            ]
+          ]);
+
+  }
+
 }
