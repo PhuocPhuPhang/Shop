@@ -191,6 +191,9 @@ Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
 Route::get('cart/remove/{id}','PageControllers@RemoveCart');
 Route::get('cart/update/','PageControllers@UpdateCart');
 
+//Create_order
+Route::get('checkout', 'PageControllers@checkout');
+
 
 
 

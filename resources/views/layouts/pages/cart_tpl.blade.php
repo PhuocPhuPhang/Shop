@@ -35,7 +35,7 @@
 							<div id="unit" class="cart-items__unit">Giá sản phẩm: {{number_format($dt->price)}}<sup>đ</sup></div>
 							<div class="cart-items__quantity">
 								<input type="hidden" value="{{$dt->rowId}}" id="rowID{{$dt->id}}">
-								<input type="number" max="999" min="1" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
+								<input type="number" max="2" min="1" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
 							</div>
 							<span class="cart-items__price">Tổng giá:</span>
 							<div id="price-" class="cart-items__price">{{number_format($dt->price * $dt->quantity)}}<sup>đ</sup></div>

@@ -13,6 +13,7 @@ use App\NhaCungCap;
 use App\User;
 use App\ThongTinUser;
 use App\SanPham;
+use App\Orders;
 use Session;
 use DB;
 use Cart;
@@ -191,8 +192,7 @@ public function product_tpl()
 public function AddtoCart($id)
 {
   $product = SanPham::find($id);
-  $add =  Cart::add(
-    'rowId'array(
+  $add =  Cart::add(array(
     'id' => $product->ma_san_pham,
     'name' => $product->ten_san_pham,
     'price' => $product->gia_ban,
@@ -223,6 +223,10 @@ public function UpdateCart(Request $request)
 
   // Cart::update($rowId,$qty);
   // return back();
+}
+
+public function checkout(){
+  return orders::CreateOrder();
 }
 
 }
