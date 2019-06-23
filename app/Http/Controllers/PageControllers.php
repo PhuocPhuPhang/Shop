@@ -16,6 +16,7 @@ use App\SanPham;
 use App\Orders;
 use Session;
 use DB;
+use Cart;
 
 class PageControllers extends Controller
 {

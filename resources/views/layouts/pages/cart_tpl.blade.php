@@ -1,7 +1,15 @@
 @extends('layouts.master')
 @section('content')
-
-
+<script>
+	$(document).ready(function(){
+		@foreach($data as $dt)
+		$("#upCart{{$dt->id}}").on('change keyup', function(){
+			var newQty = $("#upCart{{$dt->id}}").val();
+			alert(newQty);
+		});
+		@endforeach
+	});
+</script>
 <div id="layout_cart" class="container padding-inner">
 	<form id="frmPay" action="gio-hang" method="post" accept-charset="utf-8">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
@@ -79,25 +87,6 @@
 </div>
 @endsection
 @section('script')
-<script>
-	$(document).ready(function(){
-		@foreach($data as $dt)
-		$("#upCart{{$dt->id}}").on('change keyup', function(){
-			var newQty = $("#upCart{{$dt->id}}").val();
-			alert(newQty);
-			var rowID = $("#rowID{{$dt->id}}").val();
-			// $.ajax({
-			// 	url:'../ajax/cart/update',
-			// 	headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-			// 	data:{sl:newQty,id:rowID},
-			// 	type:'post',
-			// 	success:function(response){
-			// 		console.log(response);
-			// 	}
-			// });
-		});
-		@endforeach
-	});
-</script>
+
 @endsection
 
