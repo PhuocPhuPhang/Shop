@@ -31,9 +31,7 @@
              <th>Email</th>
              <th>Số điện thoại</th>
              <th>Địa chỉ</th>
-             @if( $route->uri == 'admin/user/nhanvien')
-                <th style="text-align:center">Thao tác</th>
-             @endif
+            <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
@@ -44,11 +42,13 @@
              <td>{{ $ng->email }}</td>
              <td>{{ $ng->so_dien_thoai }}</td>
              <td>{{ $ng->dia_chi }}</td>
-             @if($ng->quyen != 0)
              <td style="text-align:center">
-                <!-- <a href="" class="btn btn-info btn-xs">
-                    <i class="fa fa-pencil"></i> Chỉnh sửa
-                </a> -->
+             @if( $route->uri != 'admin/user/nhanvien')
+             <button type="button" id="phanquyen" value="{{$ng->id}}" class="btn btn-info btn-xs">
+                    <i class="fa fa-pencil"></i> Phân quyền
+            </button>
+             @endif
+             @if($ng->quyen != 0)
                 <a href="../user/xoa/{{$ng->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
@@ -62,4 +62,72 @@
     </div>
     </div>
 </div>
+@endsection
+
+
+@section('modal')
+@if( $route->uri != 'admin/user/nhanvien')
+<div id="formModal" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Cấp quyền quản trị</h4>
+        </div>
+        <div class="modal-body">
+         <span id="form_result"></span>
+         <form method="post" id="sample_form" class="form-horizontal">
+          @csrf
+          <div class="form-group">
+            <label class="control-label col-md-4" >Quyền quản trị</label>
+            <div class="col-md-8">
+             <select name="quyen" id="quyen" class="form-control">
+                 @foreach($quyen as $phan_quyen)
+                 <option value="{{$phan_quyen->id}}">{{$phan_quyen->quyen}}</option>
+                 @endforeach
+             </select>
+            </div>
+           </div>
+           <br />
+           <div class="form-group" align="center" id="button">
+            <input type="button" name="action" id="action" class="btn btn-success" value="Cập nhật" />
+           </div>
+         </form>
+        </div>
+     </div>
+    </div>
+</div>
+@endif
+@endsection
+
+@section('script')
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $('#phanquyen').click(function(){
+                $('#formModal').modal('show');
+            });
+
+            $('#action').click(function(){
+                var quyen = $("#quyen").val();
+                var id = $("#phanquyen").val();
+                $.ajax({
+                    type:'POST',
+                    url: '../ajax/user/update',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"id":id , "quyen":quyen},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Thành công');
+                            location.reload();
+                        }
+                        else
+                        {
+                            alert('Lỗi');
+                        }
+                    }
+                })
+            });
+        });
+    </script>
 @endsection

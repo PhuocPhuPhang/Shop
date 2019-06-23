@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\TinTuc;
+use App\User;
 use App\CauHinhSanPham;
 
 class AjaxController extends Controller
@@ -35,16 +36,6 @@ class AjaxController extends Controller
 		return redirect('cart_tpl');
 	}
 
-    public function getCauHinh($idloaiCH)
-    {
-        $cauhinh = CauHinhSanPham::where('id_loai',$idloaiCH)->get();
-        echo "<option value='0'>...</option>" ;
-        foreach($cauhinh as $ch)
-        {
-          echo "<option value='".$ch->cau_hinh."'>".$ch->cau_hinh."</option>" ;
-        }
-    }
-
     public function postTinTucNoiBat(Request $request)
     {
         $tintuc = TinTuc::find($request->id);
@@ -59,6 +50,17 @@ class AjaxController extends Controller
         return response()->json([
             'data' => [
               'success' => $tintuc->save(),
+            ]
+          ]);
+    }
+
+    public function postPhanQuyen(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->quyen = $request->quyen;
+        return response()->json([
+            'data' => [
+              'success' => $user->save(),
             ]
           ]);
     }
