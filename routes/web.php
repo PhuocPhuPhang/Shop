@@ -146,7 +146,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
 
-        Route::post('cart/update{$id}','AjaxController@UpdateCart');
+        // Route::post('cart/update{$id}','AjaxController@UpdateCart');
 
         Route::post('tintuc/noibat','AjaxController@postTinTucNoiBat');
 
@@ -191,6 +191,9 @@ Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
 Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
 Route::get('cart/remove/{id}','PageControllers@RemoveCart');
 Route::get('cart/update/','PageControllers@UpdateCart');
+
+//Create_order
+Route::get('checkout', 'PageControllers@checkout');
 
 
 

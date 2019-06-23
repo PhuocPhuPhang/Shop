@@ -13,6 +13,7 @@ use App\NhaCungCap;
 use App\User;
 use App\ThongTinUser;
 use App\SanPham;
+use App\Orders;
 use Session;
 use DB;
 use Cart;
@@ -218,7 +219,7 @@ public function RemoveCart($id)
 
 public function UpdateCart(Request $request)
 {
-  return  $request->newQty;
+  return $request->newQty;
   // $request::all();
 
   // Cart::update($rowId,$qty);
