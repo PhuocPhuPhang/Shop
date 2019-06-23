@@ -29,7 +29,6 @@
              <th>Nhà cung cấp</th>
              <th>Số lượng</th>
              <th>Màu sắc</th>
-             <th>Mô tả</th>
              <th>Thao tác</th>
            </tr>
          </thead>
@@ -43,7 +42,6 @@
              <td>
                     <input readonly type="text" style="border:none;height:20px;width:60px;background:{{$sp->mau_sac}}"/>
              </td>
-             <td>{{$sp->mo_ta}}</td>
              <td>
                 <a href="" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Edit

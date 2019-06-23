@@ -59,16 +59,25 @@ class SlideController extends Controller
         }
 
         $thutu = $request->thutu;
-        // $max = Slide::count();
-        // $tontai = DB::table('slide')->where('thu_tu',$thutu)->count();
-        // if($tontai != 0 )
-        // {
-        //     $dsSlide = DB::table('slide')->whereBetween('thu_tu',[$thutu,$max])->get();
-        //     foreach($dsSlide as $items)
-        //     {
-        //         DB::table('slide')->where('thu_tu',$items->thu_tu)->update(['thu_tu'=>$items->thu_tu +1]);
-        //     }
-        // }
+        $max = Slide::count();
+        $tontai = DB::table('slide')->where('thu_tu',$thutu)->count();
+        if($tontai != 0 )
+        {
+            if($thutu == 1 )
+            {
+                $dsSlide = DB::table('slide')->whereBetween('thu_tu',[$thutu,$max])->get();
+            }
+            else
+            {
+                $dsSlide = DB::table('slide')->whereBetween('thu_tu',[$thutu,$max-1])->get();
+                DB::table('slide')->where('thu_tu',$max)->update(['thu_tu'=>$max+1]);
+            }
+
+            foreach($dsSlide as $items)
+            {
+                DB::table('slide')->where('thu_tu',$items->thu_tu)->update(['thu_tu'=>$items->thu_tu +1]);
+            }
+        }
         $slide->thu_tu = $thutu;
 
         $slide->save();
@@ -119,6 +128,7 @@ class SlideController extends Controller
             $slide->hinh_anh = $hinh;
 
         }
+        $slide->thu_tu = $request->thutu;
 
         $slide->save();
         return redirect('admin/slide/sua/'.$slide->id)->with('thongbao','Chỉnh sửa thành công');

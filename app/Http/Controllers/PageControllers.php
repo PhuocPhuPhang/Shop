@@ -37,7 +37,7 @@ class PageControllers extends Controller
   }
 
   public function postThemUser(Request $request)
-  { 
+  {
     $this->validate($request,
       [
         'ten' => 'required',
@@ -72,7 +72,7 @@ class PageControllers extends Controller
     if(!empty($check_email))
     {
       if($check_email->email == $request->email)
-      {   
+      {
         return redirect('index')->with('email','Email đã tồn tại');
       }
     }
@@ -98,7 +98,7 @@ class PageControllers extends Controller
 
  public function Login(Request $request)
  {
-  $this->validate($request, 
+  $this->validate($request,
     [
       'email'   => 'required|email',
       'password'  => 'required',
@@ -129,7 +129,7 @@ public function Logout()
 }
 
 public function news_tpl()
-{ 
+{
   return view('layouts.pages.news_tpl');
 }
 
@@ -177,7 +177,7 @@ public function postChangePassword(Request $request)
   $user->save();
 
   return redirect('profile')->with('thongbao',"Đổi mật khẩu thành công");
-}   
+}
 else
   { return redirect('profile')->with('thongbao',"Thất bại"); }
 }
@@ -191,8 +191,8 @@ public function product_tpl()
 public function AddtoCart($id)
 {
   $product = SanPham::find($id);
-  $add =  Cart::add(
-    'rowId'array(
+  $add =  Cart::add(array(
+    'rowId'=>array(
     'id' => $product->ma_san_pham,
     'name' => $product->ten_san_pham,
     'price' => $product->gia_ban,
@@ -200,7 +200,7 @@ public function AddtoCart($id)
     'attributes' => array(
         'img' => $product->hinh_anh
       )
-  ));
+  )));
   return redirect('cart_tpl');
 }
 
