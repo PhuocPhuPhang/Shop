@@ -222,3 +222,5 @@ var password_confirmation = document.getElementById("re_pass").value;
 	}
 </script> -->
 </html>
+@yield('script')
+
