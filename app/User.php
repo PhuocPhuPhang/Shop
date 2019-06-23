@@ -12,8 +12,4 @@ class User extends Authenticatable
     protected  $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
-
-    public function orders(){
-    	return this->hasMany(orders::class);
-    }
 }

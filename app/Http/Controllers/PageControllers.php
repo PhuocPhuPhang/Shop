@@ -16,7 +16,6 @@ use App\SanPham;
 use App\Orders;
 use Session;
 use DB;
-use Cart;
 
 class PageControllers extends Controller
 {
@@ -218,15 +217,11 @@ public function RemoveCart($id)
 
 public function UpdateCart(Request $request)
 {
-  return  $request->newQty;
+  return $request->newQty;
   // $request::all();
 
   // Cart::update($rowId,$qty);
   // return back();
-}
-
-public function checkout(){
-  return orders::CreateOrder();
 }
 
 }
