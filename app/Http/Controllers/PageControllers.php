@@ -192,16 +192,16 @@ public function product_tpl()
 public function AddtoCart($id)
 {
   $product = SanPham::find($id);
+
   $add =  Cart::add(array(
-    'rowId'=>array(
     'id' => $product->ma_san_pham,
     'name' => $product->ten_san_pham,
     'price' => $product->gia_ban,
     'quantity'=> 1,
     'attributes' => array(
-        'img' => $product->hinh_anh
-      )
-  )));
+      'img' => $product->hinh_anh
+    )
+  ));
   return redirect('cart_tpl');
 }
 
@@ -217,27 +217,19 @@ public function RemoveCart($id)
   return back();
 }
 
-public function UpdateCart(Request $request)
-{
-  return $request->newQty;
-  // $request::all();
-
-  // Cart::update($rowId,$qty);
-  // return back();
-}
 
 public function UpdateCart1(Request $request)
-  {
-   Cart::update($request->id, array(
+{
+ Cart::update($request->id, array(
    'quantity' => 1,
-    ));
-    return response()->json([
-            'data' => [
-              'success' => true,
-            ]
-          ]);
+ ));
+ return response()->json([
+  'data' => [
+    'success' => true,
+  ]
+]);
 
-  }
+}
 
 }
 

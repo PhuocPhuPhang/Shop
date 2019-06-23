@@ -188,11 +188,12 @@ Route::get('cart_tpl','PageControllers@cart_tpl');
 Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
 Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
 Route::get('cart/remove/{id}','PageControllers@RemoveCart');
-Route::get('cart/update/','PageControllers@UpdateCart');
+Route::post('cart/update1/','PageControllers@UpdateCart1');
 
- Route::post('cart/update1/','PageControllers@UpdateCart1');
 //Create_order
-Route::get('checkout', 'PageControllers@checkout');
+Route::get('test' , function(){
+    return App\user::with('orders')->get();
+});
 
 
 
