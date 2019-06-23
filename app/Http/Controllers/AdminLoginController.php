@@ -35,7 +35,15 @@ class AdminLoginController extends Controller
 
      if(Auth::attempt($user_data))
      {
-        return redirect('admin/index');
+         if(Auth::user()->quyen == 1)
+         {
+            return redirect('admin/index');
+         }
+         else
+         {
+            return redirect('index');
+         }
+
      }
      else
      {

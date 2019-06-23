@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Validator;
 use Route;
+use DB;
 use Laravel\Socialite\One\User as LaravelUser;
 
 class UsersController extends Controller
@@ -24,7 +25,8 @@ class UsersController extends Controller
     public function getDanhSachKH()
     {
         $user = User::where('quyen','0')->get();
-        return view('admin.user.danhsach',['user'=>$user]);
+        $quyen = DB::table('phan_quyen')->where('id','<>','1')->get();
+        return view('admin.user.danhsach',['user'=>$user],['quyen'=>$quyen]);
     }
 
     public function getDanhSachNV()

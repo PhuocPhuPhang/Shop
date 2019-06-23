@@ -148,10 +148,11 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::post('cart/update{$sl,$id}','AjaxController@UpdateCart');
 
-
         Route::post('tintuc/noibat','AjaxController@postTinTucNoiBat');
 
         Route::post('sanpham/them','AjaxController@postSanPham');
+
+        Route::post('user/update','AjaxController@postPhanQuyen');
 
     });
 });
