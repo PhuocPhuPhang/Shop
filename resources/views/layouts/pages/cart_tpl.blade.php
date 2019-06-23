@@ -1,27 +1,10 @@
 @extends('layouts.master')
 @section('content')
-<script>
-	$(document).ready(function(){
-		@foreach($data as $dt)
-		$("#upCart{{$dt->id}}").on('change keyup', function(){
-			var newQty = $("#upCart{{$dt->id}}").val();
-			// alert(newQty);
-			var rowID = $("#rowID{{$dt->id}}").val();
-			$.ajax({
-				url:'../../../../ajax/cart/update',
-				data:{sl:newQty,id:rowID},
-				type:'post',
-				success:function(response){
-					console.log(response);
-				}
-			});
-		});
-		@endforeach
-	});
-</script>
+
 
 <div id="layout_cart" class="container padding-inner">
 	<form id="frmPay" action="gio-hang" method="post" accept-charset="utf-8">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 		<div class="cart-layout cart_repon">
 			<div class="cart-layout__col">
 				<div class="cart-layout__title">Thông tin giỏ hàng</div>
@@ -35,7 +18,7 @@
 				</select>
 				<select id="id_dist" name="id_dist" data-level="1" data-table="table_place_ward" data-child="id_ward" class="select_tinhthanh custom-select form-control" required>
 					<option value="0">Quận huyện</option>
-						<option value="">Quận 1</option>
+					<option value="">Quận 1</option>
 				</select>
 			</div>
 			<div class="cart-layout__col">
@@ -95,3 +78,26 @@
 	</form>
 </div>
 @endsection
+@section('script')
+<script>
+	$(document).ready(function(){
+		@foreach($data as $dt)
+		$("#upCart{{$dt->id}}").on('change keyup', function(){
+			var newQty = $("#upCart{{$dt->id}}").val();
+			// alert(newQty);
+			var rowID = $("#rowID{{$dt->id}}").val();
+			$.ajax({
+				url:'../ajax/cart/update',
+				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+				data:{sl:newQty,id:rowID},
+				type:'post',
+				success:function(response){
+					console.log(response);
+				}
+			});
+		});
+		@endforeach
+	});
+</script>
+@endsection
+

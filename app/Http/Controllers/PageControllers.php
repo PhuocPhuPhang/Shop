@@ -191,7 +191,8 @@ public function product_tpl()
 public function AddtoCart($id)
 {
   $product = SanPham::find($id);
-  $add =  Cart::add(array(
+  $add =  Cart::add(
+    'rowId'array(
     'id' => $product->ma_san_pham,
     'name' => $product->ten_san_pham,
     'price' => $product->gia_ban,
