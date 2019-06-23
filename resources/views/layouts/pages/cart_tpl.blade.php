@@ -35,7 +35,7 @@
 							<div id="unit" class="cart-items__unit">Giá sản phẩm: {{number_format($dt->price)}}<sup>đ</sup></div>
 							<div class="cart-items__quantity">
 								<input type="hidden" value="{{$dt->rowId}}" id="rowID{{$dt->id}}">
-								<input type="number" max="2" min="1" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
+								<input type="number" max="10" min="1" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
 							</div>
 							<span class="cart-items__price">Tổng giá:</span>
 							<div id="price-" class="cart-items__price">{{number_format($dt->price * $dt->quantity)}}<sup>đ</sup></div>
@@ -84,17 +84,17 @@
 		@foreach($data as $dt)
 		$("#upCart{{$dt->id}}").on('change keyup', function(){
 			var newQty = $("#upCart{{$dt->id}}").val();
-			// alert(newQty);
+			alert(newQty);
 			var rowID = $("#rowID{{$dt->id}}").val();
-			$.ajax({
-				url:'../ajax/cart/update',
-				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-				data:{sl:newQty,id:rowID},
-				type:'post',
-				success:function(response){
-					console.log(response);
-				}
-			});
+			// $.ajax({
+			// 	url:'../ajax/cart/update',
+			// 	headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+			// 	data:{sl:newQty,id:rowID},
+			// 	type:'post',
+			// 	success:function(response){
+			// 		console.log(response);
+			// 	}
+			// });
 		});
 		@endforeach
 	});
