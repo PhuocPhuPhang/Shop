@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Http\Requests;
-use App\Slide;
+use App\Media;
 use App\TinTuc;
 use App\NhaCungCap;
 use App\User;
@@ -24,17 +24,24 @@ class PageControllers extends Controller
     $nhacungcap =  NhaCungCap::all();
     $tintuc= TinTuc::all();
     $product= SanPham::where('noi_bat',1)->get();
+    $social = Media::where('type','social')->get();
+    $website = DB::table('thong_tin_cong_ty')->first();
     view()->share('nhacungcap',$nhacungcap);
     view()->share('tintuc',$tintuc);
     view()->share('product',$product);
+    view()->share('social',$social);
+    view()->share('website',$website);
   }
 
   public function index()
   {
-    $slide= Slide::all();
+    $slide= Media::where('type','slide')->get();
+    $social = Media::where('type','social')->get();
     $tintuc= TinTuc::all();
     $product= SanPham::where('noi_bat',1)->get();
-    return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],['product'=>$product]);
+    $website = DB::table('thong_tin_cong_ty')->first();
+    return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],
+            ['product'=>$product],['social'=>$social],['webstite'=>$website]);
   }
 
   public function postThemUser(Request $request)
@@ -74,7 +81,7 @@ class PageControllers extends Controller
     {
       if($check_email->email == $request->email)
       {
-        return redirect('index')->with('email','Email đã tồn tại');
+        return redirect('shop')->with('email','Email đã tồn tại');
       }
     }
     else
@@ -93,7 +100,7 @@ class PageControllers extends Controller
 
      $user->save();
      $ThongTinUser->save();
-     return redirect('index')->with('thongbao','Thành Công');
+     return redirect('shop')->with('thongbao','Thành Công');
    }
  }
 

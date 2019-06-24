@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Slide extends Model
+class Media extends Model
 {
-    protected $table = "slide";
+    protected $table = "media";
     protected $primaryKey = "id";
     public $incrementing = true;
     public $timestamps = true;

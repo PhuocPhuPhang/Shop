@@ -36,6 +36,7 @@
             <li><a><i class="fa fa-image"></i>Media<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="{{url('admin/slide/danhsach')}}">Slide</a></li>
+                    <li><a href="{{url('admin/social/danhsach')}}">Mạng xã hội</a></li>
                 </ul>
             </li>
 
@@ -54,6 +55,7 @@
                     <li><a href="{{url('admin/user/nhanvien')}}">Nhân viên</a></li>
                 </ul>
             </li>
+            <li><a href="{{url('admin/website/thongtin')}}"><i class="fa fa-cogs"></i>Cấu hình website</a></li>
             @endif
 
         </ul>

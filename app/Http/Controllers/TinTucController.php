@@ -50,26 +50,20 @@ class TinTucController extends Controller
         {
             $tintuc->noi_bat = 0;
         }
-        //Kiểm tra hình ảnh có tồn tại
         if($request->hasFile('hinhanh'))
         {
-            //Lấy file được truyền lên
             $file = $request->file('hinhanh');
-            //kiểm tra định dạng file
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
                 return redirect('admin/tintuc/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
-            //Lấy tên file
             $name = $file->getClientOriginalName();
-            //Tạo tên mới cho file
             $hinh = str_random(4)."_".$name;
             while(file_exists("upload/tintuc/".$hinh))
             {
                 $hinh = str_random(4)."_".$name;
             }
-            //Lưu hình
             $file->move("upload/tintuc",$hinh);
             $tintuc->hinh_anh = $hinh;
 

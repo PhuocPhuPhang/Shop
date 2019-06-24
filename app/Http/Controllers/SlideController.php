@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\collection;
-use App\Slide;
+use App\Media;
 use Validator;
 use DB;
 
@@ -12,7 +12,7 @@ class SlideController extends Controller
 {
     public function getDanhSach()
     {
-        $collection= collect(Slide::all());
+        $collection= collect(Media::where('type','slide')->get());
         $slide = $collection->sortBy('thu_tu');
         return view('admin.slide.danhsach',['slide'=>$slide]);
     }
@@ -25,7 +25,7 @@ class SlideController extends Controller
     public function postThem(Request $request)
     {
         $this->validate($request,[
-            'ten'=> 'required|unique:slide,ten|max:255',
+            'ten'=> 'required|unique:media,ten|max:255',
             'link'=> 'min:10',
         ],[
             'ten.unique' => 'Tên slide đã tồn tại',
@@ -35,9 +35,10 @@ class SlideController extends Controller
             'link.max'   => 'Link có độ dài tối thiểu 10 ký tự',
         ]);
 
-        $slide = new Slide;
+        $slide = new Media;
         $slide->ten = $request->ten;
         $slide->link = $request->link;
+        $slide->type = "slide";
 
         if($request->hasFile('hinhanh'))
         {
@@ -59,23 +60,24 @@ class SlideController extends Controller
         }
 
         $thutu = $request->thutu;
-        $max = Slide::count();
-        $tontai = DB::table('slide')->where('thu_tu',$thutu)->count();
+        $max = Media::count()->where('type','slide');
+        $tontai = DB::table('media')->where(['thu_tu',$thutu],['type','slide'])->count();
         if($tontai != 0 )
         {
             if($thutu == 1 )
             {
-                $dsSlide = DB::table('slide')->whereBetween('thu_tu',[$thutu,$max])->get();
+                $dsSlide = DB::table('media')->where('type','slide')
+                ->whereBetween('thu_tu',[$thutu,$max])->get();
             }
             else
             {
-                $dsSlide = DB::table('slide')->whereBetween('thu_tu',[$thutu,$max-1])->get();
-                DB::table('slide')->where('thu_tu',$max)->update(['thu_tu'=>$max+1]);
+                $dsSlide = DB::table('media')->whereBetween('thu_tu',[$thutu,$max-1])->get();
+                DB::table('media')->where(['thu_tu',$max],['type','slide'])->update(['thu_tu'=>$max+1]);
             }
 
             foreach($dsSlide as $items)
             {
-                DB::table('slide')->where('thu_tu',$items->thu_tu)->update(['thu_tu'=>$items->thu_tu +1]);
+                DB::table('meida')->where(['thu_tu',$items->thu_tu],['type','slide'])->update(['thu_tu'=>$items->thu_tu +1]);
             }
         }
         $slide->thu_tu = $thutu;
@@ -86,13 +88,13 @@ class SlideController extends Controller
 
     public function getSua($id)
     {
-        $slide = Slide::find($id);
+        $slide = Media::find($id);
         return view('admin.slide.sua',['slide'=>$slide]);
     }
 
     public function postSua(Request $request,$id)
     {
-        $slide = Slide::find($id);
+        $slide = Media::find($id);
         $this->validate($request,[
             'ten'=> 'required|max:255',
             'link'=> 'min:10',
@@ -136,7 +138,7 @@ class SlideController extends Controller
 
     public function postXoa($id)
     {
-        $slide = Slide::find($id);
+        $slide = Media::find($id);
         if(file_exists(public_path('upload/slide/'.$slide->hinh_anh)))
         {
             unlink(public_path('upload/slide/'.$slide->hinh_anh));

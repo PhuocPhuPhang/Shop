@@ -30,6 +30,7 @@ Route::get('admin/login','AdminLoginController@index');
 Route::post('admin/login','AdminLoginController@CheckLogin');
 Route::get('admin/index','AdminLoginController@SuccessLogin');
 Route::get('admin/logout','AdminLoginController@Logout');
+
 // Trang admin
 Route::group(['prefix'=>'admin'],function(){
     // Nhà cung cấp
@@ -88,6 +89,19 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('sua/{id}','SlideController@postSua');
 
         Route::get('xoa/{id}','SlideController@postXoa');
+    });
+
+    Route::group(['prefix'=>'social'],function(){
+
+        Route::get('danhsach','SocialController@getDanhSach');
+
+        Route::get('them','SocialController@getThem');
+        Route::post('them','SocialController@postThem');
+
+        Route::get('sua/{id}','SocialController@getSua');
+        Route::post('sua/{id}','SocialController@postSua');
+
+        Route::get('xoa/{id}','SocialController@postXoa');
     });
 
     //Sản phẩm
@@ -153,42 +167,50 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('user/update','AjaxController@postPhanQuyen');
 
     });
+
+    Route::group(['prefix'=>'website'],function(){
+        Route::get('thongtin','WebsiteController@getCauHinhWebSite');
+        Route::post('thongtin','WebsiteController@postCauHinhWebSite');
+    });
 });
 
 // User
 Route::get('dangnhap','UsersController@index');
 
 //Login Social
-Route::get('auth/{social}', 'Auth\LoginController@redirectToProvider');
-Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback');
+// Route::get('auth/{social}', 'Auth\LoginController@redirectToProvider');
+// Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
 //Trang_chu
-Route::get('index','PageControllers@index');
+Route::get('shop','PageControllers@index');
 
+Route::group(['prefix'=>'shop'],function(){
 //Login_logout_SignUp
-Route::post('index','PageControllers@postThemUser');
-Route::post('index/login','PageControllers@Login');
-Route::get('index/logout','PageControllers@Logout');
+    Route::post('register','PageControllers@postThemUser');
+    Route::post('login','PageControllers@Login');
+    Route::get('logout','PageControllers@Logout');
 
-//news_detail
-Route::get('news_tpl','PageControllers@news_tpl');
-Route::get('news_detail_tpl/{id}','PageControllers@news_detail_tpl');
+    //Tin Tức
+    Route::get('tin-tuc','PageControllers@news_tpl');
+    Route::get('tin-tuc/{id}','PageControllers@news_detail_tpl');
 
-//profile
-Route::get('profile','PageControllers@profile');
-Route::post('profile/changepassword','PageControllers@postChangePassword');
+    //Sản phẩm
+    Route::get('san-pham','PageControllers@product_tpl');
+    Route::get('san-pham/{ma_san_pham}','PageControllers@product_detail_tpl');
 
-//product_detail
-Route::get('product_tpl','PageControllers@product_tpl');
-Route::get('product_detail_tpl/{ma_san_pham}','PageControllers@product_detail_tpl');
+    //profile
+    Route::get('profile','PageControllers@profile');
+    Route::post('profile/changepassword','PageControllers@postChangePassword');
 
-//add cart
-Route::get('cart_tpl','PageControllers@cart_tpl');
-Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
-Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
-Route::get('cart/remove/{id}','PageControllers@RemoveCart');
-Route::post('cart/update1/','PageControllers@UpdateCart1');
+    //Giỏ hàng
+    Route::get('cart_tpl','PageControllers@cart_tpl');
+    Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
+    Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
+    Route::get('cart/remove/{id}','PageControllers@RemoveCart');
+    Route::post('cart/update1/','PageControllers@UpdateCart1');
+});
+
 
 //Create_order
 Route::get('test' , function(){

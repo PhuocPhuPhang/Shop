@@ -3,16 +3,16 @@
 
 
 	<ul>
-		<li><a href="index.html" title="">Trang chủ</a></li>
+		<li><a href="shop" title="">Trang chủ</a></li>
 		<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
-		<li><a href="san-pham.html" title="">Sản phẩm</a>
+		<li><a href="shop/san-pham" title="">Sản phẩm</a>
 			<ul>
 				@foreach($nhacungcap as $ncc)
 				<li><a href="">{{$ncc->ten_nha_cung_cap}}</a></li>
 				@endforeach
 			</ul>
 		</li>
-		<li><a href="tin-tuc.html" title="">Tin tức</a></li>
+		<li><a href="shop/tin-tuc" title="">Tin tức</a></li>
 		<li><a href="video.html" title="Video">Video</a></li>
 		<li><a href="tuyen-dung.html" title="Tuyển dụng">Tuyển dụng</a></li>
 		<li><a href="lien-he.html" title="">Liên hệ</a></li>
@@ -78,7 +78,7 @@
 								</div>
 								<div class="login-row">
 									<input type="checkbox" name="nhan_tin">
-									<span class="check_thongbao">Nhận các thông báo và tin khuyến mãi từ chúng tôi.</span> 
+									<span class="check_thongbao">Nhận các thông báo và tin khuyến mãi từ chúng tôi.</span>
 								</div>
 								<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 								<div class="login-row">
@@ -104,15 +104,15 @@
 							<script>
 								alert('Thành Công')
 							</script>
-							@endif 
+							@endif
 							@if(session('login'))
 							<script>
 								alert('Đăng Nhập Thành Công')
 							</script>
-							@endif 
+							@endif
 							<form id="frmLogin" action="{{ url('/index/login') }}" method="POST" class="login_block">
 								<div class="login-row">
-									<label>Email</label> 
+									<label>Email</label>
 									<input type="text" name="email" placeholder="Email của bạn" required>
 								</div>
 								<div class="login-row">
@@ -145,12 +145,10 @@
 				</div>
 				@endif
 				<div class="right_top_mxh flex-between-center">
-					<a href="#" target="_blank"><img src="{{asset('themes/images/you.png')}}" alt="social"></a>
-					<a href="#" target="_blank"><img src="{{asset('themes/images/tw.png')}}" alt="social"></a>
-					<a href="#" target="_blank"><img src="{{asset('themes/images/in.png')}}" alt="social"></a>
-					<a href="#" target="_blank"><img src="{{asset('themes/images/gg.png')}}" alt="social"></a>
-					<a href="#" target="_blank"><img src="{{asset('themes/images/fb.png')}}" alt="social"></a>
-				</div>
+                @foreach($social as $xh)
+					<a href="{{$xh->link}}" target="_blank"><img src="../upload/social/{{$xh->hinh_anh}}" alt="{{$xh->ten}}"></a>
+                @endforeach
+                </div>
 			</div>
 		</div>
 	</section>
@@ -178,11 +176,11 @@
 			<div class="r_head flex-between-center">
 				<div class="email_pc">
 					<p class="r1">EMAIL</p>
-					<p class="r2">caothang@gmail.com</p>
+					<p class="r2">{{$website->email}}</p>
 				</div>
 				<div class="hl_pc">
 					<p class="r1">HOTLINE</p>
-					<p class="r2">0329973272</p>
+					<p class="r2">{{$website->hotline}}</p>
 				</div>
 				@if(Session::has('cart'))
 				<a href="gio-hang.html" class="link_cart" title="Giỏ hàng">
@@ -193,7 +191,7 @@
 							<p class="r2">Xem ngay</p>
 
 							<div class="giohang_index_wrap">
-								
+
 								@foreach($product_cart as $product)
 								<div class="giohang_main">
 									<img src="upload/sanpham/{{$product['item']['hinh_anh']}}">
@@ -203,7 +201,7 @@
 									</div>
 								</div>
 								@endforeach
-								
+
 								<div class="giohang_main">
 									<img src="{{asset('themes/images/sp.jpg')}}">
 									<div class="giohang_info_index">
@@ -214,7 +212,7 @@
 								<div class="totalPrice_index">Tổng tiền: {{Session('cart')->totalPrice}}</div>
 								<div class="thanhtoan_index_wrap"><a href="" class="thanhtoan_index">Đặt hàng</a></div>
 							</div>
-							
+
 						</div>
 					</div>
 				</a>
@@ -234,16 +232,16 @@
 			</div>
 
 			<ul class="menu-grid">
-				<li><a href="index" title="">Trang chủ</a></li>
+				<li><a href="shop" title="">Trang chủ</a></li>
 				<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
-				<li><a href="product_tpl" title="">Sản phẩm</a>
+				<li><a href="shop/san-pham" title="Sản phẩm">Sản phẩm</a>
 					<ul>
 						@foreach($nhacungcap as $ncc)
 						<li><a href="">{{$ncc->ten_nha_cung_cap}}</a></li>
 						@endforeach
 					</ul>
 				</li>
-				<li><a href="news_tpl" title="">Tin tức</a></li>
+				<li><a href="shop/tin-tuc" title="">Tin tức</a></li>
 				<li><a href="video.html" title="Video">Video</a></li>
 				<li><a href="tuyen-dung.html" title="Tuyển dụng">Tuyển dụng</a></li>
 				<li><a href="lien-he.html" title="">Liên hệ</a></li>

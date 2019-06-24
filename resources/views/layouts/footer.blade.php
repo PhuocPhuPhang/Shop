@@ -16,10 +16,12 @@
 			</div>
 		</div>
 		<div class="footer-col">
-			<div class="footer-title">Chính sách công ty</div>
-			<a class="footer-row" href="" title="Chính sách mua hàng">Chính sách mua hàng</a>
-			<a class="footer-row" href="" title="Chính sách bảo hành">Chính sách bảo hành</a>
-			<a class="footer-row" href="" title="Chính sách sửa chữa">Chính sách sửa chữa</a>
+            <div class="footer-title">Chính sách công ty</div>
+            @foreach($tintuc as $chinhsach)
+            @if($chinhsach->type == "chinh-sach")
+            <a class="footer-row" href="" title="Chính sách mua hàng">{{$chinhsach->title}}</a>
+            @endif
+            @endforeach
 		</div>
 		<div class="footer-col">
 			<div class="footer-fanpage">Facebook chat</div>
