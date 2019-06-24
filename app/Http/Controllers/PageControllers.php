@@ -193,7 +193,8 @@ else
 
 public function product_tpl()
 {
-  return view('layouts.pages.product_tpl');
+  $nhacungcap = NhaCungCap::all();
+  return view('layouts.pages.product_tpl',['nhacungcap'=>$nhacungcap]);
 }
 
 public function AddtoCart($id)

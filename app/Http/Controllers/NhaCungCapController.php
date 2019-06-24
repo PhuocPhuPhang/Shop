@@ -51,20 +51,15 @@ class NhaCungCapController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
-            //Lấy file được truyền lên
             $file = $request->file('hinhanh');
-            //kiểm tra định dạng file
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
                 return redirect('admin/nhacungcap/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
-            //Lấy tên file
             $name = $file->getClientOriginalName();
-            //Tạo tên mới cho file
             $hinh = $name.'_'.time().'.'.$duoi;
 
-            //Lưu hình
             $file->move("upload/nhacungcap",$hinh);
             $nhacungcap->logo = $hinh;
 
@@ -111,7 +106,7 @@ class NhaCungCapController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
-            if($request->file('hinhanh') !='' && file_exists(public_path('upload/nhacungcap/'.$nhacungcap->logo)))
+            if(file_exists(public_path('upload/nhacungcap/'.$nhacungcap->logo)))
             {
                 unlink(public_path('upload/nhacungcap/'.$nhacungcap->logo));
             }
