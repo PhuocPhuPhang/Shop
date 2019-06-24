@@ -19,18 +19,18 @@
 				@foreach($product as $sp)
 				<div class="sanpham sanpham2">
 					<div class="img">
-						<a href="product_detail_tpl/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
+						<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
 							<img class="" src="upload/sanpham/{{$sp->hinh_anh}}" alt="{{$sp->ten_san_pham}}">
 						</a>
 						<div class="sale_off">-10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="product_detail_tpl/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">{{$sp->ten_san_pham}}</a>
+						<a class="name" href="san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">{{$sp->ten_san_pham}}</a>
 						<div class="wrap_price">
 							<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
 						</div>
-						<a class="add_cart_index" href="add_to_cart/{{$sp->ma_san_pham}}">Mua ngay</a>
+						<a class="add_cart_index" href="shop/add_to_cart/{{$sp->ma_san_pham}}">Mua ngay</a>
 						<div class="pro_info-info">
 							<span>Tặng kèm ....</span>
 						</div>
@@ -99,18 +99,18 @@
 					@foreach($product as $sp)
 					<div class="sanpham">
 						<div class="img">
-							<a href="product_detail_tpl/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}"><img class="img-responsive lazy" src="upload/sanpham/{{$sp->hinh_anh}}" alt="{{$sp->ten_san_pham}}"></a>
+							<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}"><img class="img-responsive lazy" src="upload/sanpham/{{$sp->hinh_anh}}" alt="{{$sp->ten_san_pham}}"></a>
 							<div class="sale_off">-10%</div>
 						</div>
 						<div class="pro_info">
 							<div class=""></div>
-							<div class="name"><h3><a href="product_detail_tpl/{{$sp->ma_san_pham}}">{{$sp->ten_san_pham}}</a></h3></div>
+							<div class="name"><h3><a href="san-pham/{{$sp->ma_san_pham}}">{{$sp->ten_san_pham}}</a></h3></div>
 							<div class="wrap_price">
 								<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
 								<div class="price_old">{{$sp->gia_ban}} Đ</div>
 								<div class="clearfix"></div>
 							</div>
-							<a class="add_cart_index" href="add_to_cart/{{$sp->ma_san_pham}}">Mua ngay</a>
+							<a class="add_cart_index" href="shop/add_to_cart/{{$sp->ma_san_pham}}">Mua ngay</a>
 						</div>
 					</div>
 					@endforeach

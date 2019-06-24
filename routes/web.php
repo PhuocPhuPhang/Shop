@@ -213,9 +213,7 @@ Route::group(['prefix'=>'shop'],function(){
 
 
 //Create_order
-Route::get('test' , function(){
-    return App\user::with('orders')->get();
-});
+Route::post('createCart','PageControllers@createCart');
 
 
 

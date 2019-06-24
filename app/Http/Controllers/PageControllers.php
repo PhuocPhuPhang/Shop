@@ -12,7 +12,7 @@ use App\TinTuc;
 use App\NhaCungCap;
 use App\User;
 use App\SanPham;
-use App\Orders;
+use App\HoaDon;
 use Session;
 use DB;
 use Cart;
@@ -40,7 +40,7 @@ class PageControllers extends Controller
     $product= SanPham::where('noi_bat',1)->get();
     $website = DB::table('thong_tin_cong_ty')->first();
     return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],
-            ['product'=>$product],['social'=>$social],['webstite'=>$website]);
+      ['product'=>$product],['social'=>$social],['webstite'=>$website]);
   }
 
   public function postThemUser(Request $request)
@@ -205,7 +205,7 @@ public function AddtoCart($id)
       'img' => $product->hinh_anh
     )
   ));
-  return redirect('cart_tpl');
+  return redirect('shop/cart_tpl');
 }
 
 public function cart_tpl()
@@ -231,7 +231,22 @@ public function UpdateCart1(Request $request)
     'success' => true,
   ]
 ]);
+}
 
+public function createCart(Request $request)
+{
+  // dd($request->all());
+  // dd(Cart::getContent());
+
+  $order = new HoaDon;
+  $order->ma_hoa_don = 'HD01';
+  $order->ma_nguoi_dung = auth()->user()->email;
+  $order->ten_nguoi_nhan = $request->ten;
+  $order->so_dien_thoai = $request->dienthoai;
+  $order->dia_chi = $request->diachi;
+  $order->save();
+
+  return redirect('shop/cart_tpl');
 }
 
 }
