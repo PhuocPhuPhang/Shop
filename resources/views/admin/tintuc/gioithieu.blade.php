@@ -41,7 +41,7 @@
                 <textarea id="mota"  class="form-control" name="mota" style="height:100px">{{$gt->mo_ta}}</textarea><br />
 
                 <label>Nội dung</label>
-                <textarea id="noidung" class="form-gruop ckeditor" name="noidung" >{{$gt->noi_dung}}</textarea>
+                <textarea id="noidung" class="form-gruop ckeditor" name="noidung"  >{{$gt->noi_dung}}</textarea>
 
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">

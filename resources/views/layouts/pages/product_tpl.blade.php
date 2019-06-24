@@ -3,14 +3,10 @@
 <div class="container">
 	<div class="ncc_wrap">
 		<div class="ncc_grid">
-			<a class="ncc_item" href=""><img src="{{asset('themes/images/Huawei42-b_30.jpg')}}"></a>
-			<a class="ncc_item" href=""><img src="{{asset('themes/images/iPhone-(Apple)42-b_16.jpg')}}"></a>
-			<a class="ncc_item" href=""><img src="{{asset('themes/images/Nokia42-b_21.jpg')}}"></a>
-			<a class="ncc_item" href=""><img src="{{asset('themes/images/OPPO42-b_23.jpg')}}"></a>
-			<a class="ncc_item" href=""><img src="{{asset('themes/images/OPPO42-b_23.jpg')}}"></a>
-			<a class="ncc_item" href=""><img src="{{asset('themes/images/Xiaomi42-b_31.png')}}"></a>
-			<a class="ncc_item" href=""><img src="{{asset('themes/images/samsung.jpg')}}"></a>
-		</div>				
+            @foreach($nhacungcap as $ncc )
+            <a class="ncc_item" href=""><img src="../upload/nhacungcap/{{$ncc->logo}}"></a>
+            @endforeach
+		</div>
 	</div>
 	<div class="select_price_wrap">
 		<div class="flex-between-center">
