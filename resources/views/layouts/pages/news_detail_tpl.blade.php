@@ -2,8 +2,7 @@
 @section('content')
 
 <div class="container">
-	<label class="title_tpl">{{$tintuc->ten}}</label>
-	<p id="tintuc">{{$tintuc->noi_dung}}</p>
-
+	<label class="title_tpl">{{$news_detail->title}}</label>
+	<p id="tintuc">{{$news_detail->noi_dung}}</p>
 </div>
 @endsection

@@ -151,7 +151,7 @@ a.link_cart:hover {color: #0066b3; }
 .main_pro_home{position: relative; margin-bottom: 35px;}
 .big_product{width: 39%;}
 .big_product .sanpham{max-width: 100%;}
-.small_product{display: grid;grid-template-columns: repeat(3,1fr);margin-left: 20px;}
+.small_product{display: grid;grid-template-columns: repeat(4,1fr);margin-left: 20px;grid-gap: 10px;}
 .wrap_pro_home:nth-child(even){background: #f8f8f8;}
 
 #news-wrapper .title h3{color:#000;text-transform:uppercase;margin:0;font-size:28px;display:inline-block;position:relative;z-index:2;font-family:'font1';}

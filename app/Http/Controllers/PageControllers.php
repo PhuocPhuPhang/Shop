@@ -11,7 +11,6 @@ use App\Media;
 use App\TinTuc;
 use App\NhaCungCap;
 use App\User;
-use App\ThongTinUser;
 use App\SanPham;
 use App\Orders;
 use Session;
@@ -86,20 +85,16 @@ class PageControllers extends Controller
     }
     else
     {
-     $ThongTinUser = new ThongTinUser;
-     $ThongTinUser->ten = $request->ten;
-     $ThongTinUser->email = $request->email;
-     $ThongTinUser->so_dien_thoai = $request->so_dien_thoai;
-     $ThongTinUser->ngay_sinh = $request->ngay_sinh;
-     $ThongTinUser->gioi_tinh = $request->gioi_tinh;
-
      $user = new User;
+     $user->ten = $request->ten;
      $user->email = $request->email;
      $user->password = Hash::make($password);
-     $user->level = 0;
+     $user->quyen = 0;
+     $user->gioi_tinh = $request->gioi_tinh;
+     $user->so_dien_thoai = $request->so_dien_thoai;
+     $user->ngay_sinh = $request->ngay_sinh;
 
      $user->save();
-     $ThongTinUser->save();
      return redirect('shop')->with('thongbao','Thành Công');
    }
  }
@@ -123,17 +118,17 @@ class PageControllers extends Controller
 
   if(Auth::attempt($user_data))
   {
-    return redirect('index')->with('login',"Đăng nhập thành công");
+    return redirect('shop')->with('login',"Đăng nhập thành công");
   }
   else
   {
-    return redirect('index')->with('errorLogin', 'Sai email hoặc mật khẩu. Vui lòng kiểm tra lại thông tin nhập.');
+    return redirect('shop')->with('errorLogin', 'Sai email hoặc mật khẩu. Vui lòng kiểm tra lại thông tin nhập.');
   }
 }
 public function Logout()
 {
  Auth::logout();
- return redirect('index');
+ return redirect('shop');
 }
 
 public function news_tpl()
@@ -141,10 +136,10 @@ public function news_tpl()
   return view('layouts.pages.news_tpl');
 }
 
-public function news_detail_tpl($id)
+public function news_detail_tpl($ten_khong_dau)
 {
-  $tintuc = TinTuc::find($id);
-  return view('layouts.pages.news_detail_tpl',['tintuc'=>$tintuc]);
+  $tintuc = DB::table('tin_tuc')->where('ten_khong_dau',$ten_khong_dau)->first();
+  return view('layouts.pages.news_detail_tpl',['news_detail'=>$tintuc]);
 }
 
 public function product_detail_tpl($ma_san_pham)

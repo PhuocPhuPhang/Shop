@@ -193,7 +193,7 @@ Route::group(['prefix'=>'shop'],function(){
 
     //Tin Tức
     Route::get('tin-tuc','PageControllers@news_tpl');
-    Route::get('tin-tuc/{id}','PageControllers@news_detail_tpl');
+    Route::get('tin-tuc/{ten_khong_dau}','PageControllers@news_detail_tpl');
 
     //Sản phẩm
     Route::get('san-pham','PageControllers@product_tpl');
