@@ -142,10 +142,10 @@
 				</div>
 				@endif
 				<div class="right_top_mxh flex-between-center">
-                @foreach($social as $xh)
+					@foreach($social as $xh)
 					<a href="{{$xh->link}}" target="_blank"><img src="../upload/social/{{$xh->hinh_anh}}" alt="{{$xh->ten}}"></a>
-                @endforeach
-                </div>
+					@endforeach
+				</div>
 			</div>
 		</div>
 	</section>
@@ -155,19 +155,22 @@
 				<a href=""><img class="img-responsive" src="images/logo.png" alt=""></a>
 			</div>
 			<div class="search_haed ">
-				<div class="timkiem flex-between-center">
-					<select id="sel_list">
-						<option value="">Tất cả</option>
-						@foreach($nhacungcap as $ncc)
+				<form id="" action="" method="post">
+					<div class="timkiem flex-between-center">
+						<select id="sel_list">
+							<option value="">Tất cả</option>
+							@foreach($nhacungcap as $ncc)
 							<option value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
-						@endforeach
-					</select>
-					<input class="tu_khoa" name="timkiem" id="name_tk" type="text" placeholder="Tìm sản phẩm của bạn..." onkeypress="return doEnter(event)">
+							@endforeach
+						</select>
+						<input class="tu_khoa" name="timkiem" id="name_tk" type="text" placeholder="Tìm sản phẩm của bạn..." onkeypress="return doEnter(event)"/>
 
-					<input type="button" onclick="return do_search();" value="TÌM KIẾM">
-					<div class="auto_search"></div>
-					<div class="clearfix"></div>
-				</div>
+						<input type="button" onclick="return do_search();" value="TÌM KIẾM"/>
+
+						<div class="auto_search"></div>
+						<div class="clearfix"></div>
+					</div>
+				</form>
 			</div>
 			<div class="r_head flex-between-center">
 				<div class="email_pc">

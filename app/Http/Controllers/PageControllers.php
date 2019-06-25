@@ -13,6 +13,7 @@ use App\NhaCungCap;
 use App\User;
 use App\SanPham;
 use App\HoaDon;
+use App\ChiTietHoaDon;
 use Session;
 use DB;
 use Cart;
@@ -220,8 +221,7 @@ public function RemoveCart($id)
   return back();
 }
 
-
-public function UpdateCart1(Request $request)
+public function PlusCart(Request $request)
 {
  Cart::update($request->id, array(
    'quantity' => 1,
@@ -233,20 +233,44 @@ public function UpdateCart1(Request $request)
 ]);
 }
 
+public function MinusCart(Request $request)
+{
+ Cart::update($request->id, array(
+   'quantity' => -1,
+ ));
+ return response()->json([
+  'data' => [
+    'success' => true,
+  ]
+]);
+}
+
 public function createCart(Request $request)
 {
-  // dd($request->all());
-  // dd(Cart::getContent());
+  $user = Auth::user();;
+  if ($user == false) {
+    return redirect('shop/cart_tpl')->with('notUser','Đăng nhập trước khi đặt hàng');
+  }else{
+    $orders_detail = Cart::getContent();
 
   $order = new HoaDon;
-  $order->ma_hoa_don = 'HD01';
+  $order->ma_hoa_don = "HD". rand(00000000,99999999);
   $order->ma_nguoi_dung = auth()->user()->email;
   $order->ten_nguoi_nhan = $request->ten;
   $order->so_dien_thoai = $request->dienthoai;
   $order->dia_chi = $request->diachi;
   $order->save();
 
-  return redirect('shop/cart_tpl');
+  foreach ($orders_detail as $or_detail) {
+    $order_de = new ChiTietHoaDon;
+    $order_de->ma_hoa_don = $order->ma_hoa_don;
+    $order_de->ma_san_pham = $or_detail->id;
+    $order_de->so_luong = $or_detail->quantity;
+    $order_de->save();
+  }
+  Cart::clear();
+  return redirect('shop');
+  }
 }
 
 }
