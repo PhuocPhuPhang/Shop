@@ -61,7 +61,7 @@
         </table>
         </div>
     @if( $route->uri != 'admin/user/nhanvien')
-    <button>Xuất file</button>
+    <a href="export/excel" class="btn btn-success">Xuất File Excel </a>
     @endif
     </div>
     </div>

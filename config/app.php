@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //Login Socialite
         Laravel\Socialite\SocialiteServiceProvider::class,
+        //Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -229,7 +231,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //Socialite
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-         'Cart' => Darryldecode\Cart\Facades\CartFacade::class
+         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        //Execl
+         'Excel' => Maatwebsite\Excel\Facades\Excel::class
     ],
 
 ];

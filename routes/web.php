@@ -155,6 +155,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('sua/{id}','UsersController@postSua');
 
         Route::get('xoa/{id}','UsersController@postXoa');
+
+        Route::get('export/excel','UsersController@getExport');
     });
 
     Route::group(['prefix'=>'ajax'],function(){

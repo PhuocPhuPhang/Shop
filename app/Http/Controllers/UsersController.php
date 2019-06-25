@@ -7,6 +7,7 @@ use App\User;
 use Validator;
 use Route;
 use DB;
+use Excel;
 use Laravel\Socialite\One\User as LaravelUser;
 
 class UsersController extends Controller
@@ -87,5 +88,29 @@ class UsersController extends Controller
 
         $user->save();
         return redirect('admin/user/sua/'.$id)->with('thongbao',"Cập nhật thành công");
+    }
+
+    public function getExport()
+    {
+        $kh_data = DB::table('users')->where('quyen','0')->get()->toArray();
+        $kh_array[] = array('STT', 'Họ tên', 'Ngày sinh', 'Số điện thoại', 'Email','Địa chỉ');
+        $i = 1;
+        foreach($kh_data as $kh)
+        {
+            $kh_array[] = array(
+                'STT' => $i++,
+                'Họ tên' => $kh->ten,
+                'Ngày sinh' => $kh->ngay_sinh,
+                'Số điện thoại' => $kh->so_dien_thoai,
+                'Email' => $kh->email,
+                'Địa chỉ' => $kh->dia_chi
+            );
+        }
+        Excel::create('Danh sách khách hàng',function($excel) use ($kh_array){
+            $excel->setTitle('Danh sách khách hàng');
+            $excel->sheet('Customer Data', function($sheet) use ($kh_array){
+                $sheet->fromArray($kh_array, null, 'A1', false, false);
+               });
+        })->download('xlxs');
     }
 }
