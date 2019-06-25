@@ -64,7 +64,7 @@
                     <textarea id="mota"  class="form-control" name="mota"></textarea><br />
 
                     <label>Nổi bật &nbsp;&nbsp;</label>
-                    <input type="checkbox" class="flat" name="noibat" value="1" ><br/><br/>
+                    <input type="checkbox" class="flat" id="noibat" name="noibat" value="1" ><br/><br/>
 
                     <label>Keywords</label>
                     <textarea id="keywords"  class="form-control" name="keywords"></textarea><br />
@@ -101,7 +101,7 @@
                     @foreach($cauhinh as $ch)
                         @if($ch->id_loai == $loai->id)
                         <label>{{$ch->cau_hinh}}</label>
-                        <input type="text"  class="form-control" name="{{$ch->ten_khong_dau}}" /><br />
+                        <input type="text" id="{{$ch->ten_khong_dau}}" class="form-control" name="{{$ch->ten_khong_dau}}" /><br />
                         @endif
                     @endforeach
                 </div>
@@ -213,7 +213,7 @@
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}":{
                          var html = `<label>${cauhinh}</label>
-                                    <input type="text"  class="form-control" name="${tenkhongdau}" /><br />`;
+                                    <input type="text" id="${tenkhongdau}"  class="form-control" name="${tenkhongdau}" /><br />`;
                         $('#{{str_slug($loai->ten)}}').append(html);
                     }break;
                     @endforeach
@@ -228,7 +228,7 @@
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}":{
                          var html = `<label>${cauhinh_new}</label>
-                                    <input type="text"  class="form-control" name="${tenkhongdau_new}" /><br />`;
+                        <input type="text" id="${tenkhongdau_new}" class="form-control" name="${tenkhongdau_new}" /><br />`;
                         $('#{{str_slug($loai->ten)}}').append(html);
                     }break;
                     @endforeach
@@ -248,19 +248,19 @@
 
         $("#themsp").submit(function(event){
             event.preventDefault();
-            var name = new Array();
-            var value = new Array();
-            $(':input[type="text"]').each(function(key,item){
+            var array = new Array();
+            $(':input[type="text"]').each(function(key,value,array){
                 // name.push($(this).attr('name'));
                 // value.push($(this).attr('value'));
-                console.log($(this).attr('value'));
-                console.log($(this).attr('name'));
+                key = $(this).attr('name');
+                value = document.getElementById(key).value;
             });
+            console.log(array);
             $.ajax({
                     type:'POST',
-                    url: 'them',
+                    url: '../ajax/sanpham/them',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                    contentType: "application/json"
+                    contentType: "application/json",
                 })
 
         });

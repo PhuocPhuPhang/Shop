@@ -24,19 +24,19 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>STT</th>
-             <th>Tên</th>
-             <th>Hình ảnh</th>
+             <th style="text-align:center">STT</th>
+             <th style="text-align:center">Tên</th>
+             <th style="text-align:center">Hình ảnh</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
              @foreach($slide as $sl)
            <tr>
-             <td>{{ $sl->thu_tu}}</td>
-             <td>{{ $sl->ten }}</td>
-             <td>
-                 <img src="../../upload/slide/{{$sl->hinh_anh}}" alt="Hình ảnh" width="300px">
+             <td style="vertical-align: middle;text-align:center">{{ $sl->thu_tu}}</td>
+             <td style="vertical-align: middle;text-align:center">{{ $sl->ten }}</td>
+             <td style="text-align:center">
+                 <img src="../../upload/slide/{{$sl->hinh_anh}}" alt="Hình ảnh" width="150px" height="100px">
             </td>
              <td style="text-align:center;vertical-align:middle;">
                 <a href="../slide/sua/{{$sl->id}}" class="btn btn-info btn-xs">

@@ -24,18 +24,18 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>STT</th>
-             <th>Tên</th>
-             <th>Hình ảnh</th>
+             <th style="text-align:center;width:10%">STT</th>
+             <th style="text-align:center">Tên</th>
+             <th style="text-align:center">Hình ảnh</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
              @foreach($social as $xh)
            <tr>
-             <td>{{ $xh->thu_tu}}</td>
-             <td>{{ $xh->ten }}</td>
-             <td>
+             <td style="vertical-align: middle;text-align:center">{{ $xh->thu_tu}}</td>
+             <td style="vertical-align: middle;text-align:center">{{ $xh->ten }}</td>
+             <td style="text-align:center">
                  <img src="../../upload/social/{{$xh->hinh_anh}}" alt="Hình ảnh" width="30px">
             </td>
              <td style="text-align:center;vertical-align:middle;">

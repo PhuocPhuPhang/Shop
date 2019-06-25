@@ -7,6 +7,7 @@ use DB;
 use App\TinTuc;
 use App\User;
 use App\CauHinhSanPham;
+use Json;
 
 class AjaxController extends Controller
 {
@@ -48,5 +49,11 @@ class AjaxController extends Controller
               'success' => $user->save(),
             ]
           ]);
+    }
+
+    public function postSanPham(Request $request)
+    {
+        $data = json_decode($request->all());
+        dd($data);
     }
 }

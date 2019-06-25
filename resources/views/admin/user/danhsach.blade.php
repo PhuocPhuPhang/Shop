@@ -26,18 +26,19 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>STT</th>
-             <th>Tên</th>
-             <th>Email</th>
-             <th>Số điện thoại</th>
-             <th>Địa chỉ</th>
+             <th style="text-align:center">STT</th>
+             <th style="text-align:center">Tên</th>
+             <th style="text-align:center">Email</th>
+             <th style="text-align:center">Số điện thoại</th>
+             <th style="text-align:center">Địa chỉ</th>
             <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
+             <?php $i = 1 ?>
             @foreach($user as $ng)
            <tr>
-             <td>{{ $ng->id }}</td>
+             <td style="text-align:center">{{$i++}}</td>
              <td>{{ $ng->ten }}</td>
              <td>{{ $ng->email }}</td>
              <td>{{ $ng->so_dien_thoai }}</td>
@@ -59,6 +60,9 @@
         </tbody>
         </table>
         </div>
+    @if( $route->uri != 'admin/user/nhanvien')
+    <button>Xuất file</button>
+    @endif
     </div>
     </div>
 </div>

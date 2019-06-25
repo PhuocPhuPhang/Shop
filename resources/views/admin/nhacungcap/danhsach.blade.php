@@ -23,6 +23,7 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
+             <th>STT</th>
              <th>Mã nhà cung cấp</th>
              <th>Tên nhà cung cấp</th>
              <th>Số điện thoại</th>
@@ -31,8 +32,10 @@
            </tr>
          </thead>
          <tbody>
+             <?php $i = 1 ?>
              @foreach($nhacungcap as $ncc)
            <tr>
+             <td>{{$i++}}</td>
              <td>{{ $ncc->ma_nha_cung_cap }}</td>
              <td>{{ $ncc->ten_nha_cung_cap }}</td>
              <td>{{ $ncc->so_dien_thoai }}</td>

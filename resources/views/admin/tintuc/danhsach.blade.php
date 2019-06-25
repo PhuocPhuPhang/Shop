@@ -32,9 +32,10 @@
            </tr>
          </thead>
          <tbody>
+        <?php $i = 1 ?>
          @foreach($tintuc as $tin)
            <tr>
-             <td>{{$tin->id}}</td>
+             <td>{{$i++}}</td>
              <td>{{$tin->title}}</td>
              <td>{{$tin->mo_ta}}</td>
              <td style="text-align:center">

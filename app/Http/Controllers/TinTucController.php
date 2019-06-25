@@ -159,11 +159,21 @@ class TinTucController extends Controller
             'title.min'  =>  'Tiêu đề tin tức phải có ít nhất 3 ký tự',
             'noidung.required'  =>  'Bạn chưa nhập nội dung cho tin tức',
         ]);
-
-        DB::table('tin_tuc')->where('type','gioi-thieu')
+        $tontai = DB::table('tin_tuc')->where('type','gioi-thieu')->count();
+        if($tontai != 0)
+        {
+            DB::table('tin_tuc')->where('type','gioi-thieu')
             ->update(['title'=>$request->title,
                       'mo_ta'=>$request->mota,
                       'noi_dung'=>$request->noidung]);
+        }
+        else
+        {
+            DB::table('tin_tuc')->insert(['title'=>$request->title,
+                      'mo_ta'=>$request->mota,
+                      'noi_dung'=>$request->noidung,
+                      'type'=>"gioi-thieu"]);
+        }
 
         return redirect('admin/tintuc/gioithieu')->with('thongbao','Cập nhật thành công');
     }

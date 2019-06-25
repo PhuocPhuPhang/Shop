@@ -24,19 +24,18 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>STT</th>
-             <th>Title</th>
-             <th>Mô tả</th>
+             <th style="text-align:center;width:10%">STT</th>
+             <th style="text-align:center">Title</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
+        <?php $i = 1 ?>
          @foreach($chinhsach as $cs)
            <tr>
-             <td>{{$cs->id}}</td>
+             <td style="text-align:center">{{$i++}}</td>
              <td>{{$cs->title}}</td>
-             <td>{{$cs->mo_ta}}</td>
-             <td style="width:200px">
+             <td style="width:200px;text-align:center">
                 <a href="../tintuc/chinhsach/sua/{{$cs->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>

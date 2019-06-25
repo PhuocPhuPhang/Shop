@@ -29,19 +29,26 @@
                     {{ session('thongbao') }}
                 </div>
             @endif
-            @if($gt != null)
+
             <form id="demo-form" action="{{ url('admin/tintuc/gioithieu') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
                 <label>Tiêu đề</label>
-                <input type="text" id="title" class="form-control" name="title" value="{{$gt->title}}" /><br />
+                <input type="text" id="title" class="form-control" name="title" @if ($gt != null) value="{{$gt->title}}" @endif /><br />
 
+                @if ($gt != null)
                 <label>Mô tả</label>
                 <textarea id="mota"  class="form-control" name="mota" style="height:100px">{{$gt->mo_ta}}</textarea><br />
+                @else
+                <label>Mô tả</label>
+                <textarea id="mota"  class="form-control" name="mota" style="height:100px"></textarea><br />
+                @endif
 
                 <label>Nội dung</label>
-                <textarea id="noidung" class="form-gruop ckeditor" name="noidung"  >{{$gt->noi_dung}}</textarea>
+                <textarea id="noidung" class="form-gruop ckeditor" name="noidung"  >
+                @if ($gt != null){{$gt->noi_dung}}@endif
+                </textarea>
 
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
@@ -54,7 +61,7 @@
                     </div>
                 </div>
             </form>
-            @endif
+
             </div>
         </div>
         </div>
