@@ -23,7 +23,8 @@
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
         <div class="menu_section">
         <ul class="nav side-menu">
-            <li><a href="{{url('admin/nhacungcap/danhsach')}}"><i class="fa fa-university"></i> Nhà Cung Cấp</a></li>
+            <li><a href="{{url('admin/index')}}"><i class="fa fa-home"></i>Trang chủ</a></li>
+            <li><a href="{{url('admin/nhacungcap/danhsach')}}"><i class="fa fa-industry"></i>Nhà Cung Cấp</a></li>
 
             <li><a><i class="fa fa-newspaper-o"></i>Bài Viết<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">

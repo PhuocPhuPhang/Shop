@@ -14,7 +14,6 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Collection;
-use Json;
 
 
 class SanPhamController extends Controller
@@ -51,7 +50,7 @@ class SanPhamController extends Controller
                  ,$loaicauhinh,['khuyenmai'=>$khuyenmai],['dsCauHinh'=>$dsCauHinh]);
     }
 
-    public function postThem(Request $request)
+    public function postThem()
     {
         // $this->validate($request,[
         //     'ma'        => 'required|min:3|max:255',
@@ -133,8 +132,19 @@ class SanPhamController extends Controller
 
         //Thêm thông tin cấu hình sản phẩm
         // $input = $request->mang;
-        $data = json_decode($request->all());
-        dd($data);
+
+       $mang = $_REQUEST;
+      foreach($mang as $key => $value)
+      {
+        var_dump($value);
+        // foreach($value as $key1 => $value1)
+        // {
+        //    foreach($value1 as $key2 => $value2)
+        //    {
+        //         var_dump($value2);
+        //    }
+        // }
+      }
         // $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
         // foreach($input as $key => $value)
         // {
@@ -155,6 +165,7 @@ class SanPhamController extends Controller
         //    }
         // }
         // return redirect('admin/sanpham/them')->with('thongbao','Thêm sản phẩm thành công');
+
     }
 
     public function getSua()

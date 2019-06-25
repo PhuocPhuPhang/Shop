@@ -16,7 +16,7 @@
             {{ session('thongbao') }}
         </div>
     @endif
-    <form id="themsp"  enctype="multipart/form-data">
+    <form id="themsp" method="post" enctype="multipart/form-data">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -248,21 +248,26 @@
 
         $("#themsp").submit(function(event){
             event.preventDefault();
-            var array = new Array();
-            $(':input[type="text"]').each(function(key,value,array){
-                // name.push($(this).attr('name'));
-                // value.push($(this).attr('value'));
-                key = $(this).attr('name');
-                value = document.getElementById(key).value;
-            });
-            console.log(array);
-            $.ajax({
-                    type:'POST',
-                    url: '../ajax/sanpham/them',
-                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                    contentType: "application/json",
-                })
+            var array = [];
+            $(':input[type="text"]').each(function(index, input){
+                // let arr = {};
+                let name, value;
+                name = $(input).attr('name');
+                value = $(input).val();
+          let  arr = [
+            'name' => name,
+                'value' => value,
+          ];
 
+
+                array.push(arr);
+            });
+            $.ajax({
+                    type:'post',
+                    url: 'them',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
+                    data:{a:array},
+                })
         });
 
     function string_to_slug (str) {

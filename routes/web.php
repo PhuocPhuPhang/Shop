@@ -3,11 +3,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\TinTucController;
-use App\Http\Controllers\LoaiTinTucController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\CauHinhSanPhamController;
-
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 // use Illuminate\Routing\RouteRegistrar;
 
 /*
@@ -156,7 +156,9 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{id}','UsersController@postXoa');
 
-        Route::get('export/excel','UsersController@getExport');
+        Route::get('/download',function(){
+            return Excel::download(new UsersExport,'DanhSach.xlsx');
+        });
     });
 
     Route::group(['prefix'=>'ajax'],function(){
@@ -174,6 +176,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('thongtin','WebsiteController@getCauHinhWebSite');
         Route::post('thongtin','WebsiteController@postCauHinhWebSite');
     });
+
 });
 
 // User
