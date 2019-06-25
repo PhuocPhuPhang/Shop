@@ -246,23 +246,12 @@
 
         });
 
-        $("#themsp").submit(function(event){
-            event.preventDefault();
-            var name = new Array();
-            var value = new Array();
-            $(':input[type="text"]').each(function(key,item){
-                // name.push($(this).attr('name'));
-                // value.push($(this).attr('value'));
-                console.log($(this).attr('value'));
-                console.log($(this).attr('name'));
+        $("#themsp").submit(function(){
+          var mang = new Array();
+            $(':input[name][type="text"]').each(function(){
+                mang.push($(this).attr('name'));
             });
-            $.ajax({
-                    type:'POST',
-                    url: 'them',
-                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                    contentType: "application/json"
-                })
-
+            alert(mang);
         });
 
     function string_to_slug (str) {

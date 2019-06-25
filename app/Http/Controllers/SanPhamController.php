@@ -132,8 +132,9 @@ class SanPhamController extends Controller
 
 
         //Thêm thông tin cấu hình sản phẩm
-        $input = $request->mang;
-        dd(1);
+        // $input = $request->mang;
+        $data = json_decode($request->all());
+        dd($data);
         // $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
         // foreach($input as $key => $value)
         // {
@@ -154,6 +155,11 @@ class SanPhamController extends Controller
         //    }
         // }
         // return redirect('admin/sanpham/them')->with('thongbao','Thêm sản phẩm thành công');
+    }
+
+    public function getSua()
+    {
+        return view('admin.sanpham.sua');
     }
 }
 

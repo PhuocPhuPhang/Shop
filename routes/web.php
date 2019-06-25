@@ -112,7 +112,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('them','SanPhamController@getThem');
         Route::post('them','SanPhamController@postThem');
 
-        Route::get('sua/{masp}','SanPhamController@getSua');
+        Route::get('sua','SanPhamController@getSua');
         Route::post('sua/{masp}','SanPhamController@postSua');
 
         Route::get('xoa/{masp}','SanPhamController@postXoa');
