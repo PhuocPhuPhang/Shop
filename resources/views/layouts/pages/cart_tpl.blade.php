@@ -25,9 +25,9 @@
 							<div id="unit" class="cart-items__unit">Giá sản phẩm: {{number_format($dt->price)}}<sup>đ</sup></div>
 							<div class="cart-items__quantity">
 								<input type="hidden" value="{{$dt->id}}" id="rowID{{$dt->id}}">
-								<span class="amount amount-minus" data-action="minus"></span>
+								<span id="minus{{$dt->id}}" class="amount amount-minus" data-action="minus"></span>
 								<input type="text" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
-								<span class="amount amount-plus" data-action="plus"></span>
+								<span id="plus{{$dt->id}}" class="amount amount-plus" data-action="pluss"></span>
 							</div>
 							<span class="cart-items__price">Tổng giá:</span>
 							<div id="price-" class="cart-items__price">{{number_format($dt->price * $dt->quantity)}}<sup>đ</sup></div>
@@ -46,7 +46,7 @@
 						<div>
 							<div class="payment-method">
 								<div class="payment-method__header">
-									<input type="radio" class="input-radio active" name="phuongthuc" value="Thanh toán tại cửa hàng"/>
+									<input type="radio" class="input-radio active" name="phuongthuc" value="Thanh toán tại cửa hàng" <?php echo 'checked'; ?>/>
 									<span>Thanh toán tại cửa hàng</span>
 								</div>
 								<div class="payment-method__body clearfix active">Nội dung thanh toán tại cửa hàng</div>
@@ -68,27 +68,50 @@
 			</div>
 		</div>
 	</form>
+	@if(session('notUser'))
+	<script>
+		alert('Đăng nhập trước khi đặt hàng');
+	</script>
+	@endif
 </div>
 @endsection
 @section('script')
 <script>
-	$(document).ready(function(){
-		@foreach($data as $dt)
-		$("#upCart{{$dt->id}}").on('change keyup', function(){
-			var newQty = $("#upCart{{$dt->id}}").val();
-			var id =  $("#rowID{{$dt->id}}").val();
+	@foreach($data as $dt)
+	$( "#minus{{$dt->id}}" ).click(function() {
+		var newQty = $("#upCart{{$dt->id}}").val();
+		var id =  $("#rowID{{$dt->id}}").val();
+		if(newQty <= 1){
+			return false;
+		}else{
 			$.ajax({
 				type:'POST',
-				url: 'cart/update1',
+				url: 'shop/cart/minus',
 				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
 				data:{"id":id},
 				success: function(data){
 					location.reload();
 				}
 			})
-		});
-		@endforeach
+		}
 	});
+	@endforeach
+	@foreach($data as $dt)
+	$( "#plus{{$dt->id}}" ).click(function() {
+		var newQty = $("#upCart{{$dt->id}}").val();
+		var id =  $("#rowID{{$dt->id}}").val();
+		
+		$.ajax({
+			type:'POST',
+			url: 'shop/cart/plus',
+			headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+			data:{"id":id},
+			success: function(data){
+				location.reload();
+			}
+		})
+	});
+	@endforeach
 </script>
 @endsection
 

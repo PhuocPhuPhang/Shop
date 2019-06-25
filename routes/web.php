@@ -210,7 +210,8 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
     Route::get('add_to_cart/{id}','PageControllers@AddtoCart');
     Route::get('cart/remove/{id}','PageControllers@RemoveCart');
-    Route::post('cart/update1/','PageControllers@UpdateCart1');
+    Route::post('cart/plus','PageControllers@PlusCart');
+    Route::post('cart/minus','PageControllers@MinusCart');
 });
 
 
