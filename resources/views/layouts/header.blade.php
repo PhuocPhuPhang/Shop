@@ -1,7 +1,4 @@
-
 <nav id="mmenu" class="invi_load">
-
-
 	<ul>
 		<li><a href="shop" title="">Trang chủ</a></li>
 		<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
@@ -46,7 +43,7 @@
 									<label class="title_sign_up_main">Tạo tài khoản</label>
 								</div>
 							</div>
-							<form id="frmSignUp" action="{{ URL('/index') }}" method="POST" role="form" class="sign_up_block">
+							<form id="frmSignUp" action="{{ URL('/shop/register') }}" method="POST" role="form" class="sign_up_block">
 								<div class="login-row">
 									<label>Họ tên</label>
 									<input type="text" name="ten" placeholder="Họ tên">
@@ -110,7 +107,7 @@
 								alert('Đăng Nhập Thành Công')
 							</script>
 							@endif
-							<form id="frmLogin" action="{{ url('/index/login') }}" method="POST" class="login_block">
+							<form id="frmLogin" action="{{ url('/shop/login') }}" method="POST" class="login_block">
 								<div class="login-row">
 									<label>Email</label>
 									<input type="text" name="email" placeholder="Email của bạn" required>
@@ -141,7 +138,7 @@
 				<div class="right_top_logout flex-between-center">
 					<a href="" class="logout">{{Auth::user()->email}}</a>
 					<div class="line_login"></div>
-					<a href="{{url('index/logout')}}" class="logout">Đăng xuất</a>
+					<a href="{{url('shop/logout')}}" class="logout">Đăng xuất</a>
 				</div>
 				@endif
 				<div class="right_top_mxh flex-between-center">
@@ -161,10 +158,9 @@
 				<div class="timkiem flex-between-center">
 					<select id="sel_list">
 						<option value="">Tất cả</option>
-						<option value="">Apple</option>
-						<option value="">Samsung</option>
-						<option value="">Oppo</option>
-						<option value="">Hawue</option>
+						@foreach($nhacungcap as $ncc)
+							<option value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
+						@endforeach
 					</select>
 					<input class="tu_khoa" name="timkiem" id="name_tk" type="text" placeholder="Tìm sản phẩm của bạn..." onkeypress="return doEnter(event)">
 
@@ -182,17 +178,16 @@
 					<p class="r1">HOTLINE</p>
 					<p class="r2">{{$website->hotline}}</p>
 				</div>
-				@if(Session::has('cart'))
-				<a href="gio-hang.html" class="link_cart" title="Giỏ hàng">
+				<a href="shop/cart_tpl" class="link_cart" title="Giỏ hàng">
 					<div class="cart_pc flex-between-center">
-						<span class="qty_cart">@if(Session::has('cart')){{Session('cart')->totalQty}} @else 0 @endif</span>
+						<span class="qty_cart">{{Cart::getTotalQuantity()}}</span>
 						<div class="txt">
 							<p class="r1">Giỏ hàng</p>
 							<p class="r2">Xem ngay</p>
 
-							<div class="giohang_index_wrap">
+							<!-- <div class="giohang_index_wrap">
 
-								@foreach($product_cart as $product)
+								{{--@foreach($product_cart as $product)
 								<div class="giohang_main">
 									<img src="upload/sanpham/{{$product['item']['hinh_anh']}}">
 									<div class="giohang_info_index">
@@ -200,7 +195,7 @@
 										<div class="giohang_calc">{{$product['qty']}} * {{$product['item']['gia_ban']}}</div>
 									</div>
 								</div>
-								@endforeach
+								@endforeach--}}
 
 								<div class="giohang_main">
 									<img src="{{asset('themes/images/sp.jpg')}}">
@@ -209,14 +204,13 @@
 										<div class="giohang_calc">Số lượng * giá</div>
 									</div>
 								</div>
-								<div class="totalPrice_index">Tổng tiền: {{Session('cart')->totalPrice}}</div>
+								<div class="totalPrice_index">Tổng tiền: </div>
 								<div class="thanhtoan_index_wrap"><a href="" class="thanhtoan_index">Đặt hàng</a></div>
-							</div>
+							</div> -->
 
 						</div>
 					</div>
 				</a>
-				@endif
 			</div>
 		</div>
 	</section>

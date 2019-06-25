@@ -2,7 +2,7 @@
 @section('content')
 
 <div id="layout_cart" class="container padding-inner">
-	<form id="frmPay" action="gio-hang" method="post" accept-charset="utf-8">
+	<form id="frmPay" action="{{URL ('createCart')}}" method="post" accept-charset="utf-8">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 		<div class="cart-layout cart_repon">
 			<div class="cart-layout__col">
@@ -11,19 +11,10 @@
 				<input class="form-control" type="text" name="email" placeholder="Email" required>
 				<input class="form-control" type="text" name="dienthoai" placeholder="Số điện thoại" required>
 				<textarea class="form-control" name="diachi" placeholder="Địa chỉ" rows="5" required></textarea>
-				<select id="id_city" name="id_city" data-level="0" data-table="table_place_dist" data-child="id_dist" class="select_tinhthanh custom-select form-control" required>
-					<option value="0">Tỉnh thành</option>
-					<option value="">Thành phố HCM</option>
-				</select>
-				<select id="id_dist" name="id_dist" data-level="1" data-table="table_place_ward" data-child="id_ward" class="select_tinhthanh custom-select form-control" required>
-					<option value="0">Quận huyện</option>
-					<option value="">Quận 1</option>
-				</select>
 			</div>
 			<div class="cart-layout__col">
 				<div class="cart-layout__header">Đơn hàng ({{Cart::getTotalQuantity()}} sản phẩm)</div>
 				<div class="cart-layout__body">
-					{{$data}}
 					@foreach($data as $dt)
 					<div class="cart-items">
 						<a class="cart-items__image w-img" href="">
@@ -70,7 +61,7 @@
 						</div>
 					</div>
 					<div class="cart-layout__button">
-						<a href="san-pham" title="Tiếp tục mua hàng">Tiếp tục mua hàng</a>
+						<a href="shop/san-pham" title="Tiếp tục mua hàng">Tiếp tục mua hàng</a>
 						<button type="submit">Đặt hàng</button>
 					</div>
 				</div>

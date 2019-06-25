@@ -65,20 +65,21 @@
 		</div>
 		<div class="main_content">
 			<div class="wrap_name">
-				<div class="name"><h1>Sản phẩm nổi bật</h1></div>
+				<div class="name"><h1>Sản phẩm</h1></div>
 			</div>
 			<div class="main_list_product">
+				@foreach($product as $sp)
 				<div class="sanpham">
 					<div class="img">
-						<a href="product_detail_tpl" title="">
-							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
+						<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
+							<img src="upload/sanpham/{{$sp->hinh_anh}}" alt="{{$sp->ten_san_pham}}">
 						</a>
 						<div class="sale_off">Giảm giá -10%</div>
 					</div>
 					<div class="pro_info">
-						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
+						<a class="name" href="shop/san-pham/{{$sp->ma_san_pham}}">{{$sp->ten_san_pham}}</a>
 						<div class="wrap_price flex-between">
-							<div class="price">Giá: <span>7,000,000 Đ</span></div>
+							<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
 							<div class="price_old">10,000,000 Đ</div>
 						</div>
 						<div class="pro_info-info">
@@ -91,144 +92,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="sanpham">
-					<div class="img">
-						<a href="product_detail_tpl" title="">
-							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
-						</a>
-						<div class="sale_off">Giảm giá -10%</div>
-					</div>
-					<div class="pro_info">
-						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
-						<div class="wrap_price flex-between">
-							<div class="price">Giá: <span>7,000,000 Đ</span></div>
-							<div class="price_old">10,000,000 Đ</div>
-						</div>
-						<div class="pro_info-info">
-							<span>Màn hình: 5.8", Super Retina</span>
-							<span>HĐH: iOS 12</span>
-							<span>CPU: Apple A11 Bionic 6 nhân</span>
-							<span>RAM: 3 GB, ROM: 256 GB</span>
-							<span>Camera: Chính 12 MP & Phụ 12 MP, Selfie: 7 MP</span>
-							<span>PIN: 2716 mAh</span>
-						</div>
-					</div>
-				</div>
-				<div class="sanpham">
-					<div class="img">
-						<a href="product_detail_tpl" title="">
-							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
-						</a>
-						<div class="sale_off">Giảm giá -10%</div>
-					</div>
-					<div class="pro_info">
-						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
-						<div class="wrap_price flex-between">
-							<div class="price">Giá: <span>7,000,000 Đ</span></div>
-							<div class="price_old">10,000,000 Đ</div>
-						</div>
-						<div class="pro_info-info">
-							<span>Màn hình: 5.8", Super Retina</span>
-							<span>HĐH: iOS 12</span>
-							<span>CPU: Apple A11 Bionic 6 nhân</span>
-							<span>RAM: 3 GB, ROM: 256 GB</span>
-							<span>Camera: Chính 12 MP & Phụ 12 MP, Selfie: 7 MP</span>
-							<span>PIN: 2716 mAh</span>
-						</div>
-					</div>
-				</div>
-				<div class="sanpham">
-					<div class="img">
-						<a href="product_detail_tpl" title="">
-							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
-						</a>
-						<div class="sale_off">Giảm giá -10%</div>
-					</div>
-					<div class="pro_info">
-						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
-						<div class="wrap_price flex-between">
-							<div class="price">Giá: <span>7,000,000 Đ</span></div>
-							<div class="price_old">10,000,000 Đ</div>
-						</div>
-						<div class="pro_info-info">
-							<span>Màn hình: 5.8", Super Retina</span>
-							<span>HĐH: iOS 12</span>
-							<span>CPU: Apple A11 Bionic 6 nhân</span>
-							<span>RAM: 3 GB, ROM: 256 GB</span>
-							<span>Camera: Chính 12 MP & Phụ 12 MP, Selfie: 7 MP</span>
-							<span>PIN: 2716 mAh</span>
-						</div>
-					</div>
-				</div>
-				<div class="sanpham">
-					<div class="img">
-						<a href="product_detail_tpl" title="">
-							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
-						</a>
-						<div class="sale_off">Giảm giá -10%</div>
-					</div>
-					<div class="pro_info">
-						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
-						<div class="wrap_price flex-between">
-							<div class="price">Giá: <span>7,000,000 Đ</span></div>
-							<div class="price_old">10,000,000 Đ</div>
-						</div>
-						<div class="pro_info-info">
-							<span>Màn hình: 5.8", Super Retina</span>
-							<span>HĐH: iOS 12</span>
-							<span>CPU: Apple A11 Bionic 6 nhân</span>
-							<span>RAM: 3 GB, ROM: 256 GB</span>
-							<span>Camera: Chính 12 MP & Phụ 12 MP, Selfie: 7 MP</span>
-							<span>PIN: 2716 mAh</span>
-						</div>
-					</div>
-				</div>
-				<div class="sanpham">
-					<div class="img">
-						<a href="product_detail_tpl" title="">
-							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
-						</a>
-						<div class="sale_off">Giảm giá -10%</div>
-					</div>
-					<div class="pro_info">
-						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
-						<div class="wrap_price flex-between">
-							<div class="price">Giá: <span>7,000,000 Đ</span></div>
-							<div class="price_old">10,000,000 Đ</div>
-						</div>
-						<div class="pro_info-info">
-							<span>Màn hình: 5.8", Super Retina</span>
-							<span>HĐH: iOS 12</span>
-							<span>CPU: Apple A11 Bionic 6 nhân</span>
-							<span>RAM: 3 GB, ROM: 256 GB</span>
-							<span>Camera: Chính 12 MP & Phụ 12 MP, Selfie: 7 MP</span>
-							<span>PIN: 2716 mAh</span>
-						</div>
-					</div>
-				</div>
-				<div class="sanpham">
-					<div class="img">
-						<a href="product_detail_tpl" title="">
-							<img class="" src="{{asset('themes/images/sp.jpg')}}" alt="">
-						</a>
-						<div class="sale_off">Giảm giá -10%</div>
-					</div>
-					<div class="pro_info">
-						<a class="name" href="product_detail_tpl">Tên Sản Phẩm</a>
-						<div class="wrap_price flex-between">
-							<div class="price">Giá: <span>7,000,000 Đ</span></div>
-							<div class="price_old">10,000,000 Đ</div>
-						</div>
-						<div class="pro_info-info">
-							<span>Màn hình: 5.8", Super Retina</span>
-							<span>HĐH: iOS 12</span>
-							<span>CPU: Apple A11 Bionic 6 nhân</span>
-							<span>RAM: 3 GB, ROM: 256 GB</span>
-							<span>Camera: Chính 12 MP & Phụ 12 MP, Selfie: 7 MP</span>
-							<span>PIN: 2716 mAh</span>
-						</div>
-					</div>
-				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>

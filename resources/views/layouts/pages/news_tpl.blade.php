@@ -7,10 +7,10 @@
 			@foreach($tintuc as $tt)
 			<div class="news_tpl_box flex-between">
 				<div class="img_news_tpl">
-					<a href="shop/tin-tuc/{{$tt->id}}" title=""><img src="upload/tintuc/{{$tt->hinh_anh}}" alt=""/></a>
+					<a href="shop/tin-tuc/{{$tt->ten_khong_dau}}" title=""><img src="upload/tintuc/{{$tt->hinh_anh}}" alt=""/></a>
 				</div>
 				<div class="news_tpl_info">
-					<a class="news_tpl_name" href="news_detail_tpl/{{$tt->id}}" title="">{{$tt->ten}}</a>
+					<a class="news_tpl_name" href="news_detail_tpl/{{$tt->id}}" title="">{{$tt->title}}</a>
 					<div class="news_tpl_mota">{{$tt->mo_ta}}</div>
 					<span class="news_tpl_date">{{$tt->updated_at}}</span>
 				</div>

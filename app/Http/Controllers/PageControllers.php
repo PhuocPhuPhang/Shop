@@ -11,9 +11,8 @@ use App\Media;
 use App\TinTuc;
 use App\NhaCungCap;
 use App\User;
-use App\ThongTinUser;
 use App\SanPham;
-use App\Orders;
+use App\HoaDon;
 use Session;
 use DB;
 use Cart;
@@ -41,7 +40,7 @@ class PageControllers extends Controller
     $product= SanPham::where('noi_bat',1)->get();
     $website = DB::table('thong_tin_cong_ty')->first();
     return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],
-            ['product'=>$product],['social'=>$social],['webstite'=>$website]);
+      ['product'=>$product],['social'=>$social],['webstite'=>$website]);
   }
 
   public function postThemUser(Request $request)
@@ -86,20 +85,16 @@ class PageControllers extends Controller
     }
     else
     {
-     $ThongTinUser = new ThongTinUser;
-     $ThongTinUser->ten = $request->ten;
-     $ThongTinUser->email = $request->email;
-     $ThongTinUser->so_dien_thoai = $request->so_dien_thoai;
-     $ThongTinUser->ngay_sinh = $request->ngay_sinh;
-     $ThongTinUser->gioi_tinh = $request->gioi_tinh;
-
      $user = new User;
+     $user->ten = $request->ten;
      $user->email = $request->email;
      $user->password = Hash::make($password);
-     $user->level = 0;
+     $user->quyen = 0;
+     $user->gioi_tinh = $request->gioi_tinh;
+     $user->so_dien_thoai = $request->so_dien_thoai;
+     $user->ngay_sinh = $request->ngay_sinh;
 
      $user->save();
-     $ThongTinUser->save();
      return redirect('shop')->with('thongbao','Thành Công');
    }
  }
@@ -123,17 +118,17 @@ class PageControllers extends Controller
 
   if(Auth::attempt($user_data))
   {
-    return redirect('index')->with('login',"Đăng nhập thành công");
+    return redirect('shop')->with('login',"Đăng nhập thành công");
   }
   else
   {
-    return redirect('index')->with('errorLogin', 'Sai email hoặc mật khẩu. Vui lòng kiểm tra lại thông tin nhập.');
+    return redirect('shop')->with('errorLogin', 'Sai email hoặc mật khẩu. Vui lòng kiểm tra lại thông tin nhập.');
   }
 }
 public function Logout()
 {
  Auth::logout();
- return redirect('index');
+ return redirect('shop');
 }
 
 public function news_tpl()
@@ -141,10 +136,10 @@ public function news_tpl()
   return view('layouts.pages.news_tpl');
 }
 
-public function news_detail_tpl($id)
+public function news_detail_tpl($ten_khong_dau)
 {
-  $tintuc = TinTuc::find($id);
-  return view('layouts.pages.news_detail_tpl',['tintuc'=>$tintuc]);
+  $tintuc = DB::table('tin_tuc')->where('ten_khong_dau',$ten_khong_dau)->first();
+  return view('layouts.pages.news_detail_tpl',['news_detail'=>$tintuc]);
 }
 
 public function product_detail_tpl($ma_san_pham)
@@ -210,7 +205,7 @@ public function AddtoCart($id)
       'img' => $product->hinh_anh
     )
   ));
-  return redirect('cart_tpl');
+  return redirect('shop/cart_tpl');
 }
 
 public function cart_tpl()
@@ -236,7 +231,22 @@ public function UpdateCart1(Request $request)
     'success' => true,
   ]
 ]);
+}
 
+public function createCart(Request $request)
+{
+  // dd($request->all());
+  // dd(Cart::getContent());
+
+  $order = new HoaDon;
+  $order->ma_hoa_don = 'HD01';
+  $order->ma_nguoi_dung = auth()->user()->email;
+  $order->ten_nguoi_nhan = $request->ten;
+  $order->so_dien_thoai = $request->dienthoai;
+  $order->dia_chi = $request->diachi;
+  $order->save();
+
+  return redirect('shop/cart_tpl');
 }
 
 }
