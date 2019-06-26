@@ -3,11 +3,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\TinTucController;
-use App\Http\Controllers\LoaiTinTucController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\CauHinhSanPhamController;
-
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 // use Illuminate\Routing\RouteRegistrar;
 
 /*
@@ -112,7 +112,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('them','SanPhamController@getThem');
         Route::post('them','SanPhamController@postThem');
 
-        Route::get('sua','SanPhamController@getSua');
+        Route::get('sua/{masp}','SanPhamController@getSua');
         Route::post('sua/{masp}','SanPhamController@postSua');
 
         Route::get('xoa/{masp}','SanPhamController@postXoa');
@@ -140,10 +140,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('them','KhuyenMaiController@getThem');
         Route::post('them','KhuyenMaiController@postThem');
 
-        Route::get('sua/{id}','KhuyenMaiController@getSua');
-        Route::post('sua/{id}','KhuyenMaiController@postSua');
+        Route::get('sua/{makm}','KhuyenMaiController@getSua');
+        Route::post('sua/{makm}','KhuyenMaiController@postSua');
 
-        Route::get('xoa/{id}','KhuyenMaiController@postXoa');
+        Route::get('xoa/{makm}','KhuyenMaiController@postXoa');
     });
 
     Route::group(['prefix'=>'user'],function(){
@@ -156,7 +156,9 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{id}','UsersController@postXoa');
 
-        Route::get('export/excel','UsersController@getExport');
+        Route::get('/download',function(){
+            return Excel::download(new UsersExport,'DanhSach.xlsx');
+        });
     });
 
     Route::group(['prefix'=>'ajax'],function(){
@@ -174,6 +176,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('thongtin','WebsiteController@getCauHinhWebSite');
         Route::post('thongtin','WebsiteController@postCauHinhWebSite');
     });
+
 });
 
 // User

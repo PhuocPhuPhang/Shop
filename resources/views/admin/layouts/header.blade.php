@@ -20,6 +20,7 @@
                 <script>window.location = "/admin/login";</script>
              @endif
         </li>
+        <li><a href="{{ url('shop') }}" target="_blank"><i class="fa fa-reply" style="padding-right:5px"></i>Vào trang web</a></li>
         </ul>
     </nav>
     </div>

@@ -50,10 +50,4 @@ class AjaxController extends Controller
             ]
           ]);
     }
-
-    public function postSanPham(Request $request)
-    {
-        $data = json_decode($request->all());
-        dd($data);
-    }
 }

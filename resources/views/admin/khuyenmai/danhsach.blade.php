@@ -40,10 +40,10 @@
              <td style="text-align:center">{{$km->ngay_bat_dau}}</td>
              <td style="text-align:center">{{$km->ngay_ket_thuc}}</td>
              <td style="text-align:center">
-                <a href="../khuyenmai/sua/{{$km->id}}" class="btn btn-info btn-xs">
+                <a href="../khuyenmai/sua/{{$km->ma_khuyen_mai}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="../khuyenmai/xoa/{{$km->id}}" class="btn btn-danger btn-xs">
+                <a href="../khuyenmai/xoa/{{$km->ma_khuyen_mai}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
