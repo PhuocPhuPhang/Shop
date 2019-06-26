@@ -155,7 +155,8 @@
 				<a href=""><img class="img-responsive" src="images/logo.png" alt=""></a>
 			</div>
 			<div class="search_haed ">
-				<form id="" action="" method="post">
+				<form id="" action="{{ URL('/timkiem') }}" method="post">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					<div class="timkiem flex-between-center">
 						<select id="sel_list">
 							<option value="">Tất cả</option>
@@ -163,9 +164,9 @@
 							<option value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
 							@endforeach
 						</select>
-						<input class="tu_khoa" name="timkiem" id="name_tk" type="text" placeholder="Tìm sản phẩm của bạn..." onkeypress="return doEnter(event)"/>
+						<input class="tu_khoa" name="tukhoa" id="name_tk" type="text" placeholder="Tìm sản phẩm của bạn..." />
 
-						<input type="button" onclick="return do_search();" value="TÌM KIẾM"/>
+						<button>TÌM KIẾM</button>
 
 						<div class="auto_search"></div>
 						<div class="clearfix"></div>
