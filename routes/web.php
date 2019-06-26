@@ -222,6 +222,9 @@ Route::group(['prefix'=>'shop'],function(){
 //Create_order
 Route::post('createCart','PageControllers@createCart');
 
+Route::post('timkiem','PageControllers@timkiem');
+
+
 
 
 

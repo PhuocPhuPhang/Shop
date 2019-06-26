@@ -273,5 +273,14 @@ public function createCart(Request $request)
   }
 }
 
+public function timkiem(Request $request)
+{
+  $tukhoa= $request->tukhoa;
+  $product_list = NhaCungCap::where('ten_nha_cung_cap','like',"%$tukhoa%")->first();
+  $product = SanPham::where('ten_san_pham','like',"%$tukhoa%")->orWhere('gia_ban','like',"%$tukhoa%")->orWhere('nha_cung_cap',$product_list->ma_nha_cung_cap)->get();
+  // dd($product);
+  return view('layouts.pages.search',['product'=>$product , 'tukhoa'=>$tukhoa]);
+}
+
 }
 
