@@ -112,7 +112,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('them','SanPhamController@getThem');
         Route::post('them','SanPhamController@postThem');
 
-        Route::get('sua','SanPhamController@getSua');
+        Route::get('sua/{masp}','SanPhamController@getSua');
         Route::post('sua/{masp}','SanPhamController@postSua');
 
         Route::get('xoa/{masp}','SanPhamController@postXoa');
@@ -140,10 +140,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('them','KhuyenMaiController@getThem');
         Route::post('them','KhuyenMaiController@postThem');
 
-        Route::get('sua/{id}','KhuyenMaiController@getSua');
-        Route::post('sua/{id}','KhuyenMaiController@postSua');
+        Route::get('sua/{makm}','KhuyenMaiController@getSua');
+        Route::post('sua/{makm}','KhuyenMaiController@postSua');
 
-        Route::get('xoa/{id}','KhuyenMaiController@postXoa');
+        Route::get('xoa/{makm}','KhuyenMaiController@postXoa');
     });
 
     Route::group(['prefix'=>'user'],function(){

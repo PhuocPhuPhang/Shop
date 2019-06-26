@@ -17,17 +17,20 @@
         </div>
     @endif
     <form id="themsp" method="post" enctype="multipart/form-data">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Thêm sản phẩm</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
-                    <label>Mã sản phẩm</label>
+                    <label >Mã sản phẩm</label>
                     <input type="text" id="ma" class="form-control" name="ma" /><br />
 
                     <label>Tên sản phẩm</label>
@@ -40,7 +43,7 @@
                         </div>
                     <br/>
 
-                    <label>Nhà cung cấp</label>
+                    <label >Nhà cung cấp</label>
                     <Select class="form-control" name="nhacungcap" id="nhacungcap">
                         @foreach($nhacungcap as $ncc)
                             <option value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
@@ -69,19 +72,14 @@
                     <label>Keywords</label>
                     <textarea id="keywords"  class="form-control" name="keywords"></textarea><br />
 
-                    <label>Nội dung</label>
-                    <textarea id="noidung" class="form-gruop ckeditor" name="noidung" ></textarea><br/>
-
                     <label>Hình ảnh</label>
                     <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" onChange="showImages.call(this)"/><br/>
                     <br/><img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px">
                 </div>
             </div>
         </div>
-        </div>
 
-        <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Cấu hình chi tiết</h2>
@@ -96,8 +94,8 @@
                     <div class="clearfix"></div>
             </div>
             @foreach($loaicauhinh as $loai)
-                <h5>{{$loai->ten}}</h5>
                 <div id="{{str_slug($loai->ten)}}" class="x_content">
+                <h4>{{$loai->ten}}</h4>
                     @foreach($cauhinh as $ch)
                         @if($ch->id_loai == $loai->id)
                         <label>{{$ch->cau_hinh}}</label>
@@ -109,14 +107,12 @@
 
         </div>
         </div>
-        </div>
-
-
         <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <!-- <div class="x_panel"> -->
-                <div class="x_content">
-                <!-- <div class="ln_solid"></div> -->
+        <div class="x_panel">
+            <div class="x_title" style="border-bottom:none">
+                <label>Nội dung</label>
+                <textarea id="noidung" class="form-gruop ckeditor" name="noidung" ></textarea><br/>
                     <div class="form-group" style="margin-left:20%">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <a href="{{ url('admin/sanpham/danhsach') }}">
@@ -126,8 +122,10 @@
                             <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </div>
-                <!-- </div> -->
+                </div>
             </div>
+        </div>
+        </div>
         </div>
         </div>
     </form>
@@ -235,38 +233,32 @@
                     default:
                         break;
                     }
-
                 }
             }
             else alert('Lỗi');
             // $(`.${ten}`).click(function(){
             //    $(`#${ten}`).remove();
             // });
-
-
         });
 
         $("#themsp").submit(function(event){
             event.preventDefault();
             var array = [];
             $(':input[type="text"]').each(function(index, input){
-                // let arr = {};
                 let name, value;
                 name = $(input).attr('name');
                 value = $(input).val();
-          let  arr = [
-            'name' => name,
-                'value' => value,
-          ];
-
-
+                let  arr = [
+                    'name' => name,
+                    'value' => value,
+                ];
                 array.push(arr);
             });
             $.ajax({
                     type:'post',
                     url: 'them',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
-                    data:{a:array},
+                    data:{mang:array},
                 })
         });
 

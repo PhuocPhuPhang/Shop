@@ -43,7 +43,7 @@
                     <input readonly type="text" style="border:none;height:20px;width:60px;background:{{$sp->mau_sac}}"/>
              </td>
              <td>
-                <a href="" class="btn btn-info btn-xs">
+                <a href="../sanpham/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Edit
                 </a>
                 <a href="" class="btn btn-danger btn-xs">

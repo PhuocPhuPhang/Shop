@@ -79,19 +79,19 @@ class KhuyenMaiController extends Controller
         return redirect('admin/khuyenmai/them')->with('thongbao','Thêm thành công');
     }
 
-    public function getSua($id)
+    public function getSua($makm)
     {
-        $khuyenmai = KhuyenMai::find($id);
-        $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('id','=',$id)->first();
+        $khuyenmai = KhuyenMai::find($makm);
+        $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('ma_khuyen_mai','=',$makm)->first();
         $hinhthuckm = DB::table('hinh_thuc_khuyen_mai')->select('ten_hinh_thuc','noi_dung')
         ->where('ma_khuyen_mai',$makm->ma_khuyen_mai)->get();
         return view('admin.khuyenmai.sua',['khuyenmai'=>$khuyenmai],['hinhthuckm'=>$hinhthuckm]);
     }
 
-    public function postSua(Request $request, $id)
+    public function postSua(Request $request, $makm)
     {
-        $khuyenmai = KhuyenMai::find($id);
-        $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('id',$id)->first();
+        $khuyenmai = KhuyenMai::find($makm);
+        $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('id',$makm)->first();
         $htkm = DB::table('hinh_thuc_khuyen_mai')->where('ma_khuyen_mai',$makm->ma_khuyen_mai)->get();
 
         // dd($ht);

@@ -24,10 +24,13 @@ class SanPhamController extends Controller
         $dsCauHinh = CauHinhSanPham::all();
         $thongtinsp = ThongTinSanPham::all();
         $khuyenmai = KhuyenMai::all();
+        $nhacungcap = NhaCungCap::all();
+
         view()->share('loaicauhinh',$loaicauhinh);
         view()->share('dsCauHinh',$dsCauHinh);
         view()->share('thongtinsp',$thongtinsp);
         view()->share('khuyenmai',$khuyenmai);
+        view()->share('nhacungcap',$nhacungcap);
     }
     public function getDanhSach()
     {
@@ -50,7 +53,7 @@ class SanPhamController extends Controller
                  ,$loaicauhinh,['khuyenmai'=>$khuyenmai],['dsCauHinh'=>$dsCauHinh]);
     }
 
-    public function postThem()
+    public function postThem(Request $request)
     {
         // $this->validate($request,[
         //     'ma'        => 'required|min:3|max:255',
@@ -99,21 +102,17 @@ class SanPhamController extends Controller
         // {
         //     foreach($request->file('hinhanh') as $image)
         //     {
-        //         //Lấy file được truyền lên
         //         $filename = $image->getClientOriginalName();
-        //         //kiểm tra định dạng file
         //         $duoi = $image->getClientOriginalExtension();
         //         if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
         //         {
         //             return redirect('admin/sanpham/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
         //         }
 
-        //         //Tạo tên mới cho file
         //              $hinh = $filename.'_'.time().'.'.$duoi;
-        //         //Lưu hình
         //         $image->move("upload/sanpham", $hinh);
-        //         $image = new HinhAnh;
 
+        //         $image = new HinhAnh;
         //             $image->ma_san_pham = $request->ma;
         //             $image->hinh_anh = $hinh;
         //         $image->save();
@@ -127,50 +126,38 @@ class SanPhamController extends Controller
         //     $sanpham->save();
         // }
 
-        //Thêm cấu hình mới của người dùng
+        $cauhinh = $request->all();
+        dd($cauhinh);
+        $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
+        foreach($cauhinh as $key => $value)
+        {
+            $thongtinsp = new ThongTinSanPham;
+            $thongtinsp->ma_san_pham = $request->ma;
 
-
-        //Thêm thông tin cấu hình sản phẩm
-        // $input = $request->mang;
-
-       $mang = $_REQUEST;
-      foreach($mang as $key => $value)
-      {
-        var_dump($value);
-        // foreach($value as $key1 => $value1)
-        // {
-        //    foreach($value1 as $key2 => $value2)
-        //    {
-        //         var_dump($value2);
-        //    }
-        // }
-      }
-        // $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
-        // foreach($input as $key => $value)
-        // {
-        //     $thongtinsp = new ThongTinSanPham;
-        //     $thongtinsp->ma_san_pham = $request->ma;
-
-        //     foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
-        //    {
-        //         if($value_cauhinh->ten_khong_dau == $key)
-        //         {
-        //             if($input[$key] != null)
-        //             {
-        //                $thongtinsp->id_cau_hinh = $value_cauhinh->id;
-        //                $thongtinsp->mo_ta = $request->$key;
-        //                $thongtinsp->save();
-        //             }
-        //         }
-        //    }
-        // }
-        // return redirect('admin/sanpham/them')->with('thongbao','Thêm sản phẩm thành công');
+            foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
+           {
+                if($value_cauhinh->ten_khong_dau == $key)
+                {
+                    if($cauhinh[$key] != null)
+                    {
+                       $thongtinsp->id_cau_hinh = $value_cauhinh->id;
+                       $thongtinsp->mo_ta = $request->$key;
+                       $thongtinsp->save();
+                    }
+                }
+           }
+        }
 
     }
-
-    public function getSua()
+    public function getSua($masp)
     {
-        return view('admin.sanpham.sua');
+        $khuyenmai = KhuyenMai::all();
+        $nhacungcap = NhaCungCap::all();
+        $sanpham = SanPham::find($masp);
+        $cauhinh = DB::table('thong_tin_san_pham')->where('ma_san_pham',$masp)->get();
+
+        return view('admin.sanpham.sua',['sanpham'=>$sanpham],['cauhinh'=>$cauhinh],
+                ['khuyenmai'=>$khuyenmai],['nhacungcap'=>$nhacungcap]);
     }
 }
 
