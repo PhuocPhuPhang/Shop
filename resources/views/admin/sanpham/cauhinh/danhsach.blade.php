@@ -20,29 +20,28 @@
                 </div>
         @endif
 
-       {{-- <label>Cấu hình</label>
+       <label>Cấu hình</label>
         <select name="loaicauhinh" id="loaicauhinh" style="width:150px">
         <option value="0">Tất cả</option>
             @foreach($loaicauhinh as $loai)
                 <option value="{{$loai->id}}">{{$loai->ten}}</option>
             @endforeach
-        </select> --}}
-
-        <table id="datatable" class="table table-striped table-bordered">
+        </select>
+      <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>STT</th>
-             <th>Cấu hình</th>
-             <th>Thao tác</th>
+             <th style="text-align:center">STT</th>
+             <th style="text-align:center">Cấu hình</th>
+             <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
              <?php $i = 1?>
             @foreach($cauhinh as $ch)
            <tr>
-             <td>{{$i++}}</td>
+             <td style="text-align:center">{{$i++}}</td>
              <td>{{$ch->cau_hinh}}</td>
-             <td>
+             <td style="text-align:center">
                 <a href="../cauhinh/sua/{{$ch->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Edit
                 </a>

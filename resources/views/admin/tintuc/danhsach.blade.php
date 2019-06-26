@@ -24,10 +24,10 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>STT</th>
-             <th>Tiêu đề</th>
-             <th>Mô tả</th>
-             <th>Nổi bật</th>
+             <th style="text-align:center">STT</th>
+             <th style="text-align:center">Tiêu đề</th>
+             <th style="text-align:center">Mô tả</th>
+             <th style="text-align:center">Nổi bật</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
@@ -35,7 +35,7 @@
         <?php $i = 1 ?>
          @foreach($tintuc as $tin)
            <tr>
-             <td>{{$i++}}</td>
+             <td style="text-align:center">{{$i++}}</td>
              <td>{{$tin->title}}</td>
              <td>{{$tin->mo_ta}}</td>
              <td style="text-align:center">

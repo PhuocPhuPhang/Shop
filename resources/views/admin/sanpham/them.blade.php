@@ -16,7 +16,7 @@
             {{ session('thongbao') }}
         </div>
     @endif
-    <form id="themsp" method="post" enctype="multipart/form-data">
+    <form id="themsp" method="post" action="../sanpham/them"  enctype="multipart/form-data">
         <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -218,10 +218,30 @@
                     default:
                         break;
                     }
+                    $("#list_cauhinh").html("");
+
                 }
                 if(cauhinh_new != "" )
                 {
                     var tenkhongdau_new = string_to_slug(change_alias(cauhinh_new));
+
+                    $.ajax({
+                    type:'post',
+                    url: '../ajax/cauhinh/them',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    data:{"loaich":loaich , "cauhinh_new":cauhinh_new},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            console.log('Thành công');
+                        }
+                        else
+                        {
+                            console.log('Lỗi');
+                        }
+                    }
+                     })
+
                     switch (loaich) {
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}":{
@@ -233,16 +253,26 @@
                     default:
                         break;
                     }
+                    $("#cauhinh").html("");
                 }
             }
             else alert('Lỗi');
-            // $(`.${ten}`).click(function(){
-            //    $(`#${ten}`).remove();
-            // });
         });
 
         $("#themsp").submit(function(event){
             event.preventDefault();
+            var ma = document.getElementById("ma").value;
+            var ten = document.getElementById("ten").value;
+            var nhacungcap = document.getElementById("nhacungcap").value;
+            var soluong = document.getElementById("soluong").value;
+            var gia = document.getElementById("gia").value;
+            var khuyenmai = document.getElementById("khuyenmai").value;
+            var mausac = document.getElementById("mausac").value;
+            var mota = document.getElementById("mota").value;
+            var keywords = document.getElementById("keywords").value;
+            var noidung = document.getElementById("noidung").value;
+            var noibat = document.getElementById("noibat").value;
+            var hinhanh = document.getElementById("hinhanh").value;
             var array = [];
             $(':input[type="text"]').each(function(index, input){
                 let name, value;
@@ -250,15 +280,29 @@
                 value = $(input).val();
                 let arr = {};
                 arr.name = name;
-                arr.length = value;
+                arr.value = value;
                 array.push(arr);
             });
-            $.ajax({
+            if(ma == "" || ten == "")
+            {
+                alert('Vui lòng kiểm tra lại thông tin mã sản phẩm và tên sản phẩm');
+            }
+            else{
+                $.ajax({
                     type:'post',
                     url: 'them',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
-                    data:{'mang':array},
+                    data:{"mang":array,"ma":ma,"ten":ten,"nhacungcap":nhacungcap,
+                        "soluong":soluong,"gia":gia,"khuyenmai":khuyenmai,"mausac":mausac,
+                        "mota":mota,"keywords":keywords,"noidung":noidung,"noibat":noibat,"hinhanh":hinhanh},
+                        success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Thành công');
+                        }
+                    }
                 })
+            }
         });
 
     function string_to_slug (str) {

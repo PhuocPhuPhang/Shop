@@ -8,6 +8,7 @@ use App\TinTuc;
 use App\User;
 use App\CauHinhSanPham;
 use App\LoaiCauHinh;
+use App\ThongTinSanPham;
 use Json;
 
 class AjaxController extends Controller
@@ -21,7 +22,26 @@ class AjaxController extends Controller
 		{
 			echo "<option value='".$ch->cau_hinh."'>".$ch->cau_hinh."</option>" ;
 		}
-	}
+    }
+
+    public function postCauHinh(Request $request)
+    {
+        $this->validate($request,[
+            'cauhinh_new' => 'unique:cau_hinh_san_pham,cau_hinh'
+        ],[
+            'cauhinh_new.unique' => 'Cấu hình đã tồn tại'
+        ]);
+
+        $cauhinh = new CauHinhSanPham;
+        $cauhinh->cau_hinh = $request->cauhinh_new;
+        $cauhinh->ten_khong_dau = str_slug($request->cauhinh_new);
+        $cauhinh->id_loai = $request->loaich;
+        return response()->json([
+            'data' => [
+              'success' => $cauhinh->save(),
+            ]
+          ]);
+    }
 
     public function postTinTucNoiBat(Request $request)
     {
@@ -55,7 +75,8 @@ class AjaxController extends Controller
     public function getLoaiCauHinh($idloaiCH)
     {
         $cauhinh = DB::table('cau_hinh_san_pham')->where('id_loai',$idloaiCH)->get();
-         echo "  <thead>
+         echo "  <table id='datatable' class='table table-striped table-bordered'>
+             <thead>
                     <tr>
                     <th style='text-align:center'>STT</th>
                     <th style='text-align:center'>Cấu hình</th>
