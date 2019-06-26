@@ -248,17 +248,16 @@
                 let name, value;
                 name = $(input).attr('name');
                 value = $(input).val();
-                let  arr = [
-                    'name' => name,
-                    'value' => value,
-                ];
+                let arr = {};
+                arr.name = name;
+                arr.length = value;
                 array.push(arr);
             });
             $.ajax({
                     type:'post',
                     url: 'them',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
-                    data:{mang:array},
+                    data:{'mang':array},
                 })
         });
 

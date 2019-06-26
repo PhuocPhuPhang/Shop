@@ -7,6 +7,7 @@ use DB;
 use App\TinTuc;
 use App\User;
 use App\CauHinhSanPham;
+use App\LoaiCauHinh;
 use Json;
 
 class AjaxController extends Controller
@@ -49,5 +50,34 @@ class AjaxController extends Controller
               'success' => $user->save(),
             ]
           ]);
+    }
+
+    public function getLoaiCauHinh($idloaiCH)
+    {
+        $cauhinh = DB::table('cau_hinh_san_pham')->where('id_loai',$idloaiCH)->get();
+         echo "  <thead>
+                    <tr>
+                    <th style='text-align:center'>STT</th>
+                    <th style='text-align:center'>Cấu hình</th>
+                    <th style='text-align:center'>Thao tác</th>
+                    </tr>
+                </thead>";
+        foreach($cauhinh as $ch)
+        {
+            echo "<tbody>
+                <tr>
+                     <td>".$ch->id."</td>
+                     <td>".$ch->cau_hinh."</td>
+                     <td style='text-align:center'>
+                        <a href='../cauhinh/sua/".$ch->id."' class='btn btn-info btn-xs'>
+                            <i class='fa fa-pencil'></i> Edit
+                        </a>
+                        <a href='../cauhinh/xoa/".$ch->id."' class='btn btn-danger btn-xs'>
+                        <i class='fa fa-trash-o'></i> Delete
+                    </a>
+                 </td>
+               </tr>
+               </tbody>";
+        }
     }
 }

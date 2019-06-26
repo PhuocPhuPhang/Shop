@@ -125,28 +125,34 @@ class SanPhamController extends Controller
         //     $hinh= "";
         //     $sanpham->save();
         // }
+// Đúng
+        // $cauhinh = $_REQUEST;
+        // foreach($cauhinh as $key => $value)
+        // {
+        //     foreach($cauhinh[$key] as $key1 => $value1)
+        //     {
 
-        $cauhinh = $request->all();
-        dd($cauhinh);
-        $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
-        foreach($cauhinh as $key => $value)
-        {
-            $thongtinsp = new ThongTinSanPham;
-            $thongtinsp->ma_san_pham = $request->ma;
+        //     }
+        // }
+        // $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
+        // foreach($cauhinh as $key => $value)
+        // {
+        //     $thongtinsp = new ThongTinSanPham;
+        //     $thongtinsp->ma_san_pham = $request->ma;
 
-            foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
-           {
-                if($value_cauhinh->ten_khong_dau == $key)
-                {
-                    if($cauhinh[$key] != null)
-                    {
-                       $thongtinsp->id_cau_hinh = $value_cauhinh->id;
-                       $thongtinsp->mo_ta = $request->$key;
-                       $thongtinsp->save();
-                    }
-                }
-           }
-        }
+        //     foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
+        //    {
+        //         if($value_cauhinh->ten_khong_dau == $key)
+        //         {
+        //             if($cauhinh[$key] != null)
+        //             {
+        //                $thongtinsp->id_cau_hinh = $value_cauhinh->id;
+        //                $thongtinsp->mo_ta = $request->$key;
+        //                $thongtinsp->save();
+        //             }
+        //         }
+        //    }
+        // }
 
     }
     public function getSua($masp)

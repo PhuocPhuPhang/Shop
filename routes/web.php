@@ -163,6 +163,7 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
+        Route::get('loaicauhinh/{idloaiCH}','AjaxController@getLoaiCauHinh');
 
         Route::post('tintuc/noibat','AjaxController@postTinTucNoiBat');
 
