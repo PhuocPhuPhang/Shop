@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-use App\Http\Requests;
+use Illuminate\Http\Requests;
 use App\Media;
 use App\TinTuc;
 use App\NhaCungCap;
@@ -23,7 +23,7 @@ class PageControllers extends Controller
   function __construct(){
     $nhacungcap =  NhaCungCap::all();
     $tintuc= TinTuc::all();
-    $product= SanPham::where('noi_bat',1)->get();
+    $product= SanPham::where('noi_bat',1)->paginate(8);
     $social = Media::where('type','social')->get();
     $website = DB::table('thong_tin_cong_ty')->first();
     view()->share('nhacungcap',$nhacungcap);
@@ -135,6 +135,11 @@ public function Logout()
 public function news_tpl()
 {
   return view('layouts.pages.news_tpl');
+}
+
+public function contact()
+{
+  return view('layouts.pages.contact');
 }
 
 public function news_detail_tpl($ten_khong_dau)
@@ -276,10 +281,38 @@ public function createCart(Request $request)
 public function timkiem(Request $request)
 {
   $tukhoa= $request->tukhoa;
+  $nhacungcap = $request->nhacungcap_select;
+  // dd($nhacungcap);
   $product_list = NhaCungCap::where('ten_nha_cung_cap','like',"%$tukhoa%")->first();
-  $product = SanPham::where('ten_san_pham','like',"%$tukhoa%")->orWhere('gia_ban','like',"%$tukhoa%")->orWhere('nha_cung_cap',$product_list->ma_nha_cung_cap)->get();
-  // dd($product);
+  $product = SanPham::where('ten_san_pham','like',"%$tukhoa%")->orWhere('gia_ban','like',"%$tukhoa%")->get();
   return view('layouts.pages.search',['product'=>$product , 'tukhoa'=>$tukhoa]);
+}
+
+public function SearchPrice(Request $request)
+{
+  $Price_selected = $request->gia;
+
+  if($Price_selected == 1)
+  {
+    $product_select = SanPham::whereBetween('gia_ban', [1, 2000000])->paginate(6);
+    return redirect('shop/san-pham',['product_select'=>$product_select]);
+  }
+  if($Price_selected == 2)
+  {
+    
+  }
+  if($Price_selected == 3)
+  {
+    
+  }
+  if($Price_selected == 4)
+  {
+    
+  }
+  if($Price_selected == 5)
+  {
+    
+  }
 }
 
 }

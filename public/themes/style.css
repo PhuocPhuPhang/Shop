@@ -411,3 +411,13 @@ a.link_cart:hover {color: #0066b3; }
 .news_tpl_mota{display: block;font-size: 15px;color: #000;font-family: 'Roboto';margin-bottom: 10px;margin-top: 5px;}
 .news_tpl_right{width: 30%;}
 
+div.header_profile { padding: 15px 0px; }
+div.header_profile h6 { font-weight: bold; font-size: 13px; color: #333; line-height: 16px; }
+div.header_profile a { display: block; font-size: 11px; color: #999; }
+div.header_profile a:hover { text-decoration: underline; }
+div.menu_profile { margin-bottom: 15px; }
+div.menu_profile h5 { font-size: 14px; color: #666666; height: 30px; line-height: 30px; font-weight: bold; background-color: #f5f5f5; padding: 0 10px; border-left: 3px solid #e5101d; }
+div.menu_profile ul li a { display: block; line-height: 30px; color: #666; padding-left: 5px; }
+div.menu_profile ul li a i { padding-right: 5px; }
+div.menu_profile ul li a:hover, div.menu_profile ul li a.actived { color: #e5101d; font-weight: bold; }
+div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-height: 30px; margin-bottom: 15px; }
