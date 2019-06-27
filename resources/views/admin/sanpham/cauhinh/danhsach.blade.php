@@ -14,29 +14,34 @@
        <div class="clearfix"></div>
      </div>
         <div class="x_content">
-
         @if(session('thongbao'))
                 <div class="alert alert-success">
                     {{ session('thongbao') }}
                 </div>
         @endif
 
-        <table id="datatable" class="table table-striped table-bordered">
+       <label>Cấu hình</label>
+        <select name="loaicauhinh" id="loaicauhinh" style="width:150px">
+        <option value="0">Tất cả</option>
+            @foreach($loaicauhinh as $loai)
+                <option value="{{$loai->id}}">{{$loai->ten}}</option>
+            @endforeach
+        </select>
+      <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
-             <th>STT</th>
-             <th>Loại cấu hình</th>
-             <th>Cấu hình</th>
-             <th>Thao tác</th>
+             <th style="text-align:center">STT</th>
+             <th style="text-align:center">Cấu hình</th>
+             <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
+             <?php $i = 1?>
             @foreach($cauhinh as $ch)
            <tr>
-             <td>{{$ch->id}}</td>
-             <td>{{$ch->LoaiCauHinh->ten}}</td>
+             <td style="text-align:center">{{$i++}}</td>
              <td>{{$ch->cau_hinh}}</td>
-             <td>
+             <td style="text-align:center">
                 <a href="../cauhinh/sua/{{$ch->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Edit
                 </a>
@@ -52,4 +57,20 @@
     </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript" language="javascript">
+    $(document).ready(function(){
+        $("#loaicauhinh").change(function(){
+            var idloaiCH = $(this).val();
+            if(idloaiCH != 0)
+            {
+                $.get("../../ajax/loaicauhinh/" + idloaiCH,function(data){
+                $("#datatable").html(data);
+                 });
+            }
+           else location.reload();
+        });
+    });
+</script>
 @endsection

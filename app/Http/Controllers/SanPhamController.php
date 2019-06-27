@@ -55,24 +55,6 @@ class SanPhamController extends Controller
 
     public function postThem(Request $request)
     {
-        // $this->validate($request,[
-        //     'ma'        => 'required|min:3|max:255',
-        //     'ten'       => 'required|min:5|max:255',
-        //     'soluong'   => 'required|numeric',
-        //     'gia'   => 'required|numeric',
-        // ],[
-        //     'ma.required'       =>'Bạn chưa nhập mã sản phẩm',
-        //     'ma.min'            =>'Mã sản phẩm tối thiểu 3 ký tự',
-        //     'ma.max'            =>'Mã sản phẩm có độ dài tối đa 255 ký tự',
-        //     'ten.required'      =>'Bạn chưa nhập tên sản phẩm',
-        //     'ten.min'           =>'Tên sản phẩm tối thiểu 5 ký tự',
-        //     'ten.max'           =>'Tên sản phẩm có độ dài tối đa 255 ký tự',
-        //     'soluong.required'  =>'Bạn chưa nhập số lượng sản phẩm',
-        //     'soluong.numeric'   =>'Số lượng sản phẩm nhập vào phải là số',
-        //     'gia.required'      =>'Bạn chưa nhập giá sản phẩm',
-        //     'gia.numeric'       =>'Giá của sản phẩm nhập vào phải là số',
-        // ]);
-
         // $sanpham = new SanPham;
         // $sanpham->ma_san_pham = $request->ma;
         // $sanpham->ten_san_pham = $request->ten;
@@ -85,16 +67,7 @@ class SanPhamController extends Controller
         // $sanpham->mo_ta = $request->mota;
         // $sanpham->keywords = $request->keywords;
         // $sanpham->noi_dung = $request->noidung;
-
-        // $noibat = Input::get('noibat');
-        // if($noibat == 1)
-        // {
-        //     $sanpham->noi_bat = 1;
-        // }
-        // else
-        // {
-        //     $sanpham->noi_bat = 0;
-        // }
+        // $sanpham->noi_bat = $request->noibat;
 
         // $sanpham->save();
 
@@ -125,29 +98,32 @@ class SanPhamController extends Controller
         //     $hinh= "";
         //     $sanpham->save();
         // }
-
-        $cauhinh = $request->all();
-        dd($cauhinh);
+        $mang = $_REQUEST;
+        dd($mang);
         $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
-        foreach($cauhinh as $key => $value)
+        foreach($mang as $key => $value)
         {
-            $thongtinsp = new ThongTinSanPham;
-            $thongtinsp->ma_san_pham = $request->ma;
-
-            foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
+           foreach($value as $key1 => $value1)
            {
-                if($value_cauhinh->ten_khong_dau == $key)
+               foreach($value1 as $key2 => $value2)
+               {
+                foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
                 {
-                    if($cauhinh[$key] != null)
+                    $thongtinsp = new ThongTinSanPham;
+                    $thongtinsp->ma_san_pham = $request->ma;
+                    if($value_cauhinh->ten_khong_dau == $value2)
                     {
-                       $thongtinsp->id_cau_hinh = $value_cauhinh->id;
-                       $thongtinsp->mo_ta = $request->$key;
-                       $thongtinsp->save();
+                        if($value1['value'] != null)
+                        {
+                            $thongtinsp->id_cau_hinh = $value_cauhinh->id;
+                            $thongtinsp->mo_ta = $value1['value'];;
+                            $thongtinsp->save();
+                        }
                     }
                 }
+               }
            }
         }
-
     }
     public function getSua($masp)
     {

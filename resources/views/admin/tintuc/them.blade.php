@@ -50,7 +50,8 @@
                 <input type="checkbox" class="flat" name="noibat" value="1" ><br/>
 
                 <label>Hình Ảnh</label>
-                <input type="file" id="hinhanh" name="hinhanh" />
+                <input type="file" id="hinhanh" name="hinhanh" onChange="showImages.call(this)" /><br/>
+                <img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px">
 
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
@@ -69,3 +70,4 @@
     </div>
 </div>
 @endsection
+

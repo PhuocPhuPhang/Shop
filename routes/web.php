@@ -163,10 +163,11 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
+        Route::post('cauhinh/them','AjaxController@postCauHinh');
+
+        Route::get('loaicauhinh/{idloaiCH}','AjaxController@getLoaiCauHinh');
 
         Route::post('tintuc/noibat','AjaxController@postTinTucNoiBat');
-
-        Route::post('sanpham/them','AjaxController@postSanPham');
 
         Route::post('user/update','AjaxController@postPhanQuyen');
 

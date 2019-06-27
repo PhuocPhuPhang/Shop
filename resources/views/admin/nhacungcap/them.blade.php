@@ -55,7 +55,8 @@
                 <div class="form-group">
                 <label  class="control-label col-md-3 col-sm-3 col-xs-12">Logo</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="file" id="hinhanh" name="hinhanh" /><br/>
+                    <input type="file" id="hinhanh" name="hinhanh" onChange="showImages.call(this)" /><br/>
+                    <img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px">
                 </div>
                 </div>
 

@@ -138,6 +138,18 @@
         filebrowserImageUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
         filebrowserFlashUploadUrl: '../../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
     } );
+
+    function showImages(){
+            if(this.files && this.files[0]){
+                var obj = new FileReader();
+                obj.onload = function(data){
+                    var image = document.getElementById("image");
+                    image.src = data.target.result;
+                    image.style.display = "block";
+                }
+                obj.readAsDataURL(this.files[0]);
+            }
+        }
 </script>
 <!--Color Picker-->
 <script src="{{asset('admin/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
