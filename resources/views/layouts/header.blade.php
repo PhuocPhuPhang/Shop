@@ -12,7 +12,7 @@
 		<li><a href="shop/tin-tuc" title="">Tin tức</a></li>
 		<li><a href="video.html" title="Video">Video</a></li>
 		<li><a href="tuyen-dung.html" title="Tuyển dụng">Tuyển dụng</a></li>
-		<li><a href="lien-he.html" title="">Liên hệ</a></li>
+		<li><a href="lien-he" title="">Liên hệ</a></li>
 	</ul>
 </nav>
 <section id="top_head">
@@ -159,9 +159,9 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					<div class="timkiem flex-between-center">
 						<select id="sel_list">
-							<option value="">Tất cả</option>
+							<option>Tất cả</option>
 							@foreach($nhacungcap as $ncc)
-							<option value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
+							<option name="nhacungcap_select" value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
 							@endforeach
 						</select>
 						<input class="tu_khoa" name="tukhoa" id="name_tk" type="text" placeholder="Tìm sản phẩm của bạn..." />
@@ -242,7 +242,7 @@
 				<li><a href="shop/tin-tuc" title="">Tin tức</a></li>
 				<li><a href="video.html" title="Video">Video</a></li>
 				<li><a href="tuyen-dung.html" title="Tuyển dụng">Tuyển dụng</a></li>
-				<li><a href="lien-he.html" title="">Liên hệ</a></li>
+				<li><a href="lien-he" title="">Liên hệ</a></li>
 			</ul>
 		</div>
 	</section>

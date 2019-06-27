@@ -3,21 +3,21 @@
 <div class="container">
 	<div class="ncc_wrap">
 		<div class="ncc_grid">
-            @foreach($nhacungcap as $ncc )
-            <a class="ncc_item" href=""><img src="../upload/nhacungcap/{{$ncc->logo}}"></a>
-            @endforeach
+			@foreach($nhacungcap as $ncc )
+			<a class="ncc_item" href=""><img src="../upload/nhacungcap/{{$ncc->logo}}"></a>
+			@endforeach
 		</div>
 	</div>
 	<div class="select_price_wrap">
 		<div class="flex-between-center">
 			<ul class="select_price">
 				<li><label>Chọn mức giá:</label></li>
-				<li>
-					<a class="price_item" href="">Dưới 2 triệu</a>
-					<a class="price_item" href="">Từ 2 - 4 triệu</a>
-					<a class="price_item" href="">Từ 4 - 7 triệu</a>
-					<a class="price_item" href="">Từ 7 - 13 triệu</a>
-					<a class="price_item" href="">Trên 13 triệu</a>
+				<li id="gia">
+					<a class="price_item" data-id="1">Dưới 2 triệu</a>
+					<a class="price_item" data-id="2" >Từ 2 - 4 triệu</a>
+					<a class="price_item" data-id="3" >Từ 4 - 7 triệu</a>
+					<a class="price_item" data-id="4" >Từ 7 - 13 triệu</a>
+					<a class="price_item" data-id="5" >Trên 13 triệu</a>
 				</li>
 			</ul>
 			<div class="sapxep_wrap">
@@ -68,6 +68,7 @@
 				<div class="name"><h1>Sản phẩm</h1></div>
 			</div>
 			<div class="main_list_product">
+				{{--@if({{$product_select}} == '')--}}
 				@foreach($product as $sp)
 				<div class="sanpham">
 					<div class="img">
@@ -92,9 +93,42 @@
 						</div>
 					</div>
 				</div>
+
+
 				@endforeach
-			</div>
-		</div>
+				{{ $product->links() }}
+			
+
 	</div>
 </div>
+</div>
+</div>
+
+
 @endsection
+@section('script')
+<script>
+	$(document).ready(function() {
+		let array = [];
+		$('#gia').on('click','a', function (e) {
+			e.preventDefault();
+			let gia = {
+				gia: $(this).data('id')
+			}
+			console.log(gia);
+			array.push(gia);
+			$.ajax({
+				type:'post',
+				url: 'SearchPrice',
+				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
+				data:{gia:array},
+
+			});
+			array = [];
+			console.log(array);
+		});
+
+	});
+</script>
+@endsection
+

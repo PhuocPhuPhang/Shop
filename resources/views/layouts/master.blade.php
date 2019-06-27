@@ -3,9 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<base href="{{asset('')}}">
-	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
 	<link href="themes/style.css" rel="stylesheet" type="text/css"/>
 	<link href="{{asset('themes/js/OwlCarousel/owl.carousel.min.css')}}" rel="stylesheet">
@@ -14,10 +11,12 @@
 	<link  href="{{asset('themes/media.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/mmenu.all.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/hamburgers.min.css')}}" rel="stylesheet">
-	<link  href="{{asset('themes/css/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+	<link  href="{{asset('themes/css/fontawesome/css/fontawesome.css')}}" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/js/magiczoomplus/magiczoomplus.css')}}">
 	<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/all.min.css')}}" rel="stylesheet">
+	<link  href="{{asset('themes/css/fontawesome/css/all.min.css')}}" rel="stylesheet">
+	
 	<title></title>
 </head>
 <body>

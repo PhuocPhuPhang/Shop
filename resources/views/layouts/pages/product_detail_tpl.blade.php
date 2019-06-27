@@ -39,16 +39,16 @@
 							<div class="clearfix"></div>
 						</li>
 						<div class="action_buy">
-							<div class="flex-between-center">
+							<!-- <div class="flex-between-center">
 								<label>Số lượng:</label>
 								<div class="cart-items__quantity">
 									<span class="amount amount-minus" data-action="minus"></span>
 									<input type="text" name="number" id="amount" value="1">
 									<span class="amount amount-plus" data-action="plus"></span>
 								</div>
-							</div>
+							</div> -->
 							<div class="add_to_cart btn_ac1 btn_muangay" onclick="">
-								<p class="name"><a href="cart_tpl">Mua ngay</a></p>
+								<p class="name"><a href="shop/add_to_cart/{{$product_detail->ma_san_pham}}">Mua ngay</a></p>
 							</div>
 						</div>
 						<div class="soc_share">

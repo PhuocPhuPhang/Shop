@@ -215,6 +215,9 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('cart/remove/{id}','PageControllers@RemoveCart');
     Route::post('cart/plus','PageControllers@PlusCart');
     Route::post('cart/minus','PageControllers@MinusCart');
+
+    Route::post('lien-he','PageControllers@contact');
+
 });
 
 
@@ -222,6 +225,8 @@ Route::group(['prefix'=>'shop'],function(){
 Route::post('createCart','PageControllers@createCart');
 
 Route::post('timkiem','PageControllers@timkiem');
+
+Route::post('SearchPrice','PageControllers@SearchPrice');
 
 
 
