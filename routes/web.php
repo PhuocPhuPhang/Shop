@@ -132,7 +132,7 @@ Route::group(['prefix'=>'admin'],function(){
             Route::resource('demo', 'CauHinhSanPhamController@demo');
         });
     });
-
+    //Khuyến mãi
     Route::group(['prefix'=>'khuyenmai'],function(){
 
         Route::get('danhsach','KhuyenMaiController@getDanhSach');
@@ -145,7 +145,7 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{makm}','KhuyenMaiController@postXoa');
     });
-
+    // Người dùng
     Route::group(['prefix'=>'user'],function(){
 
         Route::get('khachhang','UsersController@getDanhSachKH');
@@ -161,6 +161,7 @@ Route::group(['prefix'=>'admin'],function(){
         });
     });
 
+    //Ajax
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
         Route::post('cauhinh/them','AjaxController@postCauHinh');
@@ -172,11 +173,20 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('user/update','AjaxController@postPhanQuyen');
 
     });
-
+    //Website
     Route::group(['prefix'=>'website'],function(){
         Route::get('thongtin','WebsiteController@getCauHinhWebSite');
         Route::post('thongtin','WebsiteController@postCauHinhWebSite');
     });
+
+    //Hóa đơn
+    Route::group(['prefix'=>'hoadon'],function(){
+        Route::get('danhsach','HoaDonController@getDanhSach');
+
+        Route::get('duyet/{mahd}','HoaDonController@getDanhSach');
+        Route::post('duyet/{mahd}','HoaDonController@postDuyet');
+    });
+
 
 });
 

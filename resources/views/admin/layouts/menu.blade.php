@@ -48,6 +48,7 @@
                 </ul>
             </li>
             <li><a href="{{url('admin/khuyenmai/danhsach')}}"><i class="fa fa-percent"></i>Khuyến mãi</a></li>
+            <li><a href="{{url('admin/hoadon/danhsach')}}"><i class="fa fa-file-text"></i>Hóa Đơn</a></li>
 
             @if( Auth::user()->quyen == 1 )
             <li><a><i class="fa fa-user"></i>Users<span class="fa fa-chevron-down"></span></a>
