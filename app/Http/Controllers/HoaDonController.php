@@ -47,6 +47,11 @@ class HoaDonController extends Controller
     public function postDuyet(Request $request)
     {
         DB::table('hoa_don')->where('ma_hoa_don',$request->mahd)->update(['duyet'=>1]);
+        return response()->json([
+            'data' => [
+              'success' => 'Thành công',
+            ]
+          ]);
     }
 
 

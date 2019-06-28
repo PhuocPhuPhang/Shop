@@ -82,38 +82,38 @@
                         var tongtien = data['tongtien'];
                         var html =  `<form method="post" id="sample_form" class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="col-form-label">Mã hóa đơn:${hoadon['ma_hoa_don']}</label><br>
-                                            <label class="col-form-label">Tên người nhận:${hoadon['ten_nguoi_nhan']}</label><br>
-                                            <label class="col-form-label">Số điện thoại:${hoadon['so_dien_thoai']}</label><br>
-                                            <label class="col-form-label">Địa chỉ:${hoadon['dia_chi']}</label>
+                                            <label class="col-form-label">Mã hóa đơn:&nbsp${hoadon['ma_hoa_don']}</label><br>
+                                            <label class="col-form-label">Tên người nhận:&nbsp${hoadon['ten_nguoi_nhan']}</label><br>
+                                            <label class="col-form-label">Số điện thoại:&nbsp${hoadon['so_dien_thoai']}</label><br>
+                                            <label class="col-form-label">Địa chỉ:&nbsp${hoadon['dia_chi']}</label>
                                         </div>
                                         <h5 class="modal-title">Danh sach sản phẩm</h5>
                                         <table id="classTable" class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>STT</th>
-                                                    <th>Tên sản phẩm</th>
-                                                    <th>Số lượng</th>
-                                                    <th>Đơn giá</th>
-                                                    <th>Thành tiền</th>
+                                                    <th style="text-align:center">STT</th>
+                                                    <th style="text-align:center">Tên sản phẩm</th>
+                                                    <th style="text-align:center">Số lượng</th>
+                                                    <th style="text-align:center">Đơn giá</th>
+                                                    <th style="text-align:center">Thành tiền</th>
                                                 </tr>
                                             </thead>
                                             <tbody>`;
                                             var i = 1;
                                             for(var k in cthd){
                                         html += `<tr>
-                                                    <td>${i++}</td>
+                                                    <td style="text-align:center">${i++}</td>
                                                     <td>${cthd[k]['ten_san_pham']}</td>
-                                                    <td>${cthd[k]['so_luong']}</td>
+                                                    <td style="text-align:center">${cthd[k]['so_luong']}</td>
                                                     <td>${cthd[k]['gia_ban']}</td>
                                                     <td>${cthd[k]['so_luong'] * cthd[k]['gia_ban']}</td>
                                                 </tr>`;
                                             }
                                     html += `</tbody>
                                             </table>
-                                            <label class="col-form-label">Tổng thành tiền:${tongtien}</label><br>
+                                            <label class="col-form-label">Tổng thành tiền:&nbsp${tongtien}</label><br>
                                             <div class="form-group" align="center" id="button">
-                                                <input type="button" name="action" id="action" class="btn btn-success" value="Duyệt" />
+                                                <input type="button" name="action" id="action" class="btn btn-success" value="Duyệt" onClick="postDuyet()" />
                                             </div>
                                             </form>`;
                         $(".modal-body").append(html);
@@ -122,6 +122,26 @@
                 $('#formModal').modal('show');
             });
     });
+    function postDuyet(){
+        var mahd = $('.duyet').attr('id');
+        $.ajax({
+                type:'POST',
+                url: 'duyet/' + mahd,
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                data:{"mahd":mahd},
+                success: function(data){
+                    if(data.data.success)
+                    {
+                        alert('Duyệt đơn thành công');
+                        location.reload();
+                    }
+                    else{
+                        alert('Lỗi');
+                    }
+                }
+
+        })
+    }
 </script>
 @endsection
 
