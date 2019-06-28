@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ChiTietHoaDon extends Model
 {
     protected $table = "chi_tiet_hoa_don";
-    protected $primaryKey = "ma_hoa_don,ma_san_pham";
     public $incrementing = false;
     public $timestamps = false;
 
@@ -18,6 +17,6 @@ class ChiTietHoaDon extends Model
 
     public function SanPham()
     {
-        return $this->hasMany('App\SanPham','ma_san_pham','ma_san_pham');
+        return $this->belongsTo('App\SanPham','ma_san_pham','ma_san_pham');
     }
 }

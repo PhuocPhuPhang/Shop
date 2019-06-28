@@ -183,7 +183,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'hoadon'],function(){
         Route::get('danhsach','HoaDonController@getDanhSach');
 
-        Route::get('duyet/{mahd}','HoaDonController@getDanhSach');
+        Route::get('duyet/{mahd}','HoaDonController@getDuyet');
         Route::post('duyet/{mahd}','HoaDonController@postDuyet');
     });
 

@@ -65,64 +65,37 @@
          <span id="form_result"></span>
          <form method="post" id="sample_form" class="form-horizontal">
           @csrf
+                <label style="padding-right:5px">Mã hóa đơn:</label><label id="mahd">{{$hd->ma_hoa_don}}</label><br>
+                <label>Tên người nhận: {{$hd->ten_nguoi_nhan}}</label><br/>
+                <label>Số điện thoại: {{$hd->so_dien_thoai}}</label><br/>
+                <label>Địa chỉ: {{$hd->dia_chi}}</label>
 
-           <div class="form-group">
-                <label class="control-label col-md-4" >Mã hóa đơn</label>
-                <div class="col-md-8">
-                    <input type="text" name="ma" id="ma" class="form-control" value="{{$hd->ma_hoa_don}}"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4" >Tên người nhận</label>
-                <div class="col-md-8">
-                    <input type="text" name="ten" id="ten" class="form-control" value="{{$hd->ten_nguoi_nhan}}"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4" >Số điện thoại</label>
-                <div class="col-md-8">
-                    <input type="text" name="sdt" id="sdt" class="form-control" value="{{$hd->so_dien_thoai}}"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4" >Địa chỉ</label>
-                <div class="col-md-8">
-                    <input type="text" name="sdt" id="sdt" class="form-control" value="{{$hd->dia_chi}}"/>
-                </div>
-            </div>
-
-            <div class="form-group">
             <h5 class="modal-title">Danh sách sản phẩm</h5>
-            </div>
-            @foreach($chitiethoadon as $ct)
-            <?php echo $ct->SanPham->ten_san_pham ?>
-            <div class="form-group">
-                <label class="control-label col-md-4" >Tên sản phẩm</label>
-                <div class="col-md-8">
-                    <input type="text" name="sdt" id="sdt" class="form-control" value=""/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4" >Số lượng</label>
-                <div class="col-md-8">
-                    <input type="text" name="sdt" id="sdt" class="form-control" value="{{$ct->so_luong}}"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4" >Đơn giá</label>
-                <div class="col-md-8">
-                    <input type="text" name="sdt" id="sdt" class="form-control" value=""/>
-                </div>
-            </div>
-            @endforeach
-
-
-
+            <table id="classTable" class="table table-bordered">
+                <thead>
+                <tr>
+                    <th style="text-align:center">STT</th>
+                    <th style="text-align:center">Tên sản phẩm</th>
+                    <th style="text-align:center">Số lượng</th>
+                    <th style="text-align:center">Đơn giá</th>
+                    <th style="text-align:center">Thành tiền</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i = 1 ?>
+                @foreach($chitiethoadon as $ct)
+                    <tr>
+                        <td>{{$i++}}</td>
+                        <td>{{$ct->SanPham->ten_san_pham}}</td>
+                        <td style="text-align:center">{{$ct->so_luong}}</td>
+                        <td>{{$ct->SanPham->gia_ban}}</td>
+                        <td>{{ $ct->so_luong * $ct->SanPham->gia_ban}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <label>Tổng thành tiền:</label><br/>
+            <label>Hình thức thanh toán: </label>
            <div class="form-group" align="center" id="button">
             <input type="button" name="action" id="action" class="btn btn-success" value="Duyệt" />
            </div>
@@ -138,6 +111,16 @@
         $('#duyet').click(function(){
                 $('#formModal').modal('show');
             });
+
+        $('#action').click(function(){
+            var mahd = document.getElementById('mahd').textContent;
+            $.ajax({
+                type:'post',
+                url: 'duyet/'+ mahd,
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                data:{"mahd":mahd},
+            })
+        });
     });
 </script>
 @endsection
