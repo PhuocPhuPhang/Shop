@@ -55,10 +55,11 @@ class SanPhamController extends Controller
 
     public function postThem(Request $request)
     {
-       $mang = $request->mang;
-       dd($mang);
-
-
+        $mang = $request->mang;
+        foreach($mang as $item)
+        {
+            echo $item['key'];
+        }
 
 
         // $mang = $_REQUEST;

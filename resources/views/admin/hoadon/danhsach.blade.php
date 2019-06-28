@@ -40,9 +40,9 @@
              <td>{{ $hd->so_dien_thoai}}</td>
              <td>{{ $hd->dia_chi }}</td>
              <td style="text-align:center">
-             <button type="button" id="duyet" value="{{$hd->ma_hoa_don}}" class="btn btn-info btn-xs">
-                    <i class="fa fa-pencil"></i> Duyệt
-            </button>
+             <button type="button" id="{{$hd->ma_hoa_don}}"  class="btn btn-info btn-xs duyet">
+                <i class="fa fa-edit"></i> Duyệt
+              </button>
              </td>
            </tr>
            @endforeach
@@ -58,69 +58,70 @@
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Chi tiết hóa đơn</h4>
-        </div>
-        <div class="modal-body">
-         <span id="form_result"></span>
-         <form method="post" id="sample_form" class="form-horizontal">
-          @csrf
-                <label style="padding-right:5px">Mã hóa đơn:</label><label id="mahd">{{$hd->ma_hoa_don}}</label><br>
-                <label>Tên người nhận: {{$hd->ten_nguoi_nhan}}</label><br/>
-                <label>Số điện thoại: {{$hd->so_dien_thoai}}</label><br/>
-                <label>Địa chỉ: {{$hd->dia_chi}}</label>
-
-            <h5 class="modal-title">Danh sách sản phẩm</h5>
-            <table id="classTable" class="table table-bordered">
-                <thead>
-                <tr>
-                    <th style="text-align:center">STT</th>
-                    <th style="text-align:center">Tên sản phẩm</th>
-                    <th style="text-align:center">Số lượng</th>
-                    <th style="text-align:center">Đơn giá</th>
-                    <th style="text-align:center">Thành tiền</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php $i = 1 ?>
-                @foreach($chitiethoadon as $ct)
-                    <tr>
-                        <td>{{$i++}}</td>
-                        <td>{{$ct->SanPham->ten_san_pham}}</td>
-                        <td style="text-align:center">{{$ct->so_luong}}</td>
-                        <td>{{$ct->SanPham->gia_ban}}</td>
-                        <td>{{ $ct->so_luong * $ct->SanPham->gia_ban}}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <label>Tổng thành tiền:</label><br/>
-            <label>Hình thức thanh toán: </label>
-           <div class="form-group" align="center" id="button">
-            <input type="button" name="action" id="action" class="btn btn-success" value="Duyệt" />
-           </div>
-         </form>
-        </div>
-     </div>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Chi tiết hóa đơn</h4>
     </div>
+    <div class="modal-body"></div>
+    </div>
+</div>
 </div>
 @endsection
 @section('script')
 <script type="text/javascript" language="javascript">
-    $(document).ready(function(){
-        $('#duyet').click(function(){
+        $(document).ready(function(){
+            $('.duyet').click(function(){
+                var mahd = $(this).attr('id');
+                $.ajax({
+                    type:'GET',
+                    url: 'duyet/' + mahd,
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"mahd":mahd},
+                    success: function(data){
+                        var hoadon = data['hoadon'];
+                        var cthd =  data['cthd'];
+                        var tongtien = data['tongtien'];
+                        var html =  `<form method="post" id="sample_form" class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Mã hóa đơn:${hoadon['ma_hoa_don']}</label><br>
+                                            <label class="col-form-label">Tên người nhận:${hoadon['ten_nguoi_nhan']}</label><br>
+                                            <label class="col-form-label">Số điện thoại:${hoadon['so_dien_thoai']}</label><br>
+                                            <label class="col-form-label">Địa chỉ:${hoadon['dia_chi']}</label>
+                                        </div>
+                                        <h5 class="modal-title">Danh sach sản phẩm</h5>
+                                        <table id="classTable" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên sản phẩm</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Đơn giá</th>
+                                                    <th>Thành tiền</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>`;
+                                            var i = 1;
+                                            for(var k in cthd){
+                                        html += `<tr>
+                                                    <td>${i++}</td>
+                                                    <td>${cthd[k]['ten_san_pham']}</td>
+                                                    <td>${cthd[k]['so_luong']}</td>
+                                                    <td>${cthd[k]['gia_ban']}</td>
+                                                    <td>${cthd[k]['so_luong'] * cthd[k]['gia_ban']}</td>
+                                                </tr>`;
+                                            }
+                                    html += `</tbody>
+                                            </table>
+                                            <label class="col-form-label">Tổng thành tiền:${tongtien}</label><br>
+                                            <div class="form-group" align="center" id="button">
+                                                <input type="button" name="action" id="action" class="btn btn-success" value="Duyệt" />
+                                            </div>
+                                            </form>`;
+                        $(".modal-body").append(html);
+                    }
+                })
                 $('#formModal').modal('show');
             });
-
-        $('#action').click(function(){
-            var mahd = document.getElementById('mahd').textContent;
-            $.ajax({
-                type:'post',
-                url: 'duyet/'+ mahd,
-                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                data:{"mahd":mahd},
-            })
-        });
     });
 </script>
 @endsection
+
