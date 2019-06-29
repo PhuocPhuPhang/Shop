@@ -231,7 +231,7 @@
 
 			<ul class="menu-grid">
 				<li><a href="shop" title="">Trang chủ</a></li>
-				<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
+				<li><a href="shop/gioi-thieu" title="Giới thiệu">Giới thiệu</a></li>
 				<li><a href="shop/san-pham" title="Sản phẩm">Sản phẩm</a>
 					<ul>
 						@foreach($nhacungcap as $ncc)

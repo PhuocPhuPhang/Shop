@@ -208,6 +208,9 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('logout','PageControllers@Logout');
 
     //Tin Tức
+    Route::get('gioi-thieu','PageControllers@about_tpl');
+
+    //Tin Tức
     Route::get('tin-tuc','PageControllers@news_tpl');
     Route::get('tin-tuc/{ten_khong_dau}','PageControllers@news_detail_tpl');
 
@@ -232,6 +235,8 @@ Route::group(['prefix'=>'shop'],function(){
 
     Route::post('lien-he','PageControllers@contact');
 
+    Route::get('SapXepGia/{sapxep}','PageControllers@SapXepGia');
+
 });
 
 
@@ -242,7 +247,7 @@ Route::post('timkiem','PageControllers@timkiem');
 
 Route::post('SearchPrice','PageControllers@SearchPrice');
 
-Route::post('SapXepGia','PageControllers@SapXepGia');
+
 
 
 

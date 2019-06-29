@@ -118,127 +118,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="wrap_pro_home">
-		<div class="container">
-			<label class="title-sp">Apple</label>
-			<div class="cat_nb ">
-				<a href="">iPhone 7</a>
-				<a href="">iPhone 8</a>
-				<a href="">iPhone X</a>
-			</div>
-			<div class="main_pro_home  flex-between-center">
-				<div class="big_product">
-					<div class="sanpham">
-						<div class="img">
-							<a href="" title=""><img class="sanphamnb" src="{{asset('themes/images/sp_nb.jpg')}}" alt=""></a>
-							<div class="sale_off">-10%</div>
-						</div>
-						<div class="pro_info">
-							<div class=""></div>
-							<div class="name"><h3><a href="">iPhone nổi bật</a></h3></div>
-							<div class="wrap_price">
-								<div class="price">Giá: <span>20,000,000 Đ</span></div>
-								<div class="price_old">25,000,000 Đ</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="small_product">
-					<div class="sanpham">
-						<div class="img">
-							<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
-							<div class="sale_off">-10%</div>
-						</div>
-						<div class="pro_info">
-							<div class=""></div>
-							<div class="name"><h3><a href="">iPhone thường</a></h3></div>
-							<div class="wrap_price">
-								<div class="price">Giá: <span>10,000,000 Đ</span></div>
-								<div class="price_old">15,000,000 Đ</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-					<div class="sanpham">
-						<div class="img">
-							<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
-							<div class="sale_off">-10%</div>
-						</div>
-						<div class="pro_info">
-							<div class=""></div>
-							<div class="name"><h3><a href="">iPhone thường</a></h3></div>
-							<div class="wrap_price">
-								<div class="price">Giá: <span>10,000,000 Đ</span></div>
-								<div class="price_old">15,000,000 Đ</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-					<div class="sanpham">
-						<div class="img">
-							<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
-							<div class="sale_off">-10%</div>
-						</div>
-						<div class="pro_info">
-							<div class=""></div>
-							<div class="name"><h3><a href="">iPhone thường</a></h3></div>
-							<div class="wrap_price">
-								<div class="price">Giá: <span>10,000,000 Đ</span></div>
-								<div class="price_old">15,000,000 Đ</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-					<div class="sanpham">
-						<div class="img">
-							<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
-							<div class="sale_off">-10%</div>
-						</div>
-						<div class="pro_info">
-							<div class=""></div>
-							<div class="name"><h3><a href="">iPhone thường</a></h3></div>
-							<div class="wrap_price">
-								<div class="price">Giá: <span>10,000,000 Đ</span></div>
-								<div class="price_old">15,000,000 Đ</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-					<div class="sanpham">
-						<div class="img">
-							<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
-							<div class="sale_off">-10%</div>
-						</div>
-						<div class="pro_info">
-							<div class=""></div>
-							<div class="name"><h3><a href="">iPhone thường</a></h3></div>
-							<div class="wrap_price">
-								<div class="price">Giá: <span>10,000,000 Đ</span></div>
-								<div class="price_old">15,000,000 Đ</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-					<div class="sanpham">
-						<div class="img">
-							<a href="" title=""><img class="img-responsive lazy" src="{{asset('themes/images/sp_t.jpg')}}" alt=""></a>
-							<div class="sale_off">-10%</div>
-						</div>
-						<div class="pro_info">
-							<div class=""></div>
-							<div class="name"><h3><a href="">iPhone thường</a></h3></div>
-							<div class="wrap_price">
-								<div class="price">Giá: <span>10,000,000 Đ</span></div>
-								<div class="price_old">15,000,000 Đ</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
 </section>
 <section id="news-wrapper">
 	<div class="container news-repone flex-between">
@@ -267,10 +146,10 @@
 						@foreach($tintuc as $tt)
 						<div class="small-item flex-between-center">
 							<div class="img_news">
-								<a href="" title=""><img src="upload/tintuc/{{$tt->hinh_anh}}" alt="" class="img-responsive lazy"/></a>
+								<a href="shop/tin-tuc/{{$tt->ten_khong_dau}}" title=""><img src="upload/tintuc/{{$tt->hinh_anh}}" alt="" class="img-responsive lazy"/></a>
 							</div>
 							<div class="news_list_info">
-								<a class="news_list_name" href="" title="">{{$tt->ten}}</a>
+								<a class="news_list_name" href="shop/tin-tuc/{{$tt->ten_khong_dau}}" title="">{{$tt->title}}</a>
 								<div class="news_list_mota">{{ str_limit($tt->mo_ta, $limit = 80, $end = '...') }}</div>
 							</div>
 						</div>

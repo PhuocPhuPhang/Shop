@@ -66,7 +66,9 @@
 			<div class="wrap_name">
 				<div class="name"><h1>Sản phẩm</h1></div>
 			</div>
-			@if( $route->uri == 'shop/san-pham')
+
+
+			
 			<div class="main_list_product">
 				@foreach($product_tpl as $sp)
 				<div class="sanpham">
@@ -96,7 +98,10 @@
 			</div>
 			{{ $product_tpl->links() }}
 			
-			@endif
+			
+
+
+
 		</div>
 	</div>
 </div>
@@ -132,17 +137,10 @@
 		$('#SapXepGia').on('click','label', function (e) {
 			e.preventDefault();
 			let sxGia = $(this).data('id');
-			
-			console.log(sxGia);
-			//array.push(sxGia);
 			$.ajax({
-				type:'post',
-				url: 'SapXepGia',
+				type:'get',
+				url: 'shop/SapXepGia/'+ sxGia,
 				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
-				data:{sxGia:sxGia},
-				success:function(data){
-				}
-
 			});
 		});
 

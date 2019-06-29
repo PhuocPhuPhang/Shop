@@ -8,6 +8,7 @@
 	<link href="{{asset('themes/js/OwlCarousel/owl.carousel.min.css')}}" rel="stylesheet">
 	<link href="{{asset('themes/js/OwlCarousel/owl.theme.default.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fotorama.css')}}" rel="stylesheet">
+	<link  href="{{asset('themes/css/simplyscroll.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/media.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/mmenu.all.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/hamburgers.min.css')}}" rel="stylesheet">

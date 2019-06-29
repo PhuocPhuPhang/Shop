@@ -136,6 +136,12 @@ public function Logout()
  return redirect('shop');
 }
 
+public function about_tpl()
+{
+  $about = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
+  return view('layouts.pages.about_tpl',['about'=>$about]);
+}
+
 public function news_tpl()
 {
   return view('layouts.pages.news_tpl');
@@ -148,8 +154,8 @@ public function contact()
 
 public function news_detail_tpl($ten_khong_dau)
 {
-  $tintuc = DB::table('tin_tuc')->where('ten_khong_dau',$ten_khong_dau)->first();
-  return view('layouts.pages.news_detail_tpl',['news_detail'=>$tintuc]);
+  $news_detail = DB::table('tin_tuc')->where('ten_khong_dau',$ten_khong_dau)->first();
+  return view('layouts.pages.news_detail_tpl',['news_detail'=>$news_detail]);
 }
 
 public function product_detail_tpl($ma_san_pham)
@@ -204,7 +210,7 @@ public function product_nha_cung_cap_tpl($ma_nha_cung_cap)
   $nha_cung_cap = NhaCungCap::find($ma_nha_cung_cap)->first();
   $ma_nha_cung_cap = $nha_cung_cap->ma_nha_cung_cap;
   $product_ncc_tpl= SanPham::where('nha_cung_cap',$ma_nha_cung_cap)->paginate(6);
-  return view('layouts.pages.product_tpl',['product_ncc_tpl'=>$product_ncc_tpl],['ma_nha_cung_cap'=>$ma_nha_cung_cap]);
+  return view('layouts.pages.product_tpl',['product_tpl'=>$product_ncc_tpl]);
 }
 
 public function AddtoCart($id)
@@ -308,20 +314,16 @@ public function SearchPrice(Request $request)
   }
 }
 
-public function SapXepGia(Request $request)
+public function SapXepGia($sapxep)
 {
-  $SapXepGia_chon = $request->sxGia;
-  
-  if($SapXepGia_chon == 1)
+  $sp = null;
+  if($sapxep == 1)
   {
-    $giatang = DB::table('san_pham')->orderBy('gia_ban','desc')->get();
- 
-  //return view('layouts.pages.product_tpl',);
-    //return view('layouts.pages.product_tpl',['giatang'=>$giatang]);
-    // return redirect('layouts.pages.product_tpl')->with('giatang',$giatang);
+    $sp = DB::table('san_pham')->orderBy('gia_ban','desc')->get();
   }
+  return redirect('shop/san-pham',['product_tpl'=>$sp]);
 
-}
+  }
 
 }
 
