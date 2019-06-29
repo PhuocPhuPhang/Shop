@@ -12,11 +12,11 @@ body { margin: 0; font-family: 'Roboto'; font-size: 0.8125rem; font-weight: 400;
 
 p { margin-top: 0; margin-bottom: 0; }
 
-ul{ margin: 0; padding: 0; }
+ul{ margin: 0; padding: 0; list-style: none;}
 
 ul ul , label{ margin-bottom: 0; }
 
-a {text-decoration: none;}
+a {text-decoration: none !important;}
 
 label { display: inline-block; margin-bottom: 0.5rem; }
 
@@ -411,6 +411,8 @@ a.link_cart:hover {color: #0066b3; }
 .news_tpl_mota{display: block;font-size: 15px;color: #000;font-family: 'Roboto';margin-bottom: 10px;margin-top: 5px;}
 .news_tpl_right{width: 30%;}
 
+.content12 { width: 1200px; margin: auto; position: relative; }
+.inner { padding-top: 10px; padding-bottom: 30px; }
 div.header_profile { padding: 15px 0px; }
 div.header_profile h6 { font-weight: bold; font-size: 13px; color: #333; line-height: 16px; }
 div.header_profile a { display: block; font-size: 11px; color: #999; }

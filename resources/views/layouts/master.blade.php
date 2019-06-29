@@ -13,7 +13,7 @@
 	<link  href="{{asset('themes/css/hamburgers.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fontawesome/css/fontawesome.css')}}" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/js/magiczoomplus/magiczoomplus.css')}}">
-	<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
+	<!-- <link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet"> -->
 	<link  href="{{asset('themes/css/all.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fontawesome/css/all.min.css')}}" rel="stylesheet">
 	

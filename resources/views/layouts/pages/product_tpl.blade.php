@@ -4,7 +4,7 @@
 	<div class="ncc_wrap">
 		<div class="ncc_grid">
 			@foreach($nhacungcap as $ncc )
-			<a class="ncc_item" href=""><img src="../upload/nhacungcap/{{$ncc->logo}}"></a>
+			<a class="ncc_item" href="shop/san-pham-nha-cung-cap/{{$ncc->ma_nha_cung_cap}}"><img src="../upload/nhacungcap/{{$ncc->logo}}"></a>
 			@endforeach
 		</div>
 	</div>
@@ -22,10 +22,9 @@
 			</ul>
 			<div class="sapxep_wrap">
 				<label class="title_sapxep">Sắp xếp</label>
-				<div class="sapxep_main">
-					<label>Nổi bật nhất</label>
-					<label>Giá cao đến thấp</label>
-					<label>Giá thấp đến cao</label>
+				<div id="SapXepGia" class="sapxep_main">
+					<label data-id="1">Giá cao đến thấp</label>
+					<label data-id="2">Giá thấp đến cao</label>
 				</div>
 			</div>
 		</div>
@@ -67,9 +66,9 @@
 			<div class="wrap_name">
 				<div class="name"><h1>Sản phẩm</h1></div>
 			</div>
+			@if( $route->uri == 'shop/san-pham')
 			<div class="main_list_product">
-				{{--@if({{$product_select}} == '')--}}
-				@foreach($product as $sp)
+				@foreach($product_tpl as $sp)
 				<div class="sanpham">
 					<div class="img">
 						<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
@@ -93,15 +92,13 @@
 						</div>
 					</div>
 				</div>
-
-
 				@endforeach
-				{{ $product->links() }}
+			</div>
+			{{ $product_tpl->links() }}
 			
-
+			@endif
+		</div>
 	</div>
-</div>
-</div>
 </div>
 
 
@@ -126,6 +123,27 @@
 			});
 			array = [];
 			console.log(array);
+		});
+
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('#SapXepGia').on('click','label', function (e) {
+			e.preventDefault();
+			let sxGia = $(this).data('id');
+			
+			console.log(sxGia);
+			//array.push(sxGia);
+			$.ajax({
+				type:'post',
+				url: 'SapXepGia',
+				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
+				data:{sxGia:sxGia},
+				success:function(data){
+				}
+
+			});
 		});
 
 	});

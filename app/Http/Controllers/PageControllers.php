@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+// use Illuminate\Routing\UrlGenerator;
 use Illuminate\Http\Requests;
 use App\Media;
 use App\TinTuc;
@@ -15,6 +15,7 @@ use App\SanPham;
 use App\HoaDon;
 use App\ChiTietHoaDon;
 use Session;
+use Route;
 use DB;
 use Cart;
 
@@ -23,12 +24,15 @@ class PageControllers extends Controller
   function __construct(){
     $nhacungcap =  NhaCungCap::all();
     $tintuc= TinTuc::all();
-    $product= SanPham::where('noi_bat',1)->paginate(8);
+    $product_shop= SanPham::where('noi_bat',1)->paginate(8);
+    
     $social = Media::where('type','social')->get();
     $website = DB::table('thong_tin_cong_ty')->first();
+    $route = Route::current();
+    view()->share('route',$route);
     view()->share('nhacungcap',$nhacungcap);
     view()->share('tintuc',$tintuc);
-    view()->share('product',$product);
+    view()->share('product_shop',$product_shop);
     view()->share('social',$social);
     view()->share('website',$website);
   }
@@ -161,41 +165,46 @@ public function profile()
 
 public function postChangePassword(Request $request)
 {
- $this->validate($request,
-  [
-    'password_old' => 'required|min:6',
-    'password'  =>  'required|min:6|confirmed',
-    'password_confirmation' =>  'required|min:6'
-  ],
-  [
-    'password_old.required' =>   'Bạn chưa nhập password',
-    'password.required' =>   'Bạn chưa nhập password',
-    'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
-    'password.confirmed'=> 'Mật khẩu chưa khớp',
-    'password_confirmation.required'=> 'Bạn chưa nhập lại password',
-  ]);
+   $this->validate($request,
+    [
+      'password_old' => 'required|min:6',
+      'password'  =>  'required|min:6|confirmed',
+      'password_confirmation' =>  'required|min:6'
+    ],
+    [
+      'password_old.required' =>   'Bạn chưa nhập password',
+      'password.required' =>   'Bạn chưa nhập password',
+      'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
+      'password.confirmed'=> 'Mật khẩu chưa khớp',
+      'password_confirmation.required'=> 'Bạn chưa nhập lại password',
+    ]);
 
- $user = Auth::user();
- $password_old = $request['password_old'];
+   $user = Auth::user();
+   $password_old = $request['password_old'];
+   if(Hash::check($password_old,$user->password))
+   {
+     $password = $request['password'];
+     DB::table('users')->where('id',$user->id)->update(['password'=> Hash::make($password)]);
 
- if(Hash::check($password_old,$user->password))
- {
-  $password = $request->password;
-  $password_new = Hash::make($password);
-  $user->password = $password_new;
-  $user->save();
-
-  return redirect('profile')->with('thongbao',"Đổi mật khẩu thành công");
-}
-else
-  { return redirect('profile')->with('thongbao',"Thất bại"); }
+    return redirect('shop/profile')->with('thongbao',"Đổi mật khẩu thành công");
+  }
+  else
+    { return redirect('shop/profile')->with('thongbao',"Thất bại"); }
 }
 
 
 public function product_tpl()
 {
-  $nhacungcap = NhaCungCap::all();
-  return view('layouts.pages.product_tpl',['nhacungcap'=>$nhacungcap]);
+  $product_tpl= SanPham::paginate(6);
+  return view('layouts.pages.product_tpl',['product_tpl'=>$product_tpl]);
+}
+
+public function product_nha_cung_cap_tpl($ma_nha_cung_cap)
+{
+  $nha_cung_cap = NhaCungCap::find($ma_nha_cung_cap)->first();
+  $ma_nha_cung_cap = $nha_cung_cap->ma_nha_cung_cap;
+  $product_ncc_tpl= SanPham::where('nha_cung_cap',$ma_nha_cung_cap)->paginate(6);
+  return view('layouts.pages.product_tpl',['product_ncc_tpl'=>$product_ncc_tpl],['ma_nha_cung_cap'=>$ma_nha_cung_cap]);
 }
 
 public function AddtoCart($id)
@@ -297,22 +306,21 @@ public function SearchPrice(Request $request)
     $product_select = SanPham::whereBetween('gia_ban', [1, 2000000])->paginate(6);
     return redirect('shop/san-pham',['product_select'=>$product_select]);
   }
-  if($Price_selected == 2)
+}
+
+public function SapXepGia(Request $request)
+{
+  $SapXepGia_chon = $request->sxGia;
+  
+  if($SapXepGia_chon == 1)
   {
-    
+    $giatang = DB::table('san_pham')->orderBy('gia_ban','desc')->get();
+ 
+  //return view('layouts.pages.product_tpl',);
+    //return view('layouts.pages.product_tpl',['giatang'=>$giatang]);
+    // return redirect('layouts.pages.product_tpl')->with('giatang',$giatang);
   }
-  if($Price_selected == 3)
-  {
-    
-  }
-  if($Price_selected == 4)
-  {
-    
-  }
-  if($Price_selected == 5)
-  {
-    
-  }
+
 }
 
 }

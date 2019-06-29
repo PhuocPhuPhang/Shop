@@ -16,7 +16,7 @@
 		<label class="title-sp-nb"><img src="{{asset('themes/images/gsct.png')}}"></label>
 		<div class="list_product">
 			<div class="sp-owl owl-carousel owl-theme">
-				@foreach($product as $sp)
+				@foreach($product_shop as $sp)
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
@@ -96,7 +96,7 @@
 			</div>
 			<div class="main_pro_home">
 				<div class="small_product">
-					@foreach($product as $sp)
+					@foreach($product_shop as $sp)
 					<div class="sanpham">
 						<div class="img">
 							<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}"><img class="img-responsive lazy" src="upload/sanpham/{{$sp->hinh_anh}}" alt="{{$sp->ten_san_pham}}"></a>
