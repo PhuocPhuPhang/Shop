@@ -16,7 +16,7 @@
             {{ session('thongbao') }}
         </div>
     @endif
-    <form id="themsp" method="post" action="../sanpham/them"  enctype="multipart/form-data">
+    <form id="themsp" method="post"   enctype="multipart/form-data">
         <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -31,46 +31,46 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
                     <label >Mã sản phẩm</label>
-                    <input type="text" id="ma" class="form-control" name="ma" /><br />
+                    <input type="text" id="ma" class="form-control inputForm" name="ma" /><br />
 
                     <label>Tên sản phẩm</label>
-                    <input type="text" id="ten" class="form-control" name="ten" /> <br />
+                    <input type="text" id="ten" class="form-control inputForm" name="ten" /> <br />
 
                     <label>Màu sắc</label>
                         <div class="input-group demo2">
-                        <input type="text" id="mausac" value="#e01ab5" class="form-control" name="mausac"/>
+                        <input type="text" id="mausac" value="#e01ab5" class="form-control inputForm" name="mausac"/>
                         <span class="input-group-addon"><i></i></span>
                         </div>
                     <br/>
 
                     <label >Nhà cung cấp</label>
-                    <Select class="form-control" name="nhacungcap" id="nhacungcap">
+                    <Select class="form-control inputForm" name="nhacungcap" id="nhacungcap">
                         @foreach($nhacungcap as $ncc)
                             <option value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
                         @endforeach
                     </Select><br/>
 
                     <label>Số lượng</label>
-                    <input type="text" id="soluong" class="form-control" name="soluong" /><br />
+                    <input type="text" id="soluong" class="form-control inputForm" name="soluong" /><br />
 
                     <label>Gía bán</label>
-                    <input type="text" id="gia" class="form-control" name="gia" /><br />
+                    <input type="text" id="gia" class="form-control inputForm" name="gia" /><br />
 
                     <label>Chương trình khuyến mãi</label>
-                    <select name="khuyenmai" id="khuyenmai" class="form-control">
+                    <select name="khuyenmai" id="khuyenmai" class="form-control inputForm">
                         @foreach($khuyenmai as $km)
                             <option value="{{$km->ma_khuyen_mai}}">{{$km->ten_khuyen_mai}}</option>
                         @endforeach
                     </select><br/>
 
                     <label>Mô tả</label>
-                    <textarea id="mota"  class="form-control" name="mota"></textarea><br />
+                    <textarea id="mota"  class="form-control inputForm" name="mota"></textarea><br />
 
                     <label>Nổi bật &nbsp;&nbsp;</label>
-                    <input type="checkbox" class="flat" id="noibat" name="noibat" value="1" ><br/><br/>
+                    <input type="checkbox" class="flat inputForm" id="noibat" name="noibat" value="0" ><br/><br/>
 
                     <label>Keywords</label>
-                    <textarea id="keywords"  class="form-control" name="keywords"></textarea><br />
+                    <textarea id="keywords"  class="form-control inputForm" name="keywords"></textarea><br />
 
                     <label>Hình ảnh</label>
                     <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" onChange="showImages.call(this)"/><br/>
@@ -99,7 +99,7 @@
                     @foreach($cauhinh as $ch)
                         @if($ch->id_loai == $loai->id)
                         <label>{{$ch->cau_hinh}}</label>
-                        <input type="text" id="{{$ch->ten_khong_dau}}" class="form-control" name="{{$ch->ten_khong_dau}}" /><br />
+                        <input type="text" id="{{$ch->ten_khong_dau}}" class="form-control inputForm" name="{{$ch->ten_khong_dau}}" /><br />
                         @endif
                     @endforeach
                 </div>
@@ -112,7 +112,7 @@
         <div class="x_panel">
             <div class="x_title" style="border-bottom:none">
                 <label>Nội dung</label>
-                <textarea id="noidung" class="form-gruop ckeditor" name="noidung" ></textarea><br/>
+                <textarea id="noidung" class="form-gruop ckeditor inputForm" name="noidung" ></textarea><br/>
                     <div class="form-group" style="margin-left:20%">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <a href="{{ url('admin/sanpham/danhsach') }}">
@@ -211,7 +211,7 @@
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}":{
                          var html = `<label>${cauhinh}</label>
-                                    <input type="text" id="${tenkhongdau}"  class="form-control" name="${tenkhongdau}" /><br />`;
+                                    <input type="text" id="${tenkhongdau}"  class="form-control inputForm" name="${tenkhongdau}" /><br />`;
                         $('#{{str_slug($loai->ten)}}').append(html);
                     }break;
                     @endforeach
@@ -246,7 +246,7 @@
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}":{
                          var html = `<label>${cauhinh_new}</label>
-                        <input type="text" id="${tenkhongdau_new}" class="form-control" name="${tenkhongdau_new}" /><br />`;
+                        <input type="text" id="${tenkhongdau_new}" class="form-control inputForm" name="${tenkhongdau_new}" /><br />`;
                         $('#{{str_slug($loai->ten)}}').append(html);
                     }break;
                     @endforeach
@@ -261,48 +261,26 @@
 
         $("#themsp").submit(function(event){
             event.preventDefault();
-            var ma = document.getElementById("ma").value;
-            var ten = document.getElementById("ten").value;
-            var nhacungcap = document.getElementById("nhacungcap").value;
-            var soluong = document.getElementById("soluong").value;
-            var gia = document.getElementById("gia").value;
-            var khuyenmai = document.getElementById("khuyenmai").value;
-            var mausac = document.getElementById("mausac").value;
-            var mota = document.getElementById("mota").value;
-            var keywords = document.getElementById("keywords").value;
-            var noidung = document.getElementById("noidung").value;
-            var noibat = document.getElementById("noibat").value;
-            var hinhanh = document.getElementById("hinhanh").value;
             var array = [];
-            $(':input[type="text"]').each(function(index, input){
+            $('.inputForm').each(function(index, input){
                 let name, value;
-                name = $(input).attr('name');
+                key = $(input).attr('name');
                 value = $(input).val();
                 let arr = {};
-                arr.name = name;
-                arr.value = value;
-                array.push(arr);
+                if(value != "")
+                {
+                    arr.key = key;
+                    arr.value = value;
+                    array.push(arr);
+                }
             });
-            if(ma == "" || ten == "")
-            {
-                alert('Vui lòng kiểm tra lại thông tin mã sản phẩm và tên sản phẩm');
-            }
-            else{
-                $.ajax({
-                    type:'post',
-                    url: 'them',
-                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
-                    data:{"mang":array,"ma":ma,"ten":ten,"nhacungcap":nhacungcap,
-                        "soluong":soluong,"gia":gia,"khuyenmai":khuyenmai,"mausac":mausac,
-                        "mota":mota,"keywords":keywords,"noidung":noidung,"noibat":noibat,"hinhanh":hinhanh},
-                        success: function(data){
-                        if(data.data.success)
-                        {
-                            alert('Thành công');
-                        }
-                    }
-                })
-            }
+            console.log(array);
+            $.ajax({
+                type:'post',
+                url: 'them',
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
+                data:{"mang":array},
+            })
         });
 
     function string_to_slug (str) {
