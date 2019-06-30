@@ -14,7 +14,16 @@
 	<link  href="{{asset('themes/css/hamburgers.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fontawesome/css/fontawesome.css')}}" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/js/magiczoomplus/magiczoomplus.css')}}">
-	<!-- <link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet"> -->
+	
+	@switch( !$route->uri)
+		@case('shop/doi-mat-khau')
+		<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
+		@break
+		@case('shop/profile')
+		<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
+		@break
+		@default
+	@endswitch
 	<link  href="{{asset('themes/css/all.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fontawesome/css/all.min.css')}}" rel="stylesheet">
 	
@@ -38,6 +47,7 @@
 <script>
 	$(document).ready(function(){
 		$("#scroller").simplyScroll({orientation:'vertical',customClass:'vert',auto:true});
+		$("#scroller2").simplyScroll({orientation:'vertical2',customClass:'vert2',auto:true});
 		$('.slider-owl').owlCarousel({
 			animateOut: 'fadeOut',
 			autoplayTimeout: 7000,

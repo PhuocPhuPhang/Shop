@@ -241,7 +241,7 @@ a.link_cart:hover {color: #0066b3; }
 
 /*sanpham-detail*/
 .pd-detail{margin: 10px 0;}
-.frame_images{width: 28%;height: 390px;}
+.frame_images{width: 28%;}
 .khung_thongtin{width: 50%;}
 .tintuclienquan{width: 18%;margin-top: 20px;}
 .policy{list-style: none;border:1px solid #cacaca;padding: 10px;}
@@ -250,8 +250,8 @@ a.link_cart:hover {color: #0066b3; }
 .policy li span{display: inline-block;width: 80%;padding-left: 5px;}
 .policy li img{width: 10%;}
 .khung_thongtin{list-style: none;}
-.frame_images{border:1px solid #cacaca;}
-.product_zoom{margin-bottom: 10px;}
+/*.frame_images{border:1px solid #cacaca;}*/
+.owl-product-photos{margin-top: 10px;}
 .product_zoom_item{border:1px solid #cacaca;display: inline-block;}
 .btn_muangay{text-align: center; color: #fff; padding: 5px 3px; margin-bottom: 10px; cursor: pointer; margin-top: 10px; -webkit-border-radius: 4px;/*Safari, Chrome*/ -moz-border-radius: 4px;/*Firefox*/ border-radius: 4px; }
 .btn_ac1{background: #fc6f1b url(images/btn_ac1.jpg) repeat-x center top;}
@@ -429,3 +429,8 @@ div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-hei
 .news_list_info{width: 65%;}
 .news_list_name a{display: block;font-size: 15px;color: #000;font-weight: bold;}
 .news_list_mota{display: block;font-size: 13px;color: #6c757d;font-family: 'Roboto';}
+
+.news_product_wrap{width: 100%;}
+.vert2 { width: 100%; height: 465px; }
+.vert2 .simply-scroll-clip { width: 100%; height: 100%; }
+#scroller2 li{margin-bottom: 15px;height: 115px; border-bottom: 1px dashed #d7d7d7;padding-bottom: 15px;display: inline-table;width: 100%;}

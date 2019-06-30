@@ -167,7 +167,9 @@ public function product_detail_tpl($ma_san_pham)
   $product_ncc = $product_detail->nha_cung_cap;
   $product_related = DB::table('san_pham')->Where('nha_cung_cap',$product_ncc)->whereNotIn('ma_san_pham',[$ma_san_pham])->get();
   $img_related = DB::table('hinh_anh_san_pham')->Where('ma_san_pham',$ma_san_pham)->get();
-  return view('layouts.pages.product_detail_tpl',['product_detail'=>$product_detail],['product_related'=>$product_related],['img_related'=>$img_related]);
+  $tintuc_tukhoa = DB::table('tin_tuc')->where('type','tin-tuc')->get();
+ 
+  return view('layouts.pages.product_detail_tpl',compact('product_detail','tintuc_tukhoa','product_related','img_related'));
 }
 
 public function profile()
