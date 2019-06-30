@@ -194,14 +194,13 @@
     <script type="text/javascript" language="javascript">
     $(document).ready(function(){
 
-        // $("div#uploadZone").dropzone({ url: "/file/post" });
         $('#them_cauhinh').click(function(){
             $('#formModal').modal('show');
         });
 
         $("#loaicauhinh").change(function(){
             var idloaiCH = $(this).val();
-            $.get("../ajax/cauhinh/" + idloaiCH,function(data){
+            $.get("admin/ajax/cauhinh/" + idloaiCH,function(data){
                 $("#list_cauhinh").html(data);
             });
         });
@@ -270,43 +269,45 @@
         });
 
         $("#btnSubmit").click(function(event){
-            // event.preventDefault();
             var masp = document.getElementById('ma').value;
             var tensp = document.getElementById('ten').value;
             var hinh = document.getElementById('hinh');
-            console.log(hinh);
             var array = [];
-            if(masp != "" || tensp != ""){
-            $('.inputForm').each(function(index, input){
-                let name, value;
-                key = $(input).attr('name');
-                value = $(input).val();
-                let arr = {};
-                if(value != ""){
-                    arr[key] = value;
-                    // arr.value = value;
-                    array.push(arr);
-                }
-                else{
-                    arr[key] = null;
-                    array.push(arr);
-                }
-            });
+            if(masp != "" && tensp != ""){
             $.ajax({
                 type:'post',
-                url: '/admin/sanpham/them',
-                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
-                data:{"mang":array},
+                url: '/admin/sanpham/KiemTraMaSanPham',
+                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                data:{"masp":masp},
                 success:function(data){
-                    if(data.data.success)
-                    {
-                        alert('Thành công');
+                    if(data.tontai != 0){ alert('Mã sản phẩm đã tồn tại. Vui lòng kiểm tra lại'); }
+                    else{
+                        $('.inputForm').each(function(index, input){
+                        let name, value;
+                        key = $(input).attr('name');
+                        value = $(input).val();
+                        let arr = {};
+                        if(value != ""){
+                            arr[key] = value;
+                        }
+                        else{
+                            arr[key] = null;
+                        }
+                        array.push(arr);
+                        });
+                        $.ajax({
+                            type:'post',
+                            url: '/admin/sanpham/them',
+                            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
+                            data:{"mang":array},
+                        })
+
                     }
                 }
             })
             }
             else{
-                alert('Vui lòng kiểm tra lại thông tin ');
+                alert('Vui lòng kiểm tra lại mã sản phẩm và tên sản phẩm ');
             }
         });
 

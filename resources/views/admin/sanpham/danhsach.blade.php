@@ -43,11 +43,11 @@
                     <input readonly type="text" style="border:none;height:20px;width:60px;background:{{$sp->mau_sac}}"/>
              </td>
              <td style="text-align:center">
-                <a href="../sanpham/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+             <a href="admin/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
+                    <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash-o"></i> Delete
+                <a href="admin/sanpham/xoa/{{$sp->ma_san_pham}}" class="btn btn-danger btn-xs">
+                    <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
            </tr>

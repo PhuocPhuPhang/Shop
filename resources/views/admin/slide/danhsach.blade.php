@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>DANH SÁCH SLIDE</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="../slide/them"><i class="fa fa-plus"></i></a></li>
+            <li><a href="admin/slide/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>
@@ -39,10 +39,10 @@
                  <img src="../../upload/slide/{{$sl->hinh_anh}}" alt="Hình ảnh" width="150px" height="100px">
             </td>
              <td style="text-align:center;vertical-align:middle;">
-                <a href="../slide/sua/{{$sl->id}}" class="btn btn-info btn-xs">
+                <a href="admin/slide/sua/{{$sl->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="../slide/xoa/{{$sl->id}}" class="btn btn-danger btn-xs">
+                <a href="admin/slide/xoa/{{$sl->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
