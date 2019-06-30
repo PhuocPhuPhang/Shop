@@ -26,7 +26,7 @@
 	</div>
 	<div class="col-md-10 right-profile">
 		<h4 class="border-bottom">Thông tin tài khoản</h4>
-		@if( $route->uri == 'shop/thong-tin-tai-khoan')
+		@if( $route->uri == 'shop/thong-tin-tai-khoan' || $route->uri == 'shop/profile')
 		<form class="col-md-8" id="frmInfoUser" method="post" action="thong-tin-tai-khoan.html">
 			<div class="form-group row">
 				<label class="col-md-3 col-form-label" for="">Email</label>

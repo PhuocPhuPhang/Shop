@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<div class="container">
+	<div class="container">
 	<div class="pd-detail">
 		<div class="flex-between">
 			<div class="frame_images">
@@ -134,6 +134,26 @@
 								</div>
 							</li>
 						</ul>
+						<div class="news_product_wrap">
+							<div class="title"><h3>Tin tức mới</h3></div>
+							<ul id="scroller2">
+								@foreach($tintuc_tukhoa as $tt)
+								<li>
+									<div class="main_news flex-between">
+										<div class="img_news">
+											<a class="w-img effect-zoom" href="shop/tin-tuc/{{$tt->ten_khong_dau}}" title="">
+												<img src="upload/tintuc/{{$tt->hinh_anh}}" alt="">
+											</a>
+										</div>
+										<div class="news_list_info" style="margin-left: 10px;">
+											<div class="news_list_name"><a href="shop/tin-tuc/{{$tt->ten_khong_dau}}">{{$tt->title}}</a></div>
+											<div style="margin-top: 10px;" class="news_list_date">{{$tt->updated_at}}</div>
+										</div>
+									</div>
+								</li>
+								@endforeach
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div class="wrap_name_detail">
@@ -169,4 +189,4 @@
 			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
 			<div class="fb-comments" data-href="http://127.0.0.1:8000/shop/san-pham/SP02" data-width="100%" data-numposts="5"></div>		
 		</div>
-		@endsection
+@endsection
