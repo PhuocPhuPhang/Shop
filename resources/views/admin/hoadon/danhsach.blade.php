@@ -73,7 +73,7 @@
                 var mahd = $(this).attr('id');
                 $.ajax({
                     type:'GET',
-                    url: 'duyet/' + mahd,
+                    url: 'admin/hoadon/duyet/' + mahd,
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"mahd":mahd},
                     success: function(data){
@@ -130,7 +130,7 @@
         var mahd = $('.duyet').attr('id');
         $.ajax({
                 type:'POST',
-                url: 'duyet/' + mahd,
+                url: 'admin/hoadon/duyet/' + mahd,
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 data:{"mahd":mahd},
                 success: function(data){

@@ -36,10 +36,10 @@
              <td style="text-align:center">{{$i++}}</td>
              <td>{{$cs->title}}</td>
              <td style="width:200px;text-align:center">
-                <a href="../tintuc/chinhsach/sua/{{$cs->id}}" class="btn btn-info btn-xs">
+                <a href="admin/tintuc/chinhsach/sua/{{$cs->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="../tintuc/chinhsach/xoa/{{$cs->id}}" class="btn btn-danger btn-xs">
+                <a href="admin/tintuc/chinhsach/xoa/{{$cs->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>

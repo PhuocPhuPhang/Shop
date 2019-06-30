@@ -44,10 +44,10 @@
                     @endif><br/>
              </td>
              <td style="text-align:center">
-                <a href="../tintuc/sua/{{$tin->id}}" class="btn btn-info btn-xs">
+                <a href="admin/tintuc/sua/{{$tin->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="../tintuc/xoa/{{$tin->id}}" class="btn btn-danger btn-xs">
+                <a href="admin/tintuc/xoa/{{$tin->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
@@ -71,7 +71,7 @@
                 var id = $(this).closest('.flat').attr('id');
                 $.ajax({
                     type:'POST',
-                    url: '../ajax/tintuc/noibat',
+                    url: 'admin/ajax/tintuc/noibat',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"id":id},
                     success: function(data){

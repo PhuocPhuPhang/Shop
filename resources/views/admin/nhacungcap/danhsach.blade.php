@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>DANH SÁCH NHÀ CUNG CẤP</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('admin/nhacungcap/them') }}"><i class="fa fa-plus"></i></a></li>
+            <li><a href="admin/nhacungcap/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
         </ul>
        <div class="clearfix"></div>
@@ -41,10 +41,10 @@
              <td>{{ $ncc->so_dien_thoai }}</td>
              <td>{{ $ncc->dia_chi }}</td>
              <td style="text-align:center">
-                <a href="../nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
+                <a href="admin/nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="../nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
+                <a href="admin/nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>

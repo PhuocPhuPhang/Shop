@@ -50,7 +50,7 @@
             </button>
              @endif
              @if($ng->quyen != 0)
-                <a href="../user/xoa/{{$ng->id}}" class="btn btn-danger btn-xs">
+                <a href="admin/user/xoa/{{$ng->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
@@ -116,7 +116,7 @@
                 var id = $("#phanquyen").val();
                 $.ajax({
                     type:'POST',
-                    url: '../ajax/user/update',
+                    url: 'admin/ajax/user/update',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"id":id , "quyen":quyen},
                     success: function(data){

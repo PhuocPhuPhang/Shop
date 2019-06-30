@@ -200,7 +200,7 @@
 
         $("#loaicauhinh").change(function(){
             var idloaiCH = $(this).val();
-            $.get("../ajax/cauhinh/" + idloaiCH,function(data){
+            $.get("admin/ajax/cauhinh/" + idloaiCH,function(data){
                 $("#list_cauhinh").html(data);
             });
         });

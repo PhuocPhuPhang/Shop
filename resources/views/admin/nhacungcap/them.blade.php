@@ -63,7 +63,7 @@
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <a href="../nhacungcap/danhsach"><button class="btn btn-primary" type="button">Hủy</button></a>
+                    <a href="admin/nhacungcap/danhsach"><button class="btn btn-primary" type="button">Hủy</button></a>
                     <button class="btn btn-primary" type="reset">Làm mới</button>
                     <button type="submit" class="btn btn-success">Lưu</button>
                 </div>

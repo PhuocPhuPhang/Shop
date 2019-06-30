@@ -14,7 +14,7 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Collection;
-
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 class SanPhamController extends Controller
 {
@@ -129,6 +129,16 @@ class SanPhamController extends Controller
 
         return view('admin.sanpham.sua',['sanpham'=>$sanpham],['cauhinh'=>$cauhinh],
                 ['khuyenmai'=>$khuyenmai],['nhacungcap'=>$nhacungcap]);
+    }
+
+    public function postXoa($masp)
+    {
+        $hinhanh_sp = DB::table('hinh_anh_san_pham')->where('ma_san_pham',$masp)->delete();
+        $thongtin_sp = DB::table('thong_tin_san_pham')->where('ma_san_pham',$masp)->delete();
+        $sanpham = SanPham::find($masp);
+        $sanpham->delete();
+
+        return redirect('admin/sanpham/danhsach')->with('thongbao','Xóa sản phẩm thành công');
     }
 }
 
