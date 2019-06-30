@@ -63,45 +63,40 @@ class SanPhamController extends Controller
                 $newArr[$key] = $value;
             }
         }
+            $sanpham = new SanPham;
+            $sanpham->ma_san_pham = isset($newArr['ma']) ? $newArr['ma'] : '0';
+            $sanpham->ten_san_pham = $newArr['ten'];
+            $sanpham->ten_khong_dau = str_slug($newArr['ten']);
+            $sanpham->nha_cung_cap = $newArr['nhacungcap'];
+            $sanpham->so_luong = $newArr['soluong'];
+            $sanpham->gia_ban = $newArr['gia'];
+            $sanpham->mau_sac = $newArr['mausac'];
+            $sanpham->khuyen_mai = $newArr['khuyenmai'];
+            $sanpham->mo_ta= $newArr['mota'];
+            $sanpham->noi_dung = $newArr['noidung'];
+            $sanpham->keywords = $newArr['keywords'];
+            $sanpham->save();
 
-        $sanpham = new SanPham;
-        $sanpham->ma_san_pham = isset($newArr['ma']) ? $newArr['ma'] : '0';
-        $sanpham->ten_san_pham = $newArr['ten'];
-        $sanpham->ten_khong_dau = str_slug($newArr['ten']);
-        $sanpham->nha_cung_cap = $newArr['nhacungcap'];
-        $sanpham->so_luong = $newArr['soluong'];
-        $sanpham->gia_ban = $newArr['gia'];
-        $sanpham->mau_sac = $newArr['mausac'];
-        $sanpham->khuyen_mai = $newArr['khuyenmai'];
-        $sanpham->mo_ta= $newArr['mota'];
-        $sanpham->noi_dung = $newArr['noidung'];
-        $sanpham->keywords = $newArr['keywords'];
-        $sanpham->save();
-
-        $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
-        foreach($newArr as $key => $value)
-        {
-           foreach( $listCauHinh as $cauhinh)
-           {
-             if($cauhinh->ten_khong_dau == $key)
-             {
-                if($newArr[$key] != null)
+            $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
+            foreach($newArr as $key => $value)
+            {
+                foreach( $listCauHinh as $cauhinh)
                 {
-                    $thongtinsp = new ThongTinSanPham;
-                    $thongtinsp->ma_san_pham = $newArr['ma'];
-                    $thongtinsp->id_cau_hinh = $cauhinh->id;
-                    $thongtinsp->mo_ta = $newArr[$key];
-                    $thongtinsp->save();
+                    if($cauhinh->ten_khong_dau == $key)
+                    {
+                        if($newArr[$key] != null)
+                        {
+                            $thongtinsp = new ThongTinSanPham;
+                            $thongtinsp->ma_san_pham = $newArr['ma'];
+                            $thongtinsp->id_cau_hinh = $cauhinh->id;
+                            $thongtinsp->mo_ta = $newArr[$key];
+                            $thongtinsp->save();
+                        }
+                    }
                 }
-             }
-           }
-        }
-    return  response()->json([
-        'data' => [
-          'success' => 'Thành Công' ,
-        ]
-      ]);
+            }
     }
+
 
     public function postUploadImages(Request $request)
     {
@@ -116,6 +111,15 @@ class SanPhamController extends Controller
 
             $file->move("upload/sanpham",$hinh);
     }
+
+    public function postKiemTraMaSanPham(Request $request)
+    {
+        $tontai = DB::table('san_pham')->where('ma_san_pham',$request->masp)->count();
+        return response()->json([
+              'tontai' => $tontai,
+          ]);
+    }
+
     public function getSua($masp)
     {
         $khuyenmai = KhuyenMai::all();

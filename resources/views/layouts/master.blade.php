@@ -17,7 +17,7 @@
 	<!-- <link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet"> -->
 	<link  href="{{asset('themes/css/all.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fontawesome/css/all.min.css')}}" rel="stylesheet">
-	
+
 	<title></title>
 </head>
 <body>
@@ -184,7 +184,7 @@
 			var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
 			var mobile = $('#mobile').val();
 			if(mobile !==''){
-				if (vnf_regex.test(mobile) == false) 
+				if (vnf_regex.test(mobile) == false)
 				{
 					alert('Số điện thoại của bạn không đúng định dạng!');
 				}else{
