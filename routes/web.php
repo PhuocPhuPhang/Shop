@@ -225,6 +225,7 @@ Route::group(['prefix'=>'shop'],function(){
     //profile
     Route::get('profile','PageControllers@profile');
     Route::get('thong-tin-tai-khoan','PageControllers@profile');
+    Route::post('cap-nhat-thong-tin','PageControllers@changeProfile');
     Route::get('doi-mat-khau','PageControllers@profile');
     Route::post('doi-mat-khau','PageControllers@postChangePassword');
 

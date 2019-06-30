@@ -141,7 +141,7 @@ public function Logout()
 
 public function about_tpl()
 {
-  
+
   return view('layouts.pages.about_tpl');
 }
 
@@ -168,7 +168,7 @@ public function product_detail_tpl($ma_san_pham)
   $product_related = DB::table('san_pham')->Where('nha_cung_cap',$product_ncc)->whereNotIn('ma_san_pham',[$ma_san_pham])->get();
   $img_related = DB::table('hinh_anh_san_pham')->Where('ma_san_pham',$ma_san_pham)->get();
   $tintuc_tukhoa = DB::table('tin_tuc')->where('type','tin-tuc')->get();
- 
+
   return view('layouts.pages.product_detail_tpl',compact('product_detail','tintuc_tukhoa','product_related','img_related'));
 }
 
@@ -176,34 +176,56 @@ public function profile()
 {
   return view('layouts.pages.profile');
 }
+public function changeProfile(Request $request)
+{
+ $this->validate($request,
+  [
+    'ten' => 'required',
+    'so_dien_thoai'=> 'required|numeric|min:9',
+    'ngay_sinh'=> 'required',
+  ],
+  [
+    'ten.required' => 'Bạn chưa nhập họ tên',
+    'so_dien_thoai.required'   => 'Số điện thoại chưa nhập',
+    'so_dien_thoai.numeric'   => 'Số điện thoại bắt buộc phải là số',
+    'so_dien_thoai.min'   => 'Số điện thoại có độ dài không dưới 10 số',
+    'ngay_sinh.required' =>   'Bạn chưa nhập ngày sinh',
+  ]);
+
+ $user = Auth::user();
+ DB::table('users')->where('id',$user->id)->update(['ten'=> $request->ten]);
+
+ return redirect('shop/profile')->with('ThongTin',"Cập nhật thông tin thành công");
+
+}
 
 public function postChangePassword(Request $request)
 {
-   $this->validate($request,
-    [
-      'password_old' => 'required|min:6',
-      'password'  =>  'required|min:6|confirmed',
-      'password_confirmation' =>  'required|min:6'
-    ],
-    [
-      'password_old.required' =>   'Bạn chưa nhập password',
-      'password.required' =>   'Bạn chưa nhập password',
-      'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
-      'password.confirmed'=> 'Mật khẩu chưa khớp',
-      'password_confirmation.required'=> 'Bạn chưa nhập lại password',
-    ]);
+ $this->validate($request,
+  [
+    'password_old' => 'required|min:6',
+    'password'  =>  'required|min:6|confirmed',
+    'password_confirmation' =>  'required|min:6'
+  ],
+  [
+    'password_old.required' =>   'Bạn chưa nhập password',
+    'password.required' =>   'Bạn chưa nhập password',
+    'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
+    'password.confirmed'=> 'Mật khẩu chưa khớp',
+    'password_confirmation.required'=> 'Bạn chưa nhập lại password',
+  ]);
 
-   $user = Auth::user();
-   $password_old = $request['password_old'];
-   if(Hash::check($password_old,$user->password))
-   {
-     $password = $request['password'];
-     DB::table('users')->where('id',$user->id)->update(['password'=> Hash::make($password)]);
+ $user = Auth::user();
+ $password_old = $request['password_old'];
+ if(Hash::check($password_old,$user->password))
+ {
+   $password = $request['password'];
+   DB::table('users')->where('id',$user->id)->update(['password'=> Hash::make($password)]);
 
-    return redirect('shop/profile')->with('thongbao',"Đổi mật khẩu thành công");
-  }
-  else
-    { return redirect('shop/profile')->with('thongbao',"Thất bại"); }
+   return redirect('shop/profile')->with('thongbao',"Đổi mật khẩu thành công");
+ }
+ else
+  { return redirect('shop/profile')->with('thongbao',"Thất bại"); }
 }
 
 
@@ -290,23 +312,23 @@ public function createCart(Request $request)
   }else{
     $orders_detail = Cart::getContent();
 
-  $order = new HoaDon;
-  $order->ma_hoa_don = "HD". rand(00000000,99999999);
-  $order->ma_nguoi_dung = auth()->user()->email;
-  $order->ten_nguoi_nhan = $request->ten;
-  $order->so_dien_thoai = $request->dienthoai;
-  $order->dia_chi = $request->diachi;
-  $order->save();
+    $order = new HoaDon;
+    $order->ma_hoa_don = "HD". rand(00000000,99999999);
+    $order->ma_nguoi_dung = auth()->user()->email;
+    $order->ten_nguoi_nhan = $request->ten;
+    $order->so_dien_thoai = $request->dienthoai;
+    $order->dia_chi = $request->diachi;
+    $order->save();
 
-  foreach ($orders_detail as $or_detail) {
-    $order_de = new ChiTietHoaDon;
-    $order_de->ma_hoa_don = $order->ma_hoa_don;
-    $order_de->ma_san_pham = $or_detail->id;
-    $order_de->so_luong = $or_detail->quantity;
-    $order_de->save();
-  }
-  Cart::clear();
-  return redirect('shop');
+    foreach ($orders_detail as $or_detail) {
+      $order_de = new ChiTietHoaDon;
+      $order_de->ma_hoa_don = $order->ma_hoa_don;
+      $order_de->ma_san_pham = $or_detail->id;
+      $order_de->so_luong = $or_detail->quantity;
+      $order_de->save();
+    }
+    Cart::clear();
+    return redirect('shop');
   }
 }
 
@@ -319,7 +341,7 @@ public function SapXepGia($sapxep)
   }
   return redirect('shop/san-pham',['product_tpl'=>$sp]);
 
-  }
+}
 
 public function SearchPrice(Request $request)
 {

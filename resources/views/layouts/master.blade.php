@@ -14,7 +14,7 @@
 	<link  href="{{asset('themes/css/hamburgers.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fontawesome/css/fontawesome.css')}}" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/js/magiczoomplus/magiczoomplus.css')}}">
-	
+	<link rel="stylesheet" type="text/css" href="{{asset('themes/css/tempusdominus-bootstrap-4.min.css')}}">
 	@switch( !$route->uri)
 		@case('shop/doi-mat-khau')
 		<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
@@ -43,6 +43,8 @@
 <script type="text/javascript" src="{{asset('themes/js/fotorama.js')}}"></script>
 <script type="text/javascript" src="{{asset('themes/js/OwlCarousel/owl.carousel.min.js')}}"></script>
 <script src="{{asset('themes/js/simplyscroll.min.js')}}"></script>
+<script src="{{asset('themes/js/moment.min.js')}}"></script>
+<script src="{{asset('themes/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 
 <script>
 	$(document).ready(function(){
@@ -188,6 +190,15 @@
 		$('#tintuc').html(editorText);
 	})
 </script>
+
+	<script>
+		$(function () {
+			$('#datetimepicker1').datetimepicker({
+				format: 'DD-MM-YYYY',
+				showToday: true,
+			});
+		});
+	</script>
 <!-- <script type="text/javascript">
 	$(document).ready(function() {
 		$('body').on('click','.checkmobile', function() {
