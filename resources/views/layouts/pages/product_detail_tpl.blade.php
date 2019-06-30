@@ -253,6 +253,9 @@
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
+			<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
+<div class="fb-comments" data-href="http://127.0.0.1:8000/shop/san-pham/SP02" data-width="" data-numposts="5"></div>		
 		</div>
 @endsection

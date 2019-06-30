@@ -136,7 +136,7 @@
 				</div>
 				@else
 				<div class="right_top_logout flex-between-center">
-					<a href="" class="logout">{{Auth::user()->email}}</a>
+					<a href="shop/profile" class="logout">{{Auth::user()->email}}</a>
 					<div class="line_login"></div>
 					<a href="{{url('shop/logout')}}" class="logout">Đăng xuất</a>
 				</div>
@@ -231,11 +231,11 @@
 
 			<ul class="menu-grid">
 				<li><a href="shop" title="">Trang chủ</a></li>
-				<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>
+				<li><a href="shop/gioi-thieu" title="Giới thiệu">Giới thiệu</a></li>
 				<li><a href="shop/san-pham" title="Sản phẩm">Sản phẩm</a>
 					<ul>
 						@foreach($nhacungcap as $ncc)
-						<li><a href="">{{$ncc->ten_nha_cung_cap}}</a></li>
+						<li><a href="shop/san-pham-nha-cung-cap/{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</a></li>
 						@endforeach
 					</ul>
 				</li>
