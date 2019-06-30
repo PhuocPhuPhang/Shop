@@ -56,17 +56,50 @@ class SanPhamController extends Controller
     public function postThem(Request $request)
     {
         $mang = $request->mang;
+        $newArr = [];
         foreach($mang as $item)
         {
-            echo $item['key'];
+            foreach($item as $key => $value) {
+                $newArr[$key] = $value;
+            }
         }
 
+        $sanpham = new SanPham;
+        $sanpham->ma_san_pham = isset($newArr['ma']) ? $newArr['ma'] : '0';
+        $sanpham->ten_san_pham = $newArr['ten'];
+        $sanpham->ten_khong_dau = str_slug($newArr['ten']);
+        $sanpham->nha_cung_cap = $newArr['nhacungcap'];
+        $sanpham->so_luong = $newArr['soluong'];
+        $sanpham->gia_ban = $newArr['gia'];
+        $sanpham->mau_sac = $newArr['mausac'];
+        $sanpham->khuyen_mai = $newArr['khuyenmai'];
+        $sanpham->noi_bat = $newArr['noibat'];
+        $sanpham->mo_ta= $newArr['mota'];
+        $sanpham->noi_dung = $newArr['noidung'];
+        $sanpham->keywords = $newArr['keywords'];
+        $sanpham->save();
 
-        // $mang = $_REQUEST;
-        // dd($mang);
-        // $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
-        // foreach($mang as $key => $value)
+        var_dump($newArr);
+
+        $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
+        foreach($newArr as $key => $value)
+        {
+           foreach( $listCauHinh as $cauhinh)
+           {
+             if($cauhinh->ten_khong_dau == $key)
+             {
+                $thongtinsp = new ThongTinSanPham;
+                $thongtinsp->ma_san_pham = $newArr['ma'];
+                $thongtinsp->id_cau_hinh = $cauhinh->id;
+                $thongtinsp->mo_ta = $newArr[$key];
+             }
+           }
+        }
+        // foreach($newArr as $ttsp)
         // {
+        // $thongtinsp = new ThongTinSanPham;
+        // $thongtinsp->ma_san_pham = $newArr['mausac'];
+
         //    foreach($value as $key1 => $value1)
         //    {
         //        foreach($value1 as $key2 => $value2)
@@ -88,6 +121,7 @@ class SanPhamController extends Controller
         //        }
         //    }
         // }
+        // var_dump($sanpham->ma_san_pham);
     }
     public function getSua($masp)
     {

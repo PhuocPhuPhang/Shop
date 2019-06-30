@@ -267,12 +267,9 @@
                 key = $(input).attr('name');
                 value = $(input).val();
                 let arr = {};
-                if(value != "")
-                {
-                    arr.key = key;
-                    arr.value = value;
+                    arr[key] = value;
+                    // arr.value = value;
                     array.push(arr);
-                }
             });
             console.log(array);
             $.ajax({
