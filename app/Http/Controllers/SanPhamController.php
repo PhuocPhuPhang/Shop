@@ -73,13 +73,10 @@ class SanPhamController extends Controller
         $sanpham->gia_ban = $newArr['gia'];
         $sanpham->mau_sac = $newArr['mausac'];
         $sanpham->khuyen_mai = $newArr['khuyenmai'];
-        $sanpham->noi_bat = $newArr['noibat'];
         $sanpham->mo_ta= $newArr['mota'];
         $sanpham->noi_dung = $newArr['noidung'];
         $sanpham->keywords = $newArr['keywords'];
         $sanpham->save();
-
-        var_dump($newArr);
 
         $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
         foreach($newArr as $key => $value)
@@ -88,40 +85,36 @@ class SanPhamController extends Controller
            {
              if($cauhinh->ten_khong_dau == $key)
              {
-                $thongtinsp = new ThongTinSanPham;
-                $thongtinsp->ma_san_pham = $newArr['ma'];
-                $thongtinsp->id_cau_hinh = $cauhinh->id;
-                $thongtinsp->mo_ta = $newArr[$key];
+                if($newArr[$key] != null)
+                {
+                    $thongtinsp = new ThongTinSanPham;
+                    $thongtinsp->ma_san_pham = $newArr['ma'];
+                    $thongtinsp->id_cau_hinh = $cauhinh->id;
+                    $thongtinsp->mo_ta = $newArr[$key];
+                    $thongtinsp->save();
+                }
              }
            }
         }
-        // foreach($newArr as $ttsp)
-        // {
-        // $thongtinsp = new ThongTinSanPham;
-        // $thongtinsp->ma_san_pham = $newArr['mausac'];
+    return  response()->json([
+        'data' => [
+          'success' => 'Thành Công' ,
+        ]
+      ]);
+    }
 
-        //    foreach($value as $key1 => $value1)
-        //    {
-        //        foreach($value1 as $key2 => $value2)
-        //        {
-        //         foreach($listCauHinh as $key_cauhinh => $value_cauhinh)
-        //         {
-        //             $thongtinsp = new ThongTinSanPham;
-        //             $thongtinsp->ma_san_pham = $request->ma;
-        //             if($value_cauhinh->ten_khong_dau == $value2)
-        //             {
-        //                 if($value1['value'] != null)
-        //                 {
-        //                     $thongtinsp->id_cau_hinh = $value_cauhinh->id;
-        //                     $thongtinsp->mo_ta = $value1['value'];;
-        //                     $thongtinsp->save();
-        //                 }
-        //             }
-        //         }
-        //        }
-        //    }
-        // }
-        // var_dump($sanpham->ma_san_pham);
+    public function postUploadImages(Request $request)
+    {
+            $file = $request->file('file');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            {
+                return redirect('admin/sanpham/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+            }
+            $name = $file->getClientOriginalName();
+            $hinh = $name.'_'.time().'.'.$duoi;
+
+            $file->move("upload/sanpham",$hinh);
     }
     public function getSua($masp)
     {
