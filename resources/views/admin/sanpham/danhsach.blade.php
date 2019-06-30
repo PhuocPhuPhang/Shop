@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>Danh sách sản phẩm</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('admin/sanpham/them') }}"><i class="fa fa-plus"></i></a></li>
+            <li><a href="admin/sanpham/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>

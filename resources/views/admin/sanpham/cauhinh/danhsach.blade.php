@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>Danh sách sản phẩm</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('admin/sanpham/cauhinh/them') }}"><i class="fa fa-plus"></i></a></li>
+            <li><a href="admin/sanpham/cauhinh/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>
@@ -42,10 +42,10 @@
              <td style="text-align:center">{{$i++}}</td>
              <td>{{$ch->cau_hinh}}</td>
              <td style="text-align:center">
-                <a href="../cauhinh/sua/{{$ch->id}}" class="btn btn-info btn-xs">
+                <a href="admin/sanpham/cauhinh/sua/{{$ch->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Edit
                 </a>
-                <a href="../cauhinh/xoa/{{$ch->id}}" class="btn btn-danger btn-xs">
+                <a href="admin/sanpham/cauhinh/xoa/{{$ch->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Delete
                 </a>
              </td>

@@ -30,7 +30,7 @@
                     {{ session('thongbao') }}
                 </div>
             @endif
-            <form  action="../sua/{{$user->id}}" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
+            <form  action="admin/user/sua/{{$user->id}}" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
             <div class="col-md-4 col-sm-12 col-xs-12">
             <p>
                 <img src="../../../upload/user/{{$user->avatar}}" alt="Hình ảnh" width="400px" height="300px" >

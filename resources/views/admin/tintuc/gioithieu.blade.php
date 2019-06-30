@@ -30,7 +30,7 @@
                 </div>
             @endif
 
-            <form id="demo-form" action="{{ url('admin/tintuc/gioithieu') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+            <form id="demo-form" action="admin/tintuc/gioithieu" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
