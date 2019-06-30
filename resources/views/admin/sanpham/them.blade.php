@@ -16,7 +16,7 @@
             {{ session('thongbao') }}
         </div>
     @endif
-    <form id="themsp" method="post"   enctype="multipart/form-data">
+    <!-- <form id="themsp" method="post" action="#"  enctype="multipart/form-data"> -->
         <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -27,8 +27,6 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
                     <label >Mã sản phẩm</label>
                     <input type="text" id="ma" class="form-control inputForm" name="ma" /><br />
@@ -66,15 +64,25 @@
                     <label>Mô tả</label>
                     <textarea id="mota"  class="form-control inputForm" name="mota"></textarea><br />
 
-                    <label>Nổi bật &nbsp;&nbsp;</label>
-                    <input type="checkbox" class="flat inputForm" id="noibat" name="noibat" value="0" ><br/><br/>
+                    <!-- <label>Nổi bật &nbsp;&nbsp;</label>
+                    <input type="checkbox" class="flat inputForm" id="noibat" name="noibat"><br/><br/> -->
 
                     <label>Keywords</label>
                     <textarea id="keywords"  class="form-control inputForm" name="keywords"></textarea><br />
 
                     <label>Hình ảnh</label>
-                    <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" onChange="showImages.call(this)"/><br/>
-                    <br/><img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px">
+                    <!-- <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" onChange="showImages.call(this)"/><br/>
+                    <br/><img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px"> -->
+                    <!-- <div class="dropzone">
+
+                </div> -->
+                    <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+
+                    <div class="fallback">
+                            <input name="file" type="file" multiple />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -119,7 +127,7 @@
                                 <button class="btn btn-primary" type="button">Cancel</button>
                             </a>
                             <button class="btn btn-primary" type="reset">Reset</button>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button id="btnSubmit" type="submit" class="btn btn-success">Save</button>
                         </div>
                     </div>
                 </div>
@@ -128,7 +136,7 @@
         </div>
         </div>
         </div>
-    </form>
+    <!-- </form> -->
 </div>
 </div>
 @endsection
@@ -185,6 +193,8 @@
 @section('script')
     <script type="text/javascript" language="javascript">
     $(document).ready(function(){
+
+        // $("div#uploadZone").dropzone({ url: "/file/post" });
         $('#them_cauhinh').click(function(){
             $('#formModal').modal('show');
         });
@@ -259,25 +269,45 @@
             else alert('Lỗi');
         });
 
-        $("#themsp").submit(function(event){
-            event.preventDefault();
+        $("#btnSubmit").click(function(event){
+            // event.preventDefault();
+            var masp = document.getElementById('ma').value;
+            var tensp = document.getElementById('ten').value;
+            var hinh = document.getElementById('hinh');
+            console.log(hinh);
             var array = [];
+            if(masp != "" || tensp != ""){
             $('.inputForm').each(function(index, input){
                 let name, value;
                 key = $(input).attr('name');
                 value = $(input).val();
                 let arr = {};
+                if(value != ""){
                     arr[key] = value;
                     // arr.value = value;
                     array.push(arr);
+                }
+                else{
+                    arr[key] = null;
+                    array.push(arr);
+                }
             });
-            console.log(array);
             $.ajax({
                 type:'post',
-                url: 'them',
+                url: '/admin/sanpham/them',
                 headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
                 data:{"mang":array},
+                success:function(data){
+                    if(data.data.success)
+                    {
+                        alert('Thành công');
+                    }
+                }
             })
+            }
+            else{
+                alert('Vui lòng kiểm tra lại thông tin ');
+            }
         });
 
     function string_to_slug (str) {

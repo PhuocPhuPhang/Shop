@@ -111,6 +111,7 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('them','SanPhamController@getThem');
         Route::post('them','SanPhamController@postThem');
+        Route::post('UploadImages','SanPhamController@postUploadImages');
 
         Route::get('sua/{masp}','SanPhamController@getSua');
         Route::post('sua/{masp}','SanPhamController@postSua');
