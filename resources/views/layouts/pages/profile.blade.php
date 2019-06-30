@@ -27,27 +27,27 @@
 	<div class="col-md-10 right-profile">
 		<h4 class="border-bottom">Thông tin tài khoản</h4>
 		@if( $route->uri == 'shop/thong-tin-tai-khoan' || $route->uri == 'shop/profile')
-		<form class="col-md-8" id="frmInfoUser" method="post" action="thong-tin-tai-khoan.html">
+		<form class="col-md-8" id="frmInfoUser" method="post" action="{{ url('shop/cap-nhat-thong-tin') }}">
 			<div class="form-group row">
-				<label class="col-md-3 col-form-label" for="">Email</label>
+				<label class="col-md-3 col-form-label">Email</label>
 				<div class="col-md-9">
 					<input type="email" id="email" name="email" value="{{Auth::user()->email}}" class="form-control" disabled>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-md-3 col-form-label" for="">Họ và tên</label>
+				<label class="col-md-3 col-form-label">Họ và tên</label>
 				<div class="col-md-9">
-					<input type="text" name="fullname" value="{{Auth::user()->ten}}" class="form-control">
+					<input type="text" name="ten" value="{{Auth::user()->ten}}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-md-3 col-form-label" for="">Số điện thoại</label>
+				<label class="col-md-3 col-form-label">Số điện thoại</label>
 				<div class="col-md-9">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text">(+84)</span>
 						</div>
-						<input type="text" name="phone" value="{{Auth::user()->so_dien_thoai}}" class="form-control">
+						<input type="text" name="so_dien_thoai" value="{{Auth::user()->so_dien_thoai}}" class="form-control">
 					</div>
 				</div>
 			</div>
@@ -56,11 +56,11 @@
 				<div class="col-md-9">
 					<div class="row mg0">
 						<div class="custom-control custom-radio custom-control-inline">
-							<input type="radio" class="custom-control-input" id="customRadio1" name="gender" value="1">
+							<input type="radio" class="custom-control-input" id="customRadio1" name="gioi_tinh" value="Nam" {{Auth::user()->gioi_tinh == "Nam" ?"checked": ""}}>
 							<label class="custom-control-label" for="customRadio1">Nam</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
-							<input type="radio" class="custom-control-input" id="customRadio2" name="gender" value="0">
+							<input type="radio" class="custom-control-input" id="customRadio2" name="gioi_tinh" value="Nữ" {{Auth::user()->gioi_tinh == "Nữ" ?"checked": ""}}>
 							<label class="custom-control-label" for="customRadio2">Nữ</label>
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 				<label class="col-md-3 col-form-label" for="">Ngày sinh</label>
 				<div class="col-md-9">
 					<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-						<input type="text" name="birthday" value="" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+						<input type="text" name="ngay_sinh" value="{{Auth::user()->ngay_sinh}}" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
 						<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 							<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
 						</div>
@@ -85,8 +85,9 @@
 			</div>
 			<div class="row">
 				<div class="offset-md-3 col-md-9">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					<button type="submit" class="btn btn-primary">Cập nhật</button>
-					<button type="submit" class="btn btn-secondary">Nhập lại</button>
+					<!-- <button type="submit" class="btn btn-secondary">Nhập lại</button> -->
 				</div>
 			</div>
 		</form>
