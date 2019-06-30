@@ -4,7 +4,7 @@
 	<label class="news_tpl_title">Tin công nghệ</label>
 	<div class="container flex-between">
 		<div class="news_tpl_left news_tpl_grid">
-			@foreach($tintuc as $tt)
+			@foreach($tintuc_shop as $tt)
 			<div class="news_tpl_box flex-between">
 				<div class="img_news_tpl">
 					<a href="shop/tin-tuc/{{$tt->ten_khong_dau}}" title=""><img src="upload/tintuc/{{$tt->hinh_anh}}" alt=""/></a>

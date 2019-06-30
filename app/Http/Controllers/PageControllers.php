@@ -22,16 +22,19 @@ use Cart;
 class PageControllers extends Controller
 {
   function __construct(){
+    $about = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
     $nhacungcap =  NhaCungCap::all();
     $tintuc= TinTuc::all();
+    $tintuc_shop= TinTuc::where('type','tin-tuc')->get();
     $product_shop= SanPham::where('noi_bat',1)->paginate(8);
-    
     $social = Media::where('type','social')->get();
     $website = DB::table('thong_tin_cong_ty')->first();
     $route = Route::current();
     view()->share('route',$route);
+    view()->share('about',$about);
     view()->share('nhacungcap',$nhacungcap);
     view()->share('tintuc',$tintuc);
+    view()->share('tintuc_shop',$tintuc_shop);
     view()->share('product_shop',$product_shop);
     view()->share('social',$social);
     view()->share('website',$website);
@@ -138,18 +141,18 @@ public function Logout()
 
 public function about_tpl()
 {
-  $about = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
-  return view('layouts.pages.about_tpl',['about'=>$about]);
-}
-
-public function news_tpl()
-{
-  return view('layouts.pages.news_tpl');
+  
+  return view('layouts.pages.about_tpl');
 }
 
 public function contact()
 {
   return view('layouts.pages.contact');
+}
+
+public function news_tpl()
+{
+  return view('layouts.pages.news_tpl');
 }
 
 public function news_detail_tpl($ten_khong_dau)
@@ -161,7 +164,10 @@ public function news_detail_tpl($ten_khong_dau)
 public function product_detail_tpl($ma_san_pham)
 {
   $product_detail = SanPham::find($ma_san_pham);
-  return view('layouts.pages.product_detail_tpl',['product_detail'=>$product_detail]);
+  $product_ncc = $product_detail->nha_cung_cap;
+  $product_related = DB::table('san_pham')->Where('nha_cung_cap',$product_ncc)->whereNotIn('ma_san_pham',[$ma_san_pham])->get();
+  $img_related = DB::table('hinh_anh_san_pham')->Where('ma_san_pham',$ma_san_pham)->get();
+  return view('layouts.pages.product_detail_tpl',['product_detail'=>$product_detail],['product_related'=>$product_related],['img_related'=>$img_related]);
 }
 
 public function profile()
@@ -211,6 +217,15 @@ public function product_nha_cung_cap_tpl($ma_nha_cung_cap)
   $ma_nha_cung_cap = $nha_cung_cap->ma_nha_cung_cap;
   $product_ncc_tpl= SanPham::where('nha_cung_cap',$ma_nha_cung_cap)->paginate(6);
   return view('layouts.pages.product_tpl',['product_tpl'=>$product_ncc_tpl]);
+}
+
+public function timkiem(Request $request)
+{
+  $tukhoa= $request->tukhoa;
+  $nhacungcap = $request->nhacungcap_select;
+  $product_list = NhaCungCap::where('ten_nha_cung_cap','like',"%$tukhoa%")->first();
+  $product = SanPham::where('ten_san_pham','like',"%$tukhoa%")->orWhere('gia_ban','like',"%$tukhoa%")->get();
+  return view('layouts.pages.search',['product'=>$product , 'tukhoa'=>$tukhoa]);
 }
 
 public function AddtoCart($id)
@@ -293,15 +308,16 @@ public function createCart(Request $request)
   }
 }
 
-public function timkiem(Request $request)
+public function SapXepGia($sapxep)
 {
-  $tukhoa= $request->tukhoa;
-  $nhacungcap = $request->nhacungcap_select;
-  // dd($nhacungcap);
-  $product_list = NhaCungCap::where('ten_nha_cung_cap','like',"%$tukhoa%")->first();
-  $product = SanPham::where('ten_san_pham','like',"%$tukhoa%")->orWhere('gia_ban','like',"%$tukhoa%")->get();
-  return view('layouts.pages.search',['product'=>$product , 'tukhoa'=>$tukhoa]);
-}
+  $sp = null;
+  if($sapxep == 1)
+  {
+    $sp = DB::table('san_pham')->orderBy('gia_ban','desc')->get();
+  }
+  return redirect('shop/san-pham',['product_tpl'=>$sp]);
+
+  }
 
 public function SearchPrice(Request $request)
 {
@@ -314,16 +330,6 @@ public function SearchPrice(Request $request)
   }
 }
 
-public function SapXepGia($sapxep)
-{
-  $sp = null;
-  if($sapxep == 1)
-  {
-    $sp = DB::table('san_pham')->orderBy('gia_ban','desc')->get();
-  }
-  return redirect('shop/san-pham',['product_tpl'=>$sp]);
-
-  }
 
 }
 

@@ -33,10 +33,11 @@
 <script type="text/javascript" src="{{asset('themes/js/magiczoomplus/magiczoomplus.js')}}"></script>
 <script type="text/javascript" src="{{asset('themes/js/fotorama.js')}}"></script>
 <script type="text/javascript" src="{{asset('themes/js/OwlCarousel/owl.carousel.min.js')}}"></script>
+<script src="{{asset('themes/js/simplyscroll.min.js')}}"></script>
 
 <script>
 	$(document).ready(function(){
-
+		$("#scroller").simplyScroll({orientation:'vertical',customClass:'vert',auto:true});
 		$('.slider-owl').owlCarousel({
 			animateOut: 'fadeOut',
 			autoplayTimeout: 7000,
@@ -78,11 +79,10 @@
 			autoplaySpeed: 1500,
 			margin: 20,
 			responsive:{
-				300:{ items: 2 },
-				500:{ items: 3 },
-				700:{ items: 4 },
-				1200:{ items: 5 },
-				1300:{ items: 6 }
+				500:{ items: 2 },
+				700:{ items: 3 },
+				1200:{ items: 6 },
+				1300:{ items: 5 }
 			}
 		});
 
@@ -172,13 +172,6 @@
 		}, 100);
 	});
 </script>
-<!-- <script type="text/javascript">
-	$(function () {
-		$('#datetimepicker4').datetimepicker({
-			format: 'L'
-		});
-	});  
-</script> -->
 <script type="text/javascript">
 	$(function() {
 		var editorText = $('#tintuc').text();

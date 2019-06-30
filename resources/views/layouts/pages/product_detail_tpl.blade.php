@@ -1,44 +1,44 @@
 @extends('layouts.master')
 @section('content')
 <div class="container">
-			<div class="pd-detail">
-				<div class="flex-between">
-					<div class="frame_images">
-						<div class="product_zoom" >
-							<a href="upload/sanpham/{{$product_detail->hinh_anh}}" id="Zoom-1" class="MagicZoom" title=""><img src="upload/sanpham/{{$product_detail->hinh_anh}}" alt="" width="250" /></a>
-						</div>
-						<div class="owl-product-photos owl-carousel owl-theme">
-							<a class="w-img product_zoom_item"  href="">
-								<img src="{{asset('themes/images/sp.jpg')}}"/>
-							</a>
-							<a class="w-img product_zoom_item"  href="">
-								<img src="{{asset('themes/images/sp.jpg')}}"/>
-							</a>
-							<a class="w-img product_zoom_item"  href="">
-								<img src="{{asset('themes/images/sp.jpg')}}"/>
-							</a>
-							<a class="w-img product_zoom_item"  href="">
-								<img src="{{asset('themes/images/sp.jpg')}}"/>
-							</a>
-							<a class="w-img product_zoom_item"  href="">
-								<img src="{{asset('themes/images/sp.jpg')}}"/>
-							</a>
-						</div>
-					</div>
-					<ul class="khung_thongtin">
-						<li><h1>{{$product_detail->ten_san_pham}}</h1></li>
-						<li><label>Mã sản phẩm:</label> 123</li>
-						<li>{{$product_detail->mo_ta}}</li>
-						<li class="gia_detail">
-							<label>Giá:</label> 
-							<span>{{$product_detail->gia_ban}}</span> 
-						</li>
-						<li class="gia_cu">
-							<div class="l_old_price"><label>Giá thị trường:</label>  <span>28,0000,000 VNĐ</span></div>
-							<div class="r_old_price"><label>Tiết kiệm:</label> <span>10%</span></div>
-							<div class="clearfix"></div>
-						</li>
-						<div class="action_buy">
+	<div class="pd-detail">
+		<div class="flex-between">
+			<div class="frame_images">
+				<div class="product_zoom" >
+					<a href="upload/sanpham/{{$product_detail->hinh_anh}}" id="Zoom-1" class="MagicZoom" title=""><img src="upload/sanpham/{{$product_detail->hinh_anh}}" alt="" width="250" /></a>
+				</div>
+				<div class="owl-product-photos owl-carousel owl-theme">
+					<a class="w-img product_zoom_item"  href="">
+						<img src="{{asset('themes/images/sp.jpg')}}"/>
+					</a>
+					<a class="w-img product_zoom_item"  href="">
+						<img src="{{asset('themes/images/sp.jpg')}}"/>
+					</a>
+					<a class="w-img product_zoom_item"  href="">
+						<img src="{{asset('themes/images/sp.jpg')}}"/>
+					</a>
+					<a class="w-img product_zoom_item"  href="">
+						<img src="{{asset('themes/images/sp.jpg')}}"/>
+					</a>
+					<a class="w-img product_zoom_item"  href="">
+						<img src="{{asset('themes/images/sp.jpg')}}"/>
+					</a>
+				</div>
+			</div>
+			<ul class="khung_thongtin">
+				<li><h1>{{$product_detail->ten_san_pham}}</h1></li>
+				<li><label>Mã sản phẩm:</label> 123</li>
+				<li>{{$product_detail->mo_ta}}</li>
+				<li class="gia_detail">
+					<label>Giá:</label> 
+					<span>{{number_format($product_detail->gia_ban)}}Đ</span> 
+				</li>
+				<li class="gia_cu">
+					<div class="l_old_price"><label>Giá thị trường:</label>  <span>28,0000,000 VNĐ</span></div>
+					<div class="r_old_price"><label>Tiết kiệm:</label> <span>10%</span></div>
+					<div class="clearfix"></div>
+				</li>
+				<div class="action_buy">
 							<!-- <div class="flex-between-center">
 								<label>Số lượng:</label>
 								<div class="cart-items__quantity">
@@ -59,7 +59,7 @@
 							<div id="share_social"></div>
 						</div>
 
-						<div class="view_pro">Hiện người đang xem sản phẩm này.</div>
+						<!-- <div class="view_pro">Hiện người đang xem sản phẩm này.</div> -->
 					</ul>
 					<div class="tintuclienquan">         
 						<ul class="policy">
@@ -79,7 +79,9 @@
 					</div>
 				</div>
 				<div id="container_product" class="flex-between">
-					<div id="chitietsanpham"></div>
+					<div id="chitietsanpham">
+						<div id="tintuc">{{$product_detail->noi_dung}}</div>
+					</div>
 					<div id="tskt">
 						<label>Thông số kỹ thuật</label>
 						<ul class="tskt_main">
@@ -139,123 +141,32 @@
 				</div>
 				<div class="list_product  container">
 					<div class="sp_detail-owl owl-carousel owl-theme">
+						@foreach($product_related as $pr)
 						<div class="sanpham sanpham2">
 							<div class="img">
-								<a href="" title="">
-									<img class="img-responsive lazy" src="{{asset('themes/images/sp.jpg')}}" alt="">
+								<a href="shop/san-pham/{{$pr->ma_san_pham}}" title="{{$pr->ten_san_pham}}">
+									<img class="img-responsive lazy" src="upload/sanpham/{{$pr->hinh_anh}}" alt="">
 								</a>
 								<div class="sale_off">-10%</div>
 							</div>
 							<div class="pro_info">
 								<div class=""></div>
-								<div class="name"><h3><a href="">Tên Sản Phẩm</a></h3></div>
+								<div class="name"><h3><a href="shop/san-pham/{{$pr->ma_san_pham}}" title="{{$pr->ten_san_pham}}">{{$pr->ten_san_pham}}</a></h3></div>
 								<div class="wrap_price flex-between-center">
-									<div class="price">Giá: <span>7,000,000 Đ</span></div>
+									<div class="price">Giá: <span>{{number_format($pr->gia_ban)}}Đ</span></div>
 									<div class="price_old">10,000,000 Đ</div>
 								</div>
 							</div>
 						</div>
-						<div class="sanpham sanpham2">
-							<div class="img">
-								<a href="" title="">
-									<img class="img-responsive lazy" src="{{asset('themes/images/sp.jpg')}}" alt="">
-								</a>
-								<div class="sale_off">-10%</div>
-							</div>
-							<div class="pro_info">
-								<div class=""></div>
-								<div class="name"><h3><a href="">Tên Sản Phẩm</a></h3></div>
-								<div class="wrap_price flex-between-center">
-									<div class="price">Giá: <span>7,000,000 Đ</span></div>
-									<div class="price_old">10,000,000 Đ</div>
-								</div>
-							</div>
-						</div>
-						<div class="sanpham sanpham2">
-							<div class="img">
-								<a href="" title="">
-									<img class="img-responsive lazy" src="{{asset('themes/images/sp.jpg')}}" alt="">
-								</a>
-								<div class="sale_off">-10%</div>
-							</div>
-							<div class="pro_info">
-								<div class=""></div>
-								<div class="name"><h3><a href="">Tên Sản Phẩm</a></h3></div>
-								<div class="wrap_price flex-between-center">
-									<div class="price">Giá: <span>7,000,000 Đ</span></div>
-									<div class="price_old">10,000,000 Đ</div>
-								</div>
-							</div>
-						</div>
-						<div class="sanpham sanpham2">
-							<div class="img">
-								<a href="" title="">
-									<img class="img-responsive lazy" src="{{asset('themes/images/sp.jpg')}}" alt="">
-								</a>
-								<div class="sale_off">-10%</div>
-							</div>
-							<div class="pro_info">
-								<div class=""></div>
-								<div class="name"><h3><a href="">Tên Sản Phẩm</a></h3></div>
-								<div class="wrap_price flex-between-center">
-									<div class="price">Giá: <span>7,000,000 Đ</span></div>
-									<div class="price_old">10,000,000 Đ</div>
-								</div>
-							</div>
-						</div>
-						<div class="sanpham sanpham2">
-							<div class="img">
-								<a href="" title="">
-									<img class="img-responsive lazy" src="{{asset('themes/images/sp.jpg')}}" alt="">
-								</a>
-								<div class="sale_off">-10%</div>
-							</div>
-							<div class="pro_info">
-								<div class=""></div>
-								<div class="name"><h3><a href="">Tên Sản Phẩm</a></h3></div>
-								<div class="wrap_price flex-between-center">
-									<div class="price">Giá: <span>7,000,000 Đ</span></div>
-									<div class="price_old">10,000,000 Đ</div>
-								</div>
-							</div>
-						</div>
-						<div class="sanpham sanpham2">
-							<div class="img">
-								<a href="" title="">
-									<img class="img-responsive lazy" src="{{asset('themes/images/sp.jpg')}}" alt="">
-								</a>
-								<div class="sale_off">-10%</div>
-							</div>
-							<div class="pro_info">
-								<div class=""></div>
-								<div class="name"><h3><a href="">Tên Sản Phẩm</a></h3></div>
-								<div class="wrap_price flex-between-center">
-									<div class="price">Giá: <span>7,000,000 Đ</span></div>
-									<div class="price_old">10,000,000 Đ</div>
-								</div>
-							</div>
-						</div>
-						<div class="sanpham sanpham2">
-							<div class="img">
-								<a href="" title="">
-									<img class="img-responsive lazy" src="{{asset('themes/images/sp.jpg')}}" alt="">
-								</a>
-								<div class="sale_off">-10%</div>
-							</div>
-							<div class="pro_info">
-								<div class=""></div>
-								<div class="name"><h3><a href="">Tên Sản Phẩm</a></h3></div>
-								<div class="wrap_price flex-between-center">
-									<div class="price">Giá: <span>7,000,000 Đ</span></div>
-									<div class="price_old">10,000,000 Đ</div>
-								</div>
-							</div>
-						</div>
+						@endforeach
 					</div>
 				</div>
 			</div>
+			<div class="binhluan">
+				<label>Bình luận sản phẩm</label>
+			</div>
 			<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
-<div class="fb-comments" data-href="http://127.0.0.1:8000/shop/san-pham/SP02" data-width="" data-numposts="5"></div>		
+			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
+			<div class="fb-comments" data-href="http://127.0.0.1:8000/shop/san-pham/SP02" data-width="100%" data-numposts="5"></div>		
 		</div>
-@endsection
+		@endsection

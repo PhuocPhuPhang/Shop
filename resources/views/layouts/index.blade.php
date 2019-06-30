@@ -41,7 +41,24 @@
 		</div>
 	</div>
 </section>
-<section id="home">
+<section id="about_home">
+	<div class="container">
+		<div class="flex-between about_home_repon">
+			<div class="info_about">
+				<div class="name">{{$about->title}}</div>
+				<div class="line"></div>
+				<div class="des">
+					{{$about->mo_ta}}
+				</div>
+				<div class="more"><a href="shop/gioi-thieu">XEM THÊM</a></div>
+			</div>
+			<div class="img_about">
+				<a href="gioi-thieu.html"><img src="{{asset('themes/images/about.jpg')}}" alt=""></a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- <section id="home">
 	<div class="home_grid">
 		<div class="col-home col-home-1 ">
 			<a href="" class="flex-between-center">
@@ -84,16 +101,16 @@
 			</a>
 		</div>
 	</div>
-</section>
+</section> -->
 <section id="main_home">
 	<div class="wrap_pro_home">
 		<div class="container">
-			<label class="title-sp">Apple</label>
-			<div class="cat_nb ">
+			<label class="title-sp">Điện thoại nổi bật</label>
+			<!-- <div class="cat_nb ">
 				<a href="">iPhone 7</a>
 				<a href="">iPhone 8</a>
 				<a href="">iPhone X</a>
-			</div>
+			</div> -->
 			<div class="main_pro_home">
 				<div class="small_product">
 					@foreach($product_shop as $sp)
@@ -122,65 +139,26 @@
 <section id="news-wrapper">
 	<div class="container news-repone flex-between">
 		<div class="news_wrap">
-			<div class="title"><h3>Tin tức - sự kiện</h3></div>
-			<div class="text_other_1"></div>
-			<div class="content news flex-between">
-				<div class="big-news">
-					<div class="news-thumbnail">
-						<a href="" title=""><img src="{{asset('themes/images/news_2.jpg')}}" class="img-responsive lazy" alt="" /></a>
-					</div>
-					<div class="">
-						<a class="news_list_name" href="" title="">Cách chọn mua máy chiếu cho trung tâm giáo dục</a>
-						<div class="news_list_mota">
-							Hướng dẫn mua máy chiếu, màn chiếu cho lớp học, trung tâm giáo dục phù hợp
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="view-more">
-						<a href="" title="">Xem thêm</a>
-					</div>
-					<div class="clear"></div>
-				</div><!-- end big-news-->
-				<div class="list-news-small">
-					<div class="owl-news">
-						@foreach($tintuc as $tt)
-						<div class="small-item flex-between-center">
-							<div class="img_news">
-								<a href="shop/tin-tuc/{{$tt->ten_khong_dau}}" title=""><img src="upload/tintuc/{{$tt->hinh_anh}}" alt="" class="img-responsive lazy"/></a>
-							</div>
-							<div class="news_list_info">
-								<a class="news_list_name" href="shop/tin-tuc/{{$tt->ten_khong_dau}}" title="">{{$tt->title}}</a>
-								<div class="news_list_mota">{{ str_limit($tt->mo_ta, $limit = 80, $end = '...') }}</div>
-							</div>
-						</div>
-						@endforeach
-
-					</div>
-				</div><!-- end content-news-->
-			</div>
-		</div>
-		<!-- <div class="news_wrap">
-			<label class="title_news_album">Tin tức mới</label>
+			<div class="title"><h3>Tin tức mới</h3></div>
 			<ul id="scroller">
-				@foreach($tintuc as $tt)
-					<li>
-						<div class="main_news flex-between">
-							<div class="pic_TT">
-								<a class="w-img effect-zoom" href="" title="">
-									<img src="upload/tintuc/{{$tt->hinh_anh}}" alt="">
-								</a>
-							</div>
-							<div class="news_list_info">
-								<div class="news_list_name"><a href="">{{$tt->ten}}</a></div>
-								<div class="news_list_mota">{{$tt->mota}}</div>
-							</div>
+				@foreach($tintuc_shop as $tt)
+				<li>
+					<div class="main_news flex-between">
+						<div class="img_news">
+							<a class="w-img effect-zoom" href="shop/tin-tuc/{{$tt->ten_khong_dau}}" title="">
+								<img src="upload/tintuc/{{$tt->hinh_anh}}" alt="">
+							</a>
 						</div>
-					</li>
+						<div class="news_list_info">
+							<div class="news_list_name"><a href="shop/tin-tuc/{{$tt->ten_khong_dau}}">{{$tt->title}}</a></div>
+							<div class="news_list_mota">{{$tt->mo_ta}}</div>
+						</div>
+					</div>
+				</li>
 				@endforeach
 			</ul>
-		</div> -->
+		</div>
 		<div class="video_wrap">
-
 			<div class="title"><h3>Video Clips</h3></div>
 			<div class="text_other_1"></div>
 			<div class="content">
@@ -206,27 +184,11 @@
 	<div class="container">
 		<label class="title-sp">đối tác</label>
 		<div class="doitac-owl owl-carousel owl-theme">
+			@foreach($nhacungcap as $ncc)
 			<div class="item_dt">
-				<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
+				<a href="shop/san-pham-nha-cung-cap/{{$ncc->ma_nha_cung_cap}}"><img src="../upload/nhacungcap/{{$ncc->logo}}"></a>
 			</div>
-			<div class="item_dt">
-				<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
-			</div>
-			<div class="item_dt">
-				<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
-			</div>
-			<div class="item_dt">
-				<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
-			</div>
-			<div class="item_dt">
-				<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
-			</div>
-			<div class="item_dt">
-				<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
-			</div>
-			<div class="item_dt">
-				<a href="" target="_blank"><img src="{{asset('themes/images/dt.jpg')}}" alt="" class="img_dt img-responsive" /></a>
-			</div>
+			@endforeach
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -243,21 +205,5 @@
 		</div>
 	</div>
 </section>
-<section id="about_home">
-	<div class="container">
-		<div class="flex-between about_home_repon">
-			<div class="info_about">
-				<div class="name">Giới thiệu</div>
-				<div class="line"></div>
-				<div class="des">
-					Lời đầu tiên chúng tôi xin gửi đến Quý khách hàng những lời chúc tốt đẹp nhất! Với phương châm chất lượng đặt lên hàng đầu chúng tôi sẽ là sự lưạ chọn tốt cho quý khách hàng. Đến với chúng tôi quý khách sẽ thấy được sự Thuận tiện, Nhanh chóng, thái độ phục vụ Nhiệt tình, Lịch sự và trên hết là Chất lượng và Giá thành hợp lý. Ngoài ra, khi đến với chúng tôi quý khách hàng còn có thể tiết kiệm được thời gian và tránh được những rủi ro hay sự cố không đáng có.
-				</div>
-				<div class="more"><a href="gioi-thieu.html">XEM THÊM</a></div>
-			</div>
-			<div class="img_about">
-				<a href="gioi-thieu.html"><img src="{{asset('themes/images/about.jpg')}}" alt=""></a>
-			</div>
-		</div>
-	</div>
-</section>
+
 @endsection

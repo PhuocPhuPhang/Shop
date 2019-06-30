@@ -66,9 +66,6 @@
 			<div class="wrap_name">
 				<div class="name"><h1>Sản phẩm</h1></div>
 			</div>
-
-
-			
 			<div class="main_list_product">
 				@foreach($product_tpl as $sp)
 				<div class="sanpham">
@@ -97,41 +94,11 @@
 				@endforeach
 			</div>
 			{{ $product_tpl->links() }}
-			
-			
-
-
-
 		</div>
 	</div>
 </div>
-
-
 @endsection
 @section('script')
-<script>
-	$(document).ready(function() {
-		let array = [];
-		$('#gia').on('click','a', function (e) {
-			e.preventDefault();
-			let gia = {
-				gia: $(this).data('id')
-			}
-			console.log(gia);
-			array.push(gia);
-			$.ajax({
-				type:'post',
-				url: 'SearchPrice',
-				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
-				data:{gia:array},
-
-			});
-			array = [];
-			console.log(array);
-		});
-
-	});
-</script>
 <script>
 	$(document).ready(function() {
 		$('#SapXepGia').on('click','label', function (e) {
