@@ -24,6 +24,7 @@
         <table id="datatable" class="table table-striped table-bordered">
         <thead>
            <tr>
+             <th style="text-align:center">STT</th>
              <th style="text-align:center">Mã sản phẩm</th>
              <th style="text-align:center">Tên sản phẩm</th>
              <th style="text-align:center">Nhà cung cấp</th>
@@ -33,17 +34,19 @@
            </tr>
          </thead>
          <tbody>
+             <?php $i = 1 ;?>
             @foreach($sanpham as $sp)
            <tr>
-             <td>{{$sp->ma_san_pham}}</td>
+             <td style="text-align:center">{{$i++}}</td>
+             <td style="text-align:center">{{$sp->ma_san_pham}}</td>
              <td>{{$sp->ten_san_pham}}</td>
-             <td>{{$sp->NhaCungCap->ten_nha_cung_cap}}</td>
+             <td style="text-align:center">{{$sp->NhaCungCap->ten_nha_cung_cap}}</td>
              <td style="text-align:center">{{$sp->so_luong}}</td>
              <td style="text-align:center">
                     <input readonly type="text" style="border:none;height:20px;width:60px;background:{{$sp->mau_sac}}"/>
              </td>
              <td style="text-align:center">
-             <a href="admin/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
+             <a href="admin/sanpham/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="admin/sanpham/xoa/{{$sp->ma_san_pham}}" class="btn btn-danger btn-xs">

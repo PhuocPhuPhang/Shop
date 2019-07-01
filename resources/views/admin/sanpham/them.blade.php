@@ -16,7 +16,6 @@
             {{ session('thongbao') }}
         </div>
     @endif
-    <!-- <form id="themsp" method="post" action="#"  enctype="multipart/form-data"> -->
         <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -54,12 +53,12 @@
                     <label>Gía bán</label>
                     <input type="text" id="gia" class="form-control inputForm" name="gia" /><br />
 
-                    <label>Chương trình khuyến mãi</label>
+                    <!-- <label>Chương trình khuyến mãi</label>
                     <select name="khuyenmai" id="khuyenmai" class="form-control inputForm">
                         @foreach($khuyenmai as $km)
                             <option value="{{$km->ma_khuyen_mai}}">{{$km->ten_khuyen_mai}}</option>
                         @endforeach
-                    </select><br/>
+                    </select><br/> -->
 
                     <label>Mô tả</label>
                     <textarea id="mota"  class="form-control inputForm" name="mota"></textarea><br />
@@ -71,11 +70,6 @@
                     <textarea id="keywords"  class="form-control inputForm" name="keywords"></textarea><br />
 
                     <label>Hình ảnh</label>
-                    <!-- <input type="file" id="hinhanh" name="hinhanh[]" multiple="multiple" onChange="showImages.call(this)"/><br/>
-                    <br/><img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px"> -->
-                    <!-- <div class="dropzone">
-
-                </div> -->
                     <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
@@ -123,11 +117,11 @@
                 <textarea id="noidung" class="form-gruop ckeditor inputForm" name="noidung" ></textarea><br/>
                     <div class="form-group" style="margin-left:20%">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <a href="{{ url('admin/sanpham/danhsach') }}">
-                                <button class="btn btn-primary" type="button">Cancel</button>
+                            <a href="admin/sanpham/danhsach">
+                                <button class="btn btn-primary" type="button">Hủy</button>
                             </a>
-                            <button class="btn btn-primary" type="reset">Reset</button>
-                            <button id="btnSubmit" type="submit" class="btn btn-success">Save</button>
+                            <button class="btn btn-primary" type="reset">Làm mới</button>
+                            <button id="btnSubmit" type="submit" class="btn btn-success">Lưu</button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +130,6 @@
         </div>
         </div>
         </div>
-    <!-- </form> -->
 </div>
 </div>
 @endsection

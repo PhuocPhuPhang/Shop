@@ -82,9 +82,9 @@ class KhuyenMaiController extends Controller
     public function getSua($makm)
     {
         $khuyenmai = KhuyenMai::find($makm);
-        $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('ma_khuyen_mai','=',$makm)->first();
+        $ma= DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('ma_khuyen_mai','=',$makm)->first();
         $hinhthuckm = DB::table('hinh_thuc_khuyen_mai')->select('ten_hinh_thuc','noi_dung')
-        ->where('ma_khuyen_mai',$makm->ma_khuyen_mai)->get();
+        ->where('ma_khuyen_mai',$ma)->get();
         return view('admin.khuyenmai.sua',['khuyenmai'=>$khuyenmai],['hinhthuckm'=>$hinhthuckm]);
     }
 

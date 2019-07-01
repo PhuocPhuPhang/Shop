@@ -41,7 +41,6 @@ class SanPhamController extends Controller
 
     public function getThem()
     {
-        $khuyenmai = KhuyenMai::all();
         $nhacungcap = NhaCungCap::all();
         $dsCauHinh = CauHinhSanPham::all();
         $cauhinh = DB::table('cau_hinh_san_pham')->select('*')->groupBy('id_loai')->get();
@@ -50,7 +49,7 @@ class SanPhamController extends Controller
         ->select('ten','loai_cau_hinh.id')->where('cau_hinh_san_pham.id_loai','=','loai_cau_hinh.id')->groupBy('cau_hinh_san_pham.id_loai')->get();
         return view('admin.sanpham.them',
                 ['cauhinh'=>$cauhinh],['nhacungcap'=>$nhacungcap]
-                 ,$loaicauhinh,['khuyenmai'=>$khuyenmai],['dsCauHinh'=>$dsCauHinh]);
+                 ,$loaicauhinh,['dsCauHinh'=>$dsCauHinh]);
     }
 
     public function postThem(Request $request)
@@ -64,14 +63,13 @@ class SanPhamController extends Controller
             }
         }
             $sanpham = new SanPham;
-            $sanpham->ma_san_pham = isset($newArr['ma']) ? $newArr['ma'] : '0';
+            $sanpham->ma_san_pham = $newArr['ma'];
             $sanpham->ten_san_pham = $newArr['ten'];
             $sanpham->ten_khong_dau = str_slug($newArr['ten']);
             $sanpham->nha_cung_cap = $newArr['nhacungcap'];
             $sanpham->so_luong = $newArr['soluong'];
             $sanpham->gia_ban = $newArr['gia'];
             $sanpham->mau_sac = $newArr['mausac'];
-            $sanpham->khuyen_mai = $newArr['khuyenmai'];
             $sanpham->mo_ta= $newArr['mota'];
             $sanpham->noi_dung = $newArr['noidung'];
             $sanpham->keywords = $newArr['keywords'];
@@ -122,13 +120,57 @@ class SanPhamController extends Controller
 
     public function getSua($masp)
     {
-        $khuyenmai = KhuyenMai::all();
         $nhacungcap = NhaCungCap::all();
         $sanpham = SanPham::find($masp);
-        $cauhinh = DB::table('thong_tin_san_pham')->where('ma_san_pham',$masp)->get();
+        $thongtin_sp = DB::table('thong_tin_san_pham')
+        ->join('cau_hinh_san_pham','thong_tin_san_pham.id_cau_hinh','cau_hinh_san_pham.id')
+        ->select('cau_hinh_san_pham.cau_hinh','cau_hinh_san_pham.ten_khong_dau','cau_hinh_san_pham.id_loai','thong_tin_san_pham.mo_ta')
+        ->where('thong_tin_san_pham.ma_san_pham',$masp)->get();
 
-        return view('admin.sanpham.sua',['sanpham'=>$sanpham],['cauhinh'=>$cauhinh],
-                ['khuyenmai'=>$khuyenmai],['nhacungcap'=>$nhacungcap]);
+        return view('admin.sanpham.sua',['sanpham'=>$sanpham],['thongtin_sp'=> $thongtin_sp],['nhacungcap'=>$nhacungcap]);
+    }
+
+    public function postSua(Request $request , $masp)
+    {
+        $sanpham = SanPham::find($masp);
+        $thongtinsp = DB::table('thong_tin_san_pham')->where('ma_san_pham',$masp)->get();
+
+        $mang = $request->mang;
+        $newArr = [];
+        foreach($mang as $item)
+        {
+            foreach($item as $key => $value) {
+                $newArr[$key] = $value;
+            }
+        }
+            $sanpham->ma_san_pham = isset($newArr['ma']) ? $newArr['ma'] : '0';
+            $sanpham->ten_san_pham = $newArr['ten'];
+            $sanpham->ten_khong_dau = str_slug($newArr['ten']);
+            $sanpham->nha_cung_cap = $newArr['nhacungcap'];
+            $sanpham->so_luong = $newArr['soluong'];
+            $sanpham->gia_ban = $newArr['gia'];
+            $sanpham->mau_sac = $newArr['mausac'];
+            $sanpham->mo_ta= $newArr['mota'];
+            $sanpham->noi_dung = $newArr['noidung'];
+            $sanpham->keywords = $newArr['keywords'];
+            $sanpham->save();
+
+            $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
+            foreach($newArr as $key => $value)
+            {
+                foreach( $listCauHinh as $cauhinh)
+                {
+                    if($cauhinh->ten_khong_dau == $key)
+                    {
+                        if($newArr[$key] != null)
+                        {
+                            $thongtinsp->id_cau_hinh = $cauhinh->id;
+                            $thongtinsp->mo_ta = $newArr[$key];
+                            $thongtinsp->save();
+                        }
+                    }
+                }
+            }
     }
 
     public function postXoa($masp)
