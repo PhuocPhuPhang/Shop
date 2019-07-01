@@ -14,6 +14,7 @@ use App\User;
 use App\SanPham;
 use App\HoaDon;
 use App\ChiTietHoaDon;
+use App\LoaiCauHinh;
 use Session;
 use Route;
 use DB;
@@ -169,8 +170,10 @@ public function product_detail_tpl($ma_san_pham)
   $product_related = DB::table('san_pham')->Where('nha_cung_cap',$product_ncc)->whereNotIn('ma_san_pham',[$ma_san_pham])->get();
   $img_related = DB::table('hinh_anh_san_pham')->Where('ma_san_pham',$ma_san_pham)->get();
   $tintuc_tukhoa = DB::table('tin_tuc')->where('type','tin-tuc')->get();
-
-  return view('layouts.pages.product_detail_tpl',compact('product_detail','tintuc_tukhoa','product_related','img_related'));
+  $ttsp = DB::table('san_pham')->join('thong_tin_san_pham', 'san_pham.ma_san_pham', '=', 'thong_tin_san_pham.ma_san_pham')->join('cau_hinh_san_pham', 'thong_tin_san_pham.id_cau_hinh', '=', 'cau_hinh_san_pham.id')->join('loai_cau_hinh', 'cau_hinh_san_pham.id_loai', '=', 'loai_cau_hinh.id')->where('san_pham.ma_san_pham',$ma_san_pham)->select('san_pham.ma_san_pham','thong_tin_san_pham.mo_ta','cau_hinh_san_pham.cau_hinh','loai_cau_hinh.ten','loai_cau_hinh.id')->get();
+  // dd($ttsp);
+  $loaicauhinh = LoaiCauHinh::all();
+  return view('layouts.pages.product_detail_tpl',compact('product_detail','tintuc_tukhoa','product_related','img_related','ttsp','loaicauhinh'));
 }
 
 public function profile()
@@ -336,6 +339,7 @@ public function createCart(Request $request)
 public function SapXepGia($sapxep)
 {
   $sp = null;
+
   if($sapxep == 1)
   {
     $sp = DB::table('san_pham')->orderBy('gia_ban','desc')->get();
@@ -344,16 +348,16 @@ public function SapXepGia($sapxep)
 
 }
 
-public function SearchPrice(Request $request)
-{
-  $Price_selected = $request->gia;
+// public function SearchPrice(Request $request)
+// {
+//   $Price_selected = $request->gia;
 
-  if($Price_selected == 1)
-  {
-    $product_select = SanPham::whereBetween('gia_ban', [1, 2000000])->paginate(6);
-    return redirect('shop/san-pham',['product_select'=>$product_select]);
-  }
-}
+//   if($Price_selected == 1)
+//   {
+//     $product_select = SanPham::whereBetween('gia_ban', [1, 2000000])->paginate(6);
+//     return redirect('shop/san-pham',['product_select'=>$product_select]);
+//   }
+// }
 
 
 }

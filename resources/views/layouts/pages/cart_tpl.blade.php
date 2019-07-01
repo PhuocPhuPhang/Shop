@@ -2,7 +2,7 @@
 <link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
 @section('content')
 <div id="layout_cart" class="container padding-inner">
-	<form id="frmPay" action="{{URL ('createCart')}}" method="post" accept-charset="utf-8">
+	<form id="frmPay" action="{{URL ('shop/createCart')}}" method="post" accept-charset="utf-8">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 		<div class="cart-layout cart_repon">
 			<div class="cart-layout__col">

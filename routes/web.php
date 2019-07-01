@@ -236,6 +236,8 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('cart/remove/{id}','PageControllers@RemoveCart');
     Route::post('cart/plus','PageControllers@PlusCart');
     Route::post('cart/minus','PageControllers@MinusCart');
+    Route::post('createCart','PageControllers@createCart');
+
 
     Route::get('lien-he','PageControllers@contact_tpl');
 
@@ -245,7 +247,6 @@ Route::group(['prefix'=>'shop'],function(){
 
 
 //Create_order
-Route::post('createCart','PageControllers@createCart');
 
 Route::post('timkiem','PageControllers@timkiem');
 

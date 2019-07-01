@@ -129,6 +129,10 @@
 			$('.sapxep_main').removeClass('active');
 			$('.sapxep_main').addClass('active');
 		})
+		$('.tskt_xemthem').click(function(){
+			$(this).parent().parent().find('.fullparameter').addClass('active');
+			// $(this).parent().parent().find('.fullparameter').removeClass('active');
+		})
 		$('.sapxep_item').click(function(){
 			$(this).parent().parent().find('.sapxep_main').removeClass('active');
 		})

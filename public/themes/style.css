@@ -18,7 +18,7 @@ ul ul , label{ margin-bottom: 0; }
 
 a {text-decoration: none !important;}
 
-label { display: inline-block; margin-bottom: 0.5rem; }
+label { display: inline-block; margin-bottom: 0; }
 
 button { border-radius: 0; }
 
@@ -455,3 +455,16 @@ div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-hei
 .pagination li:hover{cursor: pointer;}
 .page-item a {color: #000;}
 .page-item.active{color: blue;}
+
+.fullparameter.active{display: block;}
+.fullparameter {position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 99; display: none; padding: 0 0 0 55px; width: 630px; margin: 0 auto; }
+.fullparameter .scroll {height: 100vh; width: auto; padding: 0 30px 0 30px; overflow-x: hidden; overflow-y: auto; background: #fff; }
+.scroll {overflow: hidden; overflow-y: scroll !important; -webkit-overflow-scrolling: touch; -ms-scroll-chaining: chained; }
+.fullparameter .scroll h4, .fullparameter .scroll h3 {display: block; font-size: 18px; color: #666; font-weight: 600; margin-top: 15px; line-height: 1.3em; }
+.fullparameter ul {padding: 10px 30px 10px 30px; width: 450px; }
+.parameterfull {display: block; position: relative; overflow: hidden; background: #fff; }
+.parameterfull li {display: table; *display: block; background: #fff; width: 100%; border-bottom: 1px solid #dadada; }
+.parameterfull li label {display: block; background: #f2f2f2; font-size: 16px; font-weight: 600; color: #c0392b; padding: 8px; }
+.parameterfull li span {display: table-cell; *float: left; width: 35%; vertical-align: top; padding: 6px 5px; font-size: 13px; color: #666; font-weight: 600; }
+.parameterfull li div {display: table-cell; *float: left; width: auto; vertical-align: top; padding: 6px 5px; font-size: 13px; color: #666; }
+.parameterfull li div a {color: #288ad6; }
