@@ -59,28 +59,28 @@ class SlideController extends Controller
             $slide->hinh_anh = "";
         }
 
-        $thutu = $request->thutu;
-        $max = Media::count()->where('type','slide');
-        $tontai = DB::table('media')->where(['thu_tu',$thutu],['type','slide'])->count();
-        if($tontai != 0 )
-        {
-            if($thutu == 1 )
-            {
-                $dsSlide = DB::table('media')->where('type','slide')
-                ->whereBetween('thu_tu',[$thutu,$max])->get();
-            }
-            else
-            {
-                $dsSlide = DB::table('media')->whereBetween('thu_tu',[$thutu,$max-1])->get();
-                DB::table('media')->where(['thu_tu',$max],['type','slide'])->update(['thu_tu'=>$max+1]);
-            }
+        // $thutu = $request->thutu;
+        // $max = Media::where('type','slide')->count();
+        // $tontai = DB::table('media')->where(['thu_tu',$thutu],['type','slide'])->count();
+        // if($tontai != 0 )
+        // {
+        //     if($thutu == 1 )
+        //     {
+        //         $dsSlide = DB::table('media')->where('type','slide')
+        //         ->whereBetween('thu_tu',[$thutu,$max])->get();
+        //     }
+        //     else
+        //     {
+        //         $dsSlide = DB::table('media')->whereBetween('thu_tu',[$thutu,$max-1])->get();
+        //         DB::table('media')->where(['thu_tu',$max],['type','slide'])->update(['thu_tu'=>$max+1]);
+        //     }
 
-            foreach($dsSlide as $items)
-            {
-                DB::table('meida')->where(['thu_tu',$items->thu_tu],['type','slide'])->update(['thu_tu'=>$items->thu_tu +1]);
-            }
-        }
-        $slide->thu_tu = $thutu;
+        //     foreach($dsSlide as $items)
+        //     {
+        //         DB::table('meida')->where(['thu_tu',$items->thu_tu],['type','slide'])->update(['thu_tu'=>$items->thu_tu +1]);
+        //     }
+        // }
+        // $slide->thu_tu = $thutu;
 
         $slide->save();
         return redirect('admin/slide/them')->with('thongbao','Thêm thành công');
