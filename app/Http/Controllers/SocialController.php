@@ -110,7 +110,7 @@ class SocialController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
-            if(file_exists(public_path('upload/social/'.$social->hinh_anh)))
+            if($social->hinh_anh != "")
             {
                 unlink(public_path('upload/social/'.$social->hinh_anh));
             }
@@ -139,7 +139,7 @@ class SocialController extends Controller
     public function postXoa($id)
     {
         $social = Media::find($id);
-        if(file_exists(public_path('upload/social/'.$social->hinh_anh)))
+        if($social->hinh_anh != "")
         {
             unlink(public_path('upload/social/'.$social->hinh_anh));
         }

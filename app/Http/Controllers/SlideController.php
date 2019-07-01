@@ -110,7 +110,7 @@ class SlideController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
-            if(file_exists(public_path('upload/slide/'.$slide->hinh_anh)))
+            if($slide->hinh_anh != "")
             {
                 unlink(public_path('upload/slide/'.$slide->hinh_anh));
             }
@@ -139,7 +139,7 @@ class SlideController extends Controller
     public function postXoa($id)
     {
         $slide = Media::find($id);
-        if(file_exists(public_path('upload/slide/'.$slide->hinh_anh)))
+        if($slide->hinh_anh != "")
         {
             unlink(public_path('upload/slide/'.$slide->hinh_anh));
         }

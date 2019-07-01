@@ -35,9 +35,11 @@
                 <input type="text" id="link" class="form-control" name="link" value="{{$slide->link}}" /> <br />
 
                 <label>Hình Ảnh</label>
+                @if($slide->hinh_anh != "")
                 <p>
                     <img src="../../../upload/slide/{{$slide->hinh_anh}}" alt="Hình ảnh" width="500px">
                 </p>
+                @endif
                 <input type="file" id="hinhanh" name="hinhanh" /><br/>
 
                 <label>Thứ tự</label>

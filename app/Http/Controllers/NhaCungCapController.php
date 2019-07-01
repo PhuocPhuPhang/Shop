@@ -106,7 +106,7 @@ class NhaCungCapController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
-            if(file_exists(public_path('upload/nhacungcap/'.$nhacungcap->logo)))
+            if($nhacungcap->logo != "")
             {
                 unlink(public_path('upload/nhacungcap/'.$nhacungcap->logo));
             }
@@ -130,7 +130,7 @@ class NhaCungCapController extends Controller
     public function postXoa($mancc)
     {
         $nhacungcap = NhaCungCap::find($mancc);
-        if(file_exists(public_path('upload/nhacungcap/'.$nhacungcap->logo)))
+        if($nhacungcap->logo != "")
         {
             unlink(public_path('upload/nhacungcap/'.$nhacungcap->logo));
         }

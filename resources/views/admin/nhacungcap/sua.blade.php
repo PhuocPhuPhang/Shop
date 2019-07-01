@@ -60,9 +60,11 @@
                 <div class="form-group">
                 <label  class="control-label col-md-3 col-sm-3 col-xs-12">Logo </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
+                    @if($nhacungcap->logo != "")
                     <p>
-                        <img src="../../../upload/nhacungcap/{{$nhacungcap->logo}}" alt="Hình ảnh" width="250px" height="50px">
+                        <img src="../../../upload/nhacungcap/{{$nhacungcap->logo}}" alt="Hình ảnh" width="250px" height="150px">
                     </p>
+                    @endif
                     <input type="file" id="hinhanh" name="hinhanh" /><br/>
                 </div>
                 </div>

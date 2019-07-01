@@ -115,21 +115,22 @@ class TinTucController extends Controller
 
         if($request->hasFile('hinhanh'))
         {
+            if($tintuc->hinh_anh != "")
+            {
+                unlink(public_path('upload/tintuc/'.$tintuc->hinh_anh));
+            }
+
             $file = $request->file('hinhanh');
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/tintuc/sua/'.$tintuc->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('admin/tintuc/sua/'.$id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
-            $hinh = str_random(4)."_".$name;
-            while(file_exists("upload/tintuc/".$hinh))
-            {
-                $hinh = str_random(4)."_".$name;
-            }
+            $hinh = $name.'_'.time().'.'.$duoi;
+
             $file->move("upload/tintuc",$hinh);
-            unlink("upload/tintuc/".$tintuc->hinh_anh);
-            $tintuc->hinh_anh = $hinh;
+            $tintuc->logo = $hinh;
         }
 
         $tintuc->save();
@@ -139,6 +140,10 @@ class TinTucController extends Controller
     public function postXoa($id)
     {
         $tintuc = TinTuc::find($id);
+        if($tintuc->hinh_anh != "")
+        {
+            unlink(public_path('upload/tintuc/'.$tintuc->hinh_anh));
+        }
         $tintuc->delete();
         return redirect('admin/tintuc/danhsach')->with('thongbao','Xóa thành công');
     }
