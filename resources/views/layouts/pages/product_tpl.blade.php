@@ -23,8 +23,8 @@
 			<div class="sapxep_wrap">
 				<label class="title_sapxep">Sắp xếp</label>
 				<div id="SapXepGia" class="sapxep_main">
-					<label data-id="1">Giá cao đến thấp</label>
-					<label data-id="2">Giá thấp đến cao</label>
+					<label data-id="1" class="sapxep_item">Giá cao đến thấp</label>
+					<label data-id="2" class="sapxep_item">Giá thấp đến cao</label>
 				</div>
 			</div>
 		</div>
@@ -104,6 +104,7 @@
 		$('#SapXepGia').on('click','label', function (e) {
 			e.preventDefault();
 			let sxGia = $(this).data('id');
+
 			$.ajax({
 				type:'get',
 				url: 'shop/SapXepGia/'+ sxGia,

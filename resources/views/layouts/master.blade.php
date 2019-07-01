@@ -16,13 +16,13 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/js/magiczoomplus/magiczoomplus.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/css/tempusdominus-bootstrap-4.min.css')}}">
 	@switch( !$route->uri)
-		@case('shop/doi-mat-khau')
-		<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
-		@break
-		@case('shop/profile')
-		<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
-		@break
-		@default
+	@case('shop/doi-mat-khau')
+	<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
+	@break
+	@case('shop/profile')
+	<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
+	@break
+	@default
 	@endswitch
 	<link  href="{{asset('themes/css/all.min.css')}}" rel="stylesheet">
 	<link  href="{{asset('themes/css/fontawesome/css/all.min.css')}}" rel="stylesheet">
@@ -129,6 +129,10 @@
 			$('.sapxep_main').removeClass('active');
 			$('.sapxep_main').addClass('active');
 		})
+		$('.tskt_xemthem').click(function(){
+			$(this).parent().parent().find('.fullparameter').addClass('active');
+			// $(this).parent().parent().find('.fullparameter').removeClass('active');
+		})
 		$('.sapxep_item').click(function(){
 			$(this).parent().parent().find('.sapxep_main').removeClass('active');
 		})
@@ -190,15 +194,14 @@
 		$('#tintuc').html(editorText);
 	})
 </script>
-
-	<script>
-		$(function () {
-			$('#datetimepicker1').datetimepicker({
-				format: 'DD-MM-YYYY',
-				showToday: true,
-			});
+<script>
+	$(function () {
+		$('#datetimepicker1').datetimepicker({
+			format: 'YYYY/MM/DD',
+			showToday: true,
 		});
-	</script>
+	});
+</script>
 <!-- <script type="text/javascript">
 	$(document).ready(function() {
 		$('body').on('click','.checkmobile', function() {

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-	<div class="container">
+<div class="container">
 	<div class="pd-detail">
 		<div class="flex-between">
 			<div class="frame_images">
@@ -85,55 +85,16 @@
 					<div id="tskt">
 						<label>Thông số kỹ thuật</label>
 						<ul class="tskt_main">
+							@foreach($ttsp as $thongso)
 							<li>
-								<span>Màn hình:</span>
+								<span>{{$thongso->cau_hinh}}:</span>
 								<div>
-									<a href="">LED-backlit IPS LCD</a>,5.5"
+									<a href="">{{$thongso->mo_ta}}</a>,5.5"
 								</div>
 							</li>
-							<li>
-								<span>Hệ điều hành:</span>
-								<div>
-									<a href="">LED-backlit IPS LCD</a>,5.5"
-								</div>
-							</li>
-							<li>
-								<span>Camera trước:</span>
-								<div>
-									<a href="">LED-backlit IPS LCD</a>,5.5"
-								</div>
-							</li>
-							<li>
-								<span>Camera sau:</span>
-								<div>
-									<a href="">LED-backlit IPS LCD</a>,5.5"
-								</div>
-							</li>
-							<li>
-								<span>CPU:</span>
-								<div>
-									<a href="">LED-backlit IPS LCD</a>,5.5"
-								</div>
-							</li>
-							<li>
-								<span>Bộ nhớ trong:</span>
-								<div>
-									<a href="">LED-backlit IPS LCD</a>,5.5"
-								</div>
-							</li>
-							<li>
-								<span>Sim:</span>
-								<div>
-									<a href="">LED-backlit IPS LCD</a>,5.5"
-								</div>
-							</li>
-							<li>
-								<span>Dung lượng pin:</span>
-								<div>
-									<a href="">LED-backlit IPS LCD</a>,5.5"
-								</div>
-							</li>
+							@endforeach							
 						</ul>
+						<a style="display: block;text-align: center;" class="tskt_xemthem">Xem thêm</a>
 						<div class="news_product_wrap">
 							<div class="title"><h3>Tin tức mới</h3></div>
 							<ul id="scroller2">
@@ -151,6 +112,24 @@
 										</div>
 									</div>
 								</li>
+								@endforeach
+							</ul>
+						</div>
+					</div>
+					<div class="fullparameter">
+						<div class="scroll">
+							<h3>Thông số kỹ thuật chi tiết Huawei Y9 Prime (2019)</h3>
+							<img id="imgKit" width="500" height="430" alt="Thông số kỹ thuật 202268" src="//cdn.tgdd.vn/Products/Images/42/202268/Kit/huawei-y9-prime-2019-note.jpg">
+							<ul class="parameterfull">
+								@foreach($loaicauhinh as $loai)
+								<li><label>{{$loai->ten}}</label></li>
+								@foreach($ttsp as $thongso)
+								@if($thongso->id == $loai->id)
+								<li class="g6459"><span>{{$thongso->cau_hinh}}</span>
+									<div>{{$thongso->mo_ta}}</div>
+								</li>
+								@endif
+								@endforeach
 								@endforeach
 							</ul>
 						</div>
@@ -189,4 +168,4 @@
 			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
 			<div class="fb-comments" data-href="http://127.0.0.1:8000/shop/san-pham/SP02" data-width="100%" data-numposts="5"></div>		
 		</div>
-@endsection
+		@endsection
