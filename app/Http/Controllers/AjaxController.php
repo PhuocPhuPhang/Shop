@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\NhaCungCap;
 use App\TinTuc;
 use App\User;
 use App\CauHinhSanPham;
@@ -13,6 +14,24 @@ use Json;
 
 class AjaxController extends Controller
 {
+
+    public function postNhaCungCap(Request $request)
+    {
+        $nhacungcap = NhaCungCap::find($request->mancc);
+        if($nhacungcap->hien_thi == 1)
+        {
+            $nhacungcap->hien_thi = 0;
+        }
+        else
+        {
+            $nhacungcap->hien_thi = 1;
+        }
+        return response()->json([
+            'data' => [
+              'success' => $nhacungcap->save(),
+            ]
+          ]);
+    }
 
 	public function getCauHinh($idloaiCH)
 	{

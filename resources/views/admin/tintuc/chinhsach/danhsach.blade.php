@@ -25,7 +25,8 @@
         <thead>
            <tr>
              <th style="text-align:center;width:10%">STT</th>
-             <th style="text-align:center">Title</th>
+             <th style="text-align:center">Tiêu đề</th>
+             <th style="text-align:center">Hiển thị</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
@@ -35,6 +36,11 @@
            <tr>
              <td style="text-align:center">{{$i++}}</td>
              <td>{{$cs->title}}</td>
+             <td style="text-align:center">
+                 <input id="{{$cs->id}}" type="checkbox" class="flat" @if($cs->hien_thi)
+                        {{"checked"}}
+                    @endif><br/>
+             </td>
              <td style="width:200px;text-align:center">
                 <a href="admin/tintuc/chinhsach/sua/{{$cs->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa

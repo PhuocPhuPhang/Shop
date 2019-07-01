@@ -166,6 +166,8 @@ Route::group(['prefix'=>'admin'],function(){
 
     //Ajax
     Route::group(['prefix'=>'ajax'],function(){
+        Route::post('nhacungcap/hienthi','AjaxController@postNhaCungCap');
+
         Route::get('cauhinh/{idloaiCH}','AjaxController@getCauHinh');
         Route::post('cauhinh/them','AjaxController@postCauHinh');
 

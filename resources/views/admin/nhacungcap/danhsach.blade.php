@@ -28,6 +28,7 @@
              <th style="text-align:center">Tên nhà cung cấp</th>
              <th style="text-align:center">Số điện thoại</th>
              <th style="text-align:center">Địa chỉ</th>
+             <th style="text-align:center">Hiển thị</th>
              <th  style="text-align:center">Thao tác</th>
            </tr>
          </thead>
@@ -40,6 +41,11 @@
              <td>{{ $ncc->ten_nha_cung_cap }}</td>
              <td>{{ $ncc->so_dien_thoai }}</td>
              <td>{{ $ncc->dia_chi }}</td>
+             <td style="text-align:center">
+                 <input id="{{$ncc->ma_nha_cung_cap}}" type="checkbox" class="flat" @if($ncc->hien_thi)
+                        {{"checked"}}
+                    @endif><br/>
+             </td>
              <td style="text-align:center">
                 <a href="admin/nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
@@ -57,3 +63,31 @@
     </div>
 </div>
 @endsection
+@section('script')
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $(".flat").on('ifChanged', function(event) {
+                event.preventDefault();
+                var mancc = $(this).closest('.flat').attr('id');
+                $.ajax({
+                    type:'POST',
+                    url: 'admin/ajax/nhacungcap/hienthi',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"mancc":mancc},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Thành công');
+                        }
+                        else
+                        {
+                            alert('Lỗi');
+                        }
+                    }
+                })
+                });
+        });
+    </script>
+@endsection
+
+

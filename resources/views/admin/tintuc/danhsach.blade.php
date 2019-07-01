@@ -28,6 +28,7 @@
              <th style="text-align:center">Tiêu đề</th>
              <th style="text-align:center">Mô tả</th>
              <th style="text-align:center">Nổi bật</th>
+             <th style="text-align:center">Hiển thị</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
@@ -43,6 +44,12 @@
                         {{"checked"}}
                     @endif><br/>
              </td>
+             <td style="text-align:center">
+                 <input id="{{$tin->id}}" type="checkbox" class="flat" @if($tin->hien_thi)
+                        {{"checked"}}
+                    @endif><br/>
+             </td>
+
              <td style="text-align:center">
                 <a href="admin/tintuc/sua/{{$tin->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
@@ -66,8 +73,6 @@
         $(document).ready(function(){
             console.log($('.flat').iCheck('update')[0].checked);
             $(".flat").on('ifChanged', function(event) {
-                // var check = event.target.checked;
-                //Lấy id tin tức
                 var id = $(this).closest('.flat').attr('id');
                 $.ajax({
                     type:'POST',
