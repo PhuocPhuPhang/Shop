@@ -139,15 +139,16 @@ public function Logout()
  return redirect('shop');
 }
 
+public function contact_tpl()
+{
+
+  return view('layouts.pages.contact');
+}
+
 public function about_tpl()
 {
 
   return view('layouts.pages.about_tpl');
-}
-
-public function contact()
-{
-  return view('layouts.pages.contact');
 }
 
 public function news_tpl()
@@ -193,7 +194,7 @@ public function changeProfile(Request $request)
   ]);
 
  $user = Auth::user();
- DB::table('users')->where('id',$user->id)->update(['ten'=> $request->ten]);
+ DB::table('users')->where('id',$user->id)->update(['ten'=> $request->ten , 'so_dien_thoai'=> $request->so_dien_thoai , 'gioi_tinh , '=> $request->gioi_tinh , 'ngay_sinh'=> $request->ngay_sinh , 'dia_chi'=> $request->dia_chi]);
 
  return redirect('shop/profile')->with('ThongTin',"Cập nhật thông tin thành công");
 

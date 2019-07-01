@@ -242,7 +242,7 @@
 				<li><a href="shop/tin-tuc" title="">Tin tức</a></li>
 				<li><a href="video.html" title="Video">Video</a></li>
 				<li><a href="tuyen-dung.html" title="Tuyển dụng">Tuyển dụng</a></li>
-				<li><a href="lien-he" title="">Liên hệ</a></li>
+				<li><a href="shop/lien-he" title="">Liên hệ</a></li>
 			</ul>
 		</div>
 	</section>

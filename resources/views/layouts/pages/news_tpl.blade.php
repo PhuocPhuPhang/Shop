@@ -17,7 +17,27 @@
 			</div>
 			@endforeach
 		</div>
-		<div class="news_tpl_right"></div>
+		<div class="news_tpl_right">
+			<div class="product_tintuc_wrap">
+				<div class="title"><h3>Sản phẩm nổi bật</h3></div>
+				<ul id="scroller2">
+					@foreach($product_shop as $ps)
+					<li>
+						<div class="main_news flex-between">
+							<div class="img_news">
+								<a class="w-img effect-zoom" href="shop/san-pham/{{$ps->ma_san_pham}}" title="{{$ps->ten_san_pham}}">
+									<img src="upload/sanpham/{{$ps->hinh_anh}}" alt="{{$ps->ten_san_pham}}">
+								</a>
+							</div>
+							<div class="news_list_info" style="margin-left: 10px;">
+								<div class="news_list_name"><a href="shop/san-pham/{{$ps->ma_san_pham}}">{{$ps->ten_san_pham}}</a></div>
+							</div>
+						</div>
+					</li>
+					@endforeach
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 @endsection

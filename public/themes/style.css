@@ -50,7 +50,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 .right_top{width: 35%;}
 .right_top_login{width: 40%;}
 .right_top_logout{width: 55%;}
-.right_top_logout .logout{display: inline-block;}
+.right_top_logout .logout{display: inline-block;font-weight: bold;color: #000;}
 .right_top_login label{display: inline-block;margin-bottom: 0;}
 .right_top_login label:hover{color: #fff;cursor: pointer;text-decoration: underline;}
 .line_login{width: 1px;height: 15px;background: #000;}
@@ -227,8 +227,8 @@ a.link_cart:hover {color: #0066b3; }
 .sapxep_main.active{display: block;}
 .sapxep_main{position: absolute;bottom: -95px;right: 0;width: 200px;height: 80px;z-index: 1;background: #fff;border: 1px solid #cacaca;border-radius: 10px;padding-top: 5px;display: none;}
 .sapxep_main label{display: block;padding-left: 10px;}
-.price_item{display: inline-block;margin-right: 20px;color: blue;font-size: 15px;font-family: 'Roboto'}
-.price_item:hover{color: #000;}
+.price_item{display: inline-block;margin-right: 20px;color: red;font-size: 15px;font-family: 'Roboto'}
+.price_item:hover{color: #000;cursor: pointer;}
 .main_list_product{display: grid;grid-template-columns: repeat(3,1fr);}
 .pro_info-info{border-top: 1px dashed #cacaca;width: 90%;margin: 0 auto; padding: 10px 0; margin-top: 10px;}
 .pro_info-info span{display: block;text-align: left;margin-left: 10px;}
@@ -398,7 +398,7 @@ a.link_cart:hover {color: #0066b3; }
 .title_tpl:before{position: absolute; content: ''; width: 50px; height: 3px; background: #046835; border-radius: 1px; left: 0; bottom: 0;}
 .title_tpl:after{position: absolute; content: ''; width: calc(100% - 52px); height: 3px; background: #ccc; border-radius: 1px; left: 52px; bottom: 0;}
 .news_tpl_title{display: block;text-align: center;text-transform: uppercase;font-weight: bold;font-size: 28px;margin: 20px 0;}
-.news_tpl_left{width: 70%;}
+.news_tpl_left{width: 70%;margin-right: 20px;}
 .news_tpl_grid{display: grid;grid-template-columns: repeat(1,1fr);}
 .news_tpl_box{border-bottom: 1px dashed #cacaca;padding-bottom: 15px;margin-bottom: 15px;}
 .img_news_tpl img{max-width: 240px;max-height: 150px;}
@@ -434,3 +434,24 @@ div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-hei
 .vert2 { width: 100%; height: 465px; }
 .vert2 .simply-scroll-clip { width: 100%; height: 100%; }
 #scroller2 li{margin-bottom: 15px;height: 115px; border-bottom: 1px dashed #d7d7d7;padding-bottom: 15px;display: inline-table;width: 100%;}
+
+#frmContact input { display: block; width: 100%; height: 40px; border: 0; border-bottom: 1px solid #ced4da; background: transparent; position: relative; z-index: 5; }
+#frmContact textarea { display: block; width: 100%; height: 100px; border: 0; border-bottom: 1px solid #ced4da; background: transparent; position: relative; z-index: 5; resize: none; padding: 10px 0; font-size: 13px; font-family: "Roboto"; }
+#frmContact input::-webkit-input-placeholder, #frmContact textarea::-webkit-input-placeholder { color: #666; }
+#frmContact input:-ms-input-placeholder, #frmContact textarea:-ms-input-placeholder { color: #666; }
+#frmContact input::-ms-input-placeholder, #frmContact textarea::-ms-input-placeholder { color: #666; }
+#frmContact input::placeholder, #frmContact textarea::placeholder { color: #666; }
+#frmContact input:focus, #frmContact textarea:focus { -webkit-box-shadow: 0 2px #046835; box-shadow: 0 2px #046835; border-bottom: 1px solid #046835; }
+#frmContact input:focus::-webkit-input-placeholder, #frmContact textarea:focus::-webkit-input-placeholder { color: #046835; }
+#frmContact input:focus:-ms-input-placeholder, #frmContact textarea:focus:-ms-input-placeholder { color: #046835; }
+#frmContact input:focus::-ms-input-placeholder, #frmContact textarea:focus::-ms-input-placeholder { color: #046835; }
+#frmContact input:focus::placeholder, #frmContact textarea:focus::placeholder { color: #046835; }
+#frmContact input[type="file"] { margin-top: 10px; }
+#frmContact button[type="submit"] { display: inline-block; width: 120px; height: 40px; font-family: "Roboto"; font-size: 14px; color: #fff; text-align: center; text-transform: uppercase; background: #046835; border: 0; cursor: pointer; }
+#frmContact button[type="reset"] { display: inline-block; width: 120px; height: 40px; font-family: "Roboto"; font-size: 14px; color: #fff; text-align: center; text-transform: uppercase; background: #5a5a5a; border: 0; cursor: pointer; }
+
+.pagination{display: flex;justify-content: center;margin-top: 10px;}
+.pagination li{border:1px solid #cacaca;margin: 0 5px;padding: 5px 10px;}
+.pagination li:hover{cursor: pointer;}
+.page-item a {color: #000;}
+.page-item.active{color: blue;}

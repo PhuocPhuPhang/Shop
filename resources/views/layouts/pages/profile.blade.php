@@ -20,7 +20,10 @@
 			<ul>
 				<li><a class="actived" href="shop/thong-tin-tai-khoan" title="Thông tin tài khoản"><i class="fas fa-edit"></i>Thông tin tài khoản</a></li>
 				<li><a class="actived" href="shop/doi-mat-khau" title="Thay đổi mật khẩu"><i class="fas fa-unlock-alt"></i>Thay đổi mật khẩu</a></li>
-				<li><a class="actived" href="dang-xuat.html" title="Đăng xuất"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
+				@if(Auth::user()->quyen == 1 || Auth::user()->quyen == 2)
+				<li><a class="actived" href="{{url('admin/index')}}" title="Trang quản lý"><i class="fas fa-sign-out-alt"></i>Trang quản lý</a></li>
+				@endif
+				<li><a class="actived" href="{{url('shop/logout')}}" title="Đăng xuất"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
 			</ul>
 		</div>
 	</div>
