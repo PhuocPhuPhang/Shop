@@ -150,7 +150,7 @@
 		</div>
 	</section>
 	<section id="header">
-		<div class="container flex-between-center header-repon">
+		<div class="container flex-between-center header-repon" style="padding: 5px 0;">
 			<div class="banner col-head">
 				<a href=""><img class="img-responsive" src="images/logo.png" alt=""></a>
 			</div>
@@ -158,12 +158,12 @@
 				<form id="" action="{{ URL('/timkiem') }}" method="post">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					<div class="timkiem flex-between-center">
-						<select id="sel_list">
+						<!-- <select id="sel_list">
 							<option>Tất cả</option>
 							@foreach($nhacungcap as $ncc)
 							<option name="nhacungcap_select" value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
 							@endforeach
-						</select>
+						</select> -->
 						<input class="tu_khoa" name="tukhoa" id="name_tk" type="text" placeholder="Tìm sản phẩm của bạn..." />
 
 						<button>TÌM KIẾM</button>
