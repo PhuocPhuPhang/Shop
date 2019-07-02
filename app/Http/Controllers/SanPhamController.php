@@ -98,16 +98,27 @@ class SanPhamController extends Controller
 
     public function postUploadImages(Request $request)
     {
-            $file = $request->file('file');
-            $duoi = $file->getClientOriginalExtension();
-            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            // $file = $request->file('file');
+            // $duoi = $file->getClientOriginalExtension();
+            // if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            // {
+            //     return redirect('admin/sanpham/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+            // }
+            // $name = $file->getClientOriginalName();
+            // $hinh = $name.'_'.time().'.'.$duoi;
+            // $file->move("upload/sanpham",$hinh);
+            $array_image = [];
+            if($request->hasFile('file'))
             {
-                return redirect('admin/sanpham/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                foreach( $request->file as $image)
+                {
+                    $duoi = $image->getClientOriginalExtension();
+                    $name = $image->getClientOriginalName();
+                    $array_image[] = $name.'_'.time().'.'.$duoi;
+                    dd($array_image);
+                }
             }
-            $name = $file->getClientOriginalName();
-            $hinh = $name.'_'.time().'.'.$duoi;
-
-            $file->move("upload/sanpham",$hinh);
+            return $array_image;
     }
 
     public function postKiemTraMaSanPham(Request $request)
