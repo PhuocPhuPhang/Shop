@@ -245,12 +245,15 @@ Route::group(['prefix'=>'shop'],function(){
 
     Route::get('SapXepGia/{sapxep}','PageControllers@SapXepGia');
 
+    //Tìm Kiếm
+        Route::post('timkiem','PageControllers@timkiem');
+
 });
 
 
 //Create_order
 
-Route::post('timkiem','PageControllers@timkiem');
+
 
 Route::post('SearchPrice','PageControllers@SearchPrice');
 

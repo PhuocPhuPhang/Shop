@@ -53,18 +53,9 @@
                     <label>Gía bán</label>
                     <input type="text" id="gia" class="form-control inputForm" name="gia" /><br />
 
-                    <!-- <label>Chương trình khuyến mãi</label>
-                    <select name="khuyenmai" id="khuyenmai" class="form-control inputForm">
-                        @foreach($khuyenmai as $km)
-                            <option value="{{$km->ma_khuyen_mai}}">{{$km->ten_khuyen_mai}}</option>
-                        @endforeach
-                    </select><br/> -->
-
                     <label>Mô tả</label>
                     <textarea id="mota"  class="form-control inputForm" name="mota"></textarea><br />
 
-                    <!-- <label>Nổi bật &nbsp;&nbsp;</label>
-                    <input type="checkbox" class="flat inputForm" id="noibat" name="noibat"><br/><br/> -->
 
                     <label>Keywords</label>
                     <textarea id="keywords"  class="form-control inputForm" name="keywords"></textarea><br />
@@ -261,10 +252,15 @@
             else alert('Lỗi');
         });
 
+        $(".dropzone").dropzone({
+            parallelUploads:10,
+            uploadMultiple:true,
+        });
+
         $("#btnSubmit").click(function(event){
             var masp = document.getElementById('ma').value;
             var tensp = document.getElementById('ten').value;
-            var hinh = document.getElementById('hinh');
+
             var array = [];
             if(masp != "" && tensp != ""){
             $.ajax({
