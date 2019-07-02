@@ -34,7 +34,7 @@
 	</section> -->
 	<section class="copyright">
 		<div class="center-layout copy_repon flex-between-center copyright-content">
-			<div class="copyright-left">Copyright &#169<i class="far fa-copyright"></i> 2019 <span>Đồ án tốt nghiệp</span> . All rights reserved. Web design: NiNa Co., Ltd</div>
+			<div class="copyright-left">Copyright <i class="far fa-copyright"></i> 2019 <span>Đồ án tốt nghiệp</span> . All rights reserved. Web design: NiNa Co., Ltd</div>
 			<!-- <div class="copyright-right">
 				<span>Đang Online: 1</span>
 				<span>Tổng truy cập: 100</span>

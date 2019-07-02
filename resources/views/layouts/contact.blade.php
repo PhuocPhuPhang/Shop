@@ -3,7 +3,10 @@
 <div class="row box mx-0">
 	<div class="col-md-5">
 		<h3 class="title-contact">Thông tin liên hệ</h3>
-		<?=$row_detail['noidung_'.$lang]?>
+		<p>{{$website->dia_chi}}</p>
+		<p>{{$website->dien_thoai}}</p>
+		<p>{{$website->email}}</p>
+		<p>{{$website->website}}</p>
 	</div>
 	<div class="col-md-7">
 		<h3 class="title-contact">Liên hệ với chúng tôi</h3>

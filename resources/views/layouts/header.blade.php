@@ -73,10 +73,10 @@
 									<label>Ngày sinh</label>
 									<input type="date" name="ngay_sinh" value="<?php echo date('Y-m-d')?>">
 								</div>
-								<div class="login-row">
+								<!-- <div class="login-row">
 									<input type="checkbox" name="nhan_tin">
 									<span class="check_thongbao">Nhận các thông báo và tin khuyến mãi từ chúng tôi.</span>
-								</div>
+								</div> -->
 								<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 								<div class="login-row">
 									<button name="btnDK" id="btnY">Tạo tài khoản</button>

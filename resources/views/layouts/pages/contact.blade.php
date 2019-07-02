@@ -8,7 +8,10 @@
 	<div class="row box mx-0" style="margin-top: 30px;">
 		<div class="col-md-5">
 			<h3 class="title-contact">Thông tin liên hệ</h3>
-			<div>Nội dung ......</div>
+			<p style="font-size: 14px; margin-bottom: 10px;">Địa chỉ: {{$website->dia_chi}}</p>
+			<p style="font-size: 14px; margin-bottom: 10px;">số điện thoai: {{$website->dien_thoai}}</p>
+			<p style="font-size: 14px; margin-bottom: 10px;">Email: {{$website->email}}</p>
+			<p style="font-size: 14px; margin-bottom: 10px;">Website: {{$website->website}}</p>
 		</div>
 		<div class="col-md-7">
 			<h3 class="title-contact">Liên hệ với chúng tôi</h3>
