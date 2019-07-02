@@ -229,7 +229,8 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('thong-tin-tai-khoan','PageControllers@profile');
     Route::post('cap-nhat-thong-tin','PageControllers@changeProfile');
     Route::get('doi-mat-khau','PageControllers@profile');
-    Route::post('doi-mat-khau','PageControllers@postChangePassword');
+    Route::post('cap-nhat-mat-khau','PageControllers@postChangePassword');
+    Route::get('don-hang','PageControllers@profile');
 
     //Giỏ hàng
     Route::get('cart_tpl','PageControllers@cart_tpl');

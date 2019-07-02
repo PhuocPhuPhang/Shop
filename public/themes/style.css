@@ -272,9 +272,11 @@ a.link_cart:hover {color: #0066b3; }
 .wrap_name_detail{margin-top: 30px;}
 #container_product{margin-top: 30px;}
 #chitietsanpham{width: 70%;margin-right: 20px;}
+.hidden.active{height: 570px;overflow: hidden;}
+.viewparameterfull.active{display: none;}
 #tskt{width: 30%;}
 #tskt label , .binhluan label {font-weight: bold;font-size: 20px;color: #333333;}
-.tskt_main{list-style: none;}
+.tskt_main{list-style: none;height: 540px;overflow: hidden;}
 .tskt_main li{display: flex; border-top: 1px solid #cacaca;padding: 20px 0;}
 .tskt_main li div a{color: blue;}
 .tskt_main li span{display: block;width: 40%;}
@@ -431,7 +433,8 @@ div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-hei
 .news_list_mota{display: block;font-size: 13px;color: #6c757d;font-family: 'Roboto';}
 
 .news_product_wrap{width: 100%;}
-.vert2 { width: 100%; height: 465px; }
+.vert2 { width: 100%; height: 800px; }
+.news_product_wrap.active{display: none;}
 .vert2 .simply-scroll-clip { width: 100%; height: 100%; }
 #scroller2 li{margin-bottom: 15px;height: 115px; border-bottom: 1px dashed #d7d7d7;padding-bottom: 15px;display: inline-table;width: 100%;}
 
@@ -470,3 +473,15 @@ div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-hei
 .parameterfull li div a {color: #288ad6; }
 .viewparameterfull {display: block; width: 100%; padding: 6px 0; margin: 10px 0 0; cursor: pointer; text-align: center; font-size: 13px !important; color: #288ad6 !important; background: #fff; border: 1px solid #288ad6; border-radius: 4px; }
 .viewparameterfull:hover{background: #288ad6;color: #fff !important;cursor: pointer;}
+
+.custom-table { border: 1px solid #f1f1f1; min-width: 768px; }
+.custom-table__header { display: grid; grid-template-columns: 50px 90px 1fr 140px 100px 100px 95px; grid-gap: 5px; background: #f1f1f1; padding: 5px 0; }
+.custom-table__header .custom-table__col { text-align: center; font-weight: bold; }
+.custom-table .center { text-align: center; }
+.custom-table .order-detail-items { background: #f5f5f5; padding: 5px; margin-bottom: 5px; }
+.custom-table .order-detail-items:last-child { margin-bottom: 0; }
+.custom-table__row { display: grid; grid-template-columns: 50px 90px 1fr 140px 100px 100px 95px; grid-gap: 5px; -webkit-box-align: center; -ms-flex-align: center; align-items: center; background: #fff; padding: 5px 0; }
+.custom-table__row:nth-child(even) { background: #f6f6f6; }
+.custom-table__row:nth-child(even) .order-detail-items { background: #fff; }
+
+#tintuc iframe{width: 360px;height: 205px;}

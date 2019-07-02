@@ -197,7 +197,7 @@ public function changeProfile(Request $request)
   ]);
 
  $user = Auth::user();
- DB::table('users')->where('id',$user->id)->update(['ten'=> $request->ten , 'so_dien_thoai'=> $request->so_dien_thoai , 'gioi_tinh , '=> $request->gioi_tinh , 'ngay_sinh'=> $request->ngay_sinh , 'dia_chi'=> $request->dia_chi]);
+ DB::table('users')->where('id',$user->id)->update(['ten'=> $request->ten , 'so_dien_thoai'=> $request->so_dien_thoai , 'gioi_tinh'=> $request->gioi_tinh , 'ngay_sinh'=> $request->ngay_sinh , 'dia_chi'=> $request->dia_chi]);
 
  return redirect('shop/profile')->with('ThongTin',"Cập nhật thông tin thành công");
 
@@ -207,7 +207,7 @@ public function postChangePassword(Request $request)
 {
  $this->validate($request,
   [
-    'password_old' => 'required|min:6',
+    'password_old' => 'required',
     'password'  =>  'required|min:6|confirmed',
     'password_confirmation' =>  'required|min:6'
   ],
@@ -221,12 +221,14 @@ public function postChangePassword(Request $request)
 
  $user = Auth::user();
  $password_old = $request['password_old'];
+ // dd($password_old, $user->password);
  if(Hash::check($password_old,$user->password))
  {
    $password = $request['password'];
    DB::table('users')->where('id',$user->id)->update(['password'=> Hash::make($password)]);
 
-   return redirect('shop/profile')->with('thongbao',"Đổi mật khẩu thành công");
+   Auth::logout();
+   return redirect('shop')->with('thongbao',"Đổi mật khẩu thành công");
  }
  else
   { return redirect('shop/profile')->with('thongbao',"Thất bại"); }
@@ -330,7 +332,7 @@ public function createCart(Request $request)
       $order_de->save();
     }
     Cart::clear();
-    return redirect('shop');
+    return redirect('shop')->with('thongbaodathang','Quý khách đã đặt hàng thành công. Xin cảm ơn.');
   }
 }
 

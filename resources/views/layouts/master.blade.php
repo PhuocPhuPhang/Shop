@@ -134,6 +134,11 @@
 		$('.sapxep_item').click(function(){
 			$(this).parent().parent().find('.sapxep_main').removeClass('active');
 		})
+		$('#docthem').click(function(){
+			$('.doccthem').addClass('active');
+			$(this).parent().find('.hidden').removeClass('active');
+			$(this).parent().parent().find('.news_product_wrap').removeClass('active');
+		})
 		$('.login').click(function(){
 			$(this).parent().parent().find('#login_wrap').addClass('active');
 			$(this).parent().parent().find('.title_login_main').addClass('active');

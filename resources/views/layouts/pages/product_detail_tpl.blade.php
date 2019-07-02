@@ -79,8 +79,9 @@
 					</div>
 				</div>
 				<div id="container_product" class="flex-between">
-					<div id="chitietsanpham">
-						<div id="tintuc">{{$product_detail->noi_dung}}</div>
+					<div id="chitietsanpham" >
+						<div id="tintuc" class="hidden active">{{$product_detail->noi_dung}}</div>
+						<label id="docthem" class="viewparameterfull doccthem">Đọc thêm</label>
 					</div>
 					<div id="tskt">
 						<label>Thông số kỹ thuật</label>
@@ -95,7 +96,7 @@
 							@endforeach							
 						</ul>
 						<label id="" class="viewparameterfull XemCauHinh">Xem cấu hình chi tiết</label>
-						<div class="news_product_wrap">
+						<div class="news_product_wrap active">
 							<div class="title"><h3>Tin tức mới</h3></div>
 							<ul id="scroller2">
 								@foreach($tintuc_tukhoa as $tt)

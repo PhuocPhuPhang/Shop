@@ -73,6 +73,11 @@
 		alert('Đăng nhập trước khi đặt hàng');
 	</script>
 	@endif
+	@if(session('thongbaodathang'))
+	<script>
+		alert('Quý khách đã đặt hàng thành công. Xin cảm ơn.');
+	</script>
+	@endif
 </div>
 @endsection
 @section('script')

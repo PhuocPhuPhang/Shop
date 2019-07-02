@@ -205,5 +205,10 @@
 		</div>
 	</div>
 </section>
+@if(session('thongbaodathang'))
+<script>
+	alert('Quý khách đã đặt hàng thành công. Xin cảm ơn.');
+</script>
+@endif
 
 @endsection

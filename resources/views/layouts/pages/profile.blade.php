@@ -12,7 +12,7 @@
 		<div class="menu_profile">
 			<h5>Quản lý giao dịch</h5>
 			<ul>
-				<li><a class="actived" href="don-hang.html" title="Đơn hàng"><i class="fas fa-file-alt"></i>Đơn hàng</a></li>
+				<li><a class="actived" href="shop/don-hang" title="Đơn hàng"><i class="fas fa-file-alt"></i>Đơn hàng</a></li>
 			</ul>
 		</div>
 		<div class="menu_profile">
@@ -89,14 +89,13 @@
 			<div class="row">
 				<div class="offset-md-3 col-md-9">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-					<button type="submit" class="btn btn-primary">Cập nhật</button>
-					<!-- <button type="submit" class="btn btn-secondary">Nhập lại</button> -->
+					<input type="submit" class="btn btn-primary" value="Cập nhật">
 				</div>
 			</div>
 		</form>
 		@endif
 		@if( $route->uri == 'shop/doi-mat-khau')
-		<form class="col-md-8" id="frmChangePassword" method="post" action="{{ url('shop/doi-mat-khau') }}">
+		<form class="col-md-8" id="frmChangePassword" method="post" action="{{ url('shop/cap-nhat-mat-khau') }}">
 			<div class="form-group row">
 				<label class="col-md-3 col-form-label" for="">Tên đăng nhập</label>
 				<div class="col-md-9">
@@ -129,10 +128,42 @@
 			<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 			<div class="row">
 				<div class="offset-md-3 col-md-9">
-					<button type="submit" class="btn btn-primary">Cập nhật</button>
+					<button class="btn btn-primary">Cập nhật</button>
 				</div>
 			</div>
 		</form>
+		@endif
+		@if($route->uri == 'shop/don-hang')
+		<div class="custom-table">
+			<div class="custom-table__header">
+				<div class="custom-table__col">STT</div>
+				<div class="custom-table__col">Mã đơn hàng</div>
+				<div class="custom-table__col">Sản phẩm</div>
+				<div class="custom-table__col">Ngày đặt</div>
+				<div class="custom-table__col">Tổng tiền</div>
+				<div class="custom-table__col">Tình trạng</div>
+			</div>
+			<div class="custom-table__body">
+					<div class="custom-table__row">
+						<div class="custom-table__col center">1</div>
+						<div class="custom-table__col center">DH01</div>
+						<div class="custom-table__col">
+							
+								<div class="order-detail-items">
+									<strong class="order-detail-items__name">sp01</strong>
+									<div class="order-detail-items__row">Thành tiền: 100000 <sup>đ</sup></div>
+								</div>
+
+						</div>
+						<div class="custom-table__col center">12/07/2019</div>
+						<div class="custom-table__col center">100000 <sup>đ</sup></div>
+						<div class="custom-table__col center">Đã xác nhận</div>
+					</div>
+			</div>
+			<div class="custom-table__footer">
+				<div class="custom-table__col"></div>
+			</div>
+		</div>
 		@endif
 		
 	</div>
