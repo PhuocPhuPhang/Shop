@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use DB;
+use Charts;
 use Illuminate\Support\Facades\Hash;
 
 class AdminLoginController extends Controller
@@ -53,7 +54,14 @@ class AdminLoginController extends Controller
 
     public function SuccessLogin()
     {
-        return view('admin.layouts.index');
+        $data = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y'))->get();
+        $chart = Charts::database($data, 'bar', 'highcharts')
+                ->title("Monthly new Register Users")
+                ->elementLabel("Total Users")
+                ->responsive(false)
+                ->groupByMonth(date('Y'), true);
+
+        return view('admin.layouts.index',compact('chart'));
     }
 
      public function Logout()
