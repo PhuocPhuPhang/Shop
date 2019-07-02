@@ -56,8 +56,8 @@ class AdminLoginController extends Controller
     {
         $data = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y'))->get();
         $chart = Charts::database($data, 'bar', 'highcharts')
-                ->title("Monthly new Register Users")
-                ->elementLabel("Total Users")
+                ->title("Thống kê tài khoản đăng ký hàng tháng")
+                ->elementLabel("Tổng số người dùng")
                 ->responsive(false)
                 ->groupByMonth(date('Y'), true);
 

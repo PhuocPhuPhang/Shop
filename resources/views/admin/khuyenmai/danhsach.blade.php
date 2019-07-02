@@ -32,9 +32,10 @@
            </tr>
          </thead>
          <tbody>
-             <?php $i = 1 ?>
+             <?php $i = 1;?>
             @foreach($khuyenmai as $km)
            <tr>
+               {{$km->ma_khuyen_mai}}
              <td  style="text-align:center">{{$i++}}</td>
              <td>{{$km->ten_khuyen_mai}}</td>
              <td style="text-align:center">{{$km->ngay_bat_dau}}</td>

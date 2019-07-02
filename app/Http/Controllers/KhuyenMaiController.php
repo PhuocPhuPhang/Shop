@@ -11,13 +11,13 @@ use Illuminate\Support\Str;
 
 class KhuyenMaiController extends Controller
 {
-    // function __construct()
-    // {
-    //     $khuyenmai = KhuyenMai::all();
-    //     $hinhthuckm = HinhThucKhuyenMai::all();
-    //     view()->share('khuyenmai',$khuyenmai);
-    //     view()->share('hinhthuckm',$hinhthuckm);
-    // }
+    function __construct()
+    {
+        $khuyenmai = KhuyenMai::all();
+        $hinhthuckm = HinhThucKhuyenMai::all();
+        view()->share('khuyenmai',$khuyenmai);
+        view()->share('hinhthuckm',$hinhthuckm);
+    }
 
     public function getDanhSach()
     {
