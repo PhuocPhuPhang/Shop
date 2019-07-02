@@ -106,11 +106,6 @@
 	<div class="wrap_pro_home">
 		<div class="container">
 			<label class="title-sp">Điện thoại nổi bật</label>
-			<!-- <div class="cat_nb ">
-				<a href="">iPhone 7</a>
-				<a href="">iPhone 8</a>
-				<a href="">iPhone X</a>
-			</div> -->
 			<div class="main_pro_home">
 				<div class="small_product">
 					@foreach($product_shop as $sp)
@@ -124,7 +119,7 @@
 							<div class="name"><h3><a href="san-pham/{{$sp->ma_san_pham}}">{{$sp->ten_san_pham}}</a></h3></div>
 							<div class="wrap_price">
 								<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
-								<div class="price_old">{{$sp->gia_ban}} Đ</div>
+								<div class="price_old">{{number_format($sp->gia_ban)}} Đ</div>
 								<div class="clearfix"></div>
 							</div>
 							<a class="add_cart_index" href="shop/add_to_cart/{{$sp->ma_san_pham}}">Mua ngay</a>
@@ -132,6 +127,7 @@
 					</div>
 					@endforeach
 				</div>
+				{{ $product_shop->links() }}
 			</div>
 		</div>
 	</div>
