@@ -15,6 +15,7 @@
 	<link  href="{{asset('themes/css/fontawesome/css/fontawesome.css')}}" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/js/magiczoomplus/magiczoomplus.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('themes/css/tempusdominus-bootstrap-4.min.css')}}">
+	<link href="{{asset('themes/css/fancybox.min.css')}}" rel="stylesheet" type="text/css"/>
 	@switch( !$route->uri)
 	@case('shop/doi-mat-khau')
 	<link  href="{{asset('themes/css/default.min.css')}}" rel="stylesheet">
@@ -45,6 +46,7 @@
 <script src="{{asset('themes/js/simplyscroll.min.js')}}"></script>
 <script src="{{asset('themes/js/moment.min.js')}}"></script>
 <script src="{{asset('themes/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<script src="{{asset('themes/js/fancybox.min.js')}}"></script>
 
 <script>
 	$(document).ready(function(){
@@ -129,10 +131,6 @@
 			$('.sapxep_main').removeClass('active');
 			$('.sapxep_main').addClass('active');
 		})
-		$('.tskt_xemthem').click(function(){
-			$(this).parent().parent().find('.fullparameter').addClass('active');
-			// $(this).parent().parent().find('.fullparameter').removeClass('active');
-		})
 		$('.sapxep_item').click(function(){
 			$(this).parent().parent().find('.sapxep_main').removeClass('active');
 		})
@@ -201,6 +199,12 @@
 			showToday: true,
 		});
 	});
+</script>
+<script>
+    $('.XemCauHinh').click(function(){
+        var popup = $('#popup_TSKT').html();
+        $.fancybox.open(popup);
+    })
 </script>
 <!-- <script type="text/javascript">
 	$(document).ready(function() {

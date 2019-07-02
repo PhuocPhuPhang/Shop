@@ -94,7 +94,7 @@
 							</li>
 							@endforeach							
 						</ul>
-						<a style="display: block;text-align: center;" class="tskt_xemthem">Xem thêm</a>
+						<label id="" class="viewparameterfull XemCauHinh">Xem cấu hình chi tiết</label>
 						<div class="news_product_wrap">
 							<div class="title"><h3>Tin tức mới</h3></div>
 							<ul id="scroller2">
@@ -116,22 +116,24 @@
 							</ul>
 						</div>
 					</div>
-					<div class="fullparameter">
-						<div class="scroll">
-							<h3>Thông số kỹ thuật chi tiết Huawei Y9 Prime (2019)</h3>
-							<img id="imgKit" width="500" height="430" alt="Thông số kỹ thuật 202268" src="//cdn.tgdd.vn/Products/Images/42/202268/Kit/huawei-y9-prime-2019-note.jpg">
-							<ul class="parameterfull">
-								@foreach($loaicauhinh as $loai)
-								<li><label>{{$loai->ten}}</label></li>
-								@foreach($ttsp as $thongso)
-								@if($thongso->id == $loai->id)
-								<li class="g6459"><span>{{$thongso->cau_hinh}}</span>
-									<div>{{$thongso->mo_ta}}</div>
-								</li>
-								@endif
-								@endforeach
-								@endforeach
-							</ul>
+					<div id="popup_TSKT" style="display: none;">
+						<div class="fullparameter" style="display: block;">
+							<div class="scroll">
+								<h3>Thông số kỹ thuật chi tiết Huawei Y9 Prime (2019)</h3>
+								<img id="imgKit" width="500" height="430" alt="Thông số kỹ thuật 202268" src="//cdn.tgdd.vn/Products/Images/42/202268/Kit/huawei-y9-prime-2019-note.jpg">
+								<ul class="parameterfull">
+									@foreach($loaicauhinh as $loai)
+									<li><label>{{$loai->ten}}</label></li>
+									@foreach($ttsp as $thongso)
+									@if($thongso->id == $loai->id)
+									<li class="g6459"><span>{{$thongso->cau_hinh}}</span>
+										<div>{{$thongso->mo_ta}}</div>
+									</li>
+									@endif
+									@endforeach
+									@endforeach
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>

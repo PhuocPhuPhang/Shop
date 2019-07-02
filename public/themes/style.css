@@ -456,7 +456,7 @@ div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-hei
 .page-item a {color: #000;}
 .page-item.active{color: blue;}
 
-.fullparameter.active{display: block;}
+
 .fullparameter {position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 99; display: none; padding: 0 0 0 55px; width: 630px; margin: 0 auto; }
 .fullparameter .scroll {height: 100vh; width: auto; padding: 0 30px 0 30px; overflow-x: hidden; overflow-y: auto; background: #fff; }
 .scroll {overflow: hidden; overflow-y: scroll !important; -webkit-overflow-scrolling: touch; -ms-scroll-chaining: chained; }
@@ -468,3 +468,5 @@ div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-hei
 .parameterfull li span {display: table-cell; *float: left; width: 35%; vertical-align: top; padding: 6px 5px; font-size: 13px; color: #666; font-weight: 600; }
 .parameterfull li div {display: table-cell; *float: left; width: auto; vertical-align: top; padding: 6px 5px; font-size: 13px; color: #666; }
 .parameterfull li div a {color: #288ad6; }
+.viewparameterfull {display: block; width: 100%; padding: 6px 0; margin: 10px 0 0; cursor: pointer; text-align: center; font-size: 13px !important; color: #288ad6 !important; background: #fff; border: 1px solid #288ad6; border-radius: 4px; }
+.viewparameterfull:hover{background: #288ad6;color: #fff !important;cursor: pointer;}
