@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-<div id="w-map-contact"></div>
 <div class="row box mx-0">
 	<div class="col-md-5">
 		<h3 class="title-contact">Thông tin liên hệ</h3>

@@ -27,7 +27,7 @@ class PageControllers extends Controller
     $nhacungcap =  NhaCungCap::all();
     $tintuc= TinTuc::all();
     $tintuc_shop= TinTuc::where('type','tin-tuc')->get();
-    $product_shop= SanPham::where('noi_bat',1)->paginate(8);
+    $product_shop= SanPham::where('noi_bat',1)->paginate(12);
     $social = Media::where('type','social')->get();
     $website = DB::table('thong_tin_cong_ty')->first();
     $route = Route::current();
