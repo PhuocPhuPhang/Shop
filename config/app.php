@@ -178,6 +178,8 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         //Excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        //Chart
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
     ],
 
@@ -231,9 +233,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //Socialite
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         //Execl
-         'Excel' => Maatwebsite\Excel\Facades\Excel::class
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        //Chart
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
     ],
 
 ];
