@@ -241,8 +241,6 @@ public function product_tpl()
 
 public function product_nha_cung_cap_tpl($ma_nha_cung_cap)
 {
-  $nha_cung_cap = NhaCungCap::find($ma_nha_cung_cap)->first();
-  $ma_nha_cung_cap = $nha_cung_cap->ma_nha_cung_cap;
   $product_ncc_tpl= SanPham::where('nha_cung_cap',$ma_nha_cung_cap)->paginate(6);
   return view('layouts.pages.product_tpl',['product_tpl'=>$product_ncc_tpl]);
 }

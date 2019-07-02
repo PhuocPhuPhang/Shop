@@ -60,13 +60,13 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 .search_haed{width: 40%;}
 .timkiem {position: relative; }
 #sel_list {width: 125px; height: 42px; border: 1px solid #eee; padding: 0px 10px; border-radius: 5px 0px 0px 5px;outline: none; }
-.timkiem input.tu_khoa {width: calc(100% - 235px); padding: 0px 15px; background: #fff; border: 1px solid #eee; color: #333; height: 40px; line-height: 40px; font-size: 15px; outline: none;}
+.timkiem input.tu_khoa {width: calc(100% - 140px); padding: 0px 15px; background: #fff; border: 1px solid #eee; color: #333; height: 40px; line-height: 40px; font-size: 15px; outline: none;border-radius: 5px 0 0 5px;}
 .timkiem button {background: #fed700; color: #000; height: 42px; line-height: 42px; width: 110px; border: none; text-align: center; font-family: 'font2'; font-size: 14px; border-radius: 0px 5px 5px 0px; outline: none;}
 
 
-.email_pc{background: url(images/head1.jpg) no-repeat 0px 0px; height: 46px; padding-left: 50px; color: #fff; line-height: 18px; padding-top: 4px; margin-right: 30px; margin-top: 15px; }
-.hl_pc{ background: url(images/head2.jpg) no-repeat 0px 0px; height: 46px; padding-left: 50px; color: #fff; line-height: 18px; padding-top: 4px; margin-right: 30px; margin-top: 15px; }
-.cart_pc{ background: url(images/gh.png) no-repeat 0px 0px; padding-left: 60px; height: 42px; position: relative; margin-top: 14px;}
+.email_pc{background: url(images/head1.jpg) no-repeat 0px 0px; height: 46px; padding-left: 50px; color: #fff; line-height: 18px; padding-top: 4px; margin-right: 30px; margin-top:5px; }
+.hl_pc{ background: url(images/head2.jpg) no-repeat 0px 0px; height: 46px; padding-left: 50px; color: #fff; line-height: 18px; padding-top: 4px; margin-right: 30px; margin-top:5px; }
+.cart_pc{ background: url(images/gh.png) no-repeat 0px 0px; padding-left: 60px; height: 42px; position: relative; margin-top: 5px;}
 .cart_pc span {position: absolute; top: 5px; left: 31px; color: #fff; font-size: 14px; width: 20px; text-align: center; }
 .txt {color: #fff;position: relative;}
 .giohang_index_wrap{position: absolute;width: 200px;bottom: -130px;right: 0;z-index: 999999999;background: #fff;}
