@@ -133,7 +133,6 @@
 <!--DropZone -->
 <script src="admin/dropzone.js"></script>
 <script type="text/javascript">
-
    CKEDITOR.replace( 'noidung', {
         language:'vi',
         filebrowserBrowseUrl: '../../../ckfinder/ckfinder.html',

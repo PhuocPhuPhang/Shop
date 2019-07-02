@@ -62,20 +62,34 @@ class AjaxController extends Controller
           ]);
     }
 
-    public function postTinTucNoiBat(Request $request)
+    public function postTinTucNoiBat_HienThi(Request $request)
     {
         $tintuc = TinTuc::find($request->id);
-        if($tintuc->noi_bat == 1)
+        if($request->col == "noibat")
         {
-            $tintuc->noi_bat = 0;
+            if($tintuc->noi_bat == 1) { $tintuc->noi_bat = 0; }
+            else { $tintuc->noi_bat = 1; }
         }
-        else
+        elseif($request->col ="hienthi")
         {
-            $tintuc->noi_bat = 1;
+            if($tintuc->hien_thi == 1) { $tintuc->hien_thi = 0; }
+            else { $tintuc->hien_thi = 1; }
         }
         return response()->json([
             'data' => [
               'success' => $tintuc->save(),
+            ]
+          ]);
+    }
+
+    public function postChinhSachHienThi(Request $request)
+    {
+        $chinhsach = TinTuc::find($request->id);
+        if($chinhsach->hien_thi == 1) { $chinhsach->hien_thi = 0; }
+        else { $chinhsach->hien_thi = 1; }
+        return response()->json([
+            'data' => [
+              'success' => $chinhsach->save(),
             ]
           ]);
     }

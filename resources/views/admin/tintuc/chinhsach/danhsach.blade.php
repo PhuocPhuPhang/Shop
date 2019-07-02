@@ -58,3 +58,29 @@
     </div>
 </div>
 @endsection
+@section('script')
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $(".flat").on('ifChanged', function(event) {
+                var id = $(this).closest('.flat').attr('id');
+                $.ajax({
+                    type:'POST',
+                    url: 'admin/ajax/tintuc/chinhsach/update',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"id":id},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Thành công');
+                        }
+                        else
+                        {
+                            alert('Lỗi');
+                        }
+                    }
+                })
+                });
+        });
+    $("div.alert").delay(3000).slideUp();
+    </script>
+@endsection

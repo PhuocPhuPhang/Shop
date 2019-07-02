@@ -70,4 +70,9 @@
     </div>
 </div>
 @endsection
+@section('script')
+<script>
+    $("div.alert").delay(3000).slideUp();
+</script>
+@endsection
 

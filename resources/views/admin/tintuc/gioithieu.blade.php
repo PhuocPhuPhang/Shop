@@ -48,7 +48,20 @@
                 <label>Nội dung</label>
                 <textarea id="noidung" class="form-gruop ckeditor" name="noidung"  >
                 @if ($gt != null){{$gt->noi_dung}}@endif
-                </textarea>
+                </textarea><br>
+
+                @if($gt->hinh_anh != null)
+                <label>Hình ảnh hiện tại</label>
+                    <p>
+                        <img src="../../../upload/tintuc/{{$gt->hinh_anh}}" alt="Hình ảnh" width="400px" height="250px">
+                    </p>
+                @endif
+                <label>Hình ảnh</label>
+                <input type="file" id="hinhanh" name="hinhanh" onChange="showImages.call(this)" /><br/>
+                <img id="image" src="" style="display:none;" alt="hinh" height="250px" width="400px">
+
+
+
 
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
@@ -64,4 +77,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $("div.alert").delay(3000).slideUp();
+</script>
 @endsection

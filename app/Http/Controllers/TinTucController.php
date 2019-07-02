@@ -164,20 +164,42 @@ class TinTucController extends Controller
             'title.min'  =>  'Tiêu đề tin tức phải có ít nhất 3 ký tự',
             'noidung.required'  =>  'Bạn chưa nhập nội dung cho tin tức',
         ]);
+
         $tontai = DB::table('tin_tuc')->where('type','gioi-thieu')->count();
+        $hinh_gioithieu = "";
+        if($request->hasFile('hinhanh'))
+        {
+            $file = $request->file('hinhanh');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
+            {
+                return redirect('admin/tintuc/gioithieu')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+            }
+            $name = $file->getClientOriginalName();
+            $hinh = $name.'_'.time().'.'.$duoi;
+            $file->move("upload/tintuc",$hinh);
+            $hinh_gioithieu = $hinh;
+        }
         if($tontai != 0)
         {
+            $gioithieu = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
+            if($gioithieu->hinh_anh != "")
+            {
+                unlink(public_path('upload/tintuc/'.$gioithieu->hinh_anh));
+            }
             DB::table('tin_tuc')->where('type','gioi-thieu')
             ->update(['title'=>$request->title,
                       'mo_ta'=>$request->mota,
-                      'noi_dung'=>$request->noidung]);
+                      'noi_dung'=>$request->noidung,
+                      'hinh_anh'=>$hinh_gioithieu]);
         }
         else
         {
             DB::table('tin_tuc')->insert(['title'=>$request->title,
                       'mo_ta'=>$request->mota,
                       'noi_dung'=>$request->noidung,
-                      'type'=>"gioi-thieu"]);
+                      'type'=>"gioi-thieu",
+                      'hinh_anh'=>$hinh_gioithieu]);
         }
 
         return redirect('admin/tintuc/gioithieu')->with('thongbao','Cập nhật thành công');

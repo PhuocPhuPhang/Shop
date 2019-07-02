@@ -57,17 +57,25 @@
                     <textarea  class="form-control col-md-7 col-xs-12" name="diachi">{{ $nhacungcap->dia_chi}}</textarea>
                 </div>
                 </div>
+                @if($nhacungcap->logo != "")
                 <div class="form-group">
-                <label  class="control-label col-md-3 col-sm-3 col-xs-12">Logo </label>
+                <label  class="control-label col-md-3 col-sm-3 col-xs-12">Logo hiện tại </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @if($nhacungcap->logo != "")
                     <p>
                         <img src="../../../upload/nhacungcap/{{$nhacungcap->logo}}" alt="Hình ảnh" width="250px" height="50px">
                     </p>
-                    @endif
-                    <input type="file" id="hinhanh" name="hinhanh" /><br/>
                 </div>
                 </div>
+                 @endif
+                 <br>
+                <div class="form-group">
+                <label  class="control-label col-md-3 col-sm-3 col-xs-12">Logo mới</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="file" id="hinhanh" name="hinhanh" onChange="showImages.call(this)" /><br/>
+                    <img id="image" src="" style="display:none;" alt="hinh" height="50px" width="250px">
+                </div>
+                </div>
+
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -84,4 +92,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $("div.alert").delay(3000).slideUp();
+</script>
 @endsection

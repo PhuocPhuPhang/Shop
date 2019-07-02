@@ -56,7 +56,7 @@
                 <label  class="control-label col-md-3 col-sm-3 col-xs-12">Logo</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="file" id="hinhanh" name="hinhanh" onChange="showImages.call(this)" /><br/>
-                    <img id="image" src="" style="display:none;" alt="hinh" height="200px" width="300px">
+                    <img id="image" src="" style="display:none;" alt="hinh" height="50px" width="250px">
                 </div>
                 </div>
 
@@ -74,4 +74,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $("div.alert").delay(3000).slideUp();
+</script>
 @endsection

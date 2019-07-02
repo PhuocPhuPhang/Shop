@@ -40,12 +40,12 @@
              <td>{{$tin->title}}</td>
              <td>{{$tin->mo_ta}}</td>
              <td style="text-align:center">
-                 <input id="{{$tin->id}}" type="checkbox" class="flat" @if($tin->noi_bat)
+                 <input id="{{$tin->id}}" type="checkbox" name="noibat" class="flat" @if($tin->noi_bat)
                         {{"checked"}}
                     @endif><br/>
              </td>
              <td style="text-align:center">
-                 <input id="{{$tin->id}}" type="checkbox" class="flat" @if($tin->hien_thi)
+                 <input id="{{$tin->id}}" type="checkbox" name="hienthi" class="flat " @if($tin->hien_thi)
                         {{"checked"}}
                     @endif><br/>
              </td>
@@ -71,14 +71,14 @@
 @section('script')
     <script type="text/javascript" language="javascript">
         $(document).ready(function(){
-            console.log($('.flat').iCheck('update')[0].checked);
             $(".flat").on('ifChanged', function(event) {
                 var id = $(this).closest('.flat').attr('id');
+                var col = $(this).closest('.flat').attr('name');
                 $.ajax({
                     type:'POST',
-                    url: 'admin/ajax/tintuc/noibat',
+                    url: 'admin/ajax/tintuc/update',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                    data:{"id":id},
+                    data:{"id":id,"col":col},
                     success: function(data){
                         if(data.data.success)
                         {
@@ -92,5 +92,6 @@
                 })
                 });
         });
+    $("div.alert").delay(3000).slideUp();
     </script>
 @endsection

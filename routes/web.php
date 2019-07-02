@@ -173,7 +173,8 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('loaicauhinh/{idloaiCH}','AjaxController@getLoaiCauHinh');
 
-        Route::post('tintuc/noibat','AjaxController@postTinTucNoiBat');
+        Route::post('tintuc/update','AjaxController@postTinTucNoiBat_HienThi');
+        Route::post('tintuc/chinhsach/update','AjaxController@postChinhSachHienThi');
 
         Route::post('user/update','AjaxController@postPhanQuyen');
 

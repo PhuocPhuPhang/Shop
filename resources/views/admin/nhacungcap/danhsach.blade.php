@@ -13,7 +13,6 @@
        <div class="clearfix"></div>
      </div>
         <div class="x_content">
-
         @if(session('thongbao'))
                 <div class="alert alert-success">
                     {{ session('thongbao') }}
@@ -77,7 +76,7 @@
                     success: function(data){
                         if(data.data.success)
                         {
-                            alert('Thành công');
+                            alert('Cập nhật thành công');
                         }
                         else
                         {
@@ -87,6 +86,7 @@
                 })
                 });
         });
+    $("div.alert").delay(3000).slideUp();
     </script>
 
 @endsection
