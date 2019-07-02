@@ -10,6 +10,7 @@ use App\User;
 use App\CauHinhSanPham;
 use App\LoaiCauHinh;
 use App\ThongTinSanPham;
+use App\Media;
 use Json;
 
 class AjaxController extends Controller
@@ -90,6 +91,39 @@ class AjaxController extends Controller
         return response()->json([
             'data' => [
               'success' => $chinhsach->save(),
+            ]
+          ]);
+    }
+
+    public function postMediaHienThi(Request $request)
+    {
+        $media = Media::find($request->id);
+
+        if($media->hien_thi == 1) { $media->hien_thi = 0; }
+        else { $media->hien_thi = 1; }
+        return response()->json([
+            'data' => [
+              'success' => $media->save(),
+            ]
+          ]);
+    }
+
+    public function postSlideThuTu(Request $request)
+    {
+        $slide = Media::find($request->id);
+        $thutu = $request->thutu;
+        $tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->count();
+        if($tontai != 0 )
+        {
+            $slide_tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->first();
+            DB::table('media')->where([['thu_tu',$thutu],['type','slide']])->update(['thu_tu'=>$slide->thu_tu]);
+            DB::table('media')->where([['thu_tu',$thutu],['type','slide']])->update(['thu_tu'=>$slide_tontai->thu_tu]);
+        }
+        $slide->thu_tu = $thutu;
+
+        return response()->json([
+            'data' => [
+              'success' => $slide->save(),
             ]
           ]);
     }

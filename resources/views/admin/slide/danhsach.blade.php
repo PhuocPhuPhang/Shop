@@ -27,17 +27,25 @@
              <th style="text-align:center">STT</th>
              <th style="text-align:center">Tên</th>
              <th style="text-align:center">Hình ảnh</th>
+             <th style="text-align:center">Hiển thị</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
          <tbody>
              @foreach($slide as $sl)
            <tr>
-             <td style="vertical-align: middle;text-align:center">{{ $sl->thu_tu}}</td>
+             <td style="vertical-align: middle;text-align:center">
+                <input type="text" id="{{$sl->id}}" value="{{$sl->thu_tu}}" style="width:50px;height:30px;text-align:center">
+            </td>
              <td style="vertical-align: middle;text-align:center">{{ $sl->ten }}</td>
              <td style="text-align:center">
-                 <img src="../../upload/slide/{{$sl->hinh_anh}}" alt="Hình ảnh" width="150px" height="100px">
+                 <img src="../../upload/slide/{{$sl->hinh_anh}}" alt="Hình ảnh" width="250px" height="150px">
             </td>
+            <td style="text-align:center">
+                 <input id="{{$sl->id}}" type="checkbox" class="flat" @if($sl->hien_thi)
+                        {{"checked"}}
+                    @endif><br/>
+             </td>
              <td style="text-align:center;vertical-align:middle;">
                 <a href="admin/slide/sua/{{$sl->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
@@ -54,4 +62,53 @@
     </div>
     </div>
 </div>
+@endsection
+@section('script')
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $(".flat").on('ifChanged', function(event) {
+                event.preventDefault();
+                var id = $(this).closest('.flat').attr('id');
+                $.ajax({
+                    type:'POST',
+                    url: 'admin/ajax/media/update/hienthi',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"id":id,"type":"slide"},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Cập nhật thành công');
+                        }
+                        else
+                        {
+                            alert('Lỗi');
+                        }
+                    }
+                })
+                });
+
+            $("input[type=text]").on("change",function(){
+                var id = $(this).attr('id');
+                var thutu = $(this).val();
+                $.ajax({
+                    type:'POST',
+                    url: 'admin/ajax/slide/update/thutu',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"id":id,"thutu":thutu},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Cập nhật thành công');
+                            location.reload();
+                        }
+                        else
+                        {
+                            alert('Lỗi');
+                        }
+                    }
+                })
+                });
+        });
+    $("div.alert").delay(3000).slideUp();
+    </script>
 @endsection

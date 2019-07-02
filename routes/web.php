@@ -176,6 +176,9 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('tintuc/update','AjaxController@postTinTucNoiBat_HienThi');
         Route::post('tintuc/chinhsach/update','AjaxController@postChinhSachHienThi');
 
+        Route::post('media/update/hienthi','AjaxController@postMediaHienThi');
+        Route::post('slide/update/thutu','AjaxController@postSlideThuTu');
+
         Route::post('user/update','AjaxController@postPhanQuyen');
 
     });

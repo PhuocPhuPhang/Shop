@@ -27,6 +27,7 @@
              <th style="text-align:center;width:10%">STT</th>
              <th style="text-align:center">Tên</th>
              <th style="text-align:center">Hình ảnh</th>
+             <th style="text-align:center">Hiển thị</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
@@ -38,6 +39,11 @@
              <td style="text-align:center">
                  <img src="../../upload/social/{{$xh->hinh_anh}}" alt="Hình ảnh" width="30px">
             </td>
+            <td style="text-align:center">
+                 <input id="{{$xh->id}}" type="checkbox" class="flat" @if($xh->hien_thi)
+                        {{"checked"}}
+                    @endif><br/>
+             </td>
              <td style="text-align:center;vertical-align:middle;">
                 <a href="admin/social/sua/{{$xh->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
@@ -54,4 +60,32 @@
     </div>
     </div>
 </div>
+@endsection
+@section('script')
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $(".flat").on('ifChanged', function(event) {
+                event.preventDefault();
+                var id = $(this).closest('.flat').attr('id');
+                $.ajax({
+                    type:'POST',
+                    url: 'admin/ajax/media/update/hienthi',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"id":id,"type":"social"},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Cập nhật thành công');
+                        }
+                        else
+                        {
+                            alert('Lỗi');
+                        }
+                    }
+                })
+                });
+        });
+    $("div.alert").delay(3000).slideUp();
+    </script>
+
 @endsection
