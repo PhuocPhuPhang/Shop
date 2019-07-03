@@ -20,8 +20,8 @@
                 </div>
         @endif
 
-       <label>Cấu hình</label>
-        <select name="loaicauhinh" id="loaicauhinh" style="width:150px">
+       <label>Loại Cấu hình</label>
+        <select name="loaicauhinh" id="loaicauhinh" style="width:150px;height:30px;margin-bottom:10px">
         <option value="0">Tất cả</option>
             @foreach($loaicauhinh as $loai)
                 <option value="{{$loai->id}}">{{$loai->ten}}</option>
@@ -43,10 +43,10 @@
              <td>{{$ch->cau_hinh}}</td>
              <td style="text-align:center">
                 <a href="admin/sanpham/cauhinh/sua/{{$ch->id}}" class="btn btn-info btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="admin/sanpham/cauhinh/xoa/{{$ch->id}}" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash-o"></i> Delete
+                    <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
            </tr>
@@ -63,13 +63,9 @@
     $(document).ready(function(){
         $("#loaicauhinh").change(function(){
             var idloaiCH = $(this).val();
-            if(idloaiCH != 0)
-            {
-                $.get("../../ajax/loaicauhinh/" + idloaiCH,function(data){
+                $.get("admin/ajax/loaicauhinh/" + idloaiCH,function(data){
                 $("#datatable").html(data);
                  });
-            }
-           else location.reload();
         });
     });
 </script>

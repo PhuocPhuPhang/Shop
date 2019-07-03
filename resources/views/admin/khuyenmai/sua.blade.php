@@ -30,7 +30,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
                 <label>Tên khuyến mãi</label>
-                <textarea id="ten" name="ten" style="padding:0;width:100%;vertical-align:middle" >{{$khuyenmai->ten_khuyen_mai}}</textarea><br/>
+                <textarea id="ten" name="ten" style="padding:0;width:100%;vertical-align:middle" >{{$khuyenmai->ten_khuyen_mai}}</textarea><br/><br>
 
                 <label>Hình thức khuyến mãi</label><br/>
                 <div id="ht">
@@ -43,7 +43,7 @@
                 <button type="button" name="them_hinhthuc" id="them_hinhthuc" style="border:none;background:#fff">Thêm...</button><br/>
 
                 <label>Ngày bắt đầu</label>
-                <input type="date" id="batdau" class="form-control" style="width:20%" name="batdau" date="{{$khuyenmai->ngay_bat_dau}}" /> <br />
+                <input type="date" id="batdau" class="form-control" style="width:20%" name="batdau" value="{{$khuyenmai->ngay_bat_dau}}" /> <br />
 
                 <label>Ngày kết thúc</label>
                 <input type="date" id="ketthuc"class="form-control" style="width:20%" name="ketthuc" value="{{$khuyenmai->ngay_ket_thuc}}" /> <br />

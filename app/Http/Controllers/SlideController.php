@@ -19,7 +19,8 @@ class SlideController extends Controller
 
     public function getThem()
     {
-        return view('admin.slide.them');
+        $thutu_max = Media::where('type','slide')->max('thu_tu');
+        return view('admin.slide.them',['thutu'=>$thutu_max]);
     }
 
     public function postThem(Request $request)
@@ -59,28 +60,20 @@ class SlideController extends Controller
             $slide->hinh_anh = "";
         }
 
-        // $thutu = $request->thutu;
-        // $max = Media::where('type','slide')->count();
-        // $tontai = DB::table('media')->where(['thu_tu',$thutu],['type','slide'])->count();
-        // if($tontai != 0 )
-        // {
-        //     if($thutu == 1 )
-        //     {
-        //         $dsSlide = DB::table('media')->where('type','slide')
-        //         ->whereBetween('thu_tu',[$thutu,$max])->get();
-        //     }
-        //     else
-        //     {
-        //         $dsSlide = DB::table('media')->whereBetween('thu_tu',[$thutu,$max-1])->get();
-        //         DB::table('media')->where(['thu_tu',$max],['type','slide'])->update(['thu_tu'=>$max+1]);
-        //     }
-
-        //     foreach($dsSlide as $items)
-        //     {
-        //         DB::table('meida')->where(['thu_tu',$items->thu_tu],['type','slide'])->update(['thu_tu'=>$items->thu_tu +1]);
-        //     }
-        // }
-        // $slide->thu_tu = $thutu;
+        $thutu = $request->thutu;
+        $max = Media::where('type','slide')->count();
+        $tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->count();
+        if($tontai != 0 )
+        {
+            $dsSlide = DB::table('media')->where('type','slide')
+                ->whereBetween('thu_tu',[$thutu,$max])->get();
+            foreach($dsSlide as $items)
+            {
+                DB::table('media')->where([['thu_tu',$max],['type','slide']])->update(['thu_tu'=>$max+1]);
+                $max--;
+            }
+        }
+        $slide->thu_tu = $thutu;
 
         $slide->save();
         return redirect('admin/slide/them')->with('thongbao','Thêm thành công');
@@ -121,16 +114,21 @@ class SlideController extends Controller
                 return redirect('admin/slide/sua/'.$slide->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
-            $hinh = str_random(4)."_".$name;
-            while(file_exists("upload/slide/".$hinh))
-            {
-                $hinh = str_random(4)."_".$name;
-            }
+            $hinh = $name.'_'.time().'.'.$duoi;
             $file->move("upload/slide",$hinh);
             $slide->hinh_anh = $hinh;
 
         }
-        $slide->thu_tu = $request->thutu;
+
+        $thutu = $request->thutu;
+        $tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->count();
+        if($tontai != 0 )
+        {
+            $slide_tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->first();
+            DB::table('media')->where([['thu_tu',$thutu],['type','slide']])->update(['thu_tu'=>$slide->thu_tu]);
+            DB::table('media')->where([['thu_tu',$thutu],['type','slide']])->update(['thu_tu'=>$slide_tontai->thu_tu]);
+        }
+        $slide->thu_tu = $thutu;
 
         $slide->save();
         return redirect('admin/slide/sua/'.$slide->id)->with('thongbao','Chỉnh sửa thành công');

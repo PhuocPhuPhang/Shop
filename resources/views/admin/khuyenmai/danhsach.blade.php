@@ -35,8 +35,7 @@
              <?php $i = 1;?>
             @foreach($khuyenmai as $km)
            <tr>
-               {{$km->ma_khuyen_mai}}
-             <td  style="text-align:center">{{$i++}}</td>
+             <td style="text-align:center">{{$i++}}</td>
              <td>{{$km->ten_khuyen_mai}}</td>
              <td style="text-align:center">{{$km->ngay_bat_dau}}</td>
              <td style="text-align:center">{{$km->ngay_ket_thuc}}</td>
@@ -57,7 +56,6 @@
     </div>
 </div>
 @endsection
-
 @section('script')
 <script>
     $("div.alert").delay(3000).slideUp();

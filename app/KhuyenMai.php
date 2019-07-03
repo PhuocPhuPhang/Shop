@@ -13,6 +13,6 @@ class KhuyenMai extends Model
 
     public function SanPham()
     {
-         return $this->hasMany('App\SanPham','khuyen_mai','ma_khuyen_mai');
+         return $this->hasOne('App\SanPham','khuyen_mai','ma_khuyen_mai');
     }
 }

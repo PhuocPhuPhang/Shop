@@ -10,6 +10,7 @@ use App\User;
 use App\CauHinhSanPham;
 use App\LoaiCauHinh;
 use App\ThongTinSanPham;
+use App\Media;
 use Json;
 
 class AjaxController extends Controller
@@ -94,6 +95,39 @@ class AjaxController extends Controller
           ]);
     }
 
+    public function postMediaHienThi(Request $request)
+    {
+        $media = Media::find($request->id);
+
+        if($media->hien_thi == 1) { $media->hien_thi = 0; }
+        else { $media->hien_thi = 1; }
+        return response()->json([
+            'data' => [
+              'success' => $media->save(),
+            ]
+          ]);
+    }
+
+    public function postSlideThuTu(Request $request)
+    {
+        $slide = Media::find($request->id);
+        $thutu = $request->thutu;
+        $tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->count();
+        if($tontai != 0 )
+        {
+            $slide_tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->first();
+            DB::table('media')->where([['thu_tu',$thutu],['type','slide']])->update(['thu_tu'=>$slide->thu_tu]);
+            DB::table('media')->where([['thu_tu',$thutu],['type','slide']])->update(['thu_tu'=>$slide_tontai->thu_tu]);
+        }
+        $slide->thu_tu = $thutu;
+
+        return response()->json([
+            'data' => [
+              'success' => $slide->save(),
+            ]
+          ]);
+    }
+
     public function postPhanQuyen(Request $request)
     {
         $user = User::find($request->id);
@@ -107,7 +141,13 @@ class AjaxController extends Controller
 
     public function getLoaiCauHinh($idloaiCH)
     {
-        $cauhinh = DB::table('cau_hinh_san_pham')->where('id_loai',$idloaiCH)->get();
+        $cauhinh = null;
+        if($idloaiCH != 0){
+            $cauhinh = DB::table('cau_hinh_san_pham')->where('id_loai',$idloaiCH)->get();
+        }
+        else {
+            $cauhinh = DB::table('cau_hinh_san_pham')->get();
+        }
          echo "  <table id='datatable' class='table table-striped table-bordered'>
              <thead>
                     <tr>
@@ -120,13 +160,13 @@ class AjaxController extends Controller
         {
             echo "<tbody>
                 <tr>
-                     <td>".$ch->id."</td>
+                     <td style='text-align:center'>".$ch->id."</td>
                      <td>".$ch->cau_hinh."</td>
                      <td style='text-align:center'>
-                        <a href='../cauhinh/sua/".$ch->id."' class='btn btn-info btn-xs'>
+                        <a href='admin/sanpham/cauhinh/sua/".$ch->id."' class='btn btn-info btn-xs'>
                             <i class='fa fa-pencil'></i> Edit
                         </a>
-                        <a href='../cauhinh/xoa/".$ch->id."' class='btn btn-danger btn-xs'>
+                        <a href='admin/sanpham/cauhinh/xoa/".$ch->id."' class='btn btn-danger btn-xs'>
                         <i class='fa fa-trash-o'></i> Delete
                     </a>
                  </td>

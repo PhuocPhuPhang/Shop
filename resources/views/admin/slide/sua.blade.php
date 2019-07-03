@@ -34,12 +34,15 @@
                 <label>Link</label>
                 <input type="text" id="link" class="form-control" name="link" value="{{$slide->link}}" /> <br />
 
-                <label>Hình Ảnh</label>
+
                 @if($slide->hinh_anh != "")
+                <label>Hình ảnh hiện tại</label>
                 <p>
-                    <img src="../../../upload/slide/{{$slide->hinh_anh}}" alt="Hình ảnh" width="500px">
+                    <img src="../../../upload/slide/{{$slide->hinh_anh}}" alt="Hình ảnh" width="250px">
                 </p>
                 @endif
+                <br>
+                <label>Hình ảnh</label>
                 <input type="file" id="hinhanh" name="hinhanh" /><br/>
 
                 <label>Thứ tự</label>
@@ -61,4 +64,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $("div.alert").delay(3000).slideUp();
+</script>
 @endsection
