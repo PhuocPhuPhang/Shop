@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-// use Illuminate\Routing\UrlGenerator;
 use Illuminate\Http\Requests;
 use App\Media;
 use App\TinTuc;
@@ -43,9 +42,9 @@ class PageControllers extends Controller
 
   public function index()
   {
-    $slide= Media::where('type','slide')->get();
-    $social = Media::where('type','social')->get();
-    $tintuc= TinTuc::all();
+    $slide= Media::where([['type','slide'],['hien_thi',1]])->get();
+    $social = Media::where([['type','social'],['hien_thi',1]])->get();
+    $tintuc= TinTuc::where('hien_thi',1)->get();
     $product= SanPham::where('noi_bat',1)->get();
     $website = DB::table('thong_tin_cong_ty')->first();
     return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],
