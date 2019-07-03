@@ -147,7 +147,7 @@
 						</div>
 						<div class="news_list_info">
 							<div class="news_list_name"><a href="shop/tin-tuc/{{$tt->ten_khong_dau}}">{{$tt->title}}</a></div>
-							<div class="news_list_mota">{{$tt->mo_ta}}</div>
+							<div class="news_list_mota">{{ str_limit($tt->mo_ta, $limit = 150, $end = '...') }}</div>
 						</div>
 					</div>
 				</li>
@@ -159,17 +159,17 @@
 			<div class="text_other_1"></div>
 			<div class="content">
 				<div class="fotorama" data-nav="thumbs" data-allowfullscreen="true" data-width="100%" data-thumbheight="100" data-thumbwidth="120">
-					<a href="http://youtube.com/watch?v=3fi7uwBU-CE">
-						<img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt="">
+					<a href="https://www.youtube.com/watch?v=kyWxymAfKSA">
+						<!-- <img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt=""> -->
 					</a>
-					<a href="http://youtube.com/watch?v=3fi7uwBU-CE">
-						<img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt="">
+					<a href="https://www.youtube.com/watch?v=kyWxymAfKSA">
+						<!-- <img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt=""> -->
 					</a>
-					<a href="http://youtube.com/watch?v=3fi7uwBU-CE">
-						<img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt="">
+					<a href="https://www.youtube.com/watch?v=kyWxymAfKSA">
+						<!-- <img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt=""> -->
 					</a>
-					<a href="http://youtube.com/watch?v=3fi7uwBU-CE">
-						<img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt="">
+					<a href="https://www.youtube.com/watch?v=kyWxymAfKSA">
+						<!-- <img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt=""> -->
 					</a>
 				</div>
 			</div><!-- end content -->

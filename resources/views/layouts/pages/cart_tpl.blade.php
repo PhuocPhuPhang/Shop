@@ -53,10 +53,10 @@
 							</div>
 							<div class="payment-method">
 								<div class="payment-method__header">
-									<input type="radio" class="input-radio" name="phuongthuc" value="Thanh toán qua ngân hàng"/>
-									<span>Thanh toán qua ngân hàng</span>
+									<input type="radio" class="input-radio" name="phuongthuc" value="Thanh toán khi nhận hàng"/>
+									<span>Thanh toán khi nhận hàng</span>
 								</div>
-								<div class="payment-method__body clearfix">Nội dung thanh toán qua ngân hàng</div>
+								<div class="payment-method__body clearfix">Nội dung thanh toán khi nhận hàng</div>
 							</div>
 						</div>
 					</div>
