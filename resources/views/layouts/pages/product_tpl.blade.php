@@ -30,7 +30,7 @@
 		</div>
 	</div>
 	<div class="flex-between container">
-		<div class="pro_left">
+		<div class="pro_left" style="display: none;">
 			<div class="pro_left-item">
 				<label>Phiên bản</label>
 				<ul>
@@ -62,7 +62,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="main_content">
+		<div class="main_content" style="width: 100%;">
 			<div class="wrap_name">
 				<div class="name"><h1>Sản phẩm</h1></div>
 			</div>
@@ -101,14 +101,17 @@
 @section('script')
 <script>
 	$(document).ready(function() {
-		$('#SapXepGia').on('click','label', function (e) {
+		$('#SapXepGia').on('click','a', function (e) {
 			e.preventDefault();
 			let sxGia = $(this).data('id');
-
+			console.log(sxGia,'tuan');
 			$.ajax({
-				type:'get',
-				url: 'shop/SapXepGia/'+ sxGia,
-				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}',contentType: "application/json", },
+				type:'post',
+				url: 'shop/SapXepGia',
+				headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+				data:{
+					gia:sxGia,
+				}
 			});
 		});
 

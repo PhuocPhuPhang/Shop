@@ -229,7 +229,7 @@ a.link_cart:hover {color: #0066b3; }
 .sapxep_main label{display: block;padding-left: 10px;}
 .price_item{display: inline-block;margin-right: 20px;color: red;font-size: 15px;font-family: 'Roboto'}
 .price_item:hover{color: #000;cursor: pointer;}
-.main_list_product{display: grid;grid-template-columns: repeat(3,1fr);}
+.main_list_product{display: grid;grid-template-columns: repeat(4,1fr);}
 .pro_info-info{border-top: 1px dashed #cacaca;width: 90%;margin: 0 auto; padding: 10px 0; margin-top: 10px;}
 .pro_info-info span{display: block;text-align: left;margin-left: 10px;}
 .pro_left{width: 20%;padding-top: 50px;}

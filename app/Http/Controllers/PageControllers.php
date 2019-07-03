@@ -23,8 +23,8 @@ use Cart;
 class PageControllers extends Controller
 {
   function __construct(){
-    $about = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
-    $nhacungcap =  NhaCungCap::all();
+     $about = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
+     $nhacungcap =  NhaCungCap::all();
     $tintuc= TinTuc::all();
     $tintuc_shop= TinTuc::where('type','tin-tuc')->get();
     $product_shop= SanPham::where('noi_bat',1)->paginate(12);
@@ -221,7 +221,6 @@ public function postChangePassword(Request $request)
 
  $user = Auth::user();
  $password_old = $request['password_old'];
- // dd($password_old, $user->password);
  if(Hash::check($password_old,$user->password))
  {
    $password = $request['password'];
@@ -237,7 +236,7 @@ public function postChangePassword(Request $request)
 
 public function product_tpl()
 {
-  $product_tpl= SanPham::paginate(6);
+  $product_tpl= SanPham::paginate(12);
   return view('layouts.pages.product_tpl',['product_tpl'=>$product_tpl]);
 }
 
@@ -336,16 +335,27 @@ public function createCart(Request $request)
   }
 }
 
-public function SapXepGia($sapxep)
+public function SapXepGia(Request $request)
 {
-  $sp = null;
-
-  if($sapxep == 1)
-  {
-    $sp = DB::table('san_pham')->orderBy('gia_ban','desc')->get();
+  if($request->gia == 1)
+  { 
+    $sp = DB::table('san_pham')->orderBy('gia_ban','desc')->paginate(6);
   }
-  return redirect('shop/san-pham',['product_tpl'=>$sp]);
+  if($request->gia == 2)
+  { 
+    $sp = DB::table('san_pham')->orderBy('gia_ban','asc')->paginate(6);
+  }
+  return view('layouts.pages.product_tpl',['product_tpl'=>$sp]);
 
+}
+
+public function DonHang()
+{
+    $user_email = Auth::user();
+    $don_hang = DB::table('hoa_don')->where('ma_nguoi_dung',$user_email->email)->first();
+    $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don',$don_hang->ma_hoa_don)->get();
+
+    dd($don_hang_chi_tiet);
 }
 
 // public function SearchPrice(Request $request)
