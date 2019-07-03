@@ -141,7 +141,13 @@ class AjaxController extends Controller
 
     public function getLoaiCauHinh($idloaiCH)
     {
-        $cauhinh = DB::table('cau_hinh_san_pham')->where('id_loai',$idloaiCH)->get();
+        $cauhinh = null;
+        if($idloaiCH != 0){
+            $cauhinh = DB::table('cau_hinh_san_pham')->where('id_loai',$idloaiCH)->get();
+        }
+        else {
+            $cauhinh = DB::table('cau_hinh_san_pham')->get();
+        }
          echo "  <table id='datatable' class='table table-striped table-bordered'>
              <thead>
                     <tr>
@@ -154,13 +160,13 @@ class AjaxController extends Controller
         {
             echo "<tbody>
                 <tr>
-                     <td>".$ch->id."</td>
+                     <td style='text-align:center'>".$ch->id."</td>
                      <td>".$ch->cau_hinh."</td>
                      <td style='text-align:center'>
-                        <a href='../cauhinh/sua/".$ch->id."' class='btn btn-info btn-xs'>
+                        <a href='admin/sanpham/cauhinh/sua/".$ch->id."' class='btn btn-info btn-xs'>
                             <i class='fa fa-pencil'></i> Edit
                         </a>
-                        <a href='../cauhinh/xoa/".$ch->id."' class='btn btn-danger btn-xs'>
+                        <a href='admin/sanpham/cauhinh/xoa/".$ch->id."' class='btn btn-danger btn-xs'>
                         <i class='fa fa-trash-o'></i> Delete
                     </a>
                  </td>

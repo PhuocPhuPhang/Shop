@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2 col-sm-3 col-xs-12">Map</label>
                         <div class="col-md-8 col-sm-6 col-xs-12">
-                            <textarea  name="map"  class="form-control col-md-7 col-xs-12" style="height:100px">{{$thongtin->map}}</textarea>
+                            <textarea  name="map"  class="form-control col-md-7 col-xs-12" style="height:200px">{{$thongtin->map}}</textarea>
                         </div>
                 </div>
 
