@@ -16,7 +16,7 @@
             {{ session('thongbao') }}
         </div>
     @endif
-        <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>{{$sanpham->ten_san_pham}}</h2>
@@ -51,14 +51,8 @@
                     <input type="text" id="soluong" class="form-control inputForm" name="soluong"  value="{{$sanpham->so_luong}}" /><br />
 
                     <label>Gía bán</label>
-                    <input type="text" id="gia" class="form-control inputForm" name="gia"  value="{{$sanpham->gia_ban}}" /><br />
+                    <input type="text" id="gia" class="form-control inputForm" name="gia"  value="{{number_format($sanpham->gia_ban)}}" /><br />
 
-                    <!-- <label>Chương trình khuyến mãi</label>
-                    <select name="khuyenmai" id="khuyenmai" class="form-control inputForm">
-                        @foreach($khuyenmai as $km)
-                            <option value="{{$km->ma_khuyen_mai}}">{{$km->ten_khuyen_mai}}</option>
-                        @endforeach
-                    </select><br/> -->
 
                     <label>Mô tả</label>
                     <textarea id="mota"  class="form-control inputForm" name="mota" style="height:150px">{{$sanpham->mo_ta}}</textarea><br />
@@ -66,19 +60,27 @@
                     <label>Keywords</label>
                     <textarea id="keywords"  class="form-control inputForm" name="keywords">{{$sanpham->keywords}}</textarea><br />
 
-                    <label>Hình ảnh</label>
+                    <label>Hình đại diện</label>
+                    @if($sanpham->hinh_anh != "")
+                        <img src="../../../upload/sanpham/{{$sanpham->hinh_anh}}" alt="Hình ảnh" width="300px" height="200px">
+                    @endif
+                    <input type="file" id="hinhanh" class="inputForm" name="hinhanh" /><br />
+
+                    <label>Hình ảnh khác</label>
                     <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-
                     <div class="fallback">
                             <input name="file" type="file" multiple />
                         </div>
-                    </form>
+                    </form><br>
+
+                     <label>Nội dung</label>
+                <textarea id="noidung" class="form-gruop ckeditor inputForm" name="noidung" >{{$sanpham->noi_dung}}</textarea><br/>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Cấu hình chi tiết</h2>
@@ -111,8 +113,6 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title" style="border-bottom:none">
-                <label>Nội dung</label>
-                <textarea id="noidung" class="form-gruop ckeditor inputForm" name="noidung" >{{$sanpham->noi_dung}}</textarea><br/>
                     <div class="form-group" style="margin-left:20%">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <a href="admin/sanpham/danhsach">

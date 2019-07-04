@@ -74,7 +74,7 @@ class SanPhamController extends Controller
             $sanpham->hinh_anh = $newArr['hinhanh'];
             $sanpham->noi_dung = $newArr['noidung'];
             $sanpham->keywords = $newArr['keywords'];
-            $sanpham->save();
+            // $sanpham->save();
 
             $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
             foreach($newArr as $key => $value)
@@ -89,24 +89,26 @@ class SanPhamController extends Controller
                             $thongtinsp->ma_san_pham = $newArr['ma'];
                             $thongtinsp->id_cau_hinh = $cauhinh->id;
                             $thongtinsp->mo_ta = $newArr[$key];
-                            $thongtinsp->save();
+                            // $thongtinsp->save();
                         }
                     }
                 }
             }
-            $hinhanh_sp = new HinhAnh;
+
             $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt","r");
             $read = file("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
-            foreach ($read as $line)
+            // dd($read);
+           for($i = 0 ; $i < count($read); $i++)
             {
+                $hinhanh_sp = new HinhAnh;
                 $hinhanh_sp->ma_san_pham = $newArr['ma'];
-                $hinhanh_sp->hinh_anh = $line;
+                $hinhanh_sp->hinh_anh = $read[$i];
                 $hinhanh_sp->save();
             }
             fclose($image_file);
             // $file = str_slug($newArr['ten'])."txt";
             // rename("..\public\upload\sanpham\hinhanhkhac\hinh.txt",
-            //        "..\public\upload\sanpham\hinhanhkhac\\"$file\");
+            //        "..\public\upload\sanpham\hinhanhkhac\"\"\"\"$file");
             return 1;
     }
 
@@ -167,8 +169,6 @@ class SanPhamController extends Controller
     public function postSua(Request $request , $masp)
     {
         $sanpham = SanPham::find($masp);
-        $thongtinsp = DB::table('thong_tin_san_pham')->where('ma_san_pham',$masp)->get();
-
         $mang = $request->mang;
         $newArr = [];
         foreach($mang as $item)
@@ -177,7 +177,7 @@ class SanPhamController extends Controller
                 $newArr[$key] = $value;
             }
         }
-            $sanpham->ma_san_pham = isset($newArr['ma']) ? $newArr['ma'] : '0';
+            $sanpham->ma_san_pham = $newArr['ma'];
             $sanpham->ten_san_pham = $newArr['ten'];
             $sanpham->ten_khong_dau = str_slug($newArr['ten']);
             $sanpham->nha_cung_cap = $newArr['nhacungcap'];
@@ -190,6 +190,7 @@ class SanPhamController extends Controller
             $sanpham->save();
 
             $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
+            DB::table('thong_tin_san_pham')->where('ma_san_pham',$masp)->delete();
             foreach($newArr as $key => $value)
             {
                 foreach( $listCauHinh as $cauhinh)
@@ -198,6 +199,7 @@ class SanPhamController extends Controller
                     {
                         if($newArr[$key] != null)
                         {
+                            $thongtinsp = new ThongTinSanPham;
                             $thongtinsp->id_cau_hinh = $cauhinh->id;
                             $thongtinsp->mo_ta = $newArr[$key];
                             $thongtinsp->save();
@@ -205,6 +207,7 @@ class SanPhamController extends Controller
                     }
                 }
             }
+        return 1;
     }
 
     public function postXoa($masp)
