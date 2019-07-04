@@ -220,4 +220,19 @@ class SanPhamController extends Controller
         DB::table('san_pham')->where('ma_san_pham', $masp)->update(['da_xoa' => 0]);
         return redirect('admin/sanpham/danhsach')->with('thongbao', 'Cập nhật trạng thái thành công phẩm thành công');
     }
+
+    public function postXoaHinh(Request $request, $id)
+    {
+        $hinhanh = DB::table('hinh_anh_san_pham')->where('id',$id)->first();
+        if($hinhanh->hinh_anh)
+        {
+            unlink(public_path('upload/sanpham/hinhanhkhac'.$hinhanh->hinh_anh));
+        }
+        DB::table('hinh_anh_san_pham')->where('id',$id)->delete();
+        return response()->json([
+            'data' => [
+                'success' => 1,
+            ]
+        ]);
+    }
 }
