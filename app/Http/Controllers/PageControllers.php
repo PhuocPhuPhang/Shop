@@ -367,6 +367,14 @@ public function DonHang()
   return view('layouts.pages.profile',compact('a','b','c'));
 }
 
+public function huyDonHang($ma_hoa_don)
+{
+  $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don',$ma_hoa_don)->delete();
+  $don_hang = DB::table('hoa_don')->where('ma_hoa_don',$ma_hoa_don)->delete();
+
+  return redirect('shop/don-hang')->with('huydonhang','Hủy đơn hàng thành công!');
+}
+
 // public function SearchPrice(Request $request)
 // {
 //   $Price_selected = $request->gia;

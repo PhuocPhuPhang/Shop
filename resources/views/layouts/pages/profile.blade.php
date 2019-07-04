@@ -165,12 +165,27 @@
 					<div class="custom-table__col center">{{$dh->created_at}}</div>
 
 					<div class="custom-table__col center">100000 <sup>đ</sup></div>
-					<div class="custom-table__col center">Đã xác nhận</div>
-					<a href="" class="custom-table__col center">Hủy đơn hàng</a>
+					@if($dh->duyet == 0)
+					<div class="custom-table__col center">Chờ duyệt</div>
+					@endif
+					@if($dh->duyet == 1)
+					<div class="custom-table__col center">Đã duyệt</div>
+					@endif
+					@if($dh->duyet == 0)
+					<a href="shop/huyDonHang/{{$dh->ma_hoa_don}}" class="custom-table__col center">Hủy đơn hàng</a>
+					@endif
+					@if($dh->duyet == 1)
+					<div style="color: green;" class="custom-table__col center">Hàng đang chuyển đi</div>
+					@endif
 					@endforeach
 				</div>
 			</div>
 		</div>
+		@if(session('huydonhang'))
+		<script>
+			alert('Hủy đơn hàng thành công!')
+		</script>
+		@endif
 		@endif
 		
 	</div>

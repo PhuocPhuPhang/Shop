@@ -242,6 +242,7 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('doi-mat-khau','PageControllers@profile');
     Route::post('cap-nhat-mat-khau','PageControllers@postChangePassword');
     Route::get('don-hang','PageControllers@DonHang');
+    Route::get('huyDonHang/{ma_hoa_don}','PageControllers@huyDonHang');
 
     //Giỏ hàng
     Route::get('cart_tpl','PageControllers@cart_tpl');
