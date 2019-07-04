@@ -144,28 +144,48 @@
 				<div class="custom-table__col">Tình trạng</div>
 			</div>
 			<div class="custom-table__body">
-					<div class="custom-table__row">
-						@foreach($don_hang as $dh)
-						<div class="custom-table__col center">1</div>
-						<div class="custom-table__col center">{{$dh->ma_hoa_don}}</div>
-						<div class="custom-table__col">
-							@foreach($don_hang_chi_tiet as $dhct)
-								<div class="order-detail-items">
-									<strong class="order-detail-items__name">{{$dhct->ma_san_pham}}</strong>
-									<div class="order-detail-items__row">Thành tiền: 100000 <sup>đ</sup></div>
-								</div>
+				<div class="custom-table__row">
+					@foreach($a as $dh)
+					<div class="custom-table__col center">1</div>
+					<div class="custom-table__col center">{{$dh->ma_hoa_don}}</div>
+					<div class="custom-table__col">
+						@foreach($b as $dhct)
+						@if($dhct->ma_hoa_don == $dh->ma_hoa_don)
+						<div class="order-detail-items">
+							@foreach($c as $gia)
+							@if($gia->ma_san_pham == $dhct->ma_san_pham)
+							<strong class="order-detail-items__name">{{$gia->ten_san_pham}}</strong>
+							<div class="order-detail-items__row">Thành tiền: {{number_format($gia->gia_ban)}}<sup>đ</sup> x  {{$dhct->so_luong}} = {{number_format($gia->gia_ban * $dhct->so_luong)}} <sup>đ</sup></div>
+							@endif
 							@endforeach
 						</div>
-						<div class="custom-table__col center">12/07/2019</div>
-						<div class="custom-table__col center">100000 <sup>đ</sup></div>
-						<div class="custom-table__col center">Đã xác nhận</div>
+						@endif
 						@endforeach
 					</div>
-			</div>
-			<div class="custom-table__footer">
-				<div class="custom-table__col"></div>
+					<div class="custom-table__col center">{{$dh->created_at}}</div>
+
+					<div class="custom-table__col center">100000 <sup>đ</sup></div>
+					@if($dh->duyet == 0)
+					<div class="custom-table__col center">Chờ duyệt</div>
+					@endif
+					@if($dh->duyet == 1)
+					<div class="custom-table__col center">Đã duyệt</div>
+					@endif
+					@if($dh->duyet == 0)
+					<a href="shop/huyDonHang/{{$dh->ma_hoa_don}}" class="custom-table__col center">Hủy đơn hàng</a>
+					@endif
+					@if($dh->duyet == 1)
+					<div style="color: green;" class="custom-table__col center">Hàng đang chuyển đi</div>
+					@endif
+					@endforeach
+				</div>
 			</div>
 		</div>
+		@if(session('huydonhang'))
+		<script>
+			alert('Hủy đơn hàng thành công!')
+		</script>
+		@endif
 		@endif
 		
 	</div>

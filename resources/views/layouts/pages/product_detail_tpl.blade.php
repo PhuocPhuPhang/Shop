@@ -90,7 +90,7 @@
 							<li>
 								<span>{{$thongso->cau_hinh}}:</span>
 								<div>
-									<a href="">{{$thongso->mo_ta}}</a>,5.5"
+									<p href="">{{$thongso->mo_ta}}</p>
 								</div>
 							</li>
 							@endforeach							
