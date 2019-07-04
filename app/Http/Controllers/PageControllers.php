@@ -337,11 +337,11 @@ public function createCart(Request $request)
 public function SapXepGia(Request $request)
 {
   if($request->gia == 1)
-  { 
+  {
     $sp = DB::table('san_pham')->orderBy('gia_ban','desc')->paginate(6);
   }
   if($request->gia == 2)
-  { 
+  {
     $sp = DB::table('san_pham')->orderBy('gia_ban','asc')->paginate(6);
   }
   return view('layouts.pages.product_tpl',['product_tpl'=>$sp]);
@@ -350,6 +350,7 @@ public function SapXepGia(Request $request)
 
 public function DonHang()
 {
+
   $user_email = Auth::user();
   $don_hang = DB::table('hoa_don')->where('email',$user_email->email)->get();
   foreach ($don_hang as $value) {

@@ -24,7 +24,7 @@
             @endforeach
 		</div>
 		<div class="footer-col">
-			<p id="tintuc">{{$website->map}}</p>
+		    <a href="{{$website->map}}"></a>
 		</div>
 	</div>
 	<!-- <section class="tags container">

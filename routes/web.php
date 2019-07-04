@@ -119,6 +119,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('sua/{masp}','SanPhamController@postSua');
 
         Route::get('xoa/{masp}','SanPhamController@postXoa');
+        Route::get('update/{masp}','SanPhamController@postUpdate');
 
         //Cấu hình
         Route::group(['prefix'=>'cauhinh'],function(){
@@ -133,6 +134,11 @@ Route::group(['prefix'=>'admin'],function(){
             Route::get('xoa/{id}','CauHinhSanPhamController@postXoa');
 
             Route::resource('demo', 'CauHinhSanPhamController@demo');
+        });
+        //Loại cấu hình
+        Route::group(['prefix'=>'loaicauhinh'],function(){
+             Route::get('danhsach','LoaiCauHinhController@getDanhSach');
+             Route::post('them','LoaiCauHinhController@postThem');
         });
     });
     //Khuyến mãi
@@ -255,12 +261,9 @@ Route::group(['prefix'=>'shop'],function(){
 
 });
 
-
 //Create_order
-
-
-
 Route::post('SearchPrice','PageControllers@SearchPrice');
+
 
 
 

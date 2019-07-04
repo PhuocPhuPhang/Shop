@@ -1,5 +1,5 @@
 @if(Auth::check())
-<div class="col-md-3 left_col">
+<div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
         <a href="{{url('admin/index')}}" class="site_title"><i class="fa fa-paw"></i> <span>Shop</span></a>
@@ -43,6 +43,7 @@
 
             <li><a><i class="fa fa-mobile"></i>Sản Phẩm<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
+                    <li><a href="{{url('admin/sanpham/loaicauhinh/danhsach')}}">Danh sách loại cấu hình</a></li>
                     <li><a href="{{url('admin/sanpham/cauhinh/danhsach')}}">Danh sách cấu hình</a></li>
                     <li><a href="{{url('admin/sanpham/danhsach')}}">Danh sách sản phẩm</a></li>
                 </ul>
