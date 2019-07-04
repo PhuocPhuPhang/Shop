@@ -62,7 +62,7 @@
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="admin/sanpham/xoa/{{$sp->ma_san_pham}}" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash-o"></i> Xóa
+                    <i class="fa fa-trash-o"></i> Tạm ngưng
                 </a>
              </td>
              @else

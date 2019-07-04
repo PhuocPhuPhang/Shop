@@ -65,17 +65,13 @@ class KhuyenMaiController extends Controller
 
         $khuyenmai->save();
         // Lưu hình thức khuyến mãi
-        $hinhthuc = $request->hinhthuc;
-        foreach($hinhthuc as $ht)
-        {
+
            $hinhthuckm = new HinhThucKhuyenMai();
            $hinhthuckm->ma_khuyen_mai = $makm;
-           $hinhthuckm->ten_hinh_thuc = $ht;
-           $nd = Str::slug($ht);
-           $hinhthuckm->noi_dung = $request->$nd;
+           $hinhthuckm->giam_gia = $request->giamgia;
+           $hinhthuckm->phan_tram = $request->tyle;
 
            $hinhthuckm->save();
-        }
         return redirect('admin/khuyenmai/them')->with('thongbao','Thêm thành công');
     }
 
@@ -150,13 +146,13 @@ class KhuyenMaiController extends Controller
         return redirect('admin/khuyenmai/sua/'.$makm)->with('thongbao','Cập nhật thành công');
     }
 
-    public function postXoa($id)
+    public function postXoa($makm)
     {
-        $khuyenmai = KhuyenMai::find($id);
-        $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('id',$id)->first();
+        $khuyenmai = KhuyenMai::find($makm);
+        $makm = DB::table('khuyen_mai')->select('ma_khuyen_mai')->where('ma_khuyen_mai',$makm)->first();
 
-        DB::table('hinh_thuc_khuyen_mai')
-            ->where('ma_khuyen_mai',$makm->ma_khuyen_mai)->delete();
+        // DB::table('hinh_thuc_khuyen_mai')
+        //     ->where('ma_khuyen_mai',$makm->ma_khuyen_mai)->delete();
         $khuyenmai->delete();
 
         return redirect('admin/khuyenmai/danhsach')->with('thongbao','Xóa  thành công');
