@@ -22,93 +22,93 @@ use Cart;
 class PageControllers extends Controller
 {
   function __construct(){
-     $about = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
-     $nhacungcap =  NhaCungCap::all();
-    $tintuc= TinTuc::all();
-    $tintuc_shop= TinTuc::where('type','tin-tuc')->get();
-    $product_shop= SanPham::where('noi_bat',1)->paginate(12);
-    $social = Media::where('type','social')->get();
-    $website = DB::table('thong_tin_cong_ty')->first();
-    $route = Route::current();
-    view()->share('route',$route);
-    view()->share('about',$about);
-    view()->share('nhacungcap',$nhacungcap);
-    view()->share('tintuc',$tintuc);
-    view()->share('tintuc_shop',$tintuc_shop);
-    view()->share('product_shop',$product_shop);
-    view()->share('social',$social);
-    view()->share('website',$website);
-  }
-
-  public function index()
-  {
-    $slide= Media::where([['type','slide'],['hien_thi',1]])->get();
-    $social = Media::where([['type','social'],['hien_thi',1]])->get();
-    $tintuc= TinTuc::where('hien_thi',1)->get();
-    $product= SanPham::where('noi_bat',1)->get();
-    $website = DB::table('thong_tin_cong_ty')->first();
-    return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],
-      ['product'=>$product],['social'=>$social],['webstite'=>$website]);
-  }
-
-  public function postThemUser(Request $request)
-  {
-    $this->validate($request,
-      [
-        'ten' => 'required',
-        'so_dien_thoai'=> 'required|numeric|min:9',
-        'email'=> 'required',
-        'password'  =>  'required|min:6|confirmed',
-        'password_confirmation'  =>  'required|min:6',
-        'gioi_tinh'=> 'required',
-        'ngay_sinh'=> 'required',
-      ],
-      [
-        'ten.required' => 'Bạn chưa nhập họ tên',
-
-        'so_dien_thoai.required'   => 'Số điện thoại chưa nhập',
-        'so_dien_thoai.numeric'   => 'Số điện thoại bắt buộc phải là số',
-        'so_dien_thoai.min'   => 'Số điện thoại có độ dài không dưới 10 số',
-
-        'email.required' =>   'Bạn chưa nhập email',
-        'password.required' =>   'Bạn chưa nhập password',
-        'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
-        'password.confirmed'=> 'Mật khẩu chưa khớp',
-        'password_confirmation.required'=> 'Bạn chưa nhập lại password',
-        'gioi_tinh.required'=> 'Chưa chọn giới tính',
-        'ngay_sinh.required' =>   'Bạn chưa nhập ngày sinh',
-
-      ]);
-
-    $user = new User();
-    $password = $request['password'];
-    $check_email = $user->where('email',$request->email)->first();
-
-    if(!empty($check_email))
-    {
-      if($check_email->email == $request->email)
-      {
-        return redirect('shop')->with('email','Email đã tồn tại');
-      }
-    }
-    else
-    {
-     $user = new User;
-     $user->ten = $request->ten;
-     $user->email = $request->email;
-     $user->password = Hash::make($password);
-     $user->quyen = 0;
-     $user->gioi_tinh = $request->gioi_tinh;
-     $user->so_dien_thoai = $request->so_dien_thoai;
-     $user->ngay_sinh = $request->ngay_sinh;
-
-     $user->save();
-     return redirect('shop')->with('thongbao','Thành Công');
-   }
+   $about = DB::table('tin_tuc')->where('type','gioi-thieu')->first();
+   $nhacungcap =  NhaCungCap::all();
+   $tintuc= TinTuc::all();
+   $tintuc_shop= TinTuc::where('type','tin-tuc')->get();
+   $product_shop= SanPham::where('noi_bat',1)->paginate(12);
+   $social = Media::where('type','social')->get();
+   $website = DB::table('thong_tin_cong_ty')->first();
+   $route = Route::current();
+   view()->share('route',$route);
+   view()->share('about',$about);
+   view()->share('nhacungcap',$nhacungcap);
+   view()->share('tintuc',$tintuc);
+   view()->share('tintuc_shop',$tintuc_shop);
+   view()->share('product_shop',$product_shop);
+   view()->share('social',$social);
+   view()->share('website',$website);
  }
 
- public function Login(Request $request)
+ public function index()
  {
+  $slide= Media::where([['type','slide'],['hien_thi',1]])->get();
+  $social = Media::where([['type','social'],['hien_thi',1]])->get();
+  $tintuc= TinTuc::where('hien_thi',1)->get();
+  $product= SanPham::where('noi_bat',1)->get();
+  $website = DB::table('thong_tin_cong_ty')->first();
+  return view('layouts.index',['tintuc'=>$tintuc],['slide'=>$slide],
+    ['product'=>$product],['social'=>$social],['webstite'=>$website]);
+}
+
+public function postThemUser(Request $request)
+{
+  $this->validate($request,
+    [
+      'ten' => 'required',
+      'so_dien_thoai'=> 'required|numeric|min:9',
+      'email'=> 'required',
+      'password'  =>  'required|min:6|confirmed',
+      'password_confirmation'  =>  'required|min:6',
+      'gioi_tinh'=> 'required',
+      'ngay_sinh'=> 'required',
+    ],
+    [
+      'ten.required' => 'Bạn chưa nhập họ tên',
+
+      'so_dien_thoai.required'   => 'Số điện thoại chưa nhập',
+      'so_dien_thoai.numeric'   => 'Số điện thoại bắt buộc phải là số',
+      'so_dien_thoai.min'   => 'Số điện thoại có độ dài không dưới 10 số',
+
+      'email.required' =>   'Bạn chưa nhập email',
+      'password.required' =>   'Bạn chưa nhập password',
+      'password.min'=> 'Mật khẩu quá ngắn ít nhất 6 kí tự',
+      'password.confirmed'=> 'Mật khẩu chưa khớp',
+      'password_confirmation.required'=> 'Bạn chưa nhập lại password',
+      'gioi_tinh.required'=> 'Chưa chọn giới tính',
+      'ngay_sinh.required' =>   'Bạn chưa nhập ngày sinh',
+
+    ]);
+
+  $user = new User();
+  $password = $request['password'];
+  $check_email = $user->where('email',$request->email)->first();
+
+  if(!empty($check_email))
+  {
+    if($check_email->email == $request->email)
+    {
+      return redirect('shop')->with('email','Email đã tồn tại');
+    }
+  }
+  else
+  {
+   $user = new User;
+   $user->ten = $request->ten;
+   $user->email = $request->email;
+   $user->password = Hash::make($password);
+   $user->quyen = 0;
+   $user->gioi_tinh = $request->gioi_tinh;
+   $user->so_dien_thoai = $request->so_dien_thoai;
+   $user->ngay_sinh = $request->ngay_sinh;
+
+   $user->save();
+   return redirect('shop')->with('thongbao','Thành Công');
+ }
+}
+
+public function Login(Request $request)
+{
   $this->validate($request,
     [
       'email'   => 'required|email',
@@ -316,7 +316,7 @@ public function createCart(Request $request)
 
     $order = new HoaDon;
     $order->ma_hoa_don = "HD". rand(00000000,99999999);
-    $order->ma_nguoi_dung = auth()->user()->email;
+    $order->email = auth()->user()->email;
     $order->ten_nguoi_nhan = $request->ten;
     $order->so_dien_thoai = $request->dienthoai;
     $order->dia_chi = $request->diachi;
@@ -350,11 +350,20 @@ public function SapXepGia(Request $request)
 
 public function DonHang()
 {
-    $user_email = Auth::user();
-    $don_hang = DB::table('hoa_don')->where('ma_nguoi_dung',$user_email->email)->first();
-    $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don',$don_hang->ma_hoa_don)->get();
-
-    dd($don_hang_chi_tiet);
+  $user_email = Auth::user();
+  $don_hang = DB::table('hoa_don')->where('email',$user_email->email)->get();
+  foreach ($don_hang as $value) {
+    $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don',$value->ma_hoa_don)->get();
+    $a[] = $value;
+    foreach ($don_hang_chi_tiet as $value2) {
+      $gia_san_pham = DB::table('san_pham')->where('ma_san_pham',$value2->ma_san_pham)->get();
+      $b[]=$value2;
+      foreach ($gia_san_pham as $value3) {
+        $c[]=$value3;
+      }   
+    }
+  }
+  return view('layouts.pages.profile',compact('a','b','c'));
 }
 
 // public function SearchPrice(Request $request)

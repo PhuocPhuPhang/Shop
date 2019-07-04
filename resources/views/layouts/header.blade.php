@@ -50,19 +50,19 @@
 								</div>
 								<div class="login-row">
 									<label>Số diện thoại</label>
-									<input type="text" name="so_dien_thoai" placeholder="Số điện thoại" >
+									<input type="text" name="so_dien_thoai" placeholder="Số điện thoại" required>
 								</div>
 								<div class="login-row">
 									<label>Email</label>
-									<input type="email" name="email" placeholder="Email của bạn">
+									<input type="email" name="email" placeholder="Email của bạn" required>
 								</div>
 								<div class="login-row">
 									<label>Mật khẩu</label>
-									<input type="password" id="pass" name="password" placeholder="Nhập mật khẩu">
+									<input type="password" id="pass" name="password" placeholder="Nhập mật khẩu" required>
 								</div>
 								<div class="login-row">
 									<label>Nhập lại mật khẩu</label>
-									<input type="password" id="re_pass" name="password_confirmation" placeholder="Nhập lại mật khẩu" onkeypress="myFunction()">
+									<input type="password" id="re_pass" name="password_confirmation" placeholder="Nhập lại mật khẩu" onkeypress="myFunction()" required>
 								</div>
 								<div class="login-row">
 									<label>Giới tính</label>
@@ -73,10 +73,6 @@
 									<label>Ngày sinh</label>
 									<input type="date" name="ngay_sinh" value="<?php echo date('Y-m-d')?>">
 								</div>
-								<!-- <div class="login-row">
-									<input type="checkbox" name="nhan_tin">
-									<span class="check_thongbao">Nhận các thông báo và tin khuyến mãi từ chúng tôi.</span>
-								</div> -->
 								<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 								<div class="login-row">
 									<button name="btnDK" id="btnY">Tạo tài khoản</button>

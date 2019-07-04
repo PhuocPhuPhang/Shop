@@ -227,7 +227,8 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('san-pham','PageControllers@product_tpl');
     Route::get('san-pham-nha-cung-cap/{nha_cung_cap}','PageControllers@product_nha_cung_cap_tpl');
     Route::get('san-pham/{ma_san_pham}','PageControllers@product_detail_tpl');
-
+    Route::post('SapXepGia','PageControllers@SapXepGia');
+    
     //profile
     Route::get('profile','PageControllers@profile');
     Route::get('thong-tin-tai-khoan','PageControllers@profile');
@@ -248,10 +249,9 @@ Route::group(['prefix'=>'shop'],function(){
 
     Route::get('lien-he','PageControllers@contact_tpl');
 
-    Route::post('SapXepGia','PageControllers@SapXepGia');
 
     //Tìm Kiếm
-        Route::post('timkiem','PageControllers@timkiem');
+    Route::post('timkiem','PageControllers@timkiem');
 
 });
 
