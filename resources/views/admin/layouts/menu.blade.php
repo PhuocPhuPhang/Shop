@@ -1,5 +1,5 @@
 @if(Auth::check())
-<div class="col-md-3 left_col">
+<div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
         <a href="{{url('admin/index')}}" class="site_title"><i class="fa fa-paw"></i> <span>Shop</span></a>

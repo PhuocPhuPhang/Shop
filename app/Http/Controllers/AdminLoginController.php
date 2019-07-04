@@ -55,7 +55,7 @@ class AdminLoginController extends Controller
     public function SuccessLogin()
     {
         $data = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y'))->get();
-        $chart = Charts::database($data, 'bar', 'highcharts')
+        $chart = Charts::database($data, 'bar', 'HighCharts')
                 ->title("Thống kê tài khoản đăng ký hàng tháng")
                 ->elementLabel("Tổng số người dùng")
                 ->responsive(false)

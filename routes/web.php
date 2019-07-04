@@ -255,12 +255,9 @@ Route::group(['prefix'=>'shop'],function(){
 
 });
 
-
 //Create_order
-
-
-
 Route::post('SearchPrice','PageControllers@SearchPrice');
+
 
 
 
