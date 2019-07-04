@@ -234,7 +234,7 @@ Route::group(['prefix'=>'shop'],function(){
     Route::post('cap-nhat-thong-tin','PageControllers@changeProfile');
     Route::get('doi-mat-khau','PageControllers@profile');
     Route::post('cap-nhat-mat-khau','PageControllers@postChangePassword');
-    Route::get('don-hang','PageControllers@profile');
+    Route::get('don-hang','PageControllers@DonHang');
 
     //Giỏ hàng
     Route::get('cart_tpl','PageControllers@cart_tpl');
@@ -248,7 +248,7 @@ Route::group(['prefix'=>'shop'],function(){
 
     Route::get('lien-he','PageControllers@contact_tpl');
 
-    Route::get('SapXepGia/{sapxep}','PageControllers@SapXepGia');
+    Route::post('SapXepGia','PageControllers@SapXepGia');
 
     //Tìm Kiếm
         Route::post('timkiem','PageControllers@timkiem');
