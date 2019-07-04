@@ -16,7 +16,7 @@
             {{ session('thongbao') }}
         </div>
     @endif
-        <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Thêm sản phẩm</h2>
@@ -56,23 +56,27 @@
                     <label>Mô tả</label>
                     <textarea id="mota"  class="form-control inputForm" name="mota"></textarea><br />
 
-
                     <label>Keywords</label>
                     <textarea id="keywords"  class="form-control inputForm" name="keywords"></textarea><br />
 
-                    <label>Hình ảnh</label>
-                    <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                    <label>Hình đại diện</label>
+                    <input type="file" id="hinhanh" class="inputForm" name="hinhanh" /><br />
 
-                    <div class="fallback">
-                            <input name="file" type="file" multiple />
-                        </div>
-                    </form>
+                    <label>Hình ảnh khác</label>
+                    <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                            <div class="fallback">
+                                <input name="file" type="file" multiple />
+                            </div>
+                    </form><br>
+
+                    <label>Nội dung</label>
+                    <textarea id="noidung" class="form-gruop ckeditor inputForm" name="noidung" ></textarea><br/>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Cấu hình chi tiết</h2>
@@ -97,15 +101,12 @@
                     @endforeach
                 </div>
             @endforeach
-
         </div>
         </div>
         <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title" style="border-bottom:none">
-                <label>Nội dung</label>
-                <textarea id="noidung" class="form-gruop ckeditor inputForm" name="noidung" ></textarea><br/>
                     <div class="form-group" style="margin-left:20%">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <a href="admin/sanpham/danhsach">

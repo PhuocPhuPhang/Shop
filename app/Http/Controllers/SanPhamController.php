@@ -71,6 +71,7 @@ class SanPhamController extends Controller
             $sanpham->gia_ban = $newArr['gia'];
             $sanpham->mau_sac = $newArr['mausac'];
             $sanpham->mo_ta= $newArr['mota'];
+            $sanpham->hinh_anh = $newArr['hinhanh'];
             $sanpham->noi_dung = $newArr['noidung'];
             $sanpham->keywords = $newArr['keywords'];
             $sanpham->save();
@@ -93,32 +94,54 @@ class SanPhamController extends Controller
                     }
                 }
             }
+            $hinhanh_sp = new HinhAnh;
+            $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt","r");
+            $read = file("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
+            foreach ($read as $line)
+            {
+                $hinhanh_sp->ma_san_pham = $newArr['ma'];
+                $hinhanh_sp->hinh_anh = $line;
+                $hinhanh_sp->save();
+            }
+            fclose($image_file);
+            // $file = str_slug($newArr['ten'])."txt";
+            // rename("..\public\upload\sanpham\hinhanhkhac\hinh.txt",
+            //        "..\public\upload\sanpham\hinhanhkhac\\"$file\");
+            return 1;
     }
-
 
     public function postUploadImages(Request $request)
     {
-            // $file = $request->file('file');
-            // $duoi = $file->getClientOriginalExtension();
-            // if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
-            // {
-            //     return redirect('admin/sanpham/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
-            // }
-            // $name = $file->getClientOriginalName();
-            // $hinh = $name.'_'.time().'.'.$duoi;
-            // $file->move("upload/sanpham",$hinh);
-            $array_image = [];
+        if(file_exists("..\public\upload\sanpham\hinhanhkhac\hinh.txt"))
+        {
+            unlink("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
+            if($request->hasFile('file'))
+            {
+                $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt","a");
+                foreach( $request->file as $image)
+                {
+                    $duoi = $image->getClientOriginalExtension();
+                    $name = $image->getClientOriginalName();
+                    fwrite($image_file , $name.'_'.time().'.'.$duoi."\n");
+                }
+                fclose($image_file);
+            }
+        }
+        else
+        {
+            $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt","x");
             if($request->hasFile('file'))
             {
                 foreach( $request->file as $image)
                 {
                     $duoi = $image->getClientOriginalExtension();
                     $name = $image->getClientOriginalName();
-                    $array_image[] = $name.'_'.time().'.'.$duoi;
-                    dd($array_image);
+                    fwrite($image_file , $name.'_'.time().'.'.$duoi."\n");
                 }
             }
-            return $array_image;
+            fclose($image_file);
+        }
+        dd($image_file);
     }
 
     public function postKiemTraMaSanPham(Request $request)

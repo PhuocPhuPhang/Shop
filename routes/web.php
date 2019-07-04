@@ -134,6 +134,11 @@ Route::group(['prefix'=>'admin'],function(){
 
             Route::resource('demo', 'CauHinhSanPhamController@demo');
         });
+        //Loại cấu hình
+        Route::group(['prefix'=>'loaicauhinh'],function(){
+             Route::get('danhsach','LoaiCauHinhController@getDanhSach');
+             Route::post('them','LoaiCauHinhController@postThem');
+        });
     });
     //Khuyến mãi
     Route::group(['prefix'=>'khuyenmai'],function(){
