@@ -30,6 +30,7 @@
              <th style="text-align:center">Nhà cung cấp</th>
              <th style="text-align:center">Số lượng</th>
              <th style="text-align:center">Màu sắc</th>
+             <th style="text-align:center">Trạng thái</th>
              <th style="text-align:center">Thao tác</th>
            </tr>
          </thead>
@@ -45,14 +46,32 @@
              <td style="text-align:center">
                     <input readonly type="text" style="border:none;height:20px;width:60px;background:{{$sp->mau_sac}}"/>
              </td>
+
+            @if($sp->so_luong > 0 && $sp->da_xoa == 0  )
+             <td style="text-align:center">Còn hàng</td>
+            @elseif($sp->so_luong > 0 && $sp->da_xoa != 0 )
+            <td style="text-align:center">Tạm ngưng</td>
+            @else
+            <td style="text-align:center">Hết hàng</td>
+            @endif
+
+
+             @if($sp->da_xoa == 0 )
              <td style="text-align:center">
-             <a href="admin/sanpham/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
+                <a href="admin/sanpham/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="admin/sanpham/xoa/{{$sp->ma_san_pham}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
+             @else
+             <td style="text-align:center">
+                <a href="admin/sanpham/update/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
+                    <i class="fa fa-pencil"></i> Kích hoạt
+                </a>
+             </td>
+            @endif
            </tr>
             @endforeach
          </tbody>

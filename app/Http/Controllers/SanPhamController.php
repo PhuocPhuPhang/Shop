@@ -68,12 +68,23 @@ class SanPhamController extends Controller
             $sanpham->ten_khong_dau = str_slug($newArr['ten']);
             $sanpham->nha_cung_cap = $newArr['nhacungcap'];
             $sanpham->so_luong = $newArr['soluong'];
-            $sanpham->gia_ban = $newArr['gia'];
+            $sanpham->gia_ban = $newArr['giaban'];
             $sanpham->mau_sac = $newArr['mausac'];
             $sanpham->mo_ta= $newArr['mota'];
-            $sanpham->hinh_anh = $newArr['hinhanh'];
             $sanpham->noi_dung = $newArr['noidung'];
             $sanpham->keywords = $newArr['keywords'];
+
+            if($request->hinh !="")
+            {
+                $file = basename($request->hinh);
+                $file->move("upload/sanpham",$file);
+                $sanpham->hinh_anh = $file;
+            }
+            else
+            {
+                $sanpham->hinh_anh = "";
+            }
+
             // $sanpham->save();
 
             $listCauHinh = DB::table('cau_hinh_san_pham')->select('id','ten_khong_dau')->get();
@@ -97,18 +108,17 @@ class SanPhamController extends Controller
 
             $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt","r");
             $read = file("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
-            // dd($read);
            for($i = 0 ; $i < count($read); $i++)
             {
                 $hinhanh_sp = new HinhAnh;
                 $hinhanh_sp->ma_san_pham = $newArr['ma'];
                 $hinhanh_sp->hinh_anh = $read[$i];
-                $hinhanh_sp->save();
+                // $hinhanh_sp->save();
             }
             fclose($image_file);
-            // $file = str_slug($newArr['ten'])."txt";
-            // rename("..\public\upload\sanpham\hinhanhkhac\hinh.txt",
-            //        "..\public\upload\sanpham\hinhanhkhac\"\"\"\"$file");
+            $file = "\\".str_slug($newArr['ten'])."txt";
+            rename("..\public\upload\sanpham\hinhanhkhac\hinh.txt",
+                   "..\public\upload\sanpham\hinhanhkhac".$file);
             return 1;
     }
 
@@ -212,12 +222,15 @@ class SanPhamController extends Controller
 
     public function postXoa($masp)
     {
-        $hinhanh_sp = DB::table('hinh_anh_san_pham')->where('ma_san_pham',$masp)->delete();
-        $thongtin_sp = DB::table('thong_tin_san_pham')->where('ma_san_pham',$masp)->delete();
-        $sanpham = SanPham::find($masp);
-        $sanpham->delete();
+       DB::table('san_pham')->where('ma_san_pham',$masp)->update(['da_xoa'=>1]);
 
-        return redirect('admin/sanpham/danhsach')->with('thongbao','Xóa sản phẩm thành công');
+        return redirect('admin/sanpham/danhsach')->with('thongbao','Cập nhật trạng thái thành công phẩm thành công');
+    }
+
+    public function postUpdate($masp)
+    {
+        DB::table('san_pham')->where('ma_san_pham',$masp)->update(['da_xoa'=>0]);
+        return redirect('admin/sanpham/danhsach')->with('thongbao','Cập nhật trạng thái thành công phẩm thành công');
     }
 }
 
