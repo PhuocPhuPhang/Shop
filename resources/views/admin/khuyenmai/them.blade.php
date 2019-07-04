@@ -34,7 +34,7 @@
 
                         <label>Hình thức khuyến mãi</label><br>
                         <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Giảm giá(theo số tiền)</label>
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Giảm giá(Stheo số tiền)</label>
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <input type="text" name="giamgia" id="giamgia" class="form-control col-md-7 col-xs-12 ">
                             </div>

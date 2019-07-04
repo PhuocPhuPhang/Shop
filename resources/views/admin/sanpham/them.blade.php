@@ -277,12 +277,11 @@
         $("#btnSubmit").click(function(event) {
             var masp = document.getElementById('ma').value;
             var tensp = document.getElementById('ten').value;
-            hinh =  $('input[name=hinhanh]').val();
             var formData = new FormData();
+            // console.log($('input#hinhanh')[0].files);
+
+            hinh = $('input#hinhanh')[0].files[0];
             formData.append("hinh",hinh);
-            for (var value of formData.values()) {
-   console.log(value);
-}
             var array = [];
             if (masp != "" && tensp != "") {
                 $.ajax({
@@ -310,18 +309,34 @@
                                 }
                                 array.push(arr);
                             });
+
+                            // $.ajax({
+                            //     type: 'post',
+                            //     url: '/admin/sanpham/them',
+                            //     headers: {
+                            //         'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            //         contentType: "multipart/form-data",
+                            //     },
+                            //     data: {
+                            //         "mang": array
+                            //     },
+                            // })
+                            formData.append("mang",array);
                             $.ajax({
-                                type: 'post',
-                                url: '/admin/sanpham/them',
                                 headers: {
                                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                                     contentType: "multipart/form-data",
                                 },
-                                data: {
-                                    "mang": array
-                                },
-                            })
-
+                                url: '/admin/sanpham/them',
+                                data: formData,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                type: 'POST',
+                                success: function(data){
+                                    // alert(data);
+                                }
+                            });
                         }
                     }
                 })

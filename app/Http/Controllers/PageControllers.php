@@ -350,11 +350,9 @@ public function SapXepGia(Request $request)
 
 public function DonHang()
 {
-    $user_email = Auth::user();
-    $don_hang = DB::table('hoa_don')->where('ma_nguoi_dung',$user_email->email)->first();
+    $user_email = Auth::user()->email;
+    $don_hang = DB::table('hoa_don')->where('email',$user_email)->first();
     $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don',$don_hang->ma_hoa_don)->get();
-
-    dd($don_hang_chi_tiet);
 }
 
 // public function SearchPrice(Request $request)
