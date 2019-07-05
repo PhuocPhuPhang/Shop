@@ -167,8 +167,10 @@
 			<div class="binhluan">
 				<label>Bình luận sản phẩm</label>
 			</div>
+			
 			<div id="fb-root"></div>
 			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
-			<div class="fb-comments" data-href="http://127.0.0.1:8000/shop/san-pham/SP02" data-width="100%" data-numposts="5"></div>		
+			<div class="fb-comments" data-href="<?php echo url()->current(); ?>" data-width="100%" data-numposts="5"></div>		
+			<!-- <div class="fb-comments" data-href="http://127.0.0.1:8000/shop/san-pham/SP02" data-width="100%" data-numposts="5"></div>		 -->
 		</div>
 		@endsection
