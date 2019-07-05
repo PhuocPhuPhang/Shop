@@ -61,34 +61,18 @@ class PageControllers extends Controller
 
     public function postThemUser(Request $request)
     {
-        // $this->validate(
-        //     $request,
-        //     [
-        //         'ten' => 'required',
-        //         'so_dien_thoai' => 'required|numeric|min:9',
-        //         'email' => 'required',
-        //         'password'  =>  'required|min:6|confirmed',
-        //         'password_confirmation'  =>  'required|min:6',
-        //         'gioi_tinh' => 'required',
-        //         'ngay_sinh' => 'required',
-        //     ],
-        //     [
-        //         'ten.required' => 'Bạn chưa nhập họ tên',
+        $this->validate(
+            $request,
+            [
+                'password'  =>  'required|confirmed',
+                'password_confirmation'  =>  'required',
+            ],
+            [
+                'password.confirmed' => 'Mật khẩu chưa khớp',
+                'password_confirmation.required' => 'Bạn chưa nhập lại password',
 
-        //         'so_dien_thoai.required'   => 'Số điện thoại chưa nhập',
-        //         'so_dien_thoai.numeric'   => 'Số điện thoại bắt buộc phải là số',
-        //         'so_dien_thoai.min'   => 'Số điện thoại có độ dài không dưới 10 số',
-
-        //         'email.required' =>   'Bạn chưa nhập email',
-        //         'password.required' =>   'Bạn chưa nhập password',
-        //         'password.min' => 'Mật khẩu quá ngắn ít nhất 6 kí tự',
-        //         'password.confirmed' => 'Mật khẩu chưa khớp',
-        //         'password_confirmation.required' => 'Bạn chưa nhập lại password',
-        //         'gioi_tinh.required' => 'Chưa chọn giới tính',
-        //         'ngay_sinh.required' =>   'Bạn chưa nhập ngày sinh',
-
-        //     ]
-        // );
+            ]
+        );
 
         $user = new User();
         $password = $request['password'];

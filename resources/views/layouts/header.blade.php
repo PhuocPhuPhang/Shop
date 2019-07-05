@@ -98,11 +98,6 @@
 								alert('Thành Công')
 							</script>
 							@endif
-							@if(session('login'))
-							<script>
-								alert('Đăng Nhập Thành Công')
-							</script>
-							@endif
 							<form id="frmLogin" action="{{ url('/shop/login') }}" method="POST" class="login_block">
 								<div class="login-row">
 									<label>Email</label>
