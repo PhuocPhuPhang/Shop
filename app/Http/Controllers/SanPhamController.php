@@ -34,7 +34,7 @@ class SanPhamController extends Controller
     }
     public function getDanhSach()
     {
-        $sanpham = DB::table('san_pham')->orderBy('ngay_tao', 'desc')->get();
+        $sanpham = DB::table('san_pham')->orderBy('created_at', 'desc')->get();
         $nhacungcap = NhaCungCap::all();
         return view('admin.sanpham.danhsach', ['sanpham' => $sanpham]);
     }
@@ -78,8 +78,6 @@ class SanPhamController extends Controller
         $sanpham->noi_dung = $newArr['noidung'];
         $sanpham->keywords = $newArr['keywords'];
 
-        // $sanpham->save();
-
         $listCauHinh = DB::table('cau_hinh_san_pham')->select('id', 'ten_khong_dau')->get();
         foreach ($newArr as $key => $value) {
             foreach ($listCauHinh as $cauhinh) {
@@ -89,7 +87,7 @@ class SanPhamController extends Controller
                         $thongtinsp->ma_san_pham = $masp;
                         $thongtinsp->id_cau_hinh = $cauhinh->id;
                         $thongtinsp->mo_ta = $newArr[$key];
-                        // $thongtinsp->save();
+                        $thongtinsp->save();
                     }
                 }
             }
@@ -100,11 +98,13 @@ class SanPhamController extends Controller
         // dd($read);
         foreach ($read as $image) {
             $array_item = explode(",", $image);
+            $sanpham->hinh_anh =  $array_item[0];
+            $sanpham->save();
             for ($i = 0; $i < count($array_item) - 1; $i++) {
                 $hinhanh_sp = new HinhAnh;
                 $hinhanh_sp->ma_san_pham = $masp;
                 $hinhanh_sp->hinh_anh = $array_item[$i];
-                // $hinhanh_sp->save();
+                $hinhanh_sp->save();
             }
         }
         fclose($image_file);
