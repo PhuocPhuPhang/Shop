@@ -197,6 +197,12 @@
 		$('#tintuc').html(editorText);
 	})
 </script>
+<script type="text/javascript">
+	$(function() {
+		var editorText = $('#map').text();
+		$('#map').html(editorText);
+	})
+</script>
 <script>
 	$(function () {
 		$('#datetimepicker1').datetimepicker({
