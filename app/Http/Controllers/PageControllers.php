@@ -31,9 +31,7 @@ class PageControllers extends Controller
    $social = Media::where('type','social')->get();
    $website = DB::table('thong_tin_cong_ty')->first();
    $route = Route::current();
-   $route2 = Route::currentRouteName();
    view()->share('route',$route);
-   view()->share('route2',$route2);
    view()->share('about',$about);
    view()->share('nhacungcap',$nhacungcap);
    view()->share('tintuc',$tintuc);
