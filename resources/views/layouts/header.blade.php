@@ -49,20 +49,20 @@
 									<input type="text" name="ten" placeholder="Họ tên">
 								</div>
 								<div class="login-row">
-									<label>Số diện thoại</label>
-									<input type="text" name="so_dien_thoai" placeholder="Số điện thoại" required>
+									<label>Số điện thoại(*)</label>
+									<input type="text" name="so_dien_thoai" placeholder="Số điện thoại" maxlength="10" required>
 								</div>
 								<div class="login-row">
-									<label>Email</label>
+									<label>Email(*)</label>
 									<input type="email" name="email" placeholder="Email của bạn" required>
 								</div>
 								<div class="login-row">
-									<label>Mật khẩu</label>
-									<input type="password" id="pass" name="password" placeholder="Nhập mật khẩu" required>
+									<label>Mật khẩu(*)</label>
+									<input type="password" id="pass" name="password" minlength="6" placeholder="Nhập mật khẩu" required>
 								</div>
 								<div class="login-row">
-									<label>Nhập lại mật khẩu</label>
-									<input type="password" id="re_pass" name="password_confirmation" placeholder="Nhập lại mật khẩu" onkeypress="myFunction()" required>
+									<label>Nhập lại mật khẩu(*)</label>
+									<input type="password" id="re_pass" name="password_confirmation" placeholder="Nhập lại mật khẩu" required>
 								</div>
 								<div class="login-row">
 									<label>Giới tính</label>
