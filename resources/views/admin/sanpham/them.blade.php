@@ -76,8 +76,8 @@
                     <label>Keywords</label>
                     <textarea id="keywords" class="form-control inputForm" name="keywords"></textarea><br />
 
-                    <label>Hình đại diện</label>
-                    <input type="file" id="hinhanh" name="hinhanh" /><br />
+                    <!-- <label>Hình đại diện</label>
+                    <input type="file" id="hinhanh" name="hinhanh" /><br /> -->
 
                     <label>Hình ảnh khác</label>
                     <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
@@ -320,6 +320,10 @@
                                 data: {
                                     "mang": array
                                 },
+                                success:function(data){
+                                    if(data.success)
+                                    alert('Thành công');
+                                }
                             })
                             // formData.append("mang",array);
                             // $.ajax({

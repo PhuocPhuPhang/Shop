@@ -82,17 +82,19 @@
                     <label>Hình hiện tại</label>
                     <p>
                         @foreach($hinhanh as $hinh)
-                        <img src="publicSa/upload/sanpham/hinhanhkhac/{{$sanpham->ten_khong_dau}}/{{$hinh->hinh_anh}}" alt="hình">
+                        @if($hinh->hinh_anh != "")
+                        <img src="../../upload/sanpham/hinhanhkhac/{{$hinh->hinh_anh}}" alt="hình" width="150px" ;height="100px">
+                        <button type="button" class="dz-error-mark image" id="{{$hinh->id}}"><i>✘</i></button>
+                        @endif
                         @endforeach
                     </p>
                     <label>Hình ảnh khác</label>
-                    <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
+                    <form action="#" class="dropzone" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="fallback">
                             <input name="file" type="file" multiple />
                         </div>
                     </form><br>
-
                     <label>Nội dung</label>
                     <textarea id="noidung" class="form-gruop ckeditor inputForm" name="noidung">{{$sanpham->noi_dung}}</textarea><br />
                 </div>
@@ -281,54 +283,54 @@
         });
 
         $("#btnSubmit").click(function(event) {
-            var masp = document.getElementById('ma').value;
             var tensp = document.getElementById('ten').value;
-
+            var masp = document.getElementById('ma').value;
             var array = [];
-            if (masp != "" && tensp != "") {
+            if (tensp != "") {
+                $('.inputForm').each(function(index, input) {
+                    let name, value;
+                    key = $(input).attr('name');
+                    value = $(input).val();
+                    let arr = {};
+                    if (value != "") {
+                        arr[key] = value;
+                    } else {
+                        arr[key] = null;
+                    }
+                    array.push(arr);
+                });
                 $.ajax({
                     type: 'post',
-                    url: '/admin/sanpham/KiemTraMaSanPham',
+                    url: 'admin/sanpham/sua/' + masp,
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        contentType: "application/json",
                     },
                     data: {
-                        "masp": masp
+                        "mang": array
                     },
-                    success: function(data) {
-                        if (data.tontai != 0) {
-                            alert('Mã sản phẩm đã tồn tại. Vui lòng kiểm tra lại');
-                        } else {
-                            $('.inputForm').each(function(index, input) {
-                                let name, value;
-                                key = $(input).attr('name');
-                                value = $(input).val();
-                                let arr = {};
-                                if (value != "") {
-                                    arr[key] = value;
-                                } else {
-                                    arr[key] = null;
-                                }
-                                array.push(arr);
-                            });
-                            $.ajax({
-                                type: 'post',
-                                url: '/admin/sanpham/them',
-                                headers: {
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                    contentType: "application/json",
-                                },
-                                data: {
-                                    "mang": array
-                                },
-                            })
-
-                        }
-                    }
-                })
+                });
             } else {
                 alert('Vui lòng kiểm tra lại mã sản phẩm và tên sản phẩm ');
             }
+        });
+
+        $(".image").click(function(event) {
+            var id = $(this).attr('id');
+            $.ajax({
+                type: 'post',
+                url: 'admin/sanpham/hinhanh/xoa/' + id,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    contentType: "application/json",
+                },
+                data: {
+                    "id": id
+                },
+                success: function(data) {
+                    if (data.data.success == 1) alert(1);
+                }
+            });
         });
 
         function string_to_slug(str) {
@@ -348,33 +350,5 @@
             return str;
         }
     });
-
-    function showImages() {
-        if (this.files && this.files[0]) {
-            var obj = new FileReader();
-            obj.onload = function(data) {
-                var image = document.getElementById("image");
-                image.src = data.target.result;
-                image.style.display = "block";
-            }
-            obj.readAsDataURL(this.files[0]);
-        }
-    }
-
-    function change_alias(alias) {
-        var str = alias;
-        str = str.toLowerCase();
-        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
-        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
-        str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
-        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
-        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
-        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
-        str = str.replace(/đ/g, "d");
-        str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, " ");
-        str = str.replace(/ + /g, " ");
-        str = str.trim();
-        return str;
-    }
 </script>
 @endsection

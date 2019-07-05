@@ -119,7 +119,9 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('sua/{masp}','SanPhamController@postSua');
 
         Route::get('xoa/{masp}','SanPhamController@postXoa');
+
         Route::get('update/{masp}','SanPhamController@postUpdate');
+        Route::post('hinhanh/xoa/{id}','SanPhamController@postXoaHinh');
 
         //Cấu hình
         Route::group(['prefix'=>'cauhinh'],function(){

@@ -10,9 +10,4 @@ class HinhAnh extends Model
     protected  $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
-
-    public function SanPham()
-    {
-        return $this->belongsTo('App\SanPham','hinh_anh','id');
-    }
 }

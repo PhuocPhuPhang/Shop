@@ -19,36 +19,32 @@ class AjaxController extends Controller
     public function postNhaCungCap(Request $request)
     {
         $nhacungcap = NhaCungCap::find($request->mancc);
-        if($nhacungcap->hien_thi == 1)
-        {
+        if ($nhacungcap->hien_thi == 1) {
             $nhacungcap->hien_thi = 0;
-        }
-        else
-        {
+        } else {
             $nhacungcap->hien_thi = 1;
         }
         return response()->json([
             'data' => [
-              'success' => $nhacungcap->save(),
+                'success' => $nhacungcap->save(),
             ]
-          ]);
+        ]);
     }
 
-	public function getCauHinh($idloaiCH)
-	{
-		$cauhinh = CauHinhSanPham::where('id_loai',$idloaiCH)->get();
-		echo "<option value='0'>...</option>" ;
-		foreach($cauhinh as $ch)
-		{
-			echo "<option value='".$ch->cau_hinh."'>".$ch->cau_hinh."</option>" ;
-		}
+    public function getCauHinh($idloaiCH)
+    {
+        $cauhinh = CauHinhSanPham::where('id_loai', $idloaiCH)->get();
+        echo "<option value='0'>...</option>";
+        foreach ($cauhinh as $ch) {
+            echo "<option value='" . $ch->cau_hinh . "'>" . $ch->cau_hinh . "</option>";
+        }
     }
 
     public function postCauHinh(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'cauhinh_new' => 'unique:cau_hinh_san_pham,cau_hinh'
-        ],[
+        ], [
             'cauhinh_new.unique' => 'Cấu hình đã tồn tại'
         ]);
 
@@ -58,74 +54,82 @@ class AjaxController extends Controller
         $cauhinh->id_loai = $request->loaich;
         return response()->json([
             'data' => [
-              'success' => $cauhinh->save(),
+                'success' => $cauhinh->save(),
             ]
-          ]);
+        ]);
     }
 
     public function postTinTucNoiBat_HienThi(Request $request)
     {
         $tintuc = TinTuc::find($request->id);
-        if($request->col == "noibat")
-        {
-            if($tintuc->noi_bat == 1) { $tintuc->noi_bat = 0; }
-            else { $tintuc->noi_bat = 1; }
-        }
-        elseif($request->col ="hienthi")
-        {
-            if($tintuc->hien_thi == 1) { $tintuc->hien_thi = 0; }
-            else { $tintuc->hien_thi = 1; }
+        if ($request->col == "noibat") {
+            if ($tintuc->noi_bat == 1) {
+                $tintuc->noi_bat = 0;
+            } else {
+                $tintuc->noi_bat = 1;
+            }
+        } elseif ($request->col = "hienthi") {
+            if ($tintuc->hien_thi == 1) {
+                $tintuc->hien_thi = 0;
+            } else {
+                $tintuc->hien_thi = 1;
+            }
         }
         return response()->json([
             'data' => [
-              'success' => $tintuc->save(),
+                'success' => $tintuc->save(),
             ]
-          ]);
+        ]);
     }
 
     public function postChinhSachHienThi(Request $request)
     {
         $chinhsach = TinTuc::find($request->id);
-        if($chinhsach->hien_thi == 1) { $chinhsach->hien_thi = 0; }
-        else { $chinhsach->hien_thi = 1; }
+        if ($chinhsach->hien_thi == 1) {
+            $chinhsach->hien_thi = 0;
+        } else {
+            $chinhsach->hien_thi = 1;
+        }
         return response()->json([
             'data' => [
-              'success' => $chinhsach->save(),
+                'success' => $chinhsach->save(),
             ]
-          ]);
+        ]);
     }
 
     public function postMediaHienThi(Request $request)
     {
         $media = Media::find($request->id);
 
-        if($media->hien_thi == 1) { $media->hien_thi = 0; }
-        else { $media->hien_thi = 1; }
+        if ($media->hien_thi == 1) {
+            $media->hien_thi = 0;
+        } else {
+            $media->hien_thi = 1;
+        }
         return response()->json([
             'data' => [
-              'success' => $media->save(),
+                'success' => $media->save(),
             ]
-          ]);
+        ]);
     }
 
     public function postSlideThuTu(Request $request)
     {
         $slide = Media::find($request->id);
         $thutu = $request->thutu;
-        $tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->count();
-        if($tontai != 0 )
-        {
-            $slide_tontai = DB::table('media')->where([['type','slide'],['thu_tu',$thutu]])->first();
-            DB::table('media')->where([['thu_tu',$thutu],['type','slide']])->update(['thu_tu'=>$slide->thu_tu]);
-            DB::table('media')->where([['thu_tu',$thutu],['type','slide']])->update(['thu_tu'=>$slide_tontai->thu_tu]);
+        $tontai = DB::table('media')->where([['type', 'slide'], ['thu_tu', $thutu]])->count();
+        if ($tontai != 0) {
+            $slide_tontai = DB::table('media')->where([['type', 'slide'], ['thu_tu', $thutu]])->first();
+            DB::table('media')->where([['thu_tu', $thutu], ['type', 'slide']])->update(['thu_tu' => $slide->thu_tu]);
+            DB::table('media')->where([['thu_tu', $thutu], ['type', 'slide']])->update(['thu_tu' => $slide_tontai->thu_tu]);
         }
         $slide->thu_tu = $thutu;
 
         return response()->json([
             'data' => [
-              'success' => $slide->save(),
+                'success' => $slide->save(),
             ]
-          ]);
+        ]);
     }
 
     public function postPhanQuyen(Request $request)
@@ -134,21 +138,20 @@ class AjaxController extends Controller
         $user->quyen = $request->quyen;
         return response()->json([
             'data' => [
-              'success' => $user->save(),
+                'success' => $user->save(),
             ]
-          ]);
+        ]);
     }
 
     public function getLoaiCauHinh($idloaiCH)
     {
         $cauhinh = null;
-        if($idloaiCH != 0){
-            $cauhinh = DB::table('cau_hinh_san_pham')->where('id_loai',$idloaiCH)->get();
-        }
-        else {
+        if ($idloaiCH != 0) {
+            $cauhinh = DB::table('cau_hinh_san_pham')->where('id_loai', $idloaiCH)->get();
+        } else {
             $cauhinh = DB::table('cau_hinh_san_pham')->get();
         }
-         echo "  <table id='datatable' class='table table-striped table-bordered'>
+        echo "  <table id='datatable' class='table table-striped table-bordered'>
              <thead>
                     <tr>
                     <th style='text-align:center'>STT</th>
@@ -156,17 +159,16 @@ class AjaxController extends Controller
                     <th style='text-align:center'>Thao tác</th>
                     </tr>
                 </thead>";
-        foreach($cauhinh as $ch)
-        {
+        foreach ($cauhinh as $ch) {
             echo "<tbody>
                 <tr>
-                     <td style='text-align:center'>".$ch->id."</td>
-                     <td>".$ch->cau_hinh."</td>
+                     <td style='text-align:center'>" . $ch->id . "</td>
+                     <td>" . $ch->cau_hinh . "</td>
                      <td style='text-align:center'>
-                        <a href='admin/sanpham/cauhinh/sua/".$ch->id."' class='btn btn-info btn-xs'>
+                        <a href='admin/sanpham/cauhinh/sua/" . $ch->id . "' class='btn btn-info btn-xs'>
                             <i class='fa fa-pencil'></i> Edit
                         </a>
-                        <a href='admin/sanpham/cauhinh/xoa/".$ch->id."' class='btn btn-danger btn-xs'>
+                        <a href='admin/sanpham/cauhinh/xoa/" . $ch->id . "' class='btn btn-danger btn-xs'>
                         <i class='fa fa-trash-o'></i> Delete
                     </a>
                  </td>
@@ -175,4 +177,3 @@ class AjaxController extends Controller
         }
     }
 }
-
