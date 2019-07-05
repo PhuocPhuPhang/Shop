@@ -136,7 +136,7 @@ class SocialController extends Controller
         return redirect('admin/social/sua/'.$social->id)->with('thongbao','Chỉnh sửa thành công');
     }
 
-    public function postXoa($id)
+    public function getXoa($id)
     {
         $social = Media::find($id);
         if($social->hinh_anh != "")

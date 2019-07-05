@@ -44,7 +44,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('sua/{mancc}','NhaCungCapController@getSua');
         Route::post('sua/{mancc}','NhaCungCapController@postSua');
 
-        Route::get('xoa/{mancc}','NhaCungCapController@postXoa');
+        Route::get('xoa/{mancc}','NhaCungCapController@getXoa');
+        Route::get('update/{mancc}','NhaCungCapController@getUpdate');
     });
 
     //Tin tức
@@ -58,7 +59,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('sua/{id}','TinTucController@getSua');
         Route::post('sua/{id}','TinTucController@postSua');
 
-        Route::get('xoa/{id}','TinTucController@postXoa');
+        Route::get('xoa/{id}','TinTucController@getXoa');
 
         //Giới thiệu
         Route::get('gioithieu','TinTucController@getGioiThieu');
@@ -73,7 +74,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('chinhsach/sua/{id}','TinTucController@getSuaChinhSach');
         Route::post('chinhsach/sua/{id}','TinTucController@postSuaChinhSach');
 
-        Route::get('chinhsach/xoa/{id}','TinTucController@postXoaChinhSach');
+        Route::get('chinhsach/xoa/{id}','TinTucController@getXoaChinhSach');
 
     });
 
@@ -88,7 +89,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('sua/{id}','SlideController@getSua');
         Route::post('sua/{id}','SlideController@postSua');
 
-        Route::get('xoa/{id}','SlideController@postXoa');
+        Route::get('xoa/{id}','SlideController@getXoa');
     });
 
     Route::group(['prefix'=>'social'],function(){
@@ -101,7 +102,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('sua/{id}','SocialController@getSua');
         Route::post('sua/{id}','SocialController@postSua');
 
-        Route::get('xoa/{id}','SocialController@postXoa');
+        Route::get('xoa/{id}','SocialController@getXoa');
     });
 
     //Sản phẩm
@@ -118,9 +119,9 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('sua/{masp}','SanPhamController@getSua');
         Route::post('sua/{masp}','SanPhamController@postSua');
 
-        Route::get('xoa/{masp}','SanPhamController@postXoa');
+        Route::get('xoa/{masp}','SanPhamController@getXoa');
 
-        Route::get('update/{masp}','SanPhamController@postUpdate');
+        Route::get('update/{masp}','SanPhamController@getUpdate');
         Route::post('hinhanh/xoa/{id}','SanPhamController@postXoaHinh');
 
         //Cấu hình
@@ -165,7 +166,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('sua/{id}','UsersController@getSua');
         Route::post('sua/{id}','UsersController@postSua');
 
-        Route::get('xoa/{id}','UsersController@postXoa');
+        Route::get('xoa/{id}','UsersController@getXoa');
 
         Route::get('/download',function(){
             return Excel::download(new UsersExport,'DanhSach.xlsx');

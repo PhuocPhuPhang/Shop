@@ -131,9 +131,8 @@ class SanPhamController extends Controller
                     $name = $image->getClientOriginalName();
                     $hinh = $name . '_' . time() . '.' . $duoi;
                     fwrite($image_file, $hinh . ",");
-                    // $image->move("upload/sanpham/hinhanhkhac", $hinh);
+                    $image->move("upload/sanpham/hinhanhkhac", $hinh);
                 }
-                dd($image_file);
                 fclose($image_file);
             }
         } else {
@@ -144,7 +143,7 @@ class SanPhamController extends Controller
                     $name = $image->getClientOriginalName();
                     $hinh = $name . '_' . time() . '.' . $duoi;
                     fwrite($image_file, $hinh . ",");
-                    // $image->move("upload/sanpham/hinhanhkhac", $hinh);
+                    $image->move("upload/sanpham/hinhanhkhac", $hinh);
                 }
             }
             fclose($image_file);
@@ -158,8 +157,9 @@ class SanPhamController extends Controller
             ->join('cau_hinh_san_pham', 'thong_tin_san_pham.id_cau_hinh', 'cau_hinh_san_pham.id')
             ->select('cau_hinh_san_pham.cau_hinh', 'cau_hinh_san_pham.ten_khong_dau', 'cau_hinh_san_pham.id_loai', 'thong_tin_san_pham.mo_ta')
             ->where('thong_tin_san_pham.ma_san_pham', $masp)->get();
+        $hinhanh = DB::table('hinh_anh_san_pham')->where('ma_san_pham', $masp)->get();
 
-        return view('admin.sanpham.sua', ['sanpham' => $sanpham], ['thongtin_sp' => $thongtin_sp], ['nhacungcap' => $nhacungcap]);
+        return view('admin.sanpham.sua', ['sanpham' => $sanpham, 'thongtin_sp' => $thongtin_sp, 'nhacungcap' => $nhacungcap, 'hinhanh' => $hinhanh]);
     }
 
     public function postSua(Request $request, $masp)
@@ -205,14 +205,14 @@ class SanPhamController extends Controller
         ]);
     }
 
-    public function postXoa($masp)
+    public function getXoa($masp)
     {
         DB::table('san_pham')->where('ma_san_pham', $masp)->update(['da_xoa' => 1]);
 
         return redirect('admin/sanpham/danhsach')->with('thongbao', 'Cập nhật trạng thái thành công phẩm thành công');
     }
 
-    public function postUpdate($masp)
+    public function getUpdate($masp)
     {
         DB::table('san_pham')->where('ma_san_pham', $masp)->update(['da_xoa' => 0]);
         return redirect('admin/sanpham/danhsach')->with('thongbao', 'Cập nhật trạng thái thành công phẩm thành công');

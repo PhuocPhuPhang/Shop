@@ -45,14 +45,22 @@
                         {{"checked"}}
                     @endif><br/>
              </td>
+             @if($ncc->da_xoa == 0)
              <td style="text-align:center">
                 <a href="admin/nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="admin/nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash-o"></i> Xóa
+                    <i class="fa fa-trash-o"></i> Tạm ngưng
                 </a>
              </td>
+             @else
+             <td style="text-align:center">
+                <a href="admin/nhacungcap/update/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
+                    <i class="fa fa-trash-o"></i> Kích hoạt
+                </a>
+             </td>
+             @endif
            </tr>
            @endforeach
          </tbody>

@@ -90,7 +90,7 @@ class UsersController extends Controller
         return redirect('admin/user/sua/'.$id)->with('thongbao',"Cập nhật thành công");
     }
 
-    public function postXoa($id)
+    public function getXoa($id)
     {
         DB::table('users')->where('id',$id)->update(['quyen'=>0]);
         return redirect()->back();
