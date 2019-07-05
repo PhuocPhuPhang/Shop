@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Suppost\Helpers;
 use App\NhaCungCap;
+use DB;
 use Validator;
 
 
@@ -13,7 +14,7 @@ class NhaCungCapController extends Controller
 {
     public function getDanhSach()
     {
-       $nhacungcap = NhaCungCap::all();
+       $nhacungcap = DB::table('nha_cung_cap')->orderBy('created_at','desc')->get();
        return view('admin.nhacungcap.danhsach',['nhacungcap'=>$nhacungcap]);
     }
 
@@ -127,15 +128,15 @@ class NhaCungCapController extends Controller
         return redirect('admin/nhacungcap/sua/'.$mancc)->with('thongbao','Cập nhật thành công');
     }
 
-    public function postXoa($mancc)
+    public function getXoa($mancc)
     {
-        $nhacungcap = NhaCungCap::find($mancc);
-        if($nhacungcap->logo != "")
-        {
-            unlink(public_path('upload/nhacungcap/'.$nhacungcap->logo));
-        }
-        $nhacungcap->delete();
+        DB::table('nha_cung_cap')->where('ma_nha_cung_cap',$mancc)->update(['da_xoa'=>1]);
+        return redirect('admin/nhacungcap/danhsach')->with('thongbao','Cập nhật thành công');
+    }
 
-        return redirect('admin/nhacungcap/danhsach')->with('thongbao','Xóa thành công');
+    public function getUpdate($mancc)
+    {
+        DB::table('nha_cung_cap')->where('ma_nha_cung_cap',$mancc)->update(['da_xoa'=>0]);
+        return redirect('admin/nhacungcap/danhsach')->with('thongbao','Cập nhật thành công');
     }
 }

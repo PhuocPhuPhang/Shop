@@ -133,7 +133,7 @@ class TinTucController extends Controller
         return redirect('admin/tintuc/sua/'.$tintuc->id)->with('thongbao','Chỉnh sửa thông tin thành công');
     }
 
-    public function postXoa($id)
+    public function getXoa($id)
     {
         $tintuc = TinTuc::find($id);
         if($tintuc->hinh_anh != "")
@@ -262,7 +262,7 @@ class TinTucController extends Controller
         return redirect('admin/tintuc/chinhsach/sua/'.$id)->with('thongbao',"Cập nhật thành công");
     }
 
-    public function postXoaChinhSach($id)
+    public function getXoaChinhSach($id)
     {
         $chinhsach = TinTuc::find($id);
         $chinhsach->delete();

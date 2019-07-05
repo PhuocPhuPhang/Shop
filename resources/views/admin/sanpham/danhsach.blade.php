@@ -48,7 +48,7 @@
                             </td>
 
                             <td style="text-align:center">
-                                <input id="{{$sp->ma_nha_cung_cap}}" type="checkbox" class="flat" @if($sp->hien_thi)
+                                <input id="{{$sp->ma_san_pham}}" type="checkbox" class="flat" @if($sp->noi_bat)
                                 {{"checked"}}
                                 @endif><br />
                             </td>
@@ -60,8 +60,6 @@
                             @else
                             <td style="text-align:center">Hết hàng</td>
                             @endif
-
-
                             @if($sp->da_xoa == 0 )
                             <td style="text-align:center">
                                 <a href="admin/sanpham/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">

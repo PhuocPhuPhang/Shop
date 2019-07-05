@@ -134,7 +134,7 @@ class SlideController extends Controller
         return redirect('admin/slide/sua/'.$slide->id)->with('thongbao','Chỉnh sửa thành công');
     }
 
-    public function postXoa($id)
+    public function getXoa($id)
     {
         $slide = Media::find($id);
         if($slide->hinh_anh != "")

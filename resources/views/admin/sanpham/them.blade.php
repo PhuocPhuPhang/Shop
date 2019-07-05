@@ -27,12 +27,12 @@
                 </div>
                 <div class="x_content form-horizontal form-label-left">
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã sản phẩm</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" name="ma" id="ma" class="form-control col-md-7 col-xs-12 inputForm">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên sản phẩm</label>
@@ -75,9 +75,6 @@
 
                     <label>Keywords</label>
                     <textarea id="keywords" class="form-control inputForm" name="keywords"></textarea><br />
-
-                    <!-- <label>Hình đại diện</label>
-                    <input type="file" id="hinhanh" name="hinhanh" /><br /> -->
 
                     <label>Hình ảnh khác</label>
                     <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
@@ -275,7 +272,6 @@
         });
 
         $("#btnSubmit").click(function(event) {
-            var masp = document.getElementById('ma').value;
             var tensp = document.getElementById('ten').value;
             // var formData = new FormData();
             // console.log($('input#hinhanh')[0].files);
@@ -283,69 +279,52 @@
             // hinh = $('input#hinhanh')[0].files[0];
             // formData.append("hinh",hinh);
             var array = [];
-            if (masp != "" && tensp != "") {
+            if (tensp != "") {
+                $('.inputForm').each(function(index, input) {
+                    let name, value;
+                    key = $(input).attr('name');
+                    value = $(input).val();
+                    let arr = {};
+                    if (value != "") {
+                        arr[key] = value;
+                    } else {
+                        arr[key] = null;
+                    }
+                    array.push(arr);
+                });
                 $.ajax({
                     type: 'post',
-                    url: '/admin/sanpham/KiemTraMaSanPham',
+                    url: '/admin/sanpham/them',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        contentType: "application/json",
                     },
                     data: {
-                        "masp": masp
+                        "mang": array
                     },
                     success: function(data) {
-                        if (data.tontai != 0) {
-                            alert('Mã sản phẩm đã tồn tại. Vui lòng kiểm tra lại');
-                        } else {
-                            $('.inputForm').each(function(index, input) {
-                                let name, value;
-                                key = $(input).attr('name');
-                                value = $(input).val();
-                                let arr = {};
-                                if (value != "") {
-                                    arr[key] = value;
-                                } else {
-                                    arr[key] = null;
-                                }
-                                array.push(arr);
-                            });
-
-                            $.ajax({
-                                type: 'post',
-                                url: '/admin/sanpham/them',
-                                headers: {
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                    contentType: "multipart/form-data",
-                                },
-                                data: {
-                                    "mang": array
-                                },
-                                success:function(data){
-                                    if(data.data.success == 1){
-                                        alert('Thành công');
-                                        location.reload();
-                                    }
-                                }
-                            })
-                            // formData.append("mang",array);
-                            // $.ajax({
-                            //     headers: {
-                            //         'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            //         contentType: "multipart/form-data",
-                            //     },
-                            //     url: '/admin/sanpham/them',
-                            //     data: formData,
-                            //     cache: false,
-                            //     contentType: false,
-                            //     processData: false,
-                            //     type: 'POST',
-                            //     success: function(data){
-                            //         // alert(data);
-                            //     }
-                            // });
+                        if (data.data.success == 1) {
+                            alert('Thành công');
+                            location.reload();
                         }
                     }
-                })
+                });
+                // formData.append("mang",array);
+                // $.ajax({
+                //     headers: {
+                //         'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                //         contentType: "multipart/form-data",
+                //     },
+                //     url: '/admin/sanpham/them',
+                //     data: formData,
+                //     cache: false,
+                //     contentType: false,
+                //     processData: false,
+                //     type: 'POST',
+                //     success: function(data){
+                //         // alert(data);
+                //     }
+                // });
             } else {
                 alert('Vui lòng kiểm tra lại mã sản phẩm và tên sản phẩm ');
             }
@@ -368,33 +347,5 @@
             return str;
         }
     });
-
-    function showImages() {
-        if (this.files && this.files[0]) {
-            var obj = new FileReader();
-            obj.onload = function(data) {
-                var image = document.getElementById("image");
-                image.src = data.target.result;
-                image.style.display = "block";
-            }
-            obj.readAsDataURL(this.files[0]);
-        }
-    }
-
-    function change_alias(alias) {
-        var str = alias;
-        str = str.toLowerCase();
-        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
-        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
-        str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
-        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
-        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
-        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
-        str = str.replace(/đ/g, "d");
-        str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, " ");
-        str = str.replace(/ + /g, " ");
-        str = str.trim();
-        return str;
-    }
 </script>
 @endsection
