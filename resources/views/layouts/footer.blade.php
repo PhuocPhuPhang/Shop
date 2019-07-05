@@ -19,12 +19,13 @@
             <div class="footer-title">Chính sách công ty</div>
             @foreach($tintuc as $chinhsach)
             @if($chinhsach->type == "chinh-sach")
-            <a class="footer-row" href="" title="Chính sách mua hàng">{{$chinhsach->title}}</a>
+            <a class="footer-row" href="shop/tin-tuc/{{$chinhsach->ten_khong_dau}}" title="{{$chinhsach->title}}">{{$chinhsach->title}}</a>
             @endif
             @endforeach
 		</div>
 		<div class="footer-col">
 		    <p id="tintuc">{{$website->map}}</p>
+		    
 		</div>
 	</div>
 	<!-- <section class="tags container">

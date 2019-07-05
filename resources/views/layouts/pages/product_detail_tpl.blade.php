@@ -8,8 +8,8 @@
 					<a href="upload/sanpham/{{$product_detail->hinh_anh}}" id="Zoom-1" class="MagicZoom" title=""><img src="upload/sanpham/{{$product_detail->hinh_anh}}" alt="" width="250" /></a>
 				</div>
 				<div class="owl-product-photos owl-carousel owl-theme">
-					<a class="w-img product_zoom_item"  href="">
-						<img src="{{asset('themes/images/sp.jpg')}}"/>
+					<a class="w-img product_zoom_item" data-zoom-id="Zoom-1" data-image="{{asset('themes/images/sp.jpg')}}" href="{{asset('themes/images/sp.jpg')}}">
+						<img srcset="{{asset('themes/images/sp.jpg')}}" src="{{asset('themes/images/sp.jpg')}}"/>
 					</a>
 					<a class="w-img product_zoom_item"  href="">
 						<img src="{{asset('themes/images/sp.jpg')}}"/>
@@ -27,17 +27,17 @@
 			</div>
 			<ul class="khung_thongtin">
 				<li><h1>{{$product_detail->ten_san_pham}}</h1></li>
-				<li><label>Mã sản phẩm:</label> 123</li>
+				<li><label>Mã sản phẩm:</label> {{$product_detail->ma_san_pham}}</li>
 				<li>{{$product_detail->mo_ta}}</li>
 				<li class="gia_detail">
 					<label>Giá:</label> 
 					<span>{{number_format($product_detail->gia_ban)}}Đ</span> 
 				</li>
-				<li class="gia_cu">
+				<!-- <li class="gia_cu">
 					<div class="l_old_price"><label>Giá thị trường:</label>  <span>28,0000,000 VNĐ</span></div>
 					<div class="r_old_price"><label>Tiết kiệm:</label> <span>10%</span></div>
 					<div class="clearfix"></div>
-				</li>
+				</li> -->
 				<div class="action_buy">
 							<!-- <div class="flex-between-center">
 								<label>Số lượng:</label>
@@ -120,8 +120,7 @@
 					<div id="popup_TSKT" style="display: none;">
 						<div class="fullparameter" style="display: block;">
 							<div class="scroll">
-								<h3>Thông số kỹ thuật chi tiết Huawei Y9 Prime (2019)</h3>
-								<img id="imgKit" width="500" height="430" alt="Thông số kỹ thuật 202268" src="//cdn.tgdd.vn/Products/Images/42/202268/Kit/huawei-y9-prime-2019-note.jpg">
+								<h3>Thông số kỹ thuật chi tiết {{$product_detail->ten_san_pham}}</h3>
 								<ul class="parameterfull">
 									@foreach($loaicauhinh as $loai)
 									<li><label>{{$loai->ten}}</label></li>
@@ -167,7 +166,7 @@
 			<div class="binhluan">
 				<label>Bình luận sản phẩm</label>
 			</div>
-			
+
 			<div id="fb-root"></div>
 			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
 			<div class="fb-comments" data-href="<?php echo url()->current(); ?>" data-width="100%" data-numposts="5"></div>		
