@@ -34,7 +34,7 @@ class SanPhamController extends Controller
     }
     public function getDanhSach()
     {
-        $sanpham = SanPham::all();
+        $sanpham = DB::table('san_pham')->orderBy('ngay_tao','desc')->get();
         $nhacungcap = NhaCungCap::all();
         return view('admin.sanpham.danhsach', ['sanpham' => $sanpham], ['nhacungcap' => $nhacungcap]);
     }
@@ -144,7 +144,7 @@ class SanPhamController extends Controller
                     $duoi = $image->getClientOriginalExtension();
                     $name = $image->getClientOriginalName();
                     $hinh = $name . '_' . time() . '.' . $duoi;
-                    fwrite($image_file, $hinh.",");
+                    fwrite($image_file, $hinh . ",");
                     $image->move("upload/sanpham/hinhanhkhac", $hinh);
                 }
             }
@@ -230,12 +230,11 @@ class SanPhamController extends Controller
 
     public function postXoaHinh(Request $request, $id)
     {
-        $hinhanh = DB::table('hinh_anh_san_pham')->where('id',$id)->first();
-        if($hinhanh->hinh_anh)
-        {
-            unlink(public_path('upload/sanpham/hinhanhkhac'.$hinhanh->hinh_anh));
+        $hinhanh = DB::table('hinh_anh_san_pham')->where('id', $id)->first();
+        if ($hinhanh->hinh_anh) {
+            unlink(public_path('upload/sanpham/hinhanhkhac' . $hinhanh->hinh_anh));
         }
-        DB::table('hinh_anh_san_pham')->where('id',$id)->delete();
+        DB::table('hinh_anh_san_pham')->where('id', $id)->delete();
         return response()->json([
             'data' => [
                 'success' => 1,

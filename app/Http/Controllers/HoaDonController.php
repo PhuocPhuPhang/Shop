@@ -23,7 +23,7 @@ class HoaDonController extends Controller
     }
     public function getDanhSach()
     {
-        $hoadon = DB::table('hoa_don')->where('duyet',0)->get();
+        $hoadon = DB::table('hoa_don')->where('duyet',0)->orderBy('ma_hoa_don')->get();
         return view('admin.hoadon.danhsach',['hoadon'=>$hoadon]);
     }
 
