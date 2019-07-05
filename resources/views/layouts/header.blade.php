@@ -50,7 +50,7 @@
 								</div>
 								<div class="login-row">
 									<label>Số điện thoại(*)</label>
-									<input type="text" name="so_dien_thoai" placeholder="Số điện thoại" maxlength="10" required>
+									<input type="text" name="so_dien_thoai" placeholder="Số điện thoại" pattern="(0[3|7|9|8|5])+([0-9]{8})\b" title="Số điện thoại không hợp lệ" maxlength="10" required>
 								</div>
 								<div class="login-row">
 									<label>Email(*)</label>

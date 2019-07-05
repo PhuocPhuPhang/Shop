@@ -250,7 +250,7 @@
 		} return true;
 	}
 </script> -->
-<script>
+<!-- <script>
 	$(function() {
         
         var $form = $( "#frmSignUp" );
@@ -275,14 +275,14 @@
             var input = $this.val();
             
             var input = input.replace(/[\D\s\._\-]+/g, "");
-                    input = input ? parseInt( input, 10 ) : 0;
+                    input = input ? parseChar( input, 10 ) : 0;
 
                     $this.val( function() {
                         return ( input === 0 ) ? "" : input;
                     } );
         } );
     });
-</script>
+</script> -->
 </html>
 @yield('script')
 
