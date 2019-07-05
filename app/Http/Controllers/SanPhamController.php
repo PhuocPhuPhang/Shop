@@ -101,9 +101,14 @@ class SanPhamController extends Controller
                 }
             }
         }
-
         $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt", "r");
         $read = file("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
+
+        $array_image
+
+
+        = explode(",",$read);
+        dd($array_image);
         for ($i = 0; $i < count($read); $i++) {
             $hinhanh_sp = new HinhAnh;
             $hinhanh_sp->ma_san_pham = $newArr['ma'];
@@ -111,11 +116,11 @@ class SanPhamController extends Controller
             $hinhanh_sp->save();
         }
         fclose($image_file);
-        $file = "\\" . str_slug($newArr['ten']) . "txt";
-        rename(
-            "..\public\upload\sanpham\hinhanhkhac\hinh.txt",
-            "..\public\upload\sanpham\hinhanhkhac" . $file
-        );
+        // $file = "\\" . str_slug($newArr['ten']) . "txt";
+        // rename(
+        //     "..\public\upload\sanpham\hinhanhkhac\hinh.txt",
+        //     "..\public\upload\sanpham\hinhanhkhac" . $file
+        // );
         return 1;
     }
 
@@ -141,7 +146,7 @@ class SanPhamController extends Controller
                     $duoi = $image->getClientOriginalExtension();
                     $name = $image->getClientOriginalName();
                     $hinh = $name . '_' . time() . '.' . $duoi;
-                    fwrite($image_file, $hinh . "\n");
+                    fwrite($image_file, $hinh.",");
                     $image->move("upload/sanpham/hinhanhkhac", $hinh);
                 }
             }
