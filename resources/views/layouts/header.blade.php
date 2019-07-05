@@ -151,7 +151,7 @@
 				<a href=""><img class="img-responsive" src="images/logo.png" alt=""></a>
 			</div>
 			<div class="search_haed ">
-				<form id="" action="{{ URL('/timkiem') }}" method="post">
+				<form id="" action="{{ URL('shop/timkiem') }}" method="post">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					<div class="timkiem flex-between-center">
 						<!-- <select id="sel_list">

@@ -145,8 +145,9 @@
 			</div>
 			<div class="custom-table__body">
 				<div class="custom-table__row">
+                <?php $i = 1 ?>
 					@foreach($a as $dh)
-					<div class="custom-table__col center">1</div>
+					<div class="custom-table__col center">{{$i++}}</div>
 					<div class="custom-table__col center">{{$dh->ma_hoa_don}}</div>
 					<div class="custom-table__col">
 						@foreach($b as $dhct)
@@ -187,7 +188,7 @@
 		</script>
 		@endif
 		@endif
-		
+
 	</div>
 </div>
 @endsection

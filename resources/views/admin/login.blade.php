@@ -65,7 +65,7 @@
               </div>
               <div>
                 <button type="submit" name="login" class="btn btn-default submit" >Đăng nhập</button>
-                <a class="reset_pass" href="#">Quên mật khẩu ?</a>
+                <!-- <a class="reset_pass" href="#">Quên mật khẩu ?</a> -->
               </div>
 
               <div class="clearfix"></div>

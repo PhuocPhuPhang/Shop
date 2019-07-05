@@ -10,7 +10,7 @@
 	</div>
 	<div class="select_price_wrap">
 		<div class="flex-between-center">
-			<ul class="select_price">
+			<!-- <ul class="select_price">
 				<li><label>Chọn mức giá:</label></li>
 				<li id="gia">
 					<a class="price_item" data-id="1">Dưới 2 triệu</a>
@@ -19,14 +19,14 @@
 					<a class="price_item" data-id="4" >Từ 7 - 13 triệu</a>
 					<a class="price_item" data-id="5" >Trên 13 triệu</a>
 				</li>
-			</ul>
-			<div class="sapxep_wrap">
+			</ul> -->
+			<!-- <div class="sapxep_wrap">
 				<label class="title_sapxep">Sắp xếp</label>
 				<div id="SapXepGia" class="sapxep_main">
 					<a href="shop/SapXepGia" data-id="1" class="sapxep_item">Giá cao đến thấp</a>
 					<a data-id="2" class="sapxep_item">Giá thấp đến cao</a>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="flex-between container">
@@ -73,13 +73,13 @@
 						<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
 							<img src="upload/sanpham/{{$sp->hinh_anh}}" alt="{{$sp->ten_san_pham}}">
 						</a>
-						<div class="sale_off">Giảm giá -10%</div>
+						<!-- <div class="sale_off">Giảm giá -10%</div> -->
 					</div>
 					<div class="pro_info">
 						<a class="name" href="shop/san-pham/{{$sp->ma_san_pham}}">{{$sp->ten_san_pham}}</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
-							<div class="price_old">10,000,000 Đ</div>
+							<!-- <div class="price_old">10,000,000 Đ</div> -->
 						</div>
 						<div class="pro_info-info">
 							<span>Màn hình: 5.8", Super Retina</span>

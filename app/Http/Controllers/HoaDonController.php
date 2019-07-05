@@ -54,6 +54,12 @@ class HoaDonController extends Controller
           ]);
     }
 
+    public function getDanhSachDuyet()
+    {
+        $hoadon = DB::table('hoa_don')->where('duyet',1)->get();
+        return view('admin.hoadon.dsduyet',['hoadon'=>$hoadon]);
+    }
+
 
 
 }

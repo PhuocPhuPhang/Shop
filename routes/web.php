@@ -199,6 +199,7 @@ Route::group(['prefix'=>'admin'],function(){
     //Hóa đơn
     Route::group(['prefix'=>'hoadon'],function(){
         Route::get('danhsach','HoaDonController@getDanhSach');
+        Route::get('danhsachduyet','HoaDonController@getDanhSachDuyet');
 
         Route::get('duyet/{mahd}','HoaDonController@getDuyet');
         Route::post('duyet/{mahd}','HoaDonController@postDuyet');
@@ -236,7 +237,7 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('san-pham-nha-cung-cap/{nha_cung_cap}','PageControllers@product_nha_cung_cap_tpl');
     Route::get('san-pham/{ma_san_pham}','PageControllers@product_detail_tpl');
     Route::post('SapXepGia','PageControllers@SapXepGia');
-    
+
     //profile
     Route::get('profile','PageControllers@profile');
     Route::get('thong-tin-tai-khoan','PageControllers@profile');

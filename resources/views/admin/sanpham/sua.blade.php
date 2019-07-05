@@ -309,6 +309,12 @@
                     data: {
                         "mang": array
                     },
+                    success: function(data) {
+                        if (data.data.success == 1) {
+                            alert('Thành công');
+                            location.reload();
+                        }
+                    }
                 });
             } else {
                 alert('Vui lòng kiểm tra lại mã sản phẩm và tên sản phẩm ');

@@ -59,11 +59,7 @@ class TinTucController extends Controller
                 return redirect('admin/tintuc/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
-            $hinh = str_random(4)."_".$name;
-            while(file_exists("upload/tintuc/".$hinh))
-            {
-                $hinh = str_random(4)."_".$name;
-            }
+            $hinh = $name.'_'.time().'.'.$duoi;
             $file->move("upload/tintuc",$hinh);
             $tintuc->hinh_anh = $hinh;
 

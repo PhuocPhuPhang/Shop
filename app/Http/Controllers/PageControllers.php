@@ -362,7 +362,7 @@ public function DonHang()
       $b[]=$value2;
       foreach ($gia_san_pham as $value3) {
         $c[]=$value3;
-      }   
+      }
     }
   }
   return view('layouts.pages.profile',compact('a','b','c'));

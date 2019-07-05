@@ -321,8 +321,10 @@
                                     "mang": array
                                 },
                                 success:function(data){
-                                    if(data.success)
-                                    alert('Thành công');
+                                    if(data.data.success == 1){
+                                        alert('Thành công');
+                                        location.reload();
+                                    }
                                 }
                             })
                             // formData.append("mang",array);

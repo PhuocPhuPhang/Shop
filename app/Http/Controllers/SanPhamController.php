@@ -103,12 +103,6 @@ class SanPhamController extends Controller
         }
         $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt", "r");
         $read = file("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
-
-        $array_image
-
-
-        = explode(",",$read);
-        dd($array_image);
         for ($i = 0; $i < count($read); $i++) {
             $hinhanh_sp = new HinhAnh;
             $hinhanh_sp->ma_san_pham = $newArr['ma'];
@@ -121,7 +115,11 @@ class SanPhamController extends Controller
         //     "..\public\upload\sanpham\hinhanhkhac\hinh.txt",
         //     "..\public\upload\sanpham\hinhanhkhac" . $file
         // );
-        return 1;
+        return response()->json([
+            'data' => [
+                'success' => 1,
+            ]
+        ]);
     }
 
     public function postUploadImages(Request $request)
@@ -210,7 +208,11 @@ class SanPhamController extends Controller
                 }
             }
         }
-        return 1;
+        return response()->json([
+            'data' => [
+                'success' => 1,
+            ]
+        ]);
     }
 
     public function postXoa($masp)

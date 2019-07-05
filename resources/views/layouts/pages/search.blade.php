@@ -8,7 +8,7 @@
             @endforeach
 		</div>
 	</div>
-	<div class="select_price_wrap">
+	<!-- <div class="select_price_wrap">
 		<div class="flex-between-center">
 			<ul class="select_price">
 				<li><label>Chọn mức giá:</label></li>
@@ -29,9 +29,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="flex-between container">
-		<div class="pro_left">
+		<div class="pro_left" style="display: none;">
 			<div class="pro_left-item">
 				<label>Phiên bản</label>
 				<ul>
@@ -63,7 +63,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="main_content">
+		<div class="main_content" style="width: 100%;">
 			<div class="wrap_name">
 				<div class="name"><h1>Tìm kiếm: {{$tukhoa}}</h1></div>
 			</div>
@@ -74,13 +74,13 @@
 						<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
 							<img src="upload/sanpham/{{$sp->hinh_anh}}" alt="{{$sp->ten_san_pham}}">
 						</a>
-						<div class="sale_off">Giảm giá -10%</div>
+						<!-- <div class="sale_off">Giảm giá -10%</div> -->
 					</div>
 					<div class="pro_info">
 						<a class="name" href="shop/san-pham/{{$sp->ma_san_pham}}">{{$sp->ten_san_pham}}</a>
 						<div class="wrap_price flex-between">
 							<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
-							<div class="price_old">10,000,000 Đ</div>
+							<!-- <div class="price_old">10,000,000 Đ</div> -->
 						</div>
 						<div class="pro_info-info">
 							<span>Màn hình: 5.8", Super Retina</span>

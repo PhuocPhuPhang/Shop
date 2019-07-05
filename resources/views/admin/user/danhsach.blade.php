@@ -45,7 +45,7 @@
              <td>{{ $ng->dia_chi }}</td>
              <td style="text-align:center">
              @if( $route->uri != 'admin/user/nhanvien')
-             <button type="button" id="phanquyen" value="{{$ng->id}}" class="btn btn-info btn-xs">
+             <button type="button" id="{{$ng->id}}" value="{{$ng->id}}" class="btn btn-info btn-xs phanquyen">
                     <i class="fa fa-pencil"></i> Phân quyền
             </button>
              @endif
@@ -107,13 +107,13 @@
 @section('script')
     <script type="text/javascript" language="javascript">
         $(document).ready(function(){
-            $('#phanquyen').click(function(){
+            $('.phanquyen').click(function(){
                 $('#formModal').modal('show');
             });
 
             $('#action').click(function(){
                 var quyen = $("#quyen").val();
-                var id = $("#phanquyen").val();
+                var id = $(".phanquyen").val();
                 $.ajax({
                     type:'POST',
                     url: 'admin/ajax/user/update',
