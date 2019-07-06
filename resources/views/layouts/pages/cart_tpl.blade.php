@@ -25,9 +25,15 @@
 							<div id="unit" class="cart-items__unit">Giá sản phẩm: {{number_format($dt->price)}}<sup>đ</sup></div>
 							<div class="cart-items__quantity">
 								<input type="hidden" value="{{$dt->id}}" id="rowID{{$dt->id}}">
+
+
 								<span id="minus{{$dt->id}}" class="amount amount-minus" data-action="minus"></span>
-								<input type="text" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}">
-								<span id="plus{{$dt->id}}" class="amount amount-plus" data-action="pluss"></span>
+
+								<input type="text" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}" readonly>
+
+								<span id="plus{{$dt->id}}" class="amount amount-plus" data-action="pluss"  ></span>
+
+
 							</div>
 							<span class="cart-items__price">Tổng giá:</span>
 							<div id="price-" class="cart-items__price">{{number_format($dt->price * $dt->quantity)}}<sup>đ</sup></div>
@@ -82,6 +88,7 @@
 @endsection
 @section('script')
 <script>
+
 	@foreach($data as $dt)
 	$( "#minus{{$dt->id}}" ).click(function() {
 		var newQty = $("#upCart{{$dt->id}}").val();
@@ -101,6 +108,7 @@
 		}
 	});
 	@endforeach
+
 	@foreach($data as $dt)
 	$( "#plus{{$dt->id}}" ).click(function() {
 		var newQty = $("#upCart{{$dt->id}}").val();
@@ -110,9 +118,15 @@
 			type:'POST',
 			url: 'shop/cart/plus',
 			headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-			data:{"id":id},
+			data:{"id":id, "newQty":newQty},
 			success: function(data){
-				location.reload();
+				if(data.data.success == true){
+					location.reload();
+				}
+				else{
+					document.getElementById("plus{{$dt->id}}").style.display = "none";
+				}
+				
 			}
 		})
 	});

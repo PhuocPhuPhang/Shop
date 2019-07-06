@@ -79,8 +79,6 @@ Route::group(['prefix' => 'shop'], function () {
     Route::post('cart/plus', 'PageControllers@PlusCart');
     Route::post('cart/minus', 'PageControllers@MinusCart');
     Route::post('createCart', 'PageControllers@createCart');
-
-
     Route::get('lien-he', 'PageControllers@contact_tpl');
 
 
