@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>DANH SÁCH TIN TỨC</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('admin/tintuc/them') }}"><i class="fa fa-plus"></i></a></li>
+            <li><a href="shop/admin/tintuc/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>
@@ -51,10 +51,10 @@
              </td>
 
              <td style="text-align:center">
-                <a href="admin/tintuc/sua/{{$tin->id}}" class="btn btn-info btn-xs">
+                <a href="shop/admin/tintuc/sua/{{$tin->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="admin/tintuc/xoa/{{$tin->id}}" class="btn btn-danger btn-xs">
+                <a href="shop/admin/tintuc/xoa/{{$tin->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
@@ -76,7 +76,7 @@
                 var col = $(this).closest('.flat').attr('name');
                 $.ajax({
                     type:'POST',
-                    url: 'admin/ajax/tintuc/update',
+                    url: 'shop/admin/ajax/tintuc/update',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"id":id,"col":col},
                     success: function(data){

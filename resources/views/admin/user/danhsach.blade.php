@@ -5,7 +5,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-    @if( $route->uri == 'admin/user/nhanvien')
+    @if( $route->uri == 'shop/admin/user/nhanvien')
        <h2>DANH SÁCH NHÂN VIÊN</h2>
     @else
         <h2>DANH SÁCH KHÁCH HÀNG</h2>
@@ -44,13 +44,13 @@
              <td>{{ $ng->so_dien_thoai }}</td>
              <td>{{ $ng->dia_chi }}</td>
              <td style="text-align:center">
-             @if( $route->uri != 'admin/user/nhanvien')
+             @if( $route->uri != 'shop/admin/user/nhanvien')
              <button type="button" id="{{$ng->id}}" value="{{$ng->id}}" class="btn btn-info btn-xs phanquyen">
                     <i class="fa fa-pencil"></i> Phân quyền
             </button>
              @endif
              @if($ng->quyen != 0)
-                <a href="admin/user/xoa/{{$ng->id}}" class="btn btn-danger btn-xs">
+                <a href="shop/admin/user/xoa/{{$ng->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
@@ -116,7 +116,7 @@
                 var id = $(".phanquyen").val();
                 $.ajax({
                     type:'POST',
-                    url: 'admin/ajax/user/update',
+                    url: 'shop/admin/ajax/user/update',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"id":id , "quyen":quyen},
                     success: function(data){

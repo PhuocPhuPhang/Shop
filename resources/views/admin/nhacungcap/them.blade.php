@@ -26,7 +26,7 @@
                 </div>
             @endif
 
-            <form  action="admin/nhacungcap/them" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" >
+            <form  action="shop/admin/nhacungcap/them" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" >
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã nhà cung cấp</label>
@@ -63,7 +63,7 @@
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <a href="admin/nhacungcap/danhsach"><button class="btn btn-primary" type="button">Hủy</button></a>
+                    <a href="shop/admin/nhacungcap/danhsach"><button class="btn btn-primary" type="button">Hủy</button></a>
                     <button class="btn btn-primary" type="reset">Làm mới</button>
                     <button type="submit" class="btn btn-success">Lưu</button>
                 </div>

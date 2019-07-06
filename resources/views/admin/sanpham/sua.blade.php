@@ -236,7 +236,7 @@
 
                 $.ajax({
                     type: 'post',
-                    url: '../ajax/cauhinh/them',
+                    url: 'shop/admin/ajax/cauhinh/them',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
@@ -295,7 +295,7 @@
                 });
                 $.ajax({
                     type: 'post',
-                    url: 'admin/sanpham/sua/' + masp,
+                    url: 'shop/admin/sanpham/sua/' + masp,
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         contentType: "application/json",
@@ -319,7 +319,7 @@
             var id = $(this).attr('id');
             $.ajax({
                 type: 'post',
-                url: 'admin/sanpham/hinhanh/xoa/' + id,
+                url: 'shop/admin/sanpham/hinhanh/xoa/' + id,
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                     contentType: "application/json",

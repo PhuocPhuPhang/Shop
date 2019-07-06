@@ -16,4 +16,9 @@ class User extends Authenticatable
     public function orders(){
     	return $this->hasMany(orders::class);
     }
+
+    public function quyen()
+    {
+        return $this->belongsTo('App\Quyen','id','quyen');
+    }
 }

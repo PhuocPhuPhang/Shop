@@ -26,7 +26,7 @@
                 </div>
             @endif
 
-            <form  action="admin/website/thongtin" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" >
+            <form  action="shop/admin/website/thongtin" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" >
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
                 <div class="form-group">

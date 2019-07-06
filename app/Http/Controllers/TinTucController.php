@@ -56,7 +56,7 @@ class TinTucController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/tintuc/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/tintuc/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = $name.'_'.time().'.'.$duoi;
@@ -70,7 +70,7 @@ class TinTucController extends Controller
         }
 
         $tintuc->save();
-        return redirect('admin/tintuc/them')->with('thongbao','Thêm thành công');
+        return redirect('shop/admin/tintuc/them')->with('thongbao','Thêm thành công');
     }
 
     public function getSua($id)
@@ -120,7 +120,7 @@ class TinTucController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/tintuc/sua/'.$id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/tintuc/sua/'.$id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = $name.'_'.time().'.'.$duoi;
@@ -130,7 +130,7 @@ class TinTucController extends Controller
         }
 
         $tintuc->save();
-        return redirect('admin/tintuc/sua/'.$tintuc->id)->with('thongbao','Chỉnh sửa thông tin thành công');
+        return redirect('shop/admin/tintuc/sua/'.$tintuc->id)->with('thongbao','Chỉnh sửa thông tin thành công');
     }
 
     public function getXoa($id)
@@ -141,7 +141,7 @@ class TinTucController extends Controller
             unlink(public_path('upload/tintuc/'.$tintuc->hinh_anh));
         }
         $tintuc->delete();
-        return redirect('admin/tintuc/danhsach')->with('thongbao','Xóa thành công');
+        return redirect('shop/admin/tintuc/danhsach')->with('thongbao','Xóa thành công');
     }
 
     public function getGioiThieu()
@@ -169,7 +169,7 @@ class TinTucController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/tintuc/gioithieu')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/tintuc/gioithieu')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = $name.'_'.time().'.'.$duoi;
@@ -198,13 +198,13 @@ class TinTucController extends Controller
                       'hinh_anh'=>$hinh_gioithieu]);
         }
 
-        return redirect('admin/tintuc/gioithieu')->with('thongbao','Cập nhật thành công');
+        return redirect('shop/admin/tintuc/gioithieu')->with('thongbao','Cập nhật thành công');
     }
 
     public function getChinhSach()
     {
         $chinhsach = TinTuc::where('type','chinh-sach')->get();
-        return view('admin/tintuc/chinhsach/danhsach',['chinhsach'=>$chinhsach]);
+        return view('shop/admin/tintuc/chinhsach/danhsach',['chinhsach'=>$chinhsach]);
     }
 
     public function getThemChinhSach()
@@ -231,13 +231,13 @@ class TinTucController extends Controller
         $chinhsach->type = "chinh-sach";
 
         $chinhsach->save();
-        return redirect('admin/tintuc/chinhsach/them')->with('thongbao','Thêm thành công');
+        return redirect('shop/admin/tintuc/chinhsach/them')->with('thongbao','Thêm thành công');
     }
 
     public function getSuaChinhSach($id)
     {
         $chinhsach = TinTuc::find($id);
-        return view('admin.tintuc.chinhsach.sua',['chinhsach'=>$chinhsach]);
+        return view('shop/admin.tintuc.chinhsach.sua',['chinhsach'=>$chinhsach]);
     }
 
     public function postSuaChinhSach(Request $request, $id)
@@ -259,14 +259,14 @@ class TinTucController extends Controller
 
         $chinhsach->save();
 
-        return redirect('admin/tintuc/chinhsach/sua/'.$id)->with('thongbao',"Cập nhật thành công");
+        return redirect('shop/admin/tintuc/chinhsach/sua/'.$id)->with('thongbao',"Cập nhật thành công");
     }
 
     public function getXoaChinhSach($id)
     {
         $chinhsach = TinTuc::find($id);
         $chinhsach->delete();
-        return redirect('admin/tintuc/chinhsach')->with('thongbao','Xóa thành công');
+        return redirect('shop/admin/tintuc/chinhsach')->with('thongbao','Xóa thành công');
 
     }
 }

@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>DANH SÁCH SLIDE</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="admin/slide/them"><i class="fa fa-plus"></i></a></li>
+            <li><a href="shop/admin/slide/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>
@@ -47,10 +47,10 @@
                     @endif><br/>
              </td>
              <td style="text-align:center;vertical-align:middle;">
-                <a href="admin/slide/sua/{{$sl->id}}" class="btn btn-info btn-xs">
+                <a href="shop/admin/slide/sua/{{$sl->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="admin/slide/xoa/{{$sl->id}}" class="btn btn-danger btn-xs">
+                <a href="shop/admin/slide/xoa/{{$sl->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
@@ -71,7 +71,7 @@
                 var id = $(this).closest('.flat').attr('id');
                 $.ajax({
                     type:'POST',
-                    url: 'admin/ajax/media/update/hienthi',
+                    url: 'shop/admin/ajax/media/update/hienthi',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"id":id,"type":"slide"},
                     success: function(data){
@@ -92,7 +92,7 @@
                 var thutu = $(this).val();
                 $.ajax({
                     type:'POST',
-                    url: 'admin/ajax/slide/update/thutu',
+                    url: 'shop/admin/ajax/slide/update/thutu',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"id":id,"thutu":thutu},
                     success: function(data){

@@ -228,7 +228,7 @@
 
                 $.ajax({
                     type: 'post',
-                    url: '../ajax/cauhinh/them',
+                    url: 'shop/admin/ajax/cauhinh/them',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
@@ -291,7 +291,7 @@
                 });
                 $.ajax({
                     type: 'post',
-                    url: '/admin/sanpham/them',
+                    url: 'shop/admin/sanpham/them',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         contentType: "application/json",

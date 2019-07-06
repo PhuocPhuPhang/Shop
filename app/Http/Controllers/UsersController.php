@@ -74,7 +74,7 @@ class UsersController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/user/sua/'.$user->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/user/sua/'.$user->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = str_random(4)."_".$name;
@@ -87,7 +87,7 @@ class UsersController extends Controller
         }
 
         $user->save();
-        return redirect('admin/user/sua/'.$id)->with('thongbao',"Cập nhật thành công");
+        return redirect('shop/admin/user/sua/'.$id)->with('thongbao',"Cập nhật thành công");
     }
 
     public function getXoa($id)

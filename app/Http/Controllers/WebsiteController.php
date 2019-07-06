@@ -24,6 +24,6 @@ class WebsiteController extends Controller
         'map'       =>$request->map,
         'fanpage'   =>$request->fanpage
         ]);
-        return redirect('admin/website/thongtin')->with('thongbao','Cập nhật thành công');
+        return redirect('shop/admin/website/thongtin')->with('thongbao','Cập nhật thành công');
     }
 }

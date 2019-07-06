@@ -7,7 +7,7 @@
             <div class="x_title">
                 <h2>Danh sách sản phẩm</h2>
                 <ul class="nav navbar-right panel_toolbox">
-                    <li><a href="admin/sanpham/them"><i class="fa fa-plus"></i></a></li>
+                    <li><a href="shop/admin/sanpham/them"><i class="fa fa-plus"></i></a></li>
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     <li class="dropdown"></li>
                 </ul>
@@ -62,16 +62,16 @@
                             @endif
                             @if($sp->da_xoa == 0 )
                             <td style="text-align:center">
-                                <a href="admin/sanpham/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
+                                <a href="shop/admin/sanpham/sua/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
                                     <i class="fa fa-pencil"></i> Chỉnh sửa
                                 </a>
-                                <a href="admin/sanpham/xoa/{{$sp->ma_san_pham}}" class="btn btn-danger btn-xs">
+                                <a href="shop/admin/sanpham/xoa/{{$sp->ma_san_pham}}" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash-o"></i> Tạm ngưng
                                 </a>
                             </td>
                             @else
                             <td style="text-align:center">
-                                <a href="admin/sanpham/update/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
+                                <a href="shop/admin/sanpham/update/{{$sp->ma_san_pham}}" class="btn btn-info btn-xs">
                                     <i class="fa fa-pencil"></i> Kích hoạt
                                 </a>
                             </td>

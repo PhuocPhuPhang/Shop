@@ -73,7 +73,7 @@
                 var mahd = $(this).attr('id');
                 $.ajax({
                     type:'GET',
-                    url: 'admin/hoadon/duyet/' + mahd,
+                    url: 'shop/admin/hoadon/duyet/' + mahd,
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"mahd":mahd},
                     success: function(data){
