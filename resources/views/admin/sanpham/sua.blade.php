@@ -73,12 +73,6 @@
                     <label>Mô tả</label>
                     <textarea id="mota" class="form-control inputForm" name="mota">{{$sanpham->noi_dung}}</textarea><br />
 
-                    <label>Keywords</label>
-                    <textarea id="keywords" class="form-control inputForm" name="keywords">{{$sanpham->noi_dung}}</textarea><br />
-
-                    <!-- <label>Hình đại diện</label>
-                    <input type="file" id="hinhanh" class="inputForm" name="hinhanh" /><br /> -->
-
                     <label>Hình hiện tại</label>
                     <p>
                         @foreach($hinhanh as $hinh)

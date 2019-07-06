@@ -168,9 +168,9 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('xoa/{id}','UsersController@getXoa');
 
-        Route::get('/download',function(){
-            return Excel::download(new UsersExport,'DanhSach.xlsx');
-        });
+        // Route::get('/download',function(){
+        //     return Excel::download(new UsersExport,'DanhSach.xlsx');
+        // });
     });
 
     //Ajax

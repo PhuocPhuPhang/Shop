@@ -73,9 +73,6 @@
                     <label>Mô tả</label>
                     <textarea id="mota" class="form-control inputForm" name="mota"></textarea><br />
 
-                    <label>Keywords</label>
-                    <textarea id="keywords" class="form-control inputForm" name="keywords"></textarea><br />
-
                     <label>Hình ảnh khác</label>
                     <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />

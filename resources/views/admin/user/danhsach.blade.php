@@ -60,9 +60,9 @@
         </tbody>
         </table>
         </div>
-    @if( $route->uri != 'admin/user/nhanvien')
+    <!-- @if( $route->uri != 'admin/user/nhanvien')
     <a href="download" class="btn btn-success">Xuất File Excel </a>
-    @endif
+    @endif -->
     </div>
     </div>
 </div>

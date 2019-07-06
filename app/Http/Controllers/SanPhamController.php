@@ -9,7 +9,6 @@ use App\NhaCungCap;
 use App\CauHinhSanPham;
 use App\LoaiCauHinh;
 use App\ThongTinSanPham;
-use App\KhuyenMai;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -23,13 +22,11 @@ class SanPhamController extends Controller
         $loaicauhinh = LoaiCauHinh::all();
         $dsCauHinh = CauHinhSanPham::all();
         $thongtinsp = ThongTinSanPham::all();
-        $khuyenmai = KhuyenMai::all();
         $nhacungcap = NhaCungCap::all();
 
         view()->share('loaicauhinh', $loaicauhinh);
         view()->share('dsCauHinh', $dsCauHinh);
         view()->share('thongtinsp', $thongtinsp);
-        view()->share('khuyenmai', $khuyenmai);
         view()->share('nhacungcap', $nhacungcap);
     }
     public function getDanhSach()
@@ -76,7 +73,6 @@ class SanPhamController extends Controller
         $sanpham->mau_sac = $newArr['mausac'];
         $sanpham->mo_ta = $newArr['mota'];
         $sanpham->noi_dung = $newArr['noidung'];
-        $sanpham->keywords = $newArr['keywords'];
 
         $listCauHinh = DB::table('cau_hinh_san_pham')->select('id', 'ten_khong_dau')->get();
         foreach ($newArr as $key => $value) {
@@ -181,7 +177,6 @@ class SanPhamController extends Controller
         $sanpham->mau_sac = $newArr['mausac'];
         $sanpham->mo_ta = $newArr['mota'];
         $sanpham->noi_dung = $newArr['noidung'];
-        $sanpham->keywords = $newArr['keywords'];
         $sanpham->save();
 
         $listCauHinh = DB::table('cau_hinh_san_pham')->select('id', 'ten_khong_dau')->get();
