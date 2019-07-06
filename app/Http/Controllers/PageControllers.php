@@ -265,7 +265,12 @@ class PageControllers extends Controller
   public function cart_tpl()
   {
     $data = Cart::getContent();
-    return view('layouts.pages.cart_tpl', ['data' => $data]);
+    $sanpham = null;
+    foreach ($data as $item) {
+      $sanpham = DB::table('san_pham')->where('ma_san_pham',$item->id)->first();
+    }
+
+    return view('layouts.pages.cart_tpl', ['data' => $data, 'sanpham'=>$sanpham]);
   }
 
   public function RemoveCart($id)

@@ -31,7 +31,11 @@
 
 								<input type="text" name="number" id="upCart{{$dt->id}}" value="{{$dt->quantity}}" readonly>
 
-								<span id="plus{{$dt->id}}" class="amount amount-plus" data-action="pluss"  ></span>
+
+								@if($dt->quantity < $sanpham->so_luong )
+								<span id="plus{{$dt->id}}" class="amount amount-plus" data-action="pluss" ></span>
+								@endif
+
 
 
 							</div>
@@ -88,12 +92,11 @@
 @endsection
 @section('script')
 <script>
-
 	@foreach($data as $dt)
 	$( "#minus{{$dt->id}}" ).click(function() {
 		var newQty = $("#upCart{{$dt->id}}").val();
 		var id =  $("#rowID{{$dt->id}}").val();
-		if(newQty <= 1){
+		if(newQty == 1){
 			return false;
 		}else{
 			$.ajax({
@@ -123,9 +126,9 @@
 				if(data.data.success == true){
 					location.reload();
 				}
-				else{
-					document.getElementById("plus{{$dt->id}}").style.display = "none";
-				}
+				// else{
+				// 	document.getElementById("plus{{$dt->id}}").style.display = "none";
+				// }
 				
 			}
 		})
