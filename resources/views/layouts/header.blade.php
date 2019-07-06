@@ -58,11 +58,11 @@
 								</div>
 								<div class="login-row">
 									<label>Mật khẩu(*)</label>
-									<input type="password" id="pass" name="password" minlength="6" placeholder="Nhập mật khẩu" required>
+									<input type="password" id="password" name="password" minlength="6" placeholder="Nhập mật khẩu" required>
 								</div>
 								<div class="login-row">
 									<label>Nhập lại mật khẩu(*)</label>
-									<input type="password" id="re_pass" name="password_confirmation" placeholder="Nhập lại mật khẩu" required>
+									<input type="password" id="re_password" name="re_password" placeholder="Nhập lại mật khẩu" required>
 								</div>
 								<div class="login-row">
 									<label>Giới tính</label>

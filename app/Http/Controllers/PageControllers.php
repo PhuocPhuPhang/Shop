@@ -233,7 +233,7 @@ class PageControllers extends Controller
 
     public function product_nha_cung_cap_tpl($ma_nha_cung_cap)
     {
-        $product_ncc_tpl = SanPham::where('nha_cung_cap', $ma_nha_cung_cap)->paginate(6);
+        $product_ncc_tpl = SanPham::where('nha_cung_cap', $ma_nha_cung_cap)->paginate(8);
         return view('layouts.pages.product_tpl', ['product_tpl' => $product_ncc_tpl]);
     }
 

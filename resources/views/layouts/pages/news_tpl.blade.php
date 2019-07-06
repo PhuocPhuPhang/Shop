@@ -19,7 +19,7 @@
 		</div>
 		<div class="news_tpl_right">
 			<div class="product_tintuc_wrap">
-				<div class="title"><h3>Sản phẩm nổi bật</h3></div>
+				<div class="title" style="font-weight: bold;text-transform: uppercase;color: #000;font-size: 22px;"><h3>Sản phẩm nổi bật</h3></div>
 				<ul id="scroller2">
 					@foreach($product_shop as $ps)
 					<li>

@@ -80,7 +80,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 
 
 #menu{background: #fed700;}
-.menu-grid { display: grid; grid-template-columns: repeat(7, auto); width: 100%; list-style-type: none; }
+.menu-grid { display: grid; grid-template-columns: repeat(5, auto); width: 100%; list-style-type: none; }
 .menu-grid ul { display: none; list-style-type: none; position: absolute; width: 220px; left: 0; top: 100%; z-index: 99999; }
 .menu-grid li { position: relative; z-index: 9999; }
 .menu-grid > li > ul ul { left: 100%; top: 0; }
@@ -485,3 +485,9 @@ div.right-profile h4 { font-weight: bold; font-size: 16px; color: #333; line-hei
 .custom-table__row:nth-child(even) .order-detail-items { background: #fff; }
 
 #map iframe{width: 360px;height: 205px;}
+label.error {
+    display: block;
+    color: #f00;
+    font-size: 12px!important;
+    margin-bottom: 0px;
+}

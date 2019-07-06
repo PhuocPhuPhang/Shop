@@ -8,7 +8,7 @@
 			<div class="cart-layout__col">
 				<div class="cart-layout__title">Thông tin giỏ hàng</div>
 				<input class="form-control" type="text" name="ten" placeholder="Họ tên" required>
-				<input class="form-control" type="text" name="email" placeholder="Email" required>
+				<input class="form-control" type="email" name="email" placeholder="Email" required>
 				<input class="form-control" type="text" name="dienthoai" placeholder="Số điện thoại" required>
 				<textarea class="form-control" name="diachi" placeholder="Địa chỉ" rows="5" required></textarea>
 			</div>

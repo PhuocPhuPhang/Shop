@@ -217,25 +217,34 @@
         $.fancybox.open(popup);
     })
 </script>
-<!-- <script type="text/javascript">
-	$(document).ready(function() {
-		$('body').on('click','.checkmobile', function() {
-			var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-			var mobile = $('#mobile').val();
-			if(mobile !==''){
-				if (vnf_regex.test(mobile) == false)
-				{
-					alert('Số điện thoại của bạn không đúng định dạng!');
-				}else{
-					alert('Số điện thoại của bạn hợp lệ!');
-				}
-			}else{
-				alert('Bạn chưa điền số điện thoại!');
-			}
-		});
+<script src="{{asset('themes/js/jquery.validate.min.js')}}"></script>
+<script>
+	$('#frmSignUp').validate({
+		rules: {
+			password: {
+				required: true,
+				rangelength: [6, 20]
+			},
+			re_password: {
+				required: true,
+				equalTo: "#password"
+			},
+		},
+		messages: {
+			password: {
+				required: "Vui lòng nhập mật khẩu",
+				rangelength: "Mật khẩu chỉ từ 6 - 20 kí tự"
+			},
+			re_password: {
+				required: "Vui lòng nhập lại mật khẩu",
+				equalTo: "Mật khẩu chưa trùng khớp"
+			},
+		}
+		// submitHandler: function(form) {
+		// 	form.submit();
+		// }
 	});
-</script> -->
-
+</script>
 <!-- <script LANGUAGE="JavaScript">
 	function checkPw(form) {
 		pass = form.password.value;
@@ -249,39 +258,6 @@
 			alert ("\nTạo tài khoản thành công.")
 		} return true;
 	}
-</script> -->
-<!-- <script>
-	$(function() {
-        
-        var $form = $( "#frmSignUp" );
-        var $input = $form.find( "input[name='so_dien_thoai']" );
-
-        $input.on( "keyup", function( event ) {
-            
-            // When user select text in the document, also abort.
-            var selection = window.getSelection().toString();
-            if ( selection !== '' ) {
-                return;
-            }
-            
-            // When the arrow keys are pressed, abort.
-            if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
-                return;
-            }
-            
-            var $this = $( this );
-            
-            // Get the value.
-            var input = $this.val();
-            
-            var input = input.replace(/[\D\s\._\-]+/g, "");
-                    input = input ? parseChar( input, 10 ) : 0;
-
-                    $this.val( function() {
-                        return ( input === 0 ) ? "" : input;
-                    } );
-        } );
-    });
 </script> -->
 </html>
 @yield('script')
