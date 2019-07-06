@@ -56,7 +56,7 @@ class NhaCungCapController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/nhacungcap/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/nhacungcap/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = $name.'_'.time().'.'.$duoi;
@@ -72,7 +72,7 @@ class NhaCungCapController extends Controller
 
 
         $nhacungcap->save();
-        return redirect('admin/nhacungcap/them')->with('thongbao','Thêm thành công');
+        return redirect('shop/admin/nhacungcap/them')->with('thongbao','Thêm thành công');
     }
 
     public function getSua($mancc)
@@ -125,18 +125,18 @@ class NhaCungCapController extends Controller
             $nhacungcap->logo = $hinh;
         }
         $nhacungcap->save();
-        return redirect('admin/nhacungcap/sua/'.$mancc)->with('thongbao','Cập nhật thành công');
+        return redirect('shop/admin/nhacungcap/sua/'.$mancc)->with('thongbao','Cập nhật thành công');
     }
 
     public function getXoa($mancc)
     {
         DB::table('nha_cung_cap')->where('ma_nha_cung_cap',$mancc)->update(['da_xoa'=>1]);
-        return redirect('admin/nhacungcap/danhsach')->with('thongbao','Cập nhật thành công');
+        return redirect('shop/admin/nhacungcap/danhsach')->with('thongbao','Cập nhật thành công');
     }
 
     public function getUpdate($mancc)
     {
         DB::table('nha_cung_cap')->where('ma_nha_cung_cap',$mancc)->update(['da_xoa'=>0]);
-        return redirect('admin/nhacungcap/danhsach')->with('thongbao','Cập nhật thành công');
+        return redirect('shop/admin/nhacungcap/danhsach')->with('thongbao','Cập nhật thành công');
     }
 }

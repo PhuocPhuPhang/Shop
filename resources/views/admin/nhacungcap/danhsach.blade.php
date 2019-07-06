@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>DANH SÁCH NHÀ CUNG CẤP</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="admin/nhacungcap/them"><i class="fa fa-plus"></i></a></li>
+            <li><a href="shop/admin/nhacungcap/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
         </ul>
        <div class="clearfix"></div>
@@ -47,7 +47,7 @@
              </td>
              @if($ncc->da_xoa == 0)
              <td style="text-align:center">
-                <a href="admin/nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
+                <a href="shop/admin/nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
                 <a href="admin/nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
@@ -56,7 +56,7 @@
              </td>
              @else
              <td style="text-align:center">
-                <a href="admin/nhacungcap/update/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
+                <a href="shop/admin/nhacungcap/update/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Kích hoạt
                 </a>
              </td>
@@ -78,7 +78,7 @@
                 var mancc = $(this).closest('.flat').attr('id');
                 $.ajax({
                     type:'POST',
-                    url: 'admin/ajax/nhacungcap/hienthi',
+                    url: 'shop/admin/ajax/nhacungcap/hienthi',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"mancc":mancc},
                     success: function(data){

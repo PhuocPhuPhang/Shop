@@ -46,7 +46,7 @@ class SocialController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/social/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/social/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = $name.'_'.time().'.'.$duoi;
@@ -83,7 +83,7 @@ class SocialController extends Controller
         $social->thu_tu = $thutu;
 
         $social->save();
-        return redirect('admin/social/them')->with('thongbao','Thêm thành công');
+        return redirect('shop/admin/social/them')->with('thongbao','Thêm thành công');
     }
 
     public function getSua($id)
@@ -118,7 +118,7 @@ class SocialController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/social/sua/'.$social->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/social/sua/'.$social->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = str_random(4)."_".$name;
@@ -133,7 +133,7 @@ class SocialController extends Controller
         $social->thu_tu = $request->thutu;
 
         $social->save();
-        return redirect('admin/social/sua/'.$social->id)->with('thongbao','Chỉnh sửa thành công');
+        return redirect('shop/admin/social/sua/'.$social->id)->with('thongbao','Chỉnh sửa thành công');
     }
 
     public function getXoa($id)
@@ -145,7 +145,7 @@ class SocialController extends Controller
         }
         $social->delete();
 
-        return redirect('admin/social/danhsach')->with('thongbao','Xóa thành công');
+        return redirect('shop/admin/social/danhsach')->with('thongbao','Xóa thành công');
     }
 
 }

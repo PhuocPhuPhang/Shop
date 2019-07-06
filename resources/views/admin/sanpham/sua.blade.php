@@ -73,12 +73,6 @@
                     <label>Mô tả</label>
                     <textarea id="mota" class="form-control inputForm" name="mota">{{$sanpham->noi_dung}}</textarea><br />
 
-                    <label>Keywords</label>
-                    <textarea id="keywords" class="form-control inputForm" name="keywords">{{$sanpham->noi_dung}}</textarea><br />
-
-                    <!-- <label>Hình đại diện</label>
-                    <input type="file" id="hinhanh" class="inputForm" name="hinhanh" /><br /> -->
-
                     <label>Hình hiện tại</label>
                     <p>
                         @foreach($hinhanh as $hinh)
@@ -242,7 +236,7 @@
 
                 $.ajax({
                     type: 'post',
-                    url: '../ajax/cauhinh/them',
+                    url: 'shop/admin/ajax/cauhinh/them',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
@@ -301,7 +295,7 @@
                 });
                 $.ajax({
                     type: 'post',
-                    url: 'admin/sanpham/sua/' + masp,
+                    url: 'shop/admin/sanpham/sua/' + masp,
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         contentType: "application/json",
@@ -325,7 +319,7 @@
             var id = $(this).attr('id');
             $.ajax({
                 type: 'post',
-                url: 'admin/sanpham/hinhanh/xoa/' + id,
+                url: 'shop/admin/sanpham/hinhanh/xoa/' + id,
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                     contentType: "application/json",

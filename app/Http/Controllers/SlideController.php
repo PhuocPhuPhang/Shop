@@ -47,7 +47,7 @@ class SlideController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/slide/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/slide/them')->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = $name.'_'.time().'.'.$duoi;
@@ -76,7 +76,7 @@ class SlideController extends Controller
         $slide->thu_tu = $thutu;
 
         $slide->save();
-        return redirect('admin/slide/them')->with('thongbao','Thêm thành công');
+        return redirect('shop/admin/slide/them')->with('thongbao','Thêm thành công');
     }
 
     public function getSua($id)
@@ -111,7 +111,7 @@ class SlideController extends Controller
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg')
             {
-                return redirect('admin/slide/sua/'.$slide->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
+                return redirect('shop/admin/slide/sua/'.$slide->id)->with('loi','File không hợp lệ(vui lòng chọn file có phần mở rộng .jpg, .png, .jpeg)');
             }
             $name = $file->getClientOriginalName();
             $hinh = $name.'_'.time().'.'.$duoi;
@@ -131,7 +131,7 @@ class SlideController extends Controller
         $slide->thu_tu = $thutu;
 
         $slide->save();
-        return redirect('admin/slide/sua/'.$slide->id)->with('thongbao','Chỉnh sửa thành công');
+        return redirect('shop/admin/slide/sua/'.$slide->id)->with('thongbao','Chỉnh sửa thành công');
     }
 
     public function getXoa($id)
@@ -143,6 +143,6 @@ class SlideController extends Controller
         }
         $slide->delete();
 
-        return redirect('admin/slide/danhsach')->with('thongbao','Xóa thành công');
+        return redirect('shop/admin/slide/danhsach')->with('thongbao','Xóa thành công');
     }
 }

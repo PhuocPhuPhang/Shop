@@ -7,7 +7,7 @@
     <div class="x_title">
        <h2>CÁC CHÍNH SÁCH</h2>
         <ul class="nav navbar-right panel_toolbox">
-            <li><a href="{{ url('admin/tintuc/chinhsach/them') }}"><i class="fa fa-plus"></i></a></li>
+            <li><a href="shop/admin/tintuc/chinhsach/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown"></li>
         </ul>
@@ -42,10 +42,10 @@
                     @endif><br/>
              </td>
              <td style="width:200px;text-align:center">
-                <a href="admin/tintuc/chinhsach/sua/{{$cs->id}}" class="btn btn-info btn-xs">
+                <a href="shop/admin/tintuc/chinhsach/sua/{{$cs->id}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="admin/tintuc/chinhsach/xoa/{{$cs->id}}" class="btn btn-danger btn-xs">
+                <a href="shop/admin/tintuc/chinhsach/xoa/{{$cs->id}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Xóa
                 </a>
              </td>
@@ -65,7 +65,7 @@
                 var id = $(this).closest('.flat').attr('id');
                 $.ajax({
                     type:'POST',
-                    url: 'admin/ajax/tintuc/chinhsach/update',
+                    url: 'shop/admin/ajax/tintuc/chinhsach/update',
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"id":id},
                     success: function(data){

@@ -25,7 +25,7 @@
                 </div>
             @endif
 
-            <form id="demo-form" action="admin/slide/sua/{{$slide->id}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+            <form id="demo-form" action="shop/admin/slide/sua/{{$slide->id}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <label>Tên</label>
@@ -51,7 +51,7 @@
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <a href="admin/slide/danhsach">
+                        <a href="shop/admin/slide/danhsach">
                             <button class="btn btn-primary" type="button">Hủy</button>
                         </a>
                         <button class="btn btn-primary" type="reset">Làm mới</button>
