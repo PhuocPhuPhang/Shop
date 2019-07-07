@@ -25,7 +25,7 @@ class PageControllers extends Controller
   function __construct()
   {
     $about = DB::table('tin_tuc')->where('type', 'gioi-thieu')->first();
-    $nhacungcap =  NhaCungCap::all();
+    $nhacungcap =  NhaCungCap::where('hien_thi',1)->get();
     $tintuc = TinTuc::all();
     $tintuc_shop = TinTuc::where('type', 'tin-tuc')->get();
     $product_shop = SanPham::where('noi_bat', 1)->paginate(12);
