@@ -228,7 +228,9 @@ class PageControllers extends Controller
   public function product_tpl()
   {
     $product_tpl = SanPham::paginate(12);
-    return view('layouts.pages.product_tpl', ['product_tpl' => $product_tpl]);
+    $ttsp = DB::table('san_pham')->join('thong_tin_san_pham', 'san_pham.ma_san_pham', '=', 'thong_tin_san_pham.ma_san_pham')->join('cau_hinh_san_pham', 'thong_tin_san_pham.id_cau_hinh', '=', 'cau_hinh_san_pham.id')
+     ->select('san_pham.ma_san_pham','cau_hinh_san_pham.cau_hinh','thong_tin_san_pham.mo_ta')->get();
+    return view('layouts.pages.product_tpl', ['product_tpl' => $product_tpl,'ttsp'=>$ttsp]);
   }
 
   public function product_nha_cung_cap_tpl($ma_nha_cung_cap)
