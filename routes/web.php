@@ -257,6 +257,8 @@ Route::group(['prefix' => 'shop'], function () {
 
             Route::get('duyet/{mahd}', 'HoaDonController@getDuyet');
             Route::post('duyet/{mahd}', 'HoaDonController@postDuyet');
+
+            Route::get('huy/{mahd}','HoaDonController@getHuy');
         });
     });
 });

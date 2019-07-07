@@ -39,7 +39,7 @@ class AdminLoginController extends Controller
             if (Auth::user()->quyen == 1) {
                 return redirect('shop/admin/index');
             } else {
-                return redirect('index');
+                return redirect('shop');
             }
         } else {
             return back()->with('error', 'Vui lòng kiểm tra thông tin đăng nhập');
