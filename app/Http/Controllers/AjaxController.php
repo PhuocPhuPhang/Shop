@@ -12,6 +12,7 @@ use App\LoaiCauHinh;
 use App\ThongTinSanPham;
 use App\Media;
 use Json;
+use App\SanPham;
 
 class AjaxController extends Controller
 {
@@ -175,5 +176,21 @@ class AjaxController extends Controller
                </tr>
                </tbody>";
         }
+    }
+
+    public function postNoiBatSanPham(Request $request)
+    {
+        $sanpham = SanPham::find($request->masp);
+
+        if ($sanpham->noi_bat == 1) {
+            $sanpham->noi_bat = 0;
+        } else {
+            $sanpham->noi_bat = 1;
+        }
+        return response()->json([
+            'data' => [
+                'success' => $sanpham->save(),
+            ]
+        ]);
     }
 }

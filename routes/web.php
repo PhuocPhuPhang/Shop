@@ -241,6 +241,8 @@ Route::group(['prefix' => 'shop'], function () {
             Route::post('slide/update/thutu', 'AjaxController@postSlideThuTu');
 
             Route::post('user/update', 'AjaxController@postPhanQuyen');
+
+            Route::post('sanpham/noibat','AjaxController@postNoiBatSanPham');
         });
         //Website
         Route::group(['prefix' => 'website'], function () {
@@ -255,6 +257,8 @@ Route::group(['prefix' => 'shop'], function () {
 
             Route::get('duyet/{mahd}', 'HoaDonController@getDuyet');
             Route::post('duyet/{mahd}', 'HoaDonController@postDuyet');
+
+            Route::get('huy/{mahd}','HoaDonController@getHuy');
         });
     });
 });

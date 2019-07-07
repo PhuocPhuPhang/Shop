@@ -168,12 +168,12 @@ class SanPhamController extends Controller
                 $newArr[$key] = $value;
             }
         }
-        $sanpham->ma_san_pham = $newArr['ma'];
+        $sanpham->ma_san_pham = $masp;
         $sanpham->ten_san_pham = $newArr['ten'];
         $sanpham->ten_khong_dau = str_slug($newArr['ten']);
         $sanpham->nha_cung_cap = $newArr['nhacungcap'];
         $sanpham->so_luong = $newArr['soluong'];
-        $sanpham->gia_ban = $newArr['gia'];
+        $sanpham->gia_ban = $newArr['giaban'];
         $sanpham->mau_sac = $newArr['mausac'];
         $sanpham->mo_ta = $newArr['mota'];
         $sanpham->noi_dung = $newArr['noidung'];
@@ -186,12 +186,30 @@ class SanPhamController extends Controller
                 if ($cauhinh->ten_khong_dau == $key) {
                     if ($newArr[$key] != null) {
                         $thongtinsp = new ThongTinSanPham;
+                        $thongtinsp->ma_san_pham = $masp;
                         $thongtinsp->id_cau_hinh = $cauhinh->id;
                         $thongtinsp->mo_ta = $newArr[$key];
                         $thongtinsp->save();
                     }
                 }
             }
+        }
+        if (file_exists("..\public\upload\sanpham\hinhanhkhac\hinh.txt")) {
+            $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt", "r");
+            $read = file("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
+            foreach ($read as $image) {
+                $array_item = explode(",", $image);
+                $sanpham->hinh_anh =  $array_item[0];
+                $sanpham->save();
+                for ($i = 0; $i < count($array_item) - 1; $i++) {
+                    $hinhanh_sp = new HinhAnh;
+                    $hinhanh_sp->ma_san_pham = $masp;
+                    $hinhanh_sp->hinh_anh = $array_item[$i];
+                    $hinhanh_sp->save();
+                }
+            }
+            fclose($image_file);
+            unlink("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
         }
         return response()->json([
             'data' => [
@@ -210,14 +228,14 @@ class SanPhamController extends Controller
     public function getUpdate($masp)
     {
         DB::table('san_pham')->where('ma_san_pham', $masp)->update(['da_xoa' => 0]);
-        return redirect('admin/sanpham/danhsach')->with('thongbao', 'Cập nhật trạng thái thành công phẩm thành công');
+        return redirect('shop/admin/sanpham/danhsach')->with('thongbao', 'Cập nhật trạng thái thành công phẩm thành công');
     }
 
     public function postXoaHinh(Request $request, $id)
     {
         $hinhanh = DB::table('hinh_anh_san_pham')->where('id', $id)->first();
         if ($hinhanh->hinh_anh) {
-            unlink(public_path('upload/sanpham/hinhanhkhac' . $hinhanh->hinh_anh));
+            unlink(public_path('upload/sanpham/hinhanhkhac/' . $hinhanh->hinh_anh));
         }
         DB::table('hinh_anh_san_pham')->where('id', $id)->delete();
         return response()->json([

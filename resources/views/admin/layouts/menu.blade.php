@@ -51,8 +51,8 @@
                     <!-- <li><a href="{{url('admin/khuyenmai/danhsach')}}"><i class="fa fa-percent"></i>Khuyến mãi</a></li> -->
                     <li><a><i class="fa fa-file-text"></i>Hóa đơn<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{url('shop/admin/hoadon/danhsach')}}">Đơn hàng chưa duyệt</a>
-                            <li><a href="{{url('shop/admin/hoadon/danhsachduyet')}}">Đơn hàng chưa duyệt</a></li>
+                            <li><a href="{{url('shop/admin/hoadon/danhsach')}}">Đơn hàng chờ xử lí</a>
+                            <li><a href="{{url('shop/admin/hoadon/danhsachduyet')}}">Đơn hàng đã xử lí</a></li>
                         </ul>
                     </li>
                     @if( Auth::user()->quyen == 1 )
