@@ -153,10 +153,12 @@
 				<div class="custom-table__row">
 					<?php $i = 1 ?>
 					@foreach($a as $dh)
+
 					<div class="custom-table__col center">{{$i++}}</div>
 					<div class="custom-table__col center">{{$dh->ma_hoa_don}}</div>
 					<div class="custom-table__col">
 						@foreach($b as $dhct)
+
 						@if($dhct->ma_hoa_don == $dh->ma_hoa_don)
 						<div class="order-detail-items">
 							@foreach($c as $gia)
@@ -174,8 +176,11 @@
 						<div>{{$dh->dia_chi}}</div>
 
 					</div>
-
-					<div class="custom-table__col center">{{number_format($tongtien)}} <sup>đ</sup></div>
+					@foreach($tongtien as $key => $price)
+					@if($key == $dh->ma_hoa_don)
+					<div class="custom-table__col center">{{number_format($price)}} <sup>đ</sup></div>
+					@endif
+					@endforeach
 					@if($dh->duyet == 0)
 					<div class="custom-table__col center" style="color: orange;font-size: 15px;">Chờ duyệt...</div>
 					@endif
