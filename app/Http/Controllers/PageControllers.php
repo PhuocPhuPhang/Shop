@@ -146,21 +146,21 @@ class PageControllers extends Controller
   }
   public function changeProfile(Request $request)
   {
-    $this->validate(
-      $request,
-      [
-        'ten' => 'required',
-        'so_dien_thoai' => 'required|numeric|min:9',
-        'ngay_sinh' => 'required',
-      ],
-      [
-        'ten.required' => 'Bạn chưa nhập họ tên',
-        'so_dien_thoai.required'   => 'Số điện thoại chưa nhập',
-        'so_dien_thoai.numeric'   => 'Số điện thoại bắt buộc phải là số',
-        'so_dien_thoai.min'   => 'Số điện thoại có độ dài không dưới 10 số',
-        'ngay_sinh.required' =>   'Bạn chưa nhập ngày sinh',
-      ]
-    );
+    // $this->validate(
+    //   $request,
+    //   [
+    //     'ten' => 'required',
+    //     'so_dien_thoai' => 'required|numeric|min:9',
+    //     'ngay_sinh' => 'required',
+    //   ],
+    //   [
+    //     'ten.required' => 'Bạn chưa nhập họ tên',
+    //     'so_dien_thoai.required'   => 'Số điện thoại chưa nhập',
+    //     'so_dien_thoai.numeric'   => 'Số điện thoại bắt buộc phải là số',
+    //     'so_dien_thoai.min'   => 'Số điện thoại có độ dài không dưới 10 số',
+    //     'ngay_sinh.required' =>   'Bạn chưa nhập ngày sinh',
+    //   ]
+    // );
 
     $user = Auth::user();
     DB::table('users')->where('id', $user->id)->update(['ten' => $request->ten, 'so_dien_thoai' => $request->so_dien_thoai, 'gioi_tinh' => $request->gioi_tinh, 'ngay_sinh' => $request->ngay_sinh, 'dia_chi' => $request->dia_chi]);
@@ -300,6 +300,9 @@ public function createCart(Request $request)
       $order_de->ma_san_pham = $or_detail->id;
       $order_de->so_luong = $or_detail->quantity;
       $order_de->save();
+      $soluong_ton = DB::table('san_pham')->where('ma_san_pham',$or_detail->id)->first();
+      $soluong_update = $soluong_ton->so_luong - $or_detail->quantity;
+      DB::table('san_pham')->where('ma_san_pham',$or_detail->id)->update(['so_luong'=>$soluong_update]);
     }
     Cart::clear();
     return redirect('shop')->with('thongbaodathang', 'Quý khách đã đặt hàng thành công. Xin cảm ơn.');
@@ -360,17 +363,5 @@ public function huyDonHang($ma_hoa_don)
 
   return redirect('shop/don-hang')->with('huydonhang', 'Hủy đơn hàng thành công!');
 }
-
-    // public function SearchPrice(Request $request)
-    // {
-    //   $Price_selected = $request->gia;
-
-    //   if($Price_selected == 1)
-    //   {
-    //     $product_select = SanPham::whereBetween('gia_ban', [1, 2000000])->paginate(6);
-    //     return redirect('shop/san-pham',['product_select'=>$product_select]);
-    //   }
-    // }
-
 
 }

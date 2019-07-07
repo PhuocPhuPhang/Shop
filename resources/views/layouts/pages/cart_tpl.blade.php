@@ -59,14 +59,12 @@
 									<input type="radio" class="input-radio active" name="phuongthuc" value="Thanh toán tại cửa hàng" <?php echo 'checked'; ?>/>
 									<span>Thanh toán tại cửa hàng</span>
 								</div>
-								<div class="payment-method__body clearfix active">Nội dung thanh toán tại cửa hàng</div>
 							</div>
 							<div class="payment-method">
 								<div class="payment-method__header">
 									<input type="radio" class="input-radio" name="phuongthuc" value="Thanh toán khi nhận hàng"/>
 									<span>Thanh toán khi nhận hàng</span>
 								</div>
-								<div class="payment-method__body clearfix">Nội dung thanh toán khi nhận hàng</div>
 							</div>
 						</div>
 					</div>

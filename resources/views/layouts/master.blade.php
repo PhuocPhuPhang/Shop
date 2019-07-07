@@ -272,20 +272,6 @@
 		// }
 	});
 </script>
-<!-- <script LANGUAGE="JavaScript">
-	function checkPw(form) {
-		pass = form.password.value;
-		repeat_pass = form.re_password.value;
-
-		if (pass != repeat_pass) {
-			alert ("\nPlease re-enter your password.")
-			return false;
-		}
-		else{
-			alert ("\nTạo tài khoản thành công.")
-		} return true;
-	}
-</script> -->
 </html>
 @yield('script')
 

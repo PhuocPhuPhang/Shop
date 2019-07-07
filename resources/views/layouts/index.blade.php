@@ -13,7 +13,8 @@
 </section>
 <section id="product_home">
 	<div class="container">
-		<label class="title-sp-nb"><img src="{{asset('themes/images/gsct.png')}}"></label>
+		<!-- <label class="title-sp-nb"><img src="{{asset('themes/images/gsct.png')}}"></label> -->
+		<label class="title-sp">Sản phẩm hot</label>
 		<div class="list_product">
 			<div class="sp-owl owl-carousel owl-theme">
 				@foreach($product_shop as $sp)
@@ -30,10 +31,15 @@
 							<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
 							<!-- <div class="price_old">10,000,000 Đ</div> -->
 						</div>
+						@if($sp->so_luong > 0)
 						<a class="add_cart_index" href="shop/add_to_cart/{{$sp->ma_san_pham}}">Mua ngay</a>
-						<div class="pro_info-info">
+						@else
+						<p class="name" style="font-size: 18px;color: red;font-weight: bold;margin-top: 15px;">Sản phẩm đã hết hàng.</p>
+						@endif
+						
+						<!-- <div class="pro_info-info">
 							<span>Tặng kèm ....</span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				@endforeach
@@ -78,7 +84,11 @@
 								<!-- <div class="price_old">{{number_format($sp->gia_ban)}} Đ</div> -->
 								<div class="clearfix"></div>
 							</div>
+							@if($sp->so_luong > 0)
 							<a class="add_cart_index" href="shop/add_to_cart/{{$sp->ma_san_pham}}">Mua ngay</a>
+							@else
+							<p class="name" style="font-size: 18px;color: red;font-weight: bold;margin-top: 15px;">Sản phẩm đã hết hàng.</p>
+							@endif
 						</div>
 					</div>
 					@endforeach
