@@ -66,7 +66,7 @@
                     <label>Mô tả</label>
                     <textarea id="mota" class="form-control inputForm" name="mota"></textarea><br />
 
-                    <label>Hình ảnh</label><small style="color:red">(Hình đầu tiên sẽ là hình đại diện cho sản phẩm)</small>
+                    <label>Hình ảnh</label>&nbsp<small style="color:red">(Hình đầu tiên sẽ là hình đại diện cho sản phẩm)</small>
                     <form action="shop/admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="fallback">

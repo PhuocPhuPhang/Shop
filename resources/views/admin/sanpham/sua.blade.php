@@ -85,7 +85,7 @@
                     </p>
                     @endif
 
-                    <label>Hình ảnh</label><small style="color:red">Hình đầu tiên sẽ là hình đại diện cho sản phẩm</small>
+                    <label>Hình ảnh</label> &nbsp<small style="color:red">Hình đầu tiên sẽ là hình đại diện cho sản phẩm</small>
                     <form action="shop/admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="fallback">
@@ -117,12 +117,12 @@
                     <h4 style="font-size:18px">{{$loai->ten}}</h4>
                     @foreach($thongtin_sp as $tt)
                     @if($tt->id_loai == $loai->id)
-                    <div class="{{$ch->cau_hinh}}">
+                    <div>
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">{{$tt->cau_hinh}}</label>
                         <div class="col-md-8 col-sm-6 col-xs-12" style="margin-bottom:10px">
                             <input type="text" name="{{$tt->ten_khong_dau}}" id="{{$tt->ten_khong_dau}}" value="{{$tt->mo_ta}}" class="form-control col-md-7 col-xs-12 inputForm">
                         </div>
-                        <button class="{{$ch->ten_khong_dau}}" style="border:none;background:#fff"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
+                        <button class="{{$tt->ten_khong_dau}}" style="border:none;background:#fff;margin-top:15px"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
                     </div>
                     @endif
                     @endforeach
@@ -262,9 +262,13 @@
                             switch (loaich) {
                                 @foreach($loaicauhinh as $loai)
                                 case "{{$loai->id}}": {
-                                    var html = `<label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh_new}</label>
-                                <div class="col-md-8 col-sm-6 col-xs-12"  style="margin-bottom:10px">
+                                    var html = `
+                        <div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
+                                <div class="col-md-7 col-sm-6 col-xs-12"  style="margin-bottom:10px">
                                     <input type="text" name="${tenkhongdau}" id="${tenkhongdau}" class="form-control col-md-7 col-xs-12 inputForm">
+                                </div>
+                                <button style="border:none;background:#fff"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
                                 </div>`;
                                     $('#{{str_slug($loai->ten)}}').append(html);
                                 }
@@ -280,8 +284,8 @@
             }
         });
 
-        @foreach($cauhinh as $ch)
-        $('.{{$ch->ten_khong_dau}}').click(function() {
+        @foreach($thongtin_sp as $tt)
+        $('.{{$tt->ten_khong_dau}}').click(function() {
             $(this).closest("div").remove();
         })
         @endforeach
@@ -293,6 +297,7 @@
 
         $("#btnSubmit").click(function(event) {
             var tensp = document.getElementById('ten').value;
+            var masp = document.getElementById('ma').value;
             var array = [];
             if (tensp != "") {
                 $('.inputForm').each(function(index, input) {
@@ -309,7 +314,7 @@
                 });
                 $.ajax({
                     type: 'post',
-                    url: 'shop/admin/sanpham/them',
+                    url: 'shop/admin/sanpham/sua/' + masp ,
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         contentType: "application/json",
