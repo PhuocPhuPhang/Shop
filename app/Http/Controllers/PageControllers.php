@@ -61,26 +61,13 @@ class PageControllers extends Controller
 
   public function postThemUser(Request $request)
   {
-    $this->validate(
-      $request,
-      [
-        'password'  =>  'required|confirmed',
-        'password_confirmation'  =>  'required',
-      ],
-      [
-        'password.confirmed' => 'Mật khẩu chưa khớp',
-        'password_confirmation.required' => 'Bạn chưa nhập lại password',
-
-      ]
-    );
-
     $user = new User();
     $password = $request['password'];
     $check_email = $user->where('email', $request->email)->first();
 
     if (!empty($check_email)) {
       if ($check_email->email == $request->email) {
-        return redirect('shop')->with('email', 'Email đã tồn tại');
+        return redirect('shop')->with('emailErro', 'Email đã tồn tại');
       }
     } else {
       $user = new User;
@@ -99,18 +86,6 @@ class PageControllers extends Controller
 
   public function Login(Request $request)
   {
-    $this->validate(
-      $request,
-      [
-        'email'   => 'required|email',
-        'password'  => 'required',
-      ],
-      [
-        'email.required' => 'Bạn chưa nhập Email',
-        'password.required' => 'Bạn chưa nhập mật khẩu',
-      ]
-    );
-
     $user_data = array(
       'email'  => $request->get('email'),
       'password' => $request->get('password'),
@@ -195,32 +170,16 @@ class PageControllers extends Controller
 
   public function postChangePassword(Request $request)
   {
-    $this->validate(
-      $request,
-      [
-        'password_old' => 'required',
-        'password'  =>  'required|min:6|confirmed',
-        'password_confirmation' =>  'required|min:6'
-      ],
-      [
-        'password_old.required' =>   'Bạn chưa nhập password',
-        'password.required' =>   'Bạn chưa nhập password',
-        'password.min' => 'Mật khẩu quá ngắn ít nhất 6 kí tự',
-        'password.confirmed' => 'Mật khẩu chưa khớp',
-        'password_confirmation.required' => 'Bạn chưa nhập lại password',
-      ]
-    );
-
     $user = Auth::user();
     $password_old = $request['password_old'];
     if (Hash::check($password_old, $user->password)) {
-      $password = $request['password'];
+      $password = $request['password2'];
       DB::table('users')->where('id', $user->id)->update(['password' => Hash::make($password)]);
 
       Auth::logout();
       return redirect('shop')->with('thongbao', "Đổi mật khẩu thành công");
     } else {
-      return redirect('shop/profile')->with('thongbao', "Thất bại");
+      return redirect('shop/doi-mat-khau')->with('changeErro', "Mật khẩu không đúng.");
     }
   }
 
@@ -229,7 +188,7 @@ class PageControllers extends Controller
   {
     $product_tpl = SanPham::paginate(12);
     $ttsp = DB::table('san_pham')->join('thong_tin_san_pham', 'san_pham.ma_san_pham', '=', 'thong_tin_san_pham.ma_san_pham')->join('cau_hinh_san_pham', 'thong_tin_san_pham.id_cau_hinh', '=', 'cau_hinh_san_pham.id')
-     ->select('san_pham.ma_san_pham','cau_hinh_san_pham.cau_hinh','thong_tin_san_pham.mo_ta')->get();
+    ->select('san_pham.ma_san_pham','cau_hinh_san_pham.cau_hinh','thong_tin_san_pham.mo_ta')->get();
     return view('layouts.pages.product_tpl', ['product_tpl' => $product_tpl,'ttsp'=>$ttsp]);
   }
 
@@ -266,13 +225,14 @@ class PageControllers extends Controller
 
   public function cart_tpl()
   {
+    $user = Auth::user();
     $data = Cart::getContent();
     $sanpham = null;
     foreach ($data as $item) {
       $sanpham = DB::table('san_pham')->where('ma_san_pham',$item->id)->first();
     }
 
-    return view('layouts.pages.cart_tpl', ['data' => $data, 'sanpham'=>$sanpham]);
+    return view('layouts.pages.cart_tpl', ['data' => $data, 'sanpham'=>$sanpham,'user'=>$user]);
   }
 
   public function RemoveCart($id)
@@ -320,7 +280,7 @@ class PageControllers extends Controller
 
 public function createCart(Request $request)
 {
-  $user = Auth::user();;
+  $user = Auth::user();
   if ($user == false) {
     return redirect('shop/cart_tpl')->with('notUser', 'Đăng nhập trước khi đặt hàng');
   } else {
@@ -362,24 +322,41 @@ public function DonHang()
 
   $user_email = Auth::user();
   $don_hang = DB::table('hoa_don')->where('email', $user_email->email)->get();
-  foreach ($don_hang as $value) {
-    $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don', $value->ma_hoa_don)->get();
-    $a[] = $value;
-    foreach ($don_hang_chi_tiet as $value2) {
-      $gia_san_pham = DB::table('san_pham')->where('ma_san_pham', $value2->ma_san_pham)->get();
-      $b[] = $value2;
-      foreach ($gia_san_pham as $value3) {
-        $c[] = $value3;
+  $soluong_donhang = count($don_hang);
+  if($soluong_donhang > 0){
+    foreach ($don_hang as $value) {
+      $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don', $value->ma_hoa_don)->get();
+      $a[] = $value;
+      foreach ($don_hang_chi_tiet as $value2) {
+        $gia_san_pham = DB::table('san_pham')->where('ma_san_pham', $value2->ma_san_pham)->get();
+        $b[] = $value2;
+        foreach ($gia_san_pham as $value3) {
+          $c[] = $value3;
+        }
       }
     }
+
+    $tongtien = 0;
+
+    foreach ($don_hang as $dh) {
+      $chitiethoadon = DB::table('chi_tiet_hoa_don') ->join('san_pham','chi_tiet_hoa_don.ma_san_pham','=','san_pham.ma_san_pham')
+      ->select('ma_hoa_don','ten_san_pham','gia_ban','chi_tiet_hoa_don.so_luong')->where('ma_hoa_don',$dh->ma_hoa_don)->get();
+      foreach ($chitiethoadon as $cthd) {
+        $tam = ($cthd->gia_ban) * ($cthd->so_luong);
+        $tongtien += $tam;
+      }
+    }
+    return view('layouts.pages.profile', compact('a', 'b', 'c','soluong_donhang','tongtien'));
+  }else{
+    return view('layouts.pages.profile', compact('soluong_donhang'));
   }
-  return view('layouts.pages.profile', compact('a', 'b', 'c'));
+
 }
 
 public function huyDonHang($ma_hoa_don)
 {
-  $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don', $ma_hoa_don)->delete();
-  $don_hang = DB::table('hoa_don')->where('ma_hoa_don', $ma_hoa_don)->delete();
+  $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don', $ma_hoa_don)->update(['da_xoa'=> 1]);
+  $don_hang = DB::table('hoa_don')->where('ma_hoa_don', $ma_hoa_don)->update(['da_xoa'=>1]);
 
   return redirect('shop/don-hang')->with('huydonhang', 'Hủy đơn hàng thành công!');
 }
