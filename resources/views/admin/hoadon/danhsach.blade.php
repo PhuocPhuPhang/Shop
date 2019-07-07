@@ -85,6 +85,7 @@
                     var hoadon = data['hoadon'];
                     var cthd = data['cthd'];
                     var tongtien = data['tongtien'];
+                    var hinhthuc = data['hinhthuc'];
                     var html = `<form method="post" id="sample_form" class="form-horizontal">
                                         <div class="form-group">
                                             <label class="col-form-label">Mã hóa đơn:&nbsp${hoadon['ma_hoa_don']}</label><br>
@@ -116,7 +117,7 @@
                     }
                     html += `</tbody>
                                             </table>
-                                            <label class="col-form-label">Hình thức thanh toán:&nbsp</label><br>
+                                            <label class="col-form-label">Hình thức thanh toán:&nbsp${hinhthuc['ten_hinh_thuc']}</label><br>
                                             <label class="col-form-label">Tổng thành tiền:&nbsp${number_format(tongtien)}</label><br>
                                             <div class="form-group" align="center" id="button">
                                                 <input type="button" name="action" id="action" class="btn btn-success" value="Duyệt đơn hàng" onClick="postDuyet()" />
