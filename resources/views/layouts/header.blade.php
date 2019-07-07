@@ -191,7 +191,7 @@
 					</ul>
 				</li>
 				<li><a href="shop/tin-tuc" title="">Tin tức</a></li>
-				<li><a href="shop/lien-he" title="">Liên hệ</a></li>
+				<li><a href="shop/video" title="">Video</a></li>
 			</ul>
 		</div>
 	</section>

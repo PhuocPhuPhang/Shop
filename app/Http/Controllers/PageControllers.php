@@ -104,10 +104,10 @@ class PageControllers extends Controller
     return redirect('shop');
   }
 
-  public function contact_tpl()
+  public function video()
   {
 
-    return view('layouts.pages.contact');
+    return view('layouts.pages.video');
   }
 
   public function about_tpl()
@@ -227,12 +227,13 @@ class PageControllers extends Controller
   {
     $user = Auth::user();
     $data = Cart::getContent();
+    $hinhthuc = DB::table('hinh_thuc_thanh_toan')->get();
     $sanpham = null;
     foreach ($data as $item) {
       $sanpham = DB::table('san_pham')->where('ma_san_pham',$item->id)->first();
     }
 
-    return view('layouts.pages.cart_tpl', ['data' => $data, 'sanpham'=>$sanpham,'user'=>$user]);
+    return view('layouts.pages.cart_tpl', ['data' => $data, 'sanpham'=>$sanpham,'user'=>$user,'hinhthuc'=>$hinhthuc]);
   }
 
   public function RemoveCart($id)
@@ -292,6 +293,8 @@ public function createCart(Request $request)
     $order->ten_nguoi_nhan = $request->ten;
     $order->so_dien_thoai = $request->dienthoai;
     $order->dia_chi = $request->diachi;
+    $order->thanh_toan = $request->phuongthuc;
+
     $order->save();
 
     foreach ($orders_detail as $or_detail) {

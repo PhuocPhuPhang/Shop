@@ -54,18 +54,14 @@
 					<div class="httt_wrap">
 						<div class="cart-layout__title">Thanh toán</div>
 						<div>
+							@foreach($hinhthuc as $ht)
 							<div class="payment-method">
 								<div class="payment-method__header">
-									<input type="radio" class="input-radio active" name="phuongthuc" value="Thanh toán tại cửa hàng" <?php echo 'checked'; ?>/>
-									<span>Thanh toán tại cửa hàng</span>
+									<input type="radio" class="input-radio active" name="phuongthuc" value="{{$ht->id}}" <?php echo 'checked'; ?>/>
+									<span>{{$ht->ten_hinh_thuc}}</span>
 								</div>
 							</div>
-							<div class="payment-method">
-								<div class="payment-method__header">
-									<input type="radio" class="input-radio" name="phuongthuc" value="Thanh toán khi nhận hàng"/>
-									<span>Thanh toán khi nhận hàng</span>
-								</div>
-							</div>
+							@endforeach
 						</div>
 					</div>
 					<div class="cart-layout__button">

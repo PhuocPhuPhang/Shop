@@ -65,7 +65,7 @@
 
 		$(".sp-owl").owlCarousel({
 			dots: false,
-			autoplay: false,
+			autoplay: true,
 			rewind: true,
 			autoplaySpeed: 1500,
 			margin: 20,

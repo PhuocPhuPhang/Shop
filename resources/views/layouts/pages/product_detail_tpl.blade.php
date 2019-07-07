@@ -8,27 +8,21 @@
 					<a href="upload/sanpham/{{$product_detail->hinh_anh}}" id="Zoom-1" class="MagicZoom" title=""><img src="upload/sanpham/{{$product_detail->hinh_anh}}" alt="" width="250" /></a>
 				</div>
 				<div class="owl-product-photos owl-carousel owl-theme">
-					<a class="w-img product_zoom_item" data-zoom-id="Zoom-1" data-image="{{asset('themes/images/sp.jpg')}}" href="{{asset('themes/images/sp.jpg')}}">
-						<img srcset="{{asset('themes/images/sp.jpg')}}" src="{{asset('themes/images/sp.jpg')}}"/>
+					@foreach($img_related as $img_khac)
+					<a class="w-img product_zoom_item" data-zoom-id="Zoom-1" data-image="upload/sanpham/hinhanhkhac/{{$img_khac->hinh_anh}}" href="upload/sanpham/hinhanhkhac/{{$img_khac->hinh_anh}}">
+						<img srcset="upload/sanpham/hinhanhkhac/{{$img_khac->hinh_anh}}" src="upload/sanpham/hinhanhkhac/{{$img_khac->hinh_anh}}"/>
 					</a>
-					<a class="w-img product_zoom_item"  href="">
-						<img src="{{asset('themes/images/sp.jpg')}}"/>
-					</a>
-					<a class="w-img product_zoom_item"  href="">
-						<img src="{{asset('themes/images/sp.jpg')}}"/>
-					</a>
-					<a class="w-img product_zoom_item"  href="">
-						<img src="{{asset('themes/images/sp.jpg')}}"/>
-					</a>
-					<a class="w-img product_zoom_item"  href="">
-						<img src="{{asset('themes/images/sp.jpg')}}"/>
-					</a>
+					@endforeach
 				</div>
 			</div>
 			<ul class="khung_thongtin">
 				<li><h1>{{$product_detail->ten_san_pham}}</h1></li>
 				<li><label>Mã sản phẩm:</label> {{$product_detail->ma_san_pham}}</li>
 				<li>{{$product_detail->mo_ta}}</li>
+				<li>
+					<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b4d9321a98f5579"></script>
+					<div class="addthis_inline_share_toolbox"></div>
+				</li>
 				<li class="gia_detail">
 					<label>Giá:</label> 
 					<span>{{number_format($product_detail->gia_ban)}}Đ</span> 
@@ -39,16 +33,16 @@
 						<p class="name"><a href="shop/add_to_cart/{{$product_detail->ma_san_pham}}">Mua ngay</a></p>
 					</div>
 					@else
-						<p class="name" style="font-size: 18px;color: red;font-weight: bold;">Sản phẩm đã hết hàng.</p>
+					<p class="name" style="font-size: 18px;color: red;font-weight: bold;">Sản phẩm đã hết hàng.</p>
 					@endif
 				</div>
-				<div class="soc_share">
+				<!-- <div class="soc_share">
 					<div id="btn_like" style="float: left;margin-right: 8px;margin-top: 5px;">
 						<div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
 					</div>
 					<div style="float:left; margin-right: 5px; margin-top: 5px;" class="zalo-share-button" data-href="" data-oaid="1965225949460761031" data-layout="1" data-color="blue" data-customize=false></div>
 					<div id="share_social"></div>
-				</div>
+				</div> -->
 			</ul>
 			<div class="tintuclienquan">         
 				<!-- <ul class="policy">
