@@ -14,12 +14,7 @@ class AdminLoginController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
-            if (Auth::user()->quyen == 0) {
-                return redirect('shop');
-            } else
-                return view('admin.login');
-        }
+        return view('admin.login');
     }
 
     public function CheckLogin(Request $request)
