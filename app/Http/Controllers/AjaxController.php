@@ -43,21 +43,30 @@ class AjaxController extends Controller
 
     public function postCauHinh(Request $request)
     {
-        $this->validate($request, [
-            'cauhinh_new' => 'unique:cau_hinh_san_pham,cau_hinh'
-        ], [
-            'cauhinh_new.unique' => 'Cấu hình đã tồn tại'
-        ]);
-
-        $cauhinh = new CauHinhSanPham;
-        $cauhinh->cau_hinh = $request->cauhinh_new;
-        $cauhinh->ten_khong_dau = str_slug($request->cauhinh_new);
-        $cauhinh->id_loai = $request->loaich;
-        return response()->json([
-            'data' => [
-                'success' => $cauhinh->save(),
-            ]
-        ]);
+        $cauhinh_new = str_slug($request->cauhinh_new);
+        $ch = CauHinhSanPham::all();
+        $kt = true;
+        foreach($ch as $item_ch)
+        {
+            if($item_ch->ten_khong_dau == $cauhinh_new && $item_ch->id_loai == $request->loaich )
+            {
+                $kt = false;
+                return response()->json([
+                        'success' => 0 ,
+                ]);
+            }
+        }
+        if($kt == true)
+        {
+            $cauhinh = new CauHinhSanPham;
+            $cauhinh->cau_hinh = $request->cauhinh_new;
+            $cauhinh->ten_khong_dau = str_slug($request->cauhinh_new);
+            $cauhinh->id_loai = $request->loaich;
+            $cauhinh->save();
+            return response()->json([
+                    'success' => 1 ,
+            ]);
+        }
     }
 
     public function postTinTucNoiBat_HienThi(Request $request)
