@@ -38,7 +38,7 @@
                 <input type="text" id="title" class="form-control" name="title" /><br />
 
                 <label>Mô tả</label>
-                <textarea id="mota"  class="form-control" name="mota"></textarea><br />
+                <textarea id="mota"  class="form-control" name="mota" style="height:200px"></textarea><br />
 
                 <label>Nội dung</label>
                 <textarea id="noidung" class="form-gruop ckeditor" name="noidung" ></textarea>

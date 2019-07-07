@@ -38,7 +38,7 @@
                 <input type="text" id="title" class="form-control" name="title" value="{{$chinhsach->title}}"/><br />
 
                 <label>Mô tả</label>
-                <textarea id="mota"  class="form-control" name="mota">{{$chinhsach->mo_ta}}</textarea><br />
+                <textarea id="mota"  class="form-control" name="mota"  style="height:200px">{{$chinhsach->mo_ta}}</textarea><br />
 
                 <label>Nội dung</label>
                 <textarea id="noidung" class="form-gruop ckeditor" name="noidung" >{{$chinhsach->noi_dung}}</textarea>

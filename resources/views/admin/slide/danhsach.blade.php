@@ -5,7 +5,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
     <div class="x_title">
-       <h2>DANH SÁCH SLIDE</h2>
+       <h2>Danh sách slide</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li><a href="shop/admin/slide/them"><i class="fa fa-plus"></i></a></li>
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -41,7 +41,7 @@
              <td style="text-align:center">
                  <img src="../../upload/slide/{{$sl->hinh_anh}}" alt="Hình ảnh" width="250px" height="150px">
             </td>
-            <td style="text-align:center">
+            <td style="text-align:center;vertical-align: middle;">
                  <input id="{{$sl->id}}" type="checkbox" class="flat" @if($sl->hien_thi)
                         {{"checked"}}
                     @endif><br/>

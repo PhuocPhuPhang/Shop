@@ -6,9 +6,9 @@
     <div class="x_panel">
     <div class="x_title">
     @if( $route->uri == 'shop/admin/user/nhanvien')
-       <h2>DANH SÁCH NHÂN VIÊN</h2>
+       <h2>Danh sách nhân viên</h2>
     @else
-        <h2>DANH SÁCH KHÁCH HÀNG</h2>
+        <h2>Danh sách khách hàng</h2>
     @endif
         <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>

@@ -15,7 +15,9 @@ class UsersController extends Controller
     function __construct()
     {
         $route = Route::current();
+        $quyen =  DB::table('phan_quyen')->get();
         view()->share('route',$route);
+        view()->share('quyen',$quyen);
     }
 
     public function index()
@@ -26,8 +28,8 @@ class UsersController extends Controller
     public function getDanhSachKH()
     {
         $user = User::where('quyen','0')->get();
-        $quyen = DB::table('phan_quyen')->where('id','<>','1')->get();
-        return view('admin.user.danhsach',['user'=>$user],['quyen'=>$quyen]);
+        $quyen = DB::table('phan_quyen')->where([['id','<>','1'],['id','<>','0']])->get();
+        return view('admin.user.danhsach',['user'=>$user,'quyen'=>$quyen]);
     }
 
     public function getDanhSachNV()

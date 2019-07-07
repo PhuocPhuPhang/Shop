@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use DB;
 use Charts;
+use App\HoaDon;
 use Illuminate\Support\Facades\Hash;
 
 class AdminLoginController extends Controller

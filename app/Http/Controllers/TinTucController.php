@@ -204,7 +204,7 @@ class TinTucController extends Controller
     public function getChinhSach()
     {
         $chinhsach = TinTuc::where('type','chinh-sach')->get();
-        return view('shop/admin/tintuc/chinhsach/danhsach',['chinhsach'=>$chinhsach]);
+        return view('admin.tintuc.chinhsach.danhsach',['chinhsach'=>$chinhsach]);
     }
 
     public function getThemChinhSach()
@@ -237,7 +237,7 @@ class TinTucController extends Controller
     public function getSuaChinhSach($id)
     {
         $chinhsach = TinTuc::find($id);
-        return view('shop/admin.tintuc.chinhsach.sua',['chinhsach'=>$chinhsach]);
+        return view('admin.tintuc.chinhsach.sua',['chinhsach'=>$chinhsach]);
     }
 
     public function postSuaChinhSach(Request $request, $id)
