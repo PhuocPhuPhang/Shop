@@ -9,7 +9,7 @@
 				<div class="cart-layout__title">Thông tin giỏ hàng</div>
 				<input class="form-control" type="text" name="ten" @if($user != '') value="{{$user->ten}}" @endif placeholder="Họ tên" required>
 				<input class="form-control" type="email" name="email" @if($user != '')  value="{{$user->email}}" @endif placeholder="Email" required>
-				<input class="form-control" type="text" name="dienthoai" @if($user != '') value="{{$user->so_dien_thoai}}"  @endif placeholder="Số điện thoại" required>
+				<input class="form-control" type="text" name="dienthoai" @if($user != '') value="{{$user->so_dien_thoai}}"  @endif placeholder="Số điện thoại" required pattern="(0[3|7|9|8|5])+([0-9]{8})\b" title="Số điện thoại không hợp lệ" maxlength="10">
 				<textarea class="form-control" name="diachi" placeholder="Địa chỉ" @if($user != '') value="{{$user->dia_chi}}" @endif rows="5" required></textarea>
 			</div>
 			<div class="cart-layout__col">
