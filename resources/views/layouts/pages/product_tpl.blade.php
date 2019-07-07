@@ -82,12 +82,14 @@
 							<!-- <div class="price_old">10,000,000 Đ</div> -->
 						</div>
 						<div class="pro_info-info">
-							<span>Màn hình: 5.8", Super Retina</span>
+							@foreach($ttsp as $thongso)
+							@endforeach		
+							<!-- <span>Màn hình: 5.8", Super Retina</span>
 							<span>HĐH: iOS 12</span>
 							<span>CPU: Apple A11 Bionic 6 nhân</span>
 							<span>RAM: 3 GB, ROM: 256 GB</span>
 							<span>Camera: Chính 12 MP & Phụ 12 MP, Selfie: 7 MP</span>
-							<span>PIN: 2716 mAh</span>
+							<span>PIN: 2716 mAh</span> -->
 						</div>
 					</div>
 				</div>
