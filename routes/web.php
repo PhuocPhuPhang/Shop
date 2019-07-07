@@ -157,6 +157,18 @@ Route::group(['prefix' => 'shop'], function () {
             Route::get('xoa/{id}', 'SocialController@getXoa');
         });
 
+        Route::group(['prefix' => 'video'], function () {
+
+            Route::get('danhsach', 'VideoController@getDanhSach');
+
+            Route::get('them', 'VideoController@getThem');
+            Route::post('them', 'VideoController@postThem');
+
+            Route::get('sua/{id}', 'VideoController@getSua');
+            Route::post('sua/{id}', 'VideoController@postSua');
+
+            Route::get('xoa/{id}', 'VideoController@getXoa');
+        });
         //Sản phẩm
         Route::group(['prefix' => 'sanpham'], function () {
 
@@ -242,7 +254,7 @@ Route::group(['prefix' => 'shop'], function () {
 
             Route::post('user/update', 'AjaxController@postPhanQuyen');
 
-            Route::post('sanpham/noibat','AjaxController@postNoiBatSanPham');
+            Route::post('sanpham/noibat', 'AjaxController@postNoiBatSanPham');
         });
         //Website
         Route::group(['prefix' => 'website'], function () {
@@ -258,7 +270,7 @@ Route::group(['prefix' => 'shop'], function () {
             Route::get('duyet/{mahd}', 'HoaDonController@getDuyet');
             Route::post('duyet/{mahd}', 'HoaDonController@postDuyet');
 
-            Route::get('huy/{mahd}','HoaDonController@getHuy');
+            Route::get('huy/{mahd}', 'HoaDonController@getHuy');
         });
     });
 });

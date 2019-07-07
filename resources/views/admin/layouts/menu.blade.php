@@ -38,6 +38,7 @@
                         <ul class="nav child_menu">
                             <li><a href="{{url('shop/admin/slide/danhsach')}}">Slide</a></li>
                             <li><a href="{{url('shop/admin/social/danhsach')}}">Mạng xã hội</a></li>
+                            <li><a href="{{url('shop/admin/video/danhsach')}}">Video</a></li>
                         </ul>
                     </li>
 

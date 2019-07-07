@@ -39,7 +39,7 @@
 
                 @if ($gt != null)
                 <label>Mô tả</label>
-                <textarea id="mota"  class="form-control" name="mota" style="height:100px">{{$gt->mo_ta}}</textarea><br />
+                <textarea id="mota"  class="form-control" name="mota" style="height:200px">{{$gt->mo_ta}}</textarea><br />
                 @else
                 <label>Mô tả</label>
                 <textarea id="mota"  class="form-control" name="mota" style="height:100px"></textarea><br />

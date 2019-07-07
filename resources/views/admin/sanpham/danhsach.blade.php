@@ -97,7 +97,7 @@
                     headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                     data:{"masp":masp},
                     success: function(data){
-                        if(data.data.success)
+                        if(data.data.success == 1)
                         {
                             alert('Cập nhật thành công');
                         }

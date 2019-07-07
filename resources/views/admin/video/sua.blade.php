@@ -1,17 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
 <div class="">
-<div class="page-title">
-<div class="title_left">
-<h3></h3>
-</div>
-</div>
 <div class="clearfix"></div>
 <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-            <h2>{{$chinhsach->title}}</h2>
+            <h3>{{$video->ten}}</h3>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -30,23 +25,19 @@
                 </div>
             @endif
 
-            <form id="demo-form" action="shop/admin/tintuc/chinhsach/sua/{{$chinhsach->id}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+            <form id="demo-form" action="shop/admin/video/sua/{{$video->id}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-
                 <label>Tiêu đề</label>
-                <input type="text" id="title" class="form-control" name="title" value="{{$chinhsach->title}}"/><br />
+                <input type="text" id="ten" class="form-control" name="ten" value="{{$video->ten}}" /> <br />
 
-                <label>Mô tả</label>
-                <textarea id="mota"  class="form-control" name="mota"  style="height:200px">{{$chinhsach->mo_ta}}</textarea><br />
-
-                <label>Nội dung</label>
-                <textarea id="noidung" class="form-gruop ckeditor" name="noidung" >{{$chinhsach->noi_dung}}</textarea>
+                <label>Link</label>
+                <input type="text" id="link" class="form-control" name="link" value="{{$video->link}}" /> <br />
 
                 <div class="ln_solid"></div>
                 <div class="form-group" style="margin-left:20%">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <a href="shop/admin/tintuc/chinhsach">
+                        <a href="shop/admin/video/danhsach">
                             <button class="btn btn-primary" type="button">Hủy</button>
                         </a>
                         <button class="btn btn-primary" type="reset">Làm mới</button>
@@ -62,7 +53,6 @@
 @endsection
 @section('script')
 <script type="text/javascript" language="javascript">
-   $("div.alert").delay(3000).slideUp();
-    </script>
+    $("div.alert").delay(3000).slideUp();
+</script>
 @endsection
-

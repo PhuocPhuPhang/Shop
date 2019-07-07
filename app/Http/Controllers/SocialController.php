@@ -58,28 +58,7 @@ class SocialController extends Controller
         {
             $social->hinh_anh = "";
         }
-
         $thutu = $request->thutu;
-        // $max = Media::where('type','social')->count();
-        // $tontai = DB::table('media')->where(['thu_tu',$thutu],['type','social'])->count();
-        // if($tontai != 0 )
-        // {
-        //     if($thutu == 1 )
-        //     {
-        //         $dsSlide = DB::table('media')->where('type','social')
-        //         ->whereBetween('thu_tu',[$thutu,$max])->get();
-        //     }
-        //     else
-        //     {
-        //         $dsSlide = DB::table('media')->whereBetween('thu_tu',[$thutu,$max-1])->get();
-        //         DB::table('media')->where(['thu_tu',$max],['type','social'])->update(['thu_tu'=>$max+1]);
-        //     }
-
-        //     foreach($dsSlide as $items)
-        //     {
-        //         DB::table('media')->where(['thu_tu',$items->thu_tu],['type','social'])->update(['thu_tu'=>$items->thu_tu +1]);
-        //     }
-        // }
         $social->thu_tu = $thutu;
 
         $social->save();

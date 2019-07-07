@@ -181,15 +181,15 @@ class AjaxController extends Controller
     public function postNoiBatSanPham(Request $request)
     {
         $sanpham = SanPham::find($request->masp);
-
         if ($sanpham->noi_bat == 1) {
             $sanpham->noi_bat = 0;
         } else {
             $sanpham->noi_bat = 1;
         }
+        $sanpham->save();
         return response()->json([
             'data' => [
-                'success' => $sanpham->save(),
+                'success' => 1 ,
             ]
         ]);
     }
