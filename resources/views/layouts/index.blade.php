@@ -119,18 +119,9 @@
 			<div class="text_other_1"></div>
 			<div class="content">
 				<div class="fotorama" data-nav="thumbs" data-allowfullscreen="true" data-width="100%" data-thumbheight="100" data-thumbwidth="120">
-					<a href="https://www.youtube.com/watch?v=kyWxymAfKSA">
-						<!-- <img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt=""> -->
-					</a>
-					<a href="https://www.youtube.com/watch?v=kyWxymAfKSA">
-						<!-- <img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt=""> -->
-					</a>
-					<a href="https://www.youtube.com/watch?v=kyWxymAfKSA">
-						<!-- <img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt=""> -->
-					</a>
-					<a href="https://www.youtube.com/watch?v=kyWxymAfKSA">
-						<!-- <img class="lazy" src="https://img.youtube.com/vi/3fi7uwBU-CE/0.jpg" alt=""> -->
-					</a>
+					@foreach($video as $vi)
+					<a href="{{$vi->link}}"></a>
+					@endforeach
 				</div>
 			</div><!-- end content -->
 		</div>
