@@ -53,7 +53,7 @@
 
                         <label class="control-label col-md-2 col-sm-3 col-xs-12">Màu sắc</label>
                         <div class="col-md-2 col-sm-6 col-xs-12 input-group demo2">
-                            <input type="text" id="mausac" name="mausac" value="red" value="{{$sanpham->mau_sac}}" class="form-control col-md-6 col-xs-12 inputForm" style="margin-left:10px" />
+                            <input type="text" id="mausac" name="mausac" value="{{$sanpham->mau_sac}}" class="form-control col-md-6 col-xs-12 inputForm" style="margin-left:10px" />
                             <span class="input-group-addon" style="padding-left:20px"><i></i></span>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     </p>
                     @endif
 
-                    <label>Hình ảnh</label> &nbsp<small style="color:red">Hình đầu tiên sẽ là hình đại diện cho sản phẩm</small>
+                    <label>Hình ảnh</label> &nbsp<small style="color:red">( Hình đầu tiên sẽ là hình đại diện cho sản phẩm)</small>
                     <form action="shop/admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="fallback">
