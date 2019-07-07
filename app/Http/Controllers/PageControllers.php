@@ -31,8 +31,10 @@ class PageControllers extends Controller
     $product_shop = SanPham::where('noi_bat', 1)->paginate(12);
     $social = Media::where('type', 'social')->get();
     $website = DB::table('thong_tin_cong_ty')->first();
+    $video = Media::where([['type', 'video']])->get();
     $route = Route::current();
     view()->share('route', $route);
+    view()->share('video', $video);
     view()->share('about', $about);
     view()->share('nhacungcap', $nhacungcap);
     view()->share('tintuc', $tintuc);
