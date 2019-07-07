@@ -85,3 +85,31 @@
     </div>
 </div>
 @endsection
+@section('script')
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $(".flat").on('ifChanged', function(event) {
+                event.preventDefault();
+                var masp = $(this).closest('.flat').attr('id');
+                $.ajax({
+                    type:'POST',
+                    url: 'shop/admin/ajax/sanpham/noibat',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    data:{"masp":masp},
+                    success: function(data){
+                        if(data.data.success)
+                        {
+                            alert('Cập nhật thành công');
+                        }
+                        else
+                        {
+                            alert('Lỗi');
+                        }
+                    }
+                })
+                });
+        });
+    $("div.alert").delay(3000).slideUp();
+    </script>
+
+@endsection

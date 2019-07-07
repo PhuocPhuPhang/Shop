@@ -74,7 +74,7 @@
                     <textarea id="mota" class="form-control inputForm" name="mota"></textarea><br />
 
                     <label>Hình ảnh khác</label>
-                    <form action="admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
+                    <form action="shop/admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="fallback">
                             <input name="file" type="file" multiple />
@@ -121,7 +121,7 @@
                 <div class="x_title" style="border-bottom:none">
                     <div class="form-group" style="margin-left:20%">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <a href="admin/sanpham/danhsach">
+                            <a href="shop/admin/sanpham/danhsach">
                                 <button class="btn btn-primary" type="button">Hủy</button>
                             </a>
                             <button class="btn btn-primary" type="reset">Làm mới</button>
@@ -193,7 +193,7 @@
 
         $("#loaicauhinh").change(function() {
             var idloaiCH = $(this).val();
-            $.get("admin/ajax/cauhinh/" + idloaiCH, function(data) {
+            $.get("shop/admin/ajax/cauhinh/" + idloaiCH, function(data) {
                 $("#list_cauhinh").html(data);
             });
         });

@@ -73,6 +73,7 @@
                     <label>Mô tả</label>
                     <textarea id="mota" class="form-control inputForm" name="mota">{{$sanpham->noi_dung}}</textarea><br />
 
+                    @if(count($hinhanh) != 0)
                     <label>Hình hiện tại</label>
                     <p>
                         @foreach($hinhanh as $hinh)
@@ -82,8 +83,10 @@
                         @endif
                         @endforeach
                     </p>
+                    @endif
+
                     <label>Hình ảnh khác</label>
-                    <form action="#" class="dropzone" method="post" enctype="multipart/form-data">
+                    <form action="shop/admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="fallback">
                             <input name="file" type="file" multiple />
@@ -129,7 +132,7 @@
                 <div class="x_title" style="border-bottom:none">
                     <div class="form-group" style="margin-left:20%">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <a href="admin/sanpham/danhsach">
+                            <a href="shop/admin/sanpham/danhsach">
                                 <button class="btn btn-primary" type="button">Hủy</button>
                             </a>
                             <button class="btn btn-primary" type="reset">Làm mới</button>
@@ -201,7 +204,7 @@
 
         $("#loaicauhinh").change(function() {
             var idloaiCH = $(this).val();
-            $.get("admin/ajax/cauhinh/" + idloaiCH, function(data) {
+            $.get("shop/admin/ajax/cauhinh/" + idloaiCH, function(data) {
                 $("#list_cauhinh").html(data);
             });
         });
@@ -277,8 +280,13 @@
         });
 
         $("#btnSubmit").click(function(event) {
-            var tensp = document.getElementById('ten').value;
             var masp = document.getElementById('ma').value;
+            var tensp = document.getElementById('ten').value;
+            // var formData = new FormData();
+            // console.log($('input#hinhanh')[0].files);
+
+            // hinh = $('input#hinhanh')[0].files[0];
+            // formData.append("hinh",hinh);
             var array = [];
             if (tensp != "") {
                 $('.inputForm').each(function(index, input) {
@@ -310,13 +318,29 @@
                         }
                     }
                 });
+                // formData.append("mang",array);
+                // $.ajax({
+                //     headers: {
+                //         'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                //         contentType: "multipart/form-data",
+                //     },
+                //     url: '/admin/sanpham/them',
+                //     data: formData,
+                //     cache: false,
+                //     contentType: false,
+                //     processData: false,
+                //     type: 'POST',
+                //     success: function(data){
+                //         // alert(data);
+                //     }
+                // });
             } else {
                 alert('Vui lòng kiểm tra lại mã sản phẩm và tên sản phẩm ');
             }
         });
 
-        $(".image").click(function(event) {
-            var id = $(this).attr('id');
+        $(".image").click(function() {
+            var id = $(".image").attr('id');
             $.ajax({
                 type: 'post',
                 url: 'shop/admin/sanpham/hinhanh/xoa/' + id,
@@ -328,7 +352,10 @@
                     "id": id
                 },
                 success: function(data) {
-                    if (data.data.success == 1) alert(1);
+                    if (data.data.success == 1) {
+                       alert('xóa thành công');
+                       location.reload();
+                    }
                 }
             });
         });
