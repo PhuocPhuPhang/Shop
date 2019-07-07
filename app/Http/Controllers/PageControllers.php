@@ -25,7 +25,7 @@ class PageControllers extends Controller
     function __construct()
     {
         $about = DB::table('tin_tuc')->where('type', 'gioi-thieu')->first();
-        $nhacungcap =  NhaCungCap::all();
+        $nhacungcap =  NhaCungCap::where('hien_thi', 1)->get();
         $tintuc = TinTuc::all();
         $tintuc_shop = TinTuc::where('type', 'tin-tuc')->get();
         $product_shop = SanPham::where('noi_bat', 1)->paginate(12);
@@ -357,13 +357,11 @@ class PageControllers extends Controller
             //   }
             // }
             $tongtien = [];
-            foreach ($don_hang as $dh)
-            {
-            $chitiethoadon = DB::table('chi_tiet_hoa_don') ->join('san_pham','chi_tiet_hoa_don.ma_san_pham','=','san_pham.ma_san_pham')
-              ->select('ma_hoa_don','ten_san_pham','gia_ban','chi_tiet_hoa_don.so_luong')->where('ma_hoa_don',$dh->ma_hoa_don)->get();
+            foreach ($don_hang as $dh) {
+                $chitiethoadon = DB::table('chi_tiet_hoa_don')->join('san_pham', 'chi_tiet_hoa_don.ma_san_pham', '=', 'san_pham.ma_san_pham')
+                    ->select('ma_hoa_don', 'ten_san_pham', 'gia_ban', 'chi_tiet_hoa_don.so_luong')->where('ma_hoa_don', $dh->ma_hoa_don)->get();
                 $thanhtien = 0;
-                foreach ($chitiethoadon as $cthd)
-                {
+                foreach ($chitiethoadon as $cthd) {
                     $tam = ($cthd->gia_ban) * ($cthd->so_luong);
                     $thanhtien += $tam;
                 }
