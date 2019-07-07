@@ -47,10 +47,10 @@
 				<label class="col-md-3 col-form-label">Số điện thoại</label>
 				<div class="col-md-9">
 					<div class="input-group mb-3">
-						<div class="input-group-prepend">
+						<!-- <div class="input-group-prepend">
 							<span class="input-group-text">(+84)</span>
-						</div>
-						<input type="text" name="so_dien_thoai" value="{{Auth::user()->so_dien_thoai}}" class="form-control">
+						</div> -->
+						<input type="text" name="so_dien_thoai" value="{{Auth::user()->so_dien_thoai}}" class="form-control" pattern="(0[3|7|9|8|5])+([0-9]{8})\b" title="Số điện thoại không hợp lệ" maxlength="10" required>
 					</div>
 				</div>
 			</div>
@@ -111,13 +111,13 @@
 			<div class="form-group row">
 				<label class="col-md-3 col-form-label" for="">Mật khẩu mới</label>
 				<div class="col-md-9">
-					<input type="password" id="newpassword" name="password" class="form-control">
+					<input type="password" id="password2" name="password2" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-md-3 col-form-label" for="">Nhập lại mật khẩu mới</label>
 				<div class="col-md-9">
-					<input type="password" id="re_newpassword" name="password_confirmation" class="form-control">
+					<input type="password" id="re_password2" name="re_password2" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -132,6 +132,11 @@
 				</div>
 			</div>
 		</form>
+		@if(session('changeErro'))
+		<script>
+			alert('Mật khẩu không đúng.')
+		</script>
+		@endif
 		@endif
 		@if($route->uri == 'shop/don-hang')
 		<div class="custom-table">
@@ -143,9 +148,10 @@
 				<div class="custom-table__col">Tổng tiền</div>
 				<div class="custom-table__col">Tình trạng</div>
 			</div>
+			@if($soluong_donhang > 0)
 			<div class="custom-table__body">
 				<div class="custom-table__row">
-                <?php $i = 1 ?>
+					<?php $i = 1 ?>
 					@foreach($a as $dh)
 					<div class="custom-table__col center">{{$i++}}</div>
 					<div class="custom-table__col center">{{$dh->ma_hoa_don}}</div>
@@ -163,32 +169,40 @@
 						@endif
 						@endforeach
 					</div>
-					<div class="custom-table__col center">{{$dh->created_at}}</div>
+					<div class="custom-table__col center">
+						<div style="color: red;">{{$dh->created_at}}</div>
+						<div>{{$dh->dia_chi}}</div>
 
-					<div class="custom-table__col center">100000 <sup>đ</sup></div>
+					</div>
+
+					<div class="custom-table__col center">{{number_format($tongtien)}} <sup>đ</sup></div>
 					@if($dh->duyet == 0)
-					<div class="custom-table__col center">Chờ duyệt</div>
+					<div class="custom-table__col center" style="color: orange;font-size: 15px;">Chờ duyệt...</div>
 					@endif
 					@if($dh->duyet == 1)
-					<div class="custom-table__col center">Đã duyệt</div>
+					<div class="custom-table__col center" style="color: green;font-size: 15px;">Đã duyệt</div>
 					@endif
-					@if($dh->duyet == 0)
+					@if($dh->duyet == 0 && $dh->da_xoa == 0)
 					<a href="shop/huyDonHang/{{$dh->ma_hoa_don}}" class="custom-table__col center">Hủy đơn hàng</a>
-					@endif
-					@if($dh->duyet == 1)
-					<div style="color: green;" class="custom-table__col center">Hàng đang chuyển đi</div>
+					@else					
+					<div class="custom-table__col center" style="font-weight: bold;font-size: 18px;color: red;">Đơn hàng đã hủy</div>
 					@endif
 					@endforeach
 				</div>
 			</div>
+			@else
+			<div style="font-size: 18px;color: #000;display: block;text-align: center;padding: 10px 0;">Không có đơn hàng nào</div>
+			@endif
 		</div>
 		@if(session('huydonhang'))
 		<script>
 			alert('Hủy đơn hàng thành công!')
 		</script>
 		@endif
+
 		@endif
 
 	</div>
 </div>
+
 @endsection

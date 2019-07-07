@@ -7,10 +7,10 @@
 		<div class="cart-layout cart_repon">
 			<div class="cart-layout__col">
 				<div class="cart-layout__title">Thông tin giỏ hàng</div>
-				<input class="form-control" type="text" name="ten" placeholder="Họ tên" required>
-				<input class="form-control" type="email" name="email" placeholder="Email" required>
-				<input class="form-control" type="text" name="dienthoai" placeholder="Số điện thoại" required>
-				<textarea class="form-control" name="diachi" placeholder="Địa chỉ" rows="5" required></textarea>
+				<input class="form-control" type="text" name="ten" @if($user != '') value="{{$user->ten}}" @endif placeholder="Họ tên" required>
+				<input class="form-control" type="email" name="email" @if($user != '')  value="{{$user->email}}" @endif placeholder="Email" required>
+				<input class="form-control" type="text" name="dienthoai" @if($user != '') value="{{$user->so_dien_thoai}}"  @endif placeholder="Số điện thoại" required>
+				<textarea class="form-control" name="diachi" placeholder="Địa chỉ" @if($user != '') value="{{$user->dia_chi}}" @endif rows="5" required></textarea>
 			</div>
 			<div class="cart-layout__col">
 				<div class="cart-layout__header">Đơn hàng ({{Cart::getTotalQuantity()}} sản phẩm)</div>

@@ -78,15 +78,10 @@
 									<button name="btnDK" id="btnY">Tạo tài khoản</button>
 								</div>
 							</form>
-							@if(count($errors) > 0)
-							<script >
-								alert('Thất bại');
+							@if(session('emailErro'))
+							<script>
+								alert('Email đã tồn tại.')
 							</script>
-							<div class="alert alert-danger">
-								@foreach($errors->all() as $err)
-								{{ $err }} <br>
-								@endforeach
-							</div>
 							@endif
 							@if(session('errorLogin'))
 							<script>
@@ -112,8 +107,6 @@
 								</div>
 								<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 								<div class="login-row"><input type="submit" name="" value="Login"></div>
-								<!-- <div class="login-row"><a class="login_FB" href="{{ url('/auth/facebook')}}">Đăng nhập bằng FaceBook</a></div>
-									<div class="login-row"><a class="login_GG" href="{{ url('/auth/google')}}">Đăng nhập bằng Google</a></div> -->
 								</form>
 							</div>
 						</div>
@@ -143,22 +136,13 @@
 	<section id="header">
 		<div class="container flex-between-center header-repon" style="padding: 5px 0;">
 			<div class="banner col-head">
-				<a href=""><img class="img-responsive" src="images/logo.png" alt=""></a>
 			</div>
 			<div class="search_haed ">
 				<form id="" action="{{ URL('shop/timkiem') }}" method="post">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 					<div class="timkiem flex-between-center">
-						<!-- <select id="sel_list">
-							<option>Tất cả</option>
-							@foreach($nhacungcap as $ncc)
-							<option name="nhacungcap_select" value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
-							@endforeach
-						</select> -->
 						<input class="tu_khoa" name="tukhoa" id="name_tk" type="text" placeholder="Tìm sản phẩm của bạn..." />
-
 						<button>TÌM KIẾM</button>
-
 						<div class="auto_search"></div>
 						<div class="clearfix"></div>
 					</div>
@@ -179,30 +163,6 @@
 						<div class="txt">
 							<p class="r1">Giỏ hàng</p>
 							<p class="r2">Xem ngay</p>
-
-							<!-- <div class="giohang_index_wrap">
-
-								{{--@foreach($product_cart as $product)
-								<div class="giohang_main">
-									<img src="upload/sanpham/{{$product['item']['hinh_anh']}}">
-									<div class="giohang_info_index">
-										<label>{{$product['item']['ten_san_pham']}}</label>
-										<div class="giohang_calc">{{$product['qty']}} * {{$product['item']['gia_ban']}}</div>
-									</div>
-								</div>
-								@endforeach--}}
-
-								<div class="giohang_main">
-									<img src="{{asset('themes/images/sp.jpg')}}">
-									<div class="giohang_info_index">
-										<label>Tên sản phẩm</label>
-										<div class="giohang_calc">Số lượng * giá</div>
-									</div>
-								</div>
-								<div class="totalPrice_index">Tổng tiền: </div>
-								<div class="thanhtoan_index_wrap"><a href="" class="thanhtoan_index">Đặt hàng</a></div>
-							</div> -->
-
 						</div>
 					</div>
 				</a>
@@ -231,8 +191,6 @@
 					</ul>
 				</li>
 				<li><a href="shop/tin-tuc" title="">Tin tức</a></li>
-				<!-- <li><a href="video.html" title="Video">Video</a></li>
-				<li><a href="shop/tuyen-dung" title="Tuyển dụng">Tuyển dụng</a></li> -->
 				<li><a href="shop/lien-he" title="">Liên hệ</a></li>
 			</ul>
 		</div>

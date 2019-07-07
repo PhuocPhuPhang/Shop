@@ -81,14 +81,15 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 
 #menu{background: #fed700;}
 .menu-grid { display: grid; grid-template-columns: repeat(5, auto); width: 100%; list-style-type: none; }
-.menu-grid ul { display: none; list-style-type: none; position: absolute; width: 220px; left: 0; top: 100%; z-index: 99999; }
+.menu-grid ul { display: none; list-style-type: none; position: absolute; width: 100%; left: 0; top: 100%; z-index: 99999; }
 .menu-grid li { position: relative; z-index: 9999; }
 .menu-grid > li > ul ul { left: 100%; top: 0; }
-.menu-grid a { display: block; font-family: "MuliBold"; font-size: 15px; color: black; position: relative; }
-.menu-grid a:after{position: absolute;content: '';left: 0;top: 0;height: 100%;width: 1px;background: #cfb000;}
+.menu-grid a { display: block; font-family: "font2"; font-size: 15px; color: black; position: relative;text-transform: uppercase; }
+.menu-grid > li > a:after{position: absolute;content: '';left: 0;top: 0;height: 100%;width: 1px;background: #cfb000;}
 .menu-grid > li:first-child > a:after{display: none;}
 .menu-grid > li > a { text-align: center; text-transform: uppercase; line-height: 50px; }
-.menu-grid > li > ul a { text-transform: capitalize; padding: 5px 10px; background: #cdcecf; border-bottom: 1px solid #057c3f; }
+.menu-grid > li > ul > a:first-child { border-top: 1px solid #cacaca; }
+.menu-grid > li > ul a { text-transform: capitalize; padding: 5px 10px; background: #ffffff; border-bottom: 1px solid #cacaca; }
 .menu-grid li:hover > ul { display: block; }
 .menu-grid li:hover > a, .menu-grid li.actived > a { background: #fff; }
 

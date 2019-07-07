@@ -245,6 +245,33 @@
 		// }
 	});
 </script>
+<script>
+	$('#frmChangePassword').validate({
+		rules: {
+			password2: {
+				required: true,
+				rangelength: [6, 20]
+			},
+			re_password2: {
+				required: true,
+				equalTo: "#password2"
+			},
+		},
+		messages: {
+			password2: {
+				required: "Vui lòng nhập mật khẩu",
+				rangelength: "Mật khẩu chỉ từ 6 - 20 kí tự"
+			},
+			re_password2: {
+				required: "Vui lòng nhập lại mật khẩu",
+				equalTo: "Mật khẩu chưa trùng khớp"
+			},
+		}
+		// submitHandler: function(form) {
+		// 	form.submit();
+		// }
+	});
+</script>
 <!-- <script LANGUAGE="JavaScript">
 	function checkPw(form) {
 		pass = form.password.value;

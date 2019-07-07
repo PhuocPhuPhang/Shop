@@ -82,8 +82,8 @@
 							<!-- <div class="price_old">10,000,000 Đ</div> -->
 						</div>
 						<div class="pro_info-info">
-							@foreach($ttsp as $thongso)
-							@endforeach		
+							{{--@foreach($ttsp as $thongso)
+							@endforeach--}}	
 							<!-- <span>Màn hình: 5.8", Super Retina</span>
 							<span>HĐH: iOS 12</span>
 							<span>CPU: Apple A11 Bionic 6 nhân</span>
