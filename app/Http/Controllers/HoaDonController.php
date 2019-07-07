@@ -32,6 +32,7 @@ class HoaDonController extends Controller
         $hoadon = DB::table('hoa_don')->where('ma_hoa_don', $mahd)->first();
         $chitiethoadon = DB::table('chi_tiet_hoa_don')->join('san_pham', 'chi_tiet_hoa_don.ma_san_pham', '=', 'san_pham.ma_san_pham')
             ->select('ma_hoa_don', 'ten_san_pham', 'gia_ban', 'chi_tiet_hoa_don.so_luong')->where('ma_hoa_don', $mahd)->get();
+        $hinhthuc = DB::table('hinh_thuc_thanh_toan')->where('id',$hoadon->thanh_toan)->first();
         $tongtien = 0;
         foreach ($chitiethoadon as $ct) {
             $tam = ($ct->gia_ban) * ($ct->so_luong);
@@ -40,7 +41,8 @@ class HoaDonController extends Controller
         return response()->json([
             'hoadon' => $hoadon,
             'cthd' => $chitiethoadon,
-            'tongtien' => $tongtien
+            'tongtien' => $tongtien,
+            'hinhthuc' => $hinhthuc
         ]);
     }
     public function postDuyet(Request $request)
