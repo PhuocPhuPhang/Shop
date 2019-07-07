@@ -85,7 +85,7 @@
                     </p>
                     @endif
 
-                    <label>Hình ảnh khác</label>
+                    <label>Hình ảnh</label><small style="color:red">Hình đầu tiên sẽ là hình đại diện cho sản phẩm</small>
                     <form action="shop/admin/sanpham/UploadImages" class="dropzone" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="fallback">
@@ -117,9 +117,12 @@
                     <h4 style="font-size:18px">{{$loai->ten}}</h4>
                     @foreach($thongtin_sp as $tt)
                     @if($tt->id_loai == $loai->id)
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">{{$tt->cau_hinh}}</label>
-                    <div class="col-md-8 col-sm-6 col-xs-12" style="margin-bottom:10px">
-                        <input type="text" name="{{$tt->ten_khong_dau}}" id="{{$tt->ten_khong_dau}}" value="{{$tt->mo_ta}}" class="form-control col-md-7 col-xs-12 inputForm">
+                    <div class="{{$ch->cau_hinh}}">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">{{$tt->cau_hinh}}</label>
+                        <div class="col-md-8 col-sm-6 col-xs-12" style="margin-bottom:10px">
+                            <input type="text" name="{{$tt->ten_khong_dau}}" id="{{$tt->ten_khong_dau}}" value="{{$tt->mo_ta}}" class="form-control col-md-7 col-xs-12 inputForm">
+                        </div>
+                        <button class="{{$ch->ten_khong_dau}}" style="border:none;background:#fff"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
                     </div>
                     @endif
                     @endforeach
@@ -220,9 +223,13 @@
                 switch (loaich) {
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}": {
-                        var html = `<label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
-                                <div class="col-md-8 col-sm-6 col-xs-12"  style="margin-bottom:10px">
+                        var html = `
+                        <div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
+                                <div class="col-md-7 col-sm-6 col-xs-12"  style="margin-bottom:10px">
                                     <input type="text" name="${tenkhongdau}" id="${tenkhongdau}" class="form-control col-md-7 col-xs-12 inputForm">
+                                </div>
+                                <button style="border:none;background:#fff"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
                                 </div>`;
                         $('#{{str_slug($loai->ten)}}').append(html);
                     }
@@ -232,7 +239,6 @@
                     break;
                 }
                 $("#list_cauhinh").html("");
-
             }
             if (cauhinh_new != "") {
                 var tenkhongdau_new = string_to_slug(change_alias(cauhinh_new));
@@ -248,31 +254,37 @@
                         "cauhinh_new": cauhinh_new
                     },
                     success: function(data) {
-                        if (data.data.success) {
-                            console.log('Thành công');
+                        var kiemtra = data['success'];
+                        if (kiemtra == 0) {
+                            alert('Tên cấu hình đã tồn tại');
                         } else {
-                            console.log('Lỗi');
-                        }
-                    }
-                })
-
-                switch (loaich) {
-                    @foreach($loaicauhinh as $loai)
-                    case "{{$loai->id}}": {
-                        var html = `<label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
+                            alert('Thành công');
+                            switch (loaich) {
+                                @foreach($loaicauhinh as $loai)
+                                case "{{$loai->id}}": {
+                                    var html = `<label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh_new}</label>
                                 <div class="col-md-8 col-sm-6 col-xs-12"  style="margin-bottom:10px">
                                     <input type="text" name="${tenkhongdau}" id="${tenkhongdau}" class="form-control col-md-7 col-xs-12 inputForm">
                                 </div>`;
-                        $('#{{str_slug($loai->ten)}}').append(html);
+                                    $('#{{str_slug($loai->ten)}}').append(html);
+                                }
+                                break;
+                                @endforeach
+                            default:
+                                break;
+                            }
+                            $("#cauhinh").html("");
+                        }
                     }
-                    break;
-                    @endforeach
-                default:
-                    break;
-                }
-                $("#cauhinh").html("");
+                })
             }
         });
+
+        @foreach($cauhinh as $ch)
+        $('.{{$ch->ten_khong_dau}}').click(function() {
+            $(this).closest("div").remove();
+        })
+        @endforeach
 
         $(".dropzone").dropzone({
             parallelUploads: 10,
@@ -280,13 +292,7 @@
         });
 
         $("#btnSubmit").click(function(event) {
-            var masp = document.getElementById('ma').value;
             var tensp = document.getElementById('ten').value;
-            // var formData = new FormData();
-            // console.log($('input#hinhanh')[0].files);
-
-            // hinh = $('input#hinhanh')[0].files[0];
-            // formData.append("hinh",hinh);
             var array = [];
             if (tensp != "") {
                 $('.inputForm').each(function(index, input) {
@@ -303,7 +309,7 @@
                 });
                 $.ajax({
                     type: 'post',
-                    url: 'shop/admin/sanpham/sua/' + masp,
+                    url: 'shop/admin/sanpham/them',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         contentType: "application/json",
@@ -318,46 +324,9 @@
                         }
                     }
                 });
-                // formData.append("mang",array);
-                // $.ajax({
-                //     headers: {
-                //         'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                //         contentType: "multipart/form-data",
-                //     },
-                //     url: '/admin/sanpham/them',
-                //     data: formData,
-                //     cache: false,
-                //     contentType: false,
-                //     processData: false,
-                //     type: 'POST',
-                //     success: function(data){
-                //         // alert(data);
-                //     }
-                // });
             } else {
                 alert('Vui lòng kiểm tra lại mã sản phẩm và tên sản phẩm ');
             }
-        });
-
-        $(".image").click(function() {
-            var id = $(".image").attr('id');
-            $.ajax({
-                type: 'post',
-                url: 'shop/admin/sanpham/hinhanh/xoa/' + id,
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    contentType: "application/json",
-                },
-                data: {
-                    "id": id
-                },
-                success: function(data) {
-                    if (data.data.success == 1) {
-                       alert('xóa thành công');
-                       location.reload();
-                    }
-                }
-            });
         });
 
         function string_to_slug(str) {
@@ -377,5 +346,55 @@
             return str;
         }
     });
+
+    $("input[data-type='currency']").on({
+        keyup: function() {
+            formatCurrency($(this));
+        },
+        blur: function() {
+            formatCurrency($(this), "blur");
+        }
+    });
+
+
+    function formatNumber(n) {
+        // format number 1000000 to 1,234,567
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    function formatCurrency(input, blur) {
+        var input_val = input.val();
+        if (input_val === "") {
+            return;
+        }
+        var original_len = input_val.length;
+        var caret_pos = input.prop("selectionStart");
+
+        if (input_val.indexOf(".") >= 0) {
+            var decimal_pos = input_val.indexOf(".");
+            var left_side = input_val.substring(0, decimal_pos);
+            var right_side = input_val.substring(decimal_pos);
+            left_side = formatNumber(left_side);
+            right_side = formatNumber(right_side);
+
+            if (blur === "blur") {
+                right_side += "00";
+            }
+
+            right_side = right_side.substring(0, 2);
+            input_val = left_side + "." + right_side;
+
+        } else {
+            input_val = formatNumber(input_val);
+            input_val = input_val;
+            if (blur === "blur") {
+                input_val += ".00";
+            }
+        }
+        input.val(input_val);
+        var updated_len = input_val.length;
+        caret_pos = updated_len - original_len + caret_pos;
+        input[0].setSelectionRange(caret_pos, caret_pos);
+    }
 </script>
 @endsection
