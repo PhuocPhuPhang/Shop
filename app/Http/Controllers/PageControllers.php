@@ -344,6 +344,10 @@ public function DonHang()
       }
     }
 
+    // $price = DB::table('chi_tiet_hoa_don')->join('san_pham','chi_tiet_hoa_don.ma_san_pham','=','san_pham.ma_san_pham')->select('ma_hoa_don','ten_san_pham','chi_tiet_hoa_don.so_luong' * 'san_pham.gia_ban')->where('chi_tiet_hoa_don.ma_san_pham','san_pham.ma_san_pham')->get();
+    // foreach ($price as $key => $value) {
+    //   var_dump($value);
+    // }
     $tongtien = 0;
 
     foreach ($don_hang as $dh) {
