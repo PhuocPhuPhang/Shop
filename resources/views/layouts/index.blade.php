@@ -25,7 +25,7 @@
 						<!-- <div class="sale_off">-10%</div> -->
 					</div>
 					<div class="pro_info">
-						<a class="name" href="san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">{{$sp->ten_san_pham}}</a>
+						<a style="font-size: 15px;color: blue;font-weight: bold;" class="name" href="san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">{{$sp->ten_san_pham}}</a>
 						<div class="wrap_price">
 							<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
 						</div>
