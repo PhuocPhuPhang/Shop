@@ -4,7 +4,7 @@
 	<div class="ncc_wrap">
 		<div class="ncc_grid">
             @foreach($nhacungcap as $ncc )
-            <a class="ncc_item" href=""><img src="../upload/nhacungcap/{{$ncc->logo}}"></a>
+            <a class="ncc_item" href="shop/san-pham-nha-cung-cap/{{$ncc->ma_nha_cung_cap}}"><img src="../upload/nhacungcap/{{$ncc->logo}}"></a>
             @endforeach
 		</div>
 	</div>
