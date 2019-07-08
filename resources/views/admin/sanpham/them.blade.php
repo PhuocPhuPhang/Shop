@@ -104,7 +104,7 @@
                         <div class="col-md-7 col-sm-6 col-xs-12" style="margin-bottom:10px">
                             <input type="text" name="{{$ch->ten_khong_dau}}" id="{{$ch->ten_khong_dau}}" class="form-control col-md-7 col-xs-12 inputForm">
                         </div>
-                        <button class="{{$ch->ten_khong_dau}}" style="border:none;background:#fff"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
+                        <button class="{{$ch->ten_khong_dau}}" style="border:none;background:#fff;margin-top:12px"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
                     </div>
                     @endif
                     @endforeach
@@ -205,15 +205,18 @@
                 switch (loaich) {
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}": {
-                        var html = `
-                        <div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
+                        $(`<div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
                                 <div class="col-md-7 col-sm-6 col-xs-12"  style="margin-bottom:10px">
                                     <input type="text" name="${tenkhongdau}" id="${tenkhongdau}" class="form-control col-md-7 col-xs-12 inputForm">
                                 </div>
-                                <button style="border:none;background:#fff"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
-                                </div>`;
-                        $('#{{str_slug($loai->ten)}}').append(html);
+                                <button style="border:none;background:#fff;margin-top:12px"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
+                                </div>`)
+                            .appendTo('#{{str_slug($loai->ten)}}')
+                            .find('button')
+                            .click(function() {
+                                $(this).parent().remove();
+                            })
                     }
                     break;
                     @endforeach
@@ -244,11 +247,18 @@
                             switch (loaich) {
                                 @foreach($loaicauhinh as $loai)
                                 case "{{$loai->id}}": {
-                                    var html = `<label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh_new}</label>
-                                <div class="col-md-8 col-sm-6 col-xs-12"  style="margin-bottom:10px">
+                                    $(`<div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
+                                <div class="col-md-7 col-sm-6 col-xs-12"  style="margin-bottom:10px">
                                     <input type="text" name="${tenkhongdau}" id="${tenkhongdau}" class="form-control col-md-7 col-xs-12 inputForm">
-                                </div>`;
-                                    $('#{{str_slug($loai->ten)}}').append(html);
+                                </div>
+                                <button style="border:none;background:#fff;margin-top:12px"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
+                                </div>`)
+                                        .appendTo('#{{str_slug($loai->ten)}}')
+                                        .find('button')
+                                        .click(function() {
+                                            $(this).parent().remove();
+                                        })
                                 }
                                 break;
                                 @endforeach

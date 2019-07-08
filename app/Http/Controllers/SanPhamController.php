@@ -31,7 +31,7 @@ class SanPhamController extends Controller
     }
     public function getDanhSach()
     {
-        $sanpham = DB::table('san_pham')->orderBy('created_at', 'desc')->get();
+        $sanpham = DB::table('san_pham')->orderBy('created_at','desc')->get();
         $nhacungcap = NhaCungCap::all();
         return view('admin.sanpham.danhsach', ['sanpham' => $sanpham]);
     }
@@ -88,27 +88,23 @@ class SanPhamController extends Controller
                 }
             }
         }
-        $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt", "r");
-        // dd($image_file);
-        $read = file("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
-        // dd($read);
-        foreach ($read as $image) {
-            $array_item = explode(",", $image);
-            $sanpham->hinh_anh =  $array_item[0];
-            $sanpham->save();
-            for ($i = 0; $i < count($array_item) - 1; $i++) {
-                $hinhanh_sp = new HinhAnh;
-                $hinhanh_sp->ma_san_pham = $masp;
-                $hinhanh_sp->hinh_anh = $array_item[$i];
-                $hinhanh_sp->save();
+        if (file_exists("..\public\upload\sanpham\hinhanhkhac\hinh.txt")) {
+            $image_file = fopen("..\public\upload\sanpham\hinhanhkhac\hinh.txt", "r");
+            $read = file("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
+            foreach ($read as $image) {
+                $array_item = explode(",", $image);
+                $sanpham->hinh_anh =  $array_item[0];
+                for ($i = 0; $i < count($array_item) - 1; $i++) {
+                    $hinhanh_sp = new HinhAnh;
+                    $hinhanh_sp->ma_san_pham = $masp;
+                    $hinhanh_sp->hinh_anh = $array_item[$i];
+                    $hinhanh_sp->save();
+                }
             }
+            fclose($image_file);
+            unlink("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
         }
-        fclose($image_file);
-        // $file = "\\" . str_slug($newArr['ten']) . "txt";
-        // rename(
-        //     "..\public\upload\sanpham\hinhanhkhac\hinh.txt",
-        //     "..\public\upload\sanpham\hinhanhkhac" . $file
-        // );
+        $sanpham->save();
         return response()->json([
             'data' => [
                 'success' => 1,
@@ -221,7 +217,7 @@ class SanPhamController extends Controller
     {
         DB::table('san_pham')->where('ma_san_pham', $masp)->update(['da_xoa' => 1]);
 
-        return redirect('admin/sanpham/danhsach')->with('thongbao', 'Cập nhật trạng thái thành công phẩm thành công');
+        return redirect('shop/admin/sanpham/danhsach')->with('thongbao', 'Cập nhật trạng thái thành công phẩm thành công');
     }
 
     public function getUpdate($masp)

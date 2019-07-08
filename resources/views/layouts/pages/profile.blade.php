@@ -189,8 +189,8 @@
 					@endif
 					@if($dh->duyet == 0 && $dh->da_xoa == 0)
 					<a href="shop/huyDonHang/{{$dh->ma_hoa_don}}" class="custom-table__col center">Hủy đơn hàng</a>
-					@endif	
-					@if($dh->da_xoa != 0)				
+					@endif
+					@if($dh->da_xoa != 0)
 					<div class="custom-table__col center" style="font-weight: bold;font-size: 18px;color: red;">Đơn hàng đã hủy</div>
 					@endif
 					@if($dh->duyet != 0)

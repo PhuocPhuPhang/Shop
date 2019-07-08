@@ -64,12 +64,12 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng</label>
                         <div class="col-md-2 col-sm-6 col-xs-12">
-                            <input type="text" name="soluong" id="soluong" value="{{$sanpham->so_luong}}" class="form-control col-md-7 col-xs-12 inputForm">
+                            <input type="text" name="soluong" id="soluong" value="{{$sanpham->so_luong}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')" class="form-control col-md-7 col-xs-12 inputForm">
                         </div>
 
                         <label class="control-label col-md-2 col-sm-3 col-xs-12">Giá bán</label>
                         <div class="col-md-2 col-sm-6 col-xs-12">
-                            <input type="text" name="giaban" id="giaban" value="{{$sanpham->gia_ban}}" class="form-control col-md-7 col-xs-12 inputForm">
+                            <input type="text" name="giaban" id="giaban" value="{{number_format($sanpham->gia_ban)}}" onkeyup="this.value=this.value.replace(/[^\d]/,'')" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency" class="form-control col-md-7 col-xs-12 inputForm">
                         </div>
                     </div>
 
@@ -81,8 +81,10 @@
                     <p>
                         @foreach($hinhanh as $hinh)
                         @if($hinh->hinh_anh != "")
-                        <img src="../../upload/sanpham/hinhanhkhac/{{$hinh->hinh_anh}}" alt="hình" width="150px" ;height="100px">
-                        <button type="button" class="dz-error-mark image" id="{{$hinh->id}}"><i>✘</i></button>
+                        <label for="">
+                            <img src="../../upload/sanpham/hinhanhkhac/{{$hinh->hinh_anh}}" alt="hình" width="150px" ;height="100px">
+                            <button type="button" class="dz-error-mark image" id="{{$hinh->id}}"><i>✘</i></button>
+                        </label>
                         @endif
                         @endforeach
                     </p>
@@ -226,15 +228,18 @@
                 switch (loaich) {
                     @foreach($loaicauhinh as $loai)
                     case "{{$loai->id}}": {
-                        var html = `
-                        <div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
+                        $(`<div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
                                 <div class="col-md-7 col-sm-6 col-xs-12"  style="margin-bottom:10px">
                                     <input type="text" name="${tenkhongdau}" id="${tenkhongdau}" class="form-control col-md-7 col-xs-12 inputForm">
                                 </div>
-                                <button style="border:none;background:#fff"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
-                                </div>`;
-                        $('#{{str_slug($loai->ten)}}').append(html);
+                                <button style="border:none;background:#fff;margin-top:12px"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
+                                </div>`)
+                            .appendTo('#{{str_slug($loai->ten)}}')
+                            .find('button')
+                            .click(function() {
+                                $(this).parent().remove();
+                            })
                     }
                     break;
                     @endforeach
@@ -265,15 +270,18 @@
                             switch (loaich) {
                                 @foreach($loaicauhinh as $loai)
                                 case "{{$loai->id}}": {
-                                    var html = `
-                        <div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
+                                    $(`<div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right">${cauhinh}</label>
                                 <div class="col-md-7 col-sm-6 col-xs-12"  style="margin-bottom:10px">
                                     <input type="text" name="${tenkhongdau}" id="${tenkhongdau}" class="form-control col-md-7 col-xs-12 inputForm">
                                 </div>
-                                <button style="border:none;background:#fff"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
-                                </div>`;
-                                    $('#{{str_slug($loai->ten)}}').append(html);
+                                <button style="border:none;background:#fff;margin-top:12px"><i class="col-md-1 col-sm-6 col-xs-12">✘</i></button>
+                                </div>`)
+                                        .appendTo('#{{str_slug($loai->ten)}}')
+                                        .find('button')
+                                        .click(function() {
+                                            $(this).parent().remove();
+                                        })
                                 }
                                 break;
                                 @endforeach
@@ -293,9 +301,32 @@
         })
         @endforeach
 
+
+
         $(".dropzone").dropzone({
             parallelUploads: 10,
             uploadMultiple: true,
+        });
+
+        $(".image").click(function() {
+            var id = $(this).attr('id');
+            var $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: 'shop/admin/sanpham/hinhanh/xoa/' + id,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    contentType: "application/json",
+                },
+                data: {
+                    "id": id
+                },
+                success: function(data) {
+                    if (data.data.success == 1) {
+                        $this.parent().remove();
+                    }
+                }
+            });
         });
 
         $("#btnSubmit").click(function(event) {
