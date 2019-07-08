@@ -306,7 +306,7 @@ class PageControllers extends Controller
     return view('layouts.pages.product_tpl', ['product_tpl' => $sp]);
   }
 
-  public function DonHang()
+public function DonHang()
   {
 
     $user_email = Auth::user();
@@ -342,18 +342,17 @@ class PageControllers extends Controller
     }
   }
 
-  public function huyDonHang($ma_hoa_don)
-  {
-    DB::table('chi_tiet_hoa_don')->where('ma_hoa_don', $ma_hoa_don)->update(['da_xoa' => 1]);
-    DB::table('hoa_don')->where('ma_hoa_don', $ma_hoa_don)->update(['da_xoa' => 1]);
-    $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don', $ma_hoa_don)->get();
-    foreach ($don_hang_chi_tiet as $value) {
+public function huyDonHang($ma_hoa_don)
+{
+  DB::table('chi_tiet_hoa_don')->where('ma_hoa_don', $ma_hoa_don)->update(['da_xoa' => 1]);
+  DB::table('hoa_don')->where('ma_hoa_don', $ma_hoa_don)->update(['da_xoa' => 1]);
+  $don_hang_chi_tiet = DB::table('chi_tiet_hoa_don')->where('ma_hoa_don', $ma_hoa_don)->get();
+  foreach ($don_hang_chi_tiet as $value) {
     // dd($value->ma_san_pham);
     $soluong_ton = DB::table('san_pham')->where('ma_san_pham', $value->ma_san_pham)->first();
     $soluong_update = $soluong_ton->so_luong + $value->so_luong;
     DB::table('san_pham')->where('ma_san_pham', $value->ma_san_pham)->update(['so_luong' => $soluong_update]);
-    }
-
-    return redirect('shop/don-hang')->with('huydonhang', 'Hủy đơn hàng thành công!');
   }
+  return redirect('shop/don-hang')->with('huydonhang', 'Hủy đơn hàng thành công!');
+}
 }

@@ -102,9 +102,9 @@
 									<label>Mật khẩu</label>
 									<input type="password" name="password" placeholder="Nhập mật khẩu" required>
 								</div>
-								<div class="login-row">
+								<!-- <div class="login-row">
 									<span class="quenMK">Quên mật khẩu? Nhấn vào <a href="">đây</a></span>
-								</div>
+								</div> -->
 								<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 								<div class="login-row"><input type="submit" name="" value="Login"></div>
 								</form>
@@ -191,7 +191,7 @@
 					</ul>
 				</li>
 				<li><a href="shop/tin-tuc" title="">Tin tức</a></li>
-				<li><a href="shop/video" title="">Video</a></li>
+				<!-- <li><a href="shop/video" title="">Video</a></li> -->
 			</ul>
 		</div>
 	</section>
