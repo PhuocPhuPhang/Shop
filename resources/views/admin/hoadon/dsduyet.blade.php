@@ -41,9 +41,9 @@
                                 <button type="button" id="{{$hd->ma_hoa_don}}" class="btn btn-info btn-xs duyet">
                                     <i class="fa fa-edit"></i> Xem chi tiết
                                 </button>
-                                <!-- <a href="shop/admin/hoadon/huy/{{$hd->ma_hoa_don}}" class="btn btn-danger btn-xs">
+                                <a href="shop/admin/hoadon/huy/{{$hd->ma_hoa_don}}" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash-o"></i> Hủy
-                                </a> -->
+                                </a>
                             </td>
                         </tr>
                         @endforeach
