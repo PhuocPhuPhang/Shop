@@ -45,8 +45,11 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nhà cung cấp</label>
                         <div class="col-md-2 col-sm-6 col-xs-12">
                             <Select class="form-control inputForm " name="nhacungcap" id="nhacungcap">
+                                <option value="{{$sanpham->nha_cung_cap}}">{{$sanpham->NhaCungCap->ten_nha_cung_cap}}</option>
                                 @foreach($nhacungcap as $ncc)
+                                @if($sanpham->nha_cung_cap != $ncc->ma_nha_cung_cap)
                                 <option value="{{$ncc->ma_nha_cung_cap}}">{{$ncc->ten_nha_cung_cap}}</option>
+                                @endif
                                 @endforeach
                             </Select>
                         </div>
@@ -71,7 +74,7 @@
                     </div>
 
                     <label>Mô tả</label>
-                    <textarea id="mota" class="form-control inputForm" name="mota">{{$sanpham->noi_dung}}</textarea><br />
+                    <textarea id="mota" class="form-control inputForm" name="mota" style="height:200px">{{$sanpham->noi_dung}}</textarea><br />
 
                     @if(count($hinhanh) != 0)
                     <label>Hình hiện tại</label>
@@ -314,7 +317,7 @@
                 });
                 $.ajax({
                     type: 'post',
-                    url: 'shop/admin/sanpham/sua/' + masp ,
+                    url: 'shop/admin/sanpham/sua/' + masp,
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         contentType: "application/json",

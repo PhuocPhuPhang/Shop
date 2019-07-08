@@ -29,12 +29,6 @@
             <form  action="shop/admin/nhacungcap/them" method="POST" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" >
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã nhà cung cấp</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input  name="ma"  class="form-control col-md-7 col-xs-12">
-                </div>
-                </div>
-                <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tên nhà cung cấp</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input  name="ten"  class="form-control col-md-7 col-xs-12">

@@ -177,7 +177,6 @@ class SanPhamController extends Controller
         $sanpham->mau_sac = $newArr['mausac'];
         $sanpham->mo_ta = $newArr['mota'];
         $sanpham->noi_dung = $newArr['noidung'];
-        $sanpham->save();
 
         $listCauHinh = DB::table('cau_hinh_san_pham')->select('id', 'ten_khong_dau')->get();
         DB::table('thong_tin_san_pham')->where('ma_san_pham', $masp)->delete();
@@ -200,7 +199,6 @@ class SanPhamController extends Controller
             foreach ($read as $image) {
                 $array_item = explode(",", $image);
                 $sanpham->hinh_anh =  $array_item[0];
-                $sanpham->save();
                 for ($i = 0; $i < count($array_item) - 1; $i++) {
                     $hinhanh_sp = new HinhAnh;
                     $hinhanh_sp->ma_san_pham = $masp;
@@ -211,6 +209,7 @@ class SanPhamController extends Controller
             fclose($image_file);
             unlink("..\public\upload\sanpham\hinhanhkhac\hinh.txt");
         }
+        $sanpham->save();
         return response()->json([
             'data' => [
                 'success' => 1,

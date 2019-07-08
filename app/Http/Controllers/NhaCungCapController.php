@@ -26,15 +26,9 @@ class NhaCungCapController extends Controller
     public function postThem(Request $request)
     {
         $this->validate($request,[
-            'ma' => 'required|unique:nha_cung_cap,ma_nha_cung_cap|min:3|max:10',
             'ten'=> 'required|unique:nha_cung_cap,ten_nha_cung_cap|max:255',
             'sdt'=> 'numeric|min:9'
         ],[
-            'ma.required' => 'Bạn chưa nhập mã nhà cung cấp',
-            'ma.unique' => 'Mã nhà cung cấp đã tồn tại',
-            'ma.min'    =>  'Mã nhà cung cấp phải có độ dài hơn 3 ký tự',
-            'ma.max'    =>  'Mã nhà cung cấp phải có độ dài từ 3 đến 10 ký tự',
-
             'ten.unique' => 'Tên nhà cung cấp đã tồn tại',
             'ten.required' =>   'Bạn chưa nhập tên nhà cung cấp',
             'ten.max' =>   'Tên nhà cung cấp có độ dài tối đa 255 ký tự',
@@ -44,7 +38,7 @@ class NhaCungCapController extends Controller
         ]);
 
         $nhacungcap = new NhaCungCap;
-        $nhacungcap->ma_nha_cung_cap = $request->ma;
+        $nhacungcap->ma_nha_cung_cap = "NC".rand(00000000,99999999);
         $nhacungcap->ten_nha_cung_cap = $request->ten;
         $nhacungcap->ten_khong_dau = str_slug($request->ten,'-');
         $nhacungcap->so_dien_thoai = $request->sdt;
@@ -85,14 +79,9 @@ class NhaCungCapController extends Controller
     {
         $nhacungcap = NhaCungCap::find($mancc);
         $this->validate($request,[
-            'ma' => 'required|min:3|max:10',
             'ten'=> 'required|max:255',
             'sdt'=> 'numeric|min:9'
         ],[
-            'ma.required' => 'Bạn chưa nhập mã nhà cung cấp',
-            'ma.min'    =>  'Mã nhà cung cấp phải có độ dài hơn 3 ký tự',
-            'ma.max'    =>  'Mã nhà cung cấp phải có độ dài từ 3 đến 10 ký tự',
-
             'ten.required' =>   'Bạn chưa nhập tên nhà cung cấp',
             'ten.max' =>   'Tên nhà cung cấp có độ dài tối đa 255 ký tự',
             'sdt.min'   => 'Số điện thoại có độ dài không dưới 10 số',
