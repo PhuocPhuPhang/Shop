@@ -76,10 +76,9 @@
 						<!-- <div class="sale_off">Giảm giá -10%</div> -->
 					</div>
 					<div class="pro_info">
-						<a class="name" href="shop/san-pham/{{$sp->ma_san_pham}}">{{$sp->ten_san_pham}}</a>
-						<div class="wrap_price flex-between">
-							<div class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
-							<!-- <div class="price_old">10,000,000 Đ</div> -->
+						<a style="font-size: 15px;color: blue;font-weight: bold;" class="name" href="shop/san-pham/{{$sp->ma_san_pham}}">{{$sp->ten_san_pham}}</a>
+						<div class="wrap_price">
+							<div style="display: block; text-align: center;" class="price">Giá: <span>{{number_format($sp->gia_ban)}} Đ</span></div>
 						</div>
 						<div class="pro_info-info">
 							{{--@foreach($ttsp as $thongso)
