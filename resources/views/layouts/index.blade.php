@@ -97,7 +97,8 @@
 		<div class="news_wrap">
 			<div class="title"><h3>Tin tức mới</h3></div>
 			<ul id="scroller">
-				@foreach($tintuc_shop as $tt)
+				@foreach($tintuc as $tt)
+				 @if($tt->type == "tin-tuc")
 				<li>
 					<div class="main_news flex-between">
 						<div class="img_news">
@@ -111,6 +112,7 @@
 						</div>
 					</div>
 				</li>
+				@endif
 				@endforeach
 			</ul>
 		</div>

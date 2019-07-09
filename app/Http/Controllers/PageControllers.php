@@ -27,7 +27,7 @@ class PageControllers extends Controller
     $about = DB::table('tin_tuc')->where('type', 'gioi-thieu')->first();
     $nhacungcap =  NhaCungCap::where('hien_thi', 1)->get();
     $tintuc = TinTuc::all();
-    $tintuc_shop = TinTuc::where('type', 'tin-tuc')->get();
+    $tintuc_shop = TinTuc::where('type', 'tin-tuc')->where('hien_thi',1)->get();
     $product_shop = SanPham::where('noi_bat', 1)->paginate(12);
     $social = Media::where('type', 'social')->get();
     $website = DB::table('thong_tin_cong_ty')->first();
@@ -48,7 +48,7 @@ class PageControllers extends Controller
   {
     $slide = Media::where([['type', 'slide'], ['hien_thi', 1]])->get();
     $social = Media::where([['type', 'social'], ['hien_thi', 1]])->get();
-    $tintuc = TinTuc::where('hien_thi', 1)->get();
+    $tintuc = TinTuc::where('hien_thi', 1)->where('noi_bat',1)->get();
     $product = SanPham::where('noi_bat', 1)->get();
     $website = DB::table('thong_tin_cong_ty')->first();
     return view(
