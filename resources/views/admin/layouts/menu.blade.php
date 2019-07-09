@@ -42,13 +42,14 @@
                         </ul>
                     </li>
 
-                    <li><a><i class="fa fa-mobile"></i>Sản Phẩm<span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
+                    <li><a href="{{url('shop/admin/sanpham/danhsach')}}"><i class="fa fa-mobile"></i>Sản Phẩm</a></li>
+                    <!-- <li><a><i class="fa fa-mobile"></i>Sản Phẩm<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu"> -->
                             <!-- <li><a href="{{url('admin/sanpham/loaicauhinh/danhsach')}}">Danh sách loại cấu hình</a></li>
                     <li><a href="{{url('admin/sanpham/cauhinh/danhsach')}}">Danh sách cấu hình</a></li> -->
-                            <li><a href="{{url('shop/admin/sanpham/danhsach')}}">Danh sách sản phẩm</a></li>
+                            <!-- <li><a href="{{url('shop/admin/sanpham/danhsach')}}">Danh sách sản phẩm</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <!-- <li><a href="{{url('admin/khuyenmai/danhsach')}}"><i class="fa fa-percent"></i>Khuyến mãi</a></li> -->
                     <li><a><i class="fa fa-file-text"></i>Hóa đơn<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">

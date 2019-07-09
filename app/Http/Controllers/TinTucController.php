@@ -12,7 +12,7 @@ class TinTucController extends Controller
 {
     public function getDanhSach()
     {
-        $tintuc = TinTuc::where('type','tin-tuc')->get();
+        $tintuc = TinTuc::where('type','tin-tuc')->orderBy('created_at','desc')->get();
         return view('admin.tintuc.danhsach',['tintuc'=>$tintuc]);
     }
 
@@ -203,7 +203,7 @@ class TinTucController extends Controller
 
     public function getChinhSach()
     {
-        $chinhsach = TinTuc::where('type','chinh-sach')->get();
+        $chinhsach = TinTuc::where('type','chinh-sach')->orderBy('created_at','desc')->get();
         return view('admin.tintuc.chinhsach.danhsach',['chinhsach'=>$chinhsach]);
     }
 

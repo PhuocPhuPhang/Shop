@@ -26,10 +26,9 @@ class SlideController extends Controller
     public function postThem(Request $request)
     {
         $this->validate($request,[
-            'ten'=> 'required|unique:media,ten|max:255',
+            'ten'=> 'required|max:255',
             'link'=> 'min:10',
         ],[
-            'ten.unique' => 'Tên slide đã tồn tại',
             'ten.required' =>   'Bạn chưa nhập tên slide',
             'ten.max' =>   'Tên slide có độ dài tối đa 255 ký tự',
 
@@ -53,7 +52,6 @@ class SlideController extends Controller
             $hinh = $name.'_'.time().'.'.$duoi;
             $file->move("upload/slide",$hinh);
             $slide->hinh_anh = $hinh;
-
         }
         else
         {
