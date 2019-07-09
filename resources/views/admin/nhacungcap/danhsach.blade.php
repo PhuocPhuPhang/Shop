@@ -50,7 +50,7 @@
                 <a href="shop/admin/nhacungcap/sua/{{$ncc->ma_nha_cung_cap}}" class="btn btn-info btn-xs">
                     <i class="fa fa-pencil"></i> Chỉnh sửa
                 </a>
-                <a href="admin/nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
+                <a href="shop/admin/nhacungcap/xoa/{{$ncc->ma_nha_cung_cap}}" class="btn btn-danger btn-xs">
                     <i class="fa fa-trash-o"></i> Tạm ngưng
                 </a>
              </td>
