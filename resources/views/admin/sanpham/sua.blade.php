@@ -74,7 +74,7 @@
                     </div>
 
                     <label>Mô tả</label>
-                    <textarea id="mota" class="form-control inputForm" name="mota" style="height:200px">{{$sanpham->noi_dung}}</textarea><br />
+                    <textarea id="mota" class="form-control inputForm" name="mota" style="height:200px">{{$sanpham->mo_ta}}</textarea><br />
 
                     @if(count($hinhanh) != 0)
                     <label>Hình hiện tại</label>
