@@ -61,6 +61,7 @@
 				</ul> -->
 			</div>
 		</div>
+		@if($product_detail->noi_dung != "")
 		<div id="container_product" class="flex-between">
 			<div id="chitietsanpham" >
 				<div id="tintuc" class="hidden active">{{$product_detail->noi_dung}}</div>
@@ -120,6 +121,7 @@
 				</div>
 			</div>
 		</div>
+		@endif
 		<div class="wrap_name_detail">
 			<label class="title-sp">Sản phẩm tương tự</label>
 		</div>

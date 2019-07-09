@@ -33,6 +33,7 @@ class PageControllers extends Controller
     $website = DB::table('thong_tin_cong_ty')->first();
     $video = Media::where([['type', 'video']])->get();
     $route = Route::current();
+    $spmoi = DB::table('san_pham')->orderBy('created_at','desc')->limit(8)->get();
     view()->share('route', $route);
     view()->share('video', $video);
     view()->share('about', $about);
@@ -42,6 +43,7 @@ class PageControllers extends Controller
     view()->share('product_shop', $product_shop);
     view()->share('social', $social);
     view()->share('website', $website);
+    view()->share('spmoi', $spmoi);
   }
 
   public function index()
@@ -57,7 +59,8 @@ class PageControllers extends Controller
       ['slide' => $slide],
       ['product' => $product],
       ['social' => $social],
-      ['webstite' => $website]
+      ['webstite' => $website],
+
     );
   }
 

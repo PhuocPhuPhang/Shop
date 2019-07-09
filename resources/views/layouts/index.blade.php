@@ -13,10 +13,10 @@
 </section>
 <section id="product_home">
 	<div class="container">
-		<label class="title-sp">Sản phẩm hot</label>
+		<label class="title-sp">Sản phẩm mới</label>
 		<div class="list_product">
 			<div class="sp-owl owl-carousel owl-theme">
-				@foreach($product_shop as $sp)
+				@foreach($spmoi as $sp)
 				<div class="sanpham sanpham2">
 					<div class="img">
 						<a href="shop/san-pham/{{$sp->ma_san_pham}}" title="{{$sp->ten_san_pham}}">
