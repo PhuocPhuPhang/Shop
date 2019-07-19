@@ -59,8 +59,7 @@ class PageControllers extends Controller
       ['slide' => $slide],
       ['product' => $product],
       ['social' => $social],
-      ['webstite' => $website],
-
+      ['webstite' => $website]
     );
   }
 
